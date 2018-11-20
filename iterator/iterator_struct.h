@@ -13,13 +13,18 @@ typedef struct
 	swInt    num;
 }Arrays;
 
-//typedef struct
-//{
-//	scalar* vertex1Ptr;
-//	scalar* vertex2Ptr;
-//	scalar* vertex3Ptr;
-//	scalar* vertex4Ptr;
-//	label   vertexNumber;
-//}vertexArrays;
+typedef struct
+{
+	swInt* blockStarts;
+	swInt* vertexStarts;
+	swInt* owner;
+	swInt* neighbor;
+	swInt  cpeBlockNum;
+	swInt  mshBlockNum;
+	swInt  mtxBlockNum;
+	swInt  maxXNum;
+	swInt  maxCells;
+	swInt  maxEdges;
+}MLBParameters;
 
 #endif

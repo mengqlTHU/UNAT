@@ -20,6 +20,9 @@ class MultiLevelBlockIterator : public Iterator
 		swInt*   _vertexStarts;
 		swInt*   _owner;
 		swInt*   _neighbor;
+		swInt    _maxXNum;
+		swInt    _maxCells;
+		swInt    _maxEdges;
 
 		void reorderVertexArray(swFloat* array);
 	public:
@@ -50,6 +53,9 @@ class MultiLevelBlockIterator : public Iterator
 		swInt getCpeBlockNum(){return this->_cpeBlockNum;};
 		swInt getMshBlockNum(){return this->_mshBlockNum;};
 		swInt getMtxBlockNum(){return this->_mtxBlockNum;};
+		swInt getMaxXNum(){return this->_maxXNum;};
+		swInt getMaxCells(){return this->_maxCells;};
+		swInt getMaxEdges(){return this->_maxEdges;};
 		swInt* getBlockStarts(){return this->_blockStarts;};
 		swInt* getVertexStarts(){return this->_vertexStarts;};
 		swInt* getOwner(){return this->_owner;};

@@ -6,6 +6,7 @@
 extern "C"{
 #endif
 #include "BlockOrdering/BlockOrdering.h"
+#include "edge2VertexIter_host.h"
 #ifdef __cplusplus
 }
 #endif
@@ -65,6 +66,30 @@ void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
 	MLB_Multilevel_ordering(graph,levels,blockNums,this->_blockStarts,
 				this->_vertexStarts,postVertexOrder,postEdgeOrder);
 
+	this->_maxEdges = 0;
+	this->_maxCells = 0;
+	swInt edgeNum = 0;
+	swInt cellNum = 0;
+	swInt blockIdx;
+	for(int i=0;i<this->_cpeBlockNum;i++)
+	{
+		for(int j=i+1;j<this->_cpeBlockNum;j++)
+		{
+			blockIdx = i*(1+2*this->_cpeBlockNum-i)/2+j-i;
+			edgeNum += this->_blockStarts[4*blockIdx+3]
+				- this->_blockStarts[4*blockIdx+2];
+		}
+		blockIdx = i*(1+2*this->_cpeBlockNum-i)/2;
+		cellNum = this->_blockStarts[4*blockIdx+3]
+			- this->_blockStarts[4*blockIdx+2];
+		this->_maxCells
+			= this->_maxCells > cellNum ? this->_maxCells : cellNum;
+		this->_maxEdges
+			= this->_maxEdges > edgeNum ? this->_maxEdges : edgeNum;
+		edgeNum = 0;
+	}
+	this->_maxXNum = vertexNumber/this->_cpeBlockNum*1.2;
+
 	this->_owner    = (swInt*)malloc(sizeof(swInt)*edgeNumber);
 	this->_neighbor = (swInt*)malloc(sizeof(swInt)*edgeNumber);
 
@@ -105,19 +130,35 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 			(Arrays*, Arrays*, swInt*, swInt*))
 {
 	cout<<"operatorFunPointer"<<endl;
+
+	MLBParameters MLBParas;
+	MLBParas.blockStarts  = this->getBlockStarts();
+	MLBParas.vertexStarts = this->getVertexStarts();
+	MLBParas.owner        = this->getOwner();
+	MLBParas.neighbor     = this->getNeighbor();
+	MLBParas.cpeBlockNum  = this->getCpeBlockNum();
+	MLBParas.mshBlockNum  = this->getMshBlockNum();
+	MLBParas.mtxBlockNum  = this->getMtxBlockNum();
+	MLBParas.maxXNum      = this->getMaxXNum();
+	MLBParas.maxCells     = this->getMaxCells();
+	MLBParas.maxEdges     = this->getMaxEdges();
+
+	edge2VertexIteration_host(edgeData, vertexData,
+				operatorFunPointer, &MLBParas);
+
 //	edgeData->A3Ptr = this->getOwner();
 //	edgeData->A4Ptr = this->getNeighbor();
 //	operatorFunPointer(edgeData, vertexData);
 	Arrays edgeData_slave, vertexData_slave;
-	swInt edgeNum      = this->_topo->getEdgeNumber();
-	swInt vertexNum    = this->_topo->getVertexNumber();
-	swInt cpeBlockNum  = this->getCpeBlockNum();
-	swInt mshBlockNum  = this->getMshBlockNum();
-	swInt mtxBlockNum  = this->getMtxBlockNum();
-	swInt* blockStarts = this->getBlockStarts();
-	swInt* vertexStart = this->getVertexStarts();
-	swInt* owner       = this->getOwner();
-	swInt* neighbor    = this->getNeighbor();
+	swInt edgeNum       = this->_topo->getEdgeNumber();
+	swInt vertexNum     = this->_topo->getVertexNumber();
+	swInt cpeBlockNum   = this->getCpeBlockNum();
+	swInt mshBlockNum   = this->getMshBlockNum();
+	swInt mtxBlockNum   = this->getMtxBlockNum();
+	swInt* blockStarts  = this->getBlockStarts();
+	swInt* vertexStarts = this->getVertexStarts();
+	swInt* owner        = this->getOwner();
+	swInt* neighbor     = this->getNeighbor();
 
 	for(int i=0;i<vertexNum;i++)
 	{

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
+#include <assert.h>
 
 using namespace std;
 
@@ -120,6 +121,7 @@ void Topology::EdgeBasedInit()
 	for(int i=0;i<this->_vertexNumber;i++)
 	{
 		this->_startVertexNumbers[i]=0;
+		this->_vertexEdgeNumbers[i]=0;
 	}
 	for(int i=0;i<this->_edgeNumber;i++)
 	{
