@@ -127,7 +127,7 @@ void MultiLevelBlockIterator::reorderEdgesFromVertex(
 
 void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 			Arrays* vertexData,void (*operatorFunPointer)
-			(Arrays*, Arrays*, swInt*, swInt*))
+			(MLBFunParameters *MLBFunParas))
 {
 	cout<<"operatorFunPointer"<<endl;
 
@@ -143,9 +143,6 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 	MLBParas.maxCells     = this->getMaxCells();
 	MLBParas.maxEdges     = this->getMaxEdges();
 
-	edge2VertexIteration_host(edgeData, vertexData,
-				operatorFunPointer, &MLBParas);
-
 //	edgeData->A3Ptr = this->getOwner();
 //	edgeData->A4Ptr = this->getNeighbor();
 //	operatorFunPointer(edgeData, vertexData);
@@ -160,57 +157,60 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 	swInt* owner        = this->getOwner();
 	swInt* neighbor     = this->getNeighbor();
 
-	for(int i=0;i<vertexNum;i++)
-	{
-		vertexData->A1Ptr[i] = vertexData->A2Ptr[i]*vertexData->A3Ptr[i];
-	}
+//	for(int i=0;i<vertexNum;i++)
+//	{
+//		vertexData->A1Ptr[i] = vertexData->A2Ptr[i]*vertexData->A3Ptr[i];
+//	}
 
-	for(int i=0;i<mshBlockNum;i++)
-	{
-		for(int j=0;j<BLOCKNUM64K;j++)
-		{
-			int row = i*BLOCKNUM64K+j;
-			for(int col=row;col<cpeBlockNum;col++)
-			{
-				int blockIdx = row*(1+2*cpeBlockNum-row)/2+col-row;
-				int startIdx = blockStarts[4*blockIdx+2];
-				int endIdx   = blockStarts[4*blockIdx+3];
-				for(int k=startIdx;k<endIdx;k++)
-				{
-				edgeData_slave.A2Ptr = &edgeData->A2Ptr[k];
-				vertexData_slave.A1Ptr = &vertexData->A1Ptr[owner[k]];
-				vertexData_slave.A2Ptr = &vertexData->A2Ptr[neighbor[k]];
-				operatorFunPointer(&edgeData_slave, &vertexData_slave,
-							&owner[k], &neighbor[k]);
-				edgeData_slave.A2Ptr = &edgeData->A1Ptr[k];
-				vertexData_slave.A1Ptr = &vertexData->A1Ptr[neighbor[k]];
-				vertexData_slave.A2Ptr = &vertexData->A2Ptr[owner[k]];
-				operatorFunPointer(&edgeData_slave, &vertexData_slave,
-							&owner[k], &neighbor[k]);
-//					if(owner[k]==30527)
-//					{
-//						cout<<"row: "<<k<<","
-//							<<vertexData->A1Ptr[owner[k]]<<","
-//							<<edgeData->A2Ptr[k]<<","
-//							<<vertexData->A2Ptr[neighbor[k]]<<endl;
-//					}
-//					vertexData->A1Ptr[owner[k]]
-//						+= edgeData->A2Ptr[k]
-//						 * vertexData->A2Ptr[neighbor[k]];
-//					if(neighbor[k]==30534)
-//					{
-//						cout<<"col: "<<k<<","
-//							<<vertexData->A1Ptr[neighbor[k]]<<","
-//							<<edgeData->A1Ptr[k]<<","
-//							<<vertexData->A2Ptr[owner[k]]<<endl;;
-//					}
-//					vertexData->A1Ptr[neighbor[k]]
-//						+= edgeData->A1Ptr[k]
-//						 * vertexData->A2Ptr[owner[k]];
-				}
-			}
-		}
-	}
+	edge2VertexIteration_host(edgeData, vertexData,
+				operatorFunPointer, &MLBParas);
+
+//	for(int i=0;i<mshBlockNum;i++)
+//	{
+//		for(int j=0;j<BLOCKNUM64K;j++)
+//		{
+//			int row = i*BLOCKNUM64K+j;
+//			for(int col=row;col<cpeBlockNum;col++)
+//			{
+//				int blockIdx = row*(1+2*cpeBlockNum-row)/2+col-row;
+//				int startIdx = blockStarts[4*blockIdx+2];
+//				int endIdx   = blockStarts[4*blockIdx+3];
+//				for(int k=startIdx;k<endIdx;k++)
+//				{
+//				edgeData_slave.A2Ptr = &edgeData->A2Ptr[k];
+//				vertexData_slave.A1Ptr = &vertexData->A1Ptr[owner[k]];
+//				vertexData_slave.A2Ptr = &vertexData->A2Ptr[neighbor[k]];
+//				operatorFunPointer(&edgeData_slave, &vertexData_slave,
+//							&owner[k], &neighbor[k]);
+//				edgeData_slave.A2Ptr = &edgeData->A1Ptr[k];
+//				vertexData_slave.A1Ptr = &vertexData->A1Ptr[neighbor[k]];
+//				vertexData_slave.A2Ptr = &vertexData->A2Ptr[owner[k]];
+//				operatorFunPointer(&edgeData_slave, &vertexData_slave,
+//							&owner[k], &neighbor[k]);
+////					if(owner[k]==30527)
+////					{
+////						cout<<"row: "<<k<<","
+////							<<vertexData->A1Ptr[owner[k]]<<","
+////							<<edgeData->A2Ptr[k]<<","
+////							<<vertexData->A2Ptr[neighbor[k]]<<endl;
+////					}
+////					vertexData->A1Ptr[owner[k]]
+////						+= edgeData->A2Ptr[k]
+////						 * vertexData->A2Ptr[neighbor[k]];
+////					if(neighbor[k]==30534)
+////					{
+////						cout<<"col: "<<k<<","
+////							<<vertexData->A1Ptr[neighbor[k]]<<","
+////							<<edgeData->A1Ptr[k]<<","
+////							<<vertexData->A2Ptr[owner[k]]<<endl;;
+////					}
+////					vertexData->A1Ptr[neighbor[k]]
+////						+= edgeData->A1Ptr[k]
+////						 * vertexData->A2Ptr[owner[k]];
+//				}
+//			}
+//		}
+//	}
 
 	map<swInt, swInt>::iterator iter;
 	vertexData->A4Ptr=(swFloat*)malloc
@@ -223,7 +223,7 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 
 void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays* neighbourData,
 			Arrays* vertexData,void (*operatorFunPointer)
-			(Arrays*, Arrays*, Topology *topo))
+			(MLBFunParameters *MLBFunParas))
 {
 	cout<<"!!!---Not implemented in MLB"<<endl;
 //	operatorFunPointer(edgeData, vertexData, this->_topo);

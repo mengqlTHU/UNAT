@@ -4,6 +4,10 @@
 #include "swMacro.h"
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 typedef struct
 {
 	swFloat* A1Ptr;
@@ -26,5 +30,20 @@ typedef struct
 	swInt  maxCells;
 	swInt  maxEdges;
 }MLBParameters;
+
+typedef struct
+{
+	Arrays* edgeData;
+	Arrays* vertexData;
+	swInt*  owner;
+	swInt*  neighbor;
+	swInt   k1;
+	swInt   k2;
+	swInt   flag;
+}MLBFunParameters;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

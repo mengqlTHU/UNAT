@@ -42,11 +42,11 @@ class MultiLevelBlockIterator : public Iterator
 		void edge2VertexIteration(Arrays* edgeData,
 					Arrays* vertexData,
 					void (*operatorFunPointer)
-					(Arrays*, Arrays*, swInt*, swInt*));
+					(MLBFunParameters *MLBFunParas));
 		void vertex2EdgeIteration(Arrays* neighbourData,
 					Arrays* vertexData,
 					void (*operatorFunPointer)
-					(Arrays*, Arrays*, Topology *topo));
+					(MLBFunParameters *MLBFunParas));
 		void reorderEdgeData(Arrays* edgeData);
 		void reorderVertexData(Arrays* edgeData);
 

@@ -55,11 +55,11 @@ class Iterator
 		virtual void edge2VertexIteration(Arrays* edgeData,
 					Arrays* vertexData,
 					void (*operatorFunPointer)
-					(Arrays*, Arrays*, swInt*, swInt*)) = 0;
+					(MLBFunParameters *MLBFunParas)) = 0;
 		virtual void vertex2EdgeIteration(Arrays* neighbourData,
 					Arrays* vertexData,
 					void (*operatorFunPointer)
-					(Arrays*, Arrays*, Topology *topo)) = 0;
+					(MLBFunParameters *MLBFunParas)) = 0;
 };
 
 #endif
