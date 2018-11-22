@@ -6,6 +6,7 @@
 #include "rlmpi.h"
 #include "swMacro.h"
 #include "iterator_struct.h"
+#include "userFunc.h"
 
 __thread_local volatile int myId;
 
@@ -222,9 +223,9 @@ void func()
 		  			blockLen*sizeof(swFloat));
 		DMA_Get(&sNeighbor_slave[0],&owner[startIdx],
 		  			blockLen*sizeof(swInt));
-//		MLBFunParameters MLBFunParas = {&edgeData_slave, &vertexData_slave,
-//			NULL, &sNeighbor_slave[0], cell_slave[0], 0 , 0};
-//		(*operatorFunPointer_host)(&MLBFunParas);
+		MLBFunParameters MLBFunParas = {&edgeData_slave, &vertexData_slave,
+			NULL, &sNeighbor_slave[0], nonZeroNum, cell_slave[0], 0 , 0};
+//		operatorFunPointer_host(&MLBFunParas);
   		for(i=0;i<nonZeroNum;i++)
 		{
   			b_slave[sNeighbor_slave[i]-cell_slave[0]]

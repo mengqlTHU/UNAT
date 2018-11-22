@@ -14,11 +14,11 @@
 class Iterator
 {
 	private:
-
-	public:
 		Topology* _topo;
 		map<swInt, swInt> _edgeMap;
 		map<swInt, swInt> _vertexMap;
+
+	public:
 
 		// Constructors
 		Iterator(){};
@@ -42,6 +42,10 @@ class Iterator
 						this->_topo->getEdgeNumber(),
 						this->_topo->getVertexNumber());
 		};
+
+		Topology* getTopology(){return this->_topo;};
+		map<swInt, swInt>& getEdgeMap(){return this->_edgeMap;};
+		map<swInt, swInt>& getVertexMap(){return this->_vertexMap;};
 
 		virtual void reorderEdgesFromEdge(swInt* startVertices,
 					swInt* endVertices,

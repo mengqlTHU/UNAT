@@ -5,6 +5,14 @@
 
 #define BLOCKNUM64K 64
 #define EPS 1e-6
+#define DEBUG
+
+#ifdef DEBUG
+#define LOG(format,...) printf("File: "__FILE__",Line: %05d: "format"\n", __LINE__, ##__VA_ARGS__)
+#else
+#define LOG(format,...)
+#endif
+
 
 typedef int swInt;
 typedef int swInt32;

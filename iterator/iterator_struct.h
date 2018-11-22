@@ -37,6 +37,7 @@ typedef struct
 	Arrays* vertexData;
 	swInt*  owner;
 	swInt*  neighbor;
+	swInt   count;
 	swInt   k1;
 	swInt   k2;
 	swInt   flag;

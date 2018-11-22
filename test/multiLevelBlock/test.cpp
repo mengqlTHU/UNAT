@@ -6,14 +6,16 @@
 #include "iterator.H"
 #include "multiLevelBlockIterator.H"
 #include "iterator_struct.h"
+#include "funcPointer.h"
 
 #define NONZERONUM 187200
 
 int* readFile(char* name);
 void debug(Topology t);
 void (*operatorFunPointer)(MLBFunParameters *MLBFunParas);
-void spMV(MLBFunParameters *MLBFunParas);
+//void spMV(MLBFunParameters *MLBFunParas);
 void checkResult(swFloat* array1, swFloat* array2, swInt count);
+//extern void SLAVE_FUNC(spMV)(MLBFunParameters *MLBFunParas);
 
 int main()
 {
@@ -72,7 +74,7 @@ int main()
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer=spMV;
+	operatorFunPointer = funcPointer();
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays vertexData = {b_mlb,     x, diag, NULL, t.getVertexNumber()};
 	mlbIter.reorderEdgeData(&edgeData);
@@ -97,15 +99,15 @@ int main()
 	return 0;
 }
 
-void spMV(MLBFunParameters *MLBFunParas)
-{
-	cout<<"spMV"<<endl;
-//	for(int i=0;i<edgeData->num;i++)
-//	{
-//		vertexData->A1Ptr[neighbor[i]]
-//			+= edgeData->A1Ptr[i]*vertexData->A2Ptr[i];
-//	}
-}
+//void spMV(MLBFunParameters *MLBFunParas)
+//{
+//	cout<<"spMV"<<endl;
+////	for(int i=0;i<edgeData->num;i++)
+////	{
+////		vertexData->A1Ptr[neighbor[i]]
+////			+= edgeData->A1Ptr[i]*vertexData->A2Ptr[i];
+////	}
+//}
 
 void checkResult(swFloat* array1, swFloat* array2, swInt count)
 {

@@ -13,9 +13,10 @@ extern "C"{
 
 #define MAX(A,B) A > B ? A : B
 
-void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
-			swInt* endVertices, swInt edgeNumber, swInt vertexNumber)
+MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
+		: Iterator(topo)
 {
+	cout<<"MultiLevelBlockIterator"<<endl;
 	swInt* vertexWeights;
 	swInt* edgeWeights;
 	swInt* postVertexOrder;
@@ -23,6 +24,8 @@ void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
 	MLB_graph graph;
 	swInt* blockNums;
 	swInt  levels;
+	swInt vertexNumber = this->getTopology()->getVertexNumber();
+	swInt edgeNumber   = this->getTopology()->getEdgeNumber();
 
 	postVertexOrder = (swInt*)malloc(sizeof(swInt)*vertexNumber);	
 	postEdgeOrder = (swInt*)malloc(sizeof(swInt)*edgeNumber);
@@ -46,8 +49,8 @@ void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
 	for(int i=0;i<edgeNumber;i++) edgeWeights[i] = 2;
 	for(int i=0;i<vertexNumber;i++) vertexWeights[i] = 1;
 
-	graph.owner       = startVertices;
-	graph.neighbor    = endVertices;
+	graph.owner       = this->getTopology()->getStartVertices();
+	graph.neighbor    = this->getTopology()->getEndVertices();
 	graph.cellWeights = vertexWeights;
 	graph.edgeWeights = edgeWeights;
 	graph.cellNum     = vertexNumber;
@@ -90,30 +93,56 @@ void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
 	}
 	this->_maxXNum = vertexNumber/this->_cpeBlockNum*1.2;
 
-	this->_owner    = (swInt*)malloc(sizeof(swInt)*edgeNumber);
-	this->_neighbor = (swInt*)malloc(sizeof(swInt)*edgeNumber);
-
 	for(int i=0;i<edgeNumber;i++)
 	{
-		this->_edgeMap.insert(pair<swInt,swInt>(i,postEdgeOrder[i]));
-		if(postEdgeOrder[i]<0)
-		{
-			this->_owner[-postEdgeOrder[i]]
-				= postVertexOrder[endVertices[i]];
-			this->_neighbor[-postEdgeOrder[i]]
-				= postVertexOrder[startVertices[i]];
-		} else
-		{
-			this->_owner[postEdgeOrder[i]]
-				= postVertexOrder[startVertices[i]];
-			this->_neighbor[postEdgeOrder[i]]
-				= postVertexOrder[endVertices[i]];
-		}
+		this->getEdgeMap().insert(pair<swInt,swInt>(i,postEdgeOrder[i]));
 	}
 	for(int i=0;i<vertexNumber;i++)
 	{
-		this->_vertexMap.insert(pair<swInt,swInt>(i,postVertexOrder[i]));
+		this->getVertexMap()
+			.insert(pair<swInt,swInt>(i,postVertexOrder[i]));
 	}
+
+}
+
+void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
+			swInt* endVertices, swInt edgeNumber, swInt vertexNumber)
+{
+	if(edgeNumber!=this->getTopology()->getEdgeNumber())
+	{
+		LOG("The edge arrays do not match the topology!");
+	}
+
+	map<swInt, swInt>::iterator iter;
+	swInt* tmpStart = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+	swInt* tmpEnd   = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+
+	for(iter = this->getEdgeMap().begin();
+				iter!=this->getEdgeMap().end();iter++)
+	{
+		if(iter->second<0)
+		{
+			tmpStart[-iter->second]
+				= this->getVertexMap()[endVertices[iter->first]];
+			tmpEnd[-iter->second]
+				= this->getVertexMap()[startVertices[iter->first]];
+		} else
+		{
+			tmpStart[iter->second]
+				= this->getVertexMap()[startVertices[iter->first]];
+			tmpEnd[iter->second]
+				= this->getVertexMap()[endVertices[iter->first]];
+		}
+	}
+
+	for(int i=0;i<edgeNumber;i++)
+	{
+		startVertices[i] = tmpStart[i];
+		endVertices[i]   = tmpEnd[i];
+	}
+	
+	free(tmpStart);
+	free(tmpEnd);
 
 	cout<<"reorderEdgesFromEdge"<<endl;
 }
@@ -134,8 +163,8 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 	MLBParameters MLBParas;
 	MLBParas.blockStarts  = this->getBlockStarts();
 	MLBParas.vertexStarts = this->getVertexStarts();
-	MLBParas.owner        = this->getOwner();
-	MLBParas.neighbor     = this->getNeighbor();
+	MLBParas.owner        = this->getTopology()->getStartVertices();
+	MLBParas.neighbor     = this->getTopology()->getEndVertices();
 	MLBParas.cpeBlockNum  = this->getCpeBlockNum();
 	MLBParas.mshBlockNum  = this->getMshBlockNum();
 	MLBParas.mtxBlockNum  = this->getMtxBlockNum();
@@ -147,15 +176,15 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 //	edgeData->A4Ptr = this->getNeighbor();
 //	operatorFunPointer(edgeData, vertexData);
 	Arrays edgeData_slave, vertexData_slave;
-	swInt edgeNum       = this->_topo->getEdgeNumber();
-	swInt vertexNum     = this->_topo->getVertexNumber();
+	swInt edgeNum       = this->getTopology()->getEdgeNumber();
+	swInt vertexNum     = this->getTopology()->getVertexNumber();
 	swInt cpeBlockNum   = this->getCpeBlockNum();
 	swInt mshBlockNum   = this->getMshBlockNum();
 	swInt mtxBlockNum   = this->getMtxBlockNum();
 	swInt* blockStarts  = this->getBlockStarts();
 	swInt* vertexStarts = this->getVertexStarts();
-	swInt* owner        = this->getOwner();
-	swInt* neighbor     = this->getNeighbor();
+	swInt* owner        = this->getTopology()->getStartVertices();
+	swInt* neighbor     = this->getTopology()->getEndVertices();
 
 //	for(int i=0;i<vertexNum;i++)
 //	{
@@ -214,8 +243,9 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 
 	map<swInt, swInt>::iterator iter;
 	vertexData->A4Ptr=(swFloat*)malloc
-		(this->_topo->getVertexNumber()*sizeof(swFloat));
-	for(iter = this->_vertexMap.begin();iter!=this->_vertexMap.end();iter++)
+		(this->getTopology()->getVertexNumber()*sizeof(swFloat));
+	for(iter = this->getVertexMap().begin();
+				iter!=this->getVertexMap().end();iter++)
 	{
 		vertexData->A4Ptr[iter->first]=vertexData->A1Ptr[iter->second];
 	}
@@ -236,10 +266,11 @@ void MultiLevelBlockIterator::reorderEdgeData(Arrays* edgeData)
 	cout<<"reorderEdgeData"<<endl;
 	map<swInt, swInt>::iterator iter;
 	swFloat* tmpL=(swFloat*)malloc
-		(this->_topo->getEdgeNumber()*sizeof(swFloat));
+		(this->getTopology()->getEdgeNumber()*sizeof(swFloat));
 	swFloat* tmpU=(swFloat*)malloc
-		(this->_topo->getEdgeNumber()*sizeof(swFloat));
-	for(iter = this->_edgeMap.begin();iter!=_edgeMap.end();iter++)
+		(this->getTopology()->getEdgeNumber()*sizeof(swFloat));
+	for(iter = this->getEdgeMap().begin();
+				iter!=this->getEdgeMap().end();iter++)
 	{
 		if(iter->second<0)
 		{
@@ -251,7 +282,7 @@ void MultiLevelBlockIterator::reorderEdgeData(Arrays* edgeData)
 			tmpU[iter->second] = upper[iter->first];
 		}
 	}
-	for(int i=0;i<this->_topo->getEdgeNumber();i++)
+	for(int i=0;i<this->getTopology()->getEdgeNumber();i++)
 	{
 		edgeData->A1Ptr[i] = tmpL[i];
 		edgeData->A2Ptr[i] = tmpU[i];
@@ -263,14 +294,15 @@ void MultiLevelBlockIterator::reorderEdgeData(Arrays* edgeData)
 void MultiLevelBlockIterator::reorderVertexArray(swFloat* array)
 {
 	swFloat *tmp = (swFloat*)malloc
-		(this->_topo->getVertexNumber()*(sizeof(swFloat)));
+		(this->getTopology()->getVertexNumber()*(sizeof(swFloat)));
 	map<swInt, swInt>::iterator iter;
-	for(iter = this->_vertexMap.begin();iter!=this->_vertexMap.end();iter++)
+	for(iter = this->getVertexMap().begin();
+				iter!=this->getVertexMap().end();iter++)
 	{
 //		if(iter->first==0) cout<<iter->second<<endl;
 		tmp[iter->second] = array[iter->first];
 	}
-	for(int i=0;i<this->_topo->getVertexNumber();i++)
+	for(int i=0;i<this->getTopology()->getVertexNumber();i++)
 	{
 		array[i] = tmp [i];
 	}

@@ -18,8 +18,6 @@ class MultiLevelBlockIterator : public Iterator
 		swInt    _mtxBlockNum;
 		swInt*   _blockStarts;
 		swInt*   _vertexStarts;
-		swInt*   _owner;
-		swInt*   _neighbor;
 		swInt    _maxXNum;
 		swInt    _maxCells;
 		swInt    _maxEdges;
@@ -27,10 +25,7 @@ class MultiLevelBlockIterator : public Iterator
 		void reorderVertexArray(swFloat* array);
 	public:
 		// Constructors
-		MultiLevelBlockIterator(){};
-		MultiLevelBlockIterator(Topology &topo) : Iterator(topo) {
-			cout<<"MultiLevelBlockIterator"<<endl;
-		};
+		MultiLevelBlockIterator(Topology &topo);
 		// Deconstructors
 		~MultiLevelBlockIterator(){};
 
@@ -58,8 +53,6 @@ class MultiLevelBlockIterator : public Iterator
 		swInt getMaxEdges(){return this->_maxEdges;};
 		swInt* getBlockStarts(){return this->_blockStarts;};
 		swInt* getVertexStarts(){return this->_vertexStarts;};
-		swInt* getOwner(){return this->_owner;};
-		swInt* getNeighbor(){return this->_neighbor;};
 };
 
 #include "multiLevelBlockIterator.C"
