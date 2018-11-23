@@ -3,7 +3,6 @@
 // flag = 2 : 对角块上三角元素
 // flag = 3 : 对角块下三角元素
 // flag = 4 : 对角块对角元素
-// flag = 5 : 主核稀疏块
 
 #include "userFunc_slave.h"
 #include <stdlib.h>
@@ -58,16 +57,7 @@ void spMV(MLBFunParameters *MLBFunParas)
 		{
 			b[i] += rx[i]*sx[i];
 		}
-	} else if(flag == 5)
-	{
-		LOG("test");
-//		for(i=k1;i<count+k1;i++)
-//		{
-//			b[sNeighbor[i]] += A1Ptr[i]*sx[sOwner[i]];
-//			b[sOwner[i]]    += A2Ptr[i]*sx[sNeighbor[i]];
-//		}
-
-	} else
+	}else
 	{
 		LOG("The flag is not defined");
 	}
@@ -116,13 +106,7 @@ void integrate(MLBFunParameters *MLBFunParas)
 		{
 			b[diagNeighbor[i]-k1] += A3Ptr[i];
 		}
-	} else if(flag == 4)
-	{
-		for(i=0;i<count;i++)
-		{
-			b[i] += rx[i]*sx[i];
-		}
-	} else
+	}else
 	{
 		LOG("The flag is not defined");
 	}

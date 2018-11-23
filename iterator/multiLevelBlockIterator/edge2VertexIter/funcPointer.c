@@ -6,13 +6,30 @@
 
 
 extern SLAVE_FUN(spMV)(MLBFunParameters *MLBFunParas);
+extern SLAVE_FUN(integrate)(MLBFunParameters *MLBFunParas);
 
-PF funcPointer_host()
+PF funcPointer_host(swInt flag)
 {
-	return spMV;
+	switch (flag)
+	{
+		case 0:
+			return spMV;
+		case 1:
+			return integrate;
+		default:
+			return NULL;
+	}
 }
 
-PF funcPointer_slave()
+PF funcPointer_slave(swInt flag)
 {
-	return slave_spMV;
+	switch (flag)
+	{
+		case 0:
+			return slave_spMV;
+		case 1:
+			return slave_integrate;
+		default:
+			return NULL;
+	}
 }

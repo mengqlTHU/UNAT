@@ -92,6 +92,7 @@ void func()
 					blockLen*sizeof(swFloat));
 	}
 
+	if(myId==0) printf("function X: %s\n",x);
 	if(x!=NULL)
 	{
 		DMA_Get(&sendX_slave[0],&x[cell_slave[0]],
@@ -110,16 +111,16 @@ void func()
 		if(endIdx-startIdx>=6){
 			for(i=0;i<6;i++){
 				_sPacks[j].data[i]
-					= sLower_slave[kk+i]
-					* sendX_slave[sNeighbor_slave[kk+i]-cell_slave[0]];
+					= sLower_slave[kk+i];
+//					* sendX_slave[sNeighbor_slave[kk+i]-cell_slave[0]];
 			}
 			ownNeiSendIdx[_sPacks[j].dst_id]+=6;
 			_sPacks[j].indM = 6;
 		}else{
 			for(i=0;i<endIdx-startIdx;i++){
 				_sPacks[j].data[i]
-					= sLower_slave[kk+i]
-					* sendX_slave[sNeighbor_slave[kk+i]-cell_slave[0]];
+					= sLower_slave[kk+i];
+//					* sendX_slave[sNeighbor_slave[kk+i]-cell_slave[0]];
 			}
 			ownNeiSendIdx[_sPacks[j].dst_id]+=endIdx-startIdx;
 			_sPacks[j].indM = endIdx-startIdx;
@@ -277,14 +278,14 @@ void func()
 //			*  sendX_slave[diagOwner_slave[k]-cell_slave[0]];
 //	}
 
-	if(x!=NULL)
-	{
-  	DMA_Get(&recvX_slave[0],&diag[cell_slave[0]],
-			  (cell_slave[1]-cell_slave[0])*sizeof(swFloat));
-	MLBFunParas.count = cell_slave[1]-cell_slave[0];
-	MLBFunParas.flag = 4;
-	operatorFunPointer_s(&MLBFunParas);
-	}
+//	if(x!=NULL)
+//	{
+//  	DMA_Get(&recvX_slave[0],&diag[cell_slave[0]],
+//			  (cell_slave[1]-cell_slave[0])*sizeof(swFloat));
+//	MLBFunParas.count = cell_slave[1]-cell_slave[0];
+//	MLBFunParas.flag = 4;
+//	operatorFunPointer_s(&MLBFunParas);
+//	}
 //	for(k=0;k<cell_slave[1]-cell_slave[0];k++){
 //		b_slave[k] += recvX_slave[k]*sendX_slave[k];
 //	}

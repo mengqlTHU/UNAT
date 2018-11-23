@@ -55,30 +55,30 @@ int main()
 
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
-	for(int i=0;i<t.getVertexNumber();i++)
-	{
-		b[i] = diag[i]*x[i];
-	}
+//	for(int i=0;i<t.getVertexNumber();i++)
+//	{
+//		b[i] = diag[i]*x[i];
+//	}
 	for(int i=0;i<t.getEdgeNumber();i++)
 	{
 //		if(rowAddr[i]==7)
 //		{
 //			cout<<"row"<<i<<","<<b[rowAddr[i]]<<","<<upper[i]<<","<<x[colAddr[i]]<<endl;
 //		}
-     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
+     	b[rowAddr[i]] += upper[i];
 //		if(colAddr[i]==7)
 //		{
 //			cout<<"col"<<i<<","<<b[colAddr[i]]<<","<<lower[i]<<","<<x[rowAddr[i]]<<endl;
 //		}
-		b[colAddr[i]] += lower[i]*x[rowAddr[i]];
+		b[colAddr[i]] += lower[i];
 	}
 	gettimeofday(&end,NULL);
 	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer_host  = funcPointer_host();
-	operatorFunPointer_slave = funcPointer_slave();
+	operatorFunPointer_host  = funcPointer_host(1);
+	operatorFunPointer_slave = funcPointer_slave(1);
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays vertexData = {b_mlb,     x, diag, NULL, t.getVertexNumber()};
 	mlbIter.reorderEdgeData(&edgeData);

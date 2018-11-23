@@ -30,4 +30,18 @@ void spMV(MLBFunParameters *MLBFunParas)
 
 void integrate(MLBFunParameters *MLBFunParas)
 {
+	swFloat* b           = MLBFunParas->vertexData->A1Ptr;
+	swFloat* A1Ptr       = MLBFunParas->edgeData->A1Ptr;
+	swFloat* A2Ptr       = MLBFunParas->edgeData->A2Ptr;
+	swInt* sOwner        = MLBFunParas->tArrays->sOwner;
+	swInt* sNeighbor     = MLBFunParas->tArrays->sNeighbor;
+	swInt  count         = MLBFunParas->count;
+	swInt  k1            = MLBFunParas->k1;
+	int i;
+	for(i=k1;i<count+k1;i++)
+	{
+		b[sNeighbor[i]] += A1Ptr[i];
+		b[sOwner[i]]    += A2Ptr[i];
+	}
+
 }
