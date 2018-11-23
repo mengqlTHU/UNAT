@@ -11,6 +11,7 @@ PROJDIR=/home/export/online1/systest/swrh/lhb/UNAT
 files= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/funcPointer.o \
+${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/BlockOrdering/BOrderUtils.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/extensibleArray/extensibleLabelArray.o \
@@ -18,7 +19,7 @@ ${PROJDIR}/iterator/multiLevelBlockIterator/extensibleArray/extensibleScalarArra
 
 slaveFiles= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_slave.o \
-${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc.o
+${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_slave.o
 
 cppFiles= \
 ${PROJDIR}/test/multiLevelBlock/test.o 

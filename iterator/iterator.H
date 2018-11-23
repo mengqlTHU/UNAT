@@ -7,6 +7,7 @@
 #include <map>
 #include "swMacro.h"
 #include "topology.H"
+#include "edge2VertexIter_slave.h"
 
 // ------------------------------------------------------------------------
 //                             class iterator
@@ -58,11 +59,15 @@ class Iterator
 
 		virtual void edge2VertexIteration(Arrays* edgeData,
 					Arrays* vertexData,
-					void (*operatorFunPointer)
+					void (*operatorFunPointer_host)
+					(MLBFunParameters *MLBFunParas),
+					void (*operatorFunPointer_slave)
 					(MLBFunParameters *MLBFunParas)) = 0;
 		virtual void vertex2EdgeIteration(Arrays* neighbourData,
 					Arrays* vertexData,
-					void (*operatorFunPointer)
+					void (*operatorFunPointer_host)
+					(MLBFunParameters *MLBFunParas),
+					void (*operatorFunPointer_slave)
 					(MLBFunParameters *MLBFunParas)) = 0;
 };
 

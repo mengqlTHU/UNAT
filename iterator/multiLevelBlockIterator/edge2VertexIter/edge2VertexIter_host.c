@@ -7,7 +7,8 @@
 extern SLAVE_FUN(func)();
 
 void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
-			void (*operatorFunPointer)(MLBFunParameters *MLBFunParas),
+			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
+			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
 			MLBParameters* MLBParas)
 {
 	maxXNum     = MLBParas->maxXNum;
@@ -24,7 +25,8 @@ void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
 	b           = vertexData->A1Ptr;
 	x           = vertexData->A2Ptr;
 	diag        = vertexData->A3Ptr;
-	operatorFunPointer_host = operatorFunPointer;
+	operatorFunPointer_h = operatorFunPointer_host;
+	operatorFunPointer_s = operatorFunPointer_slave;
 
 	initOwnNeiSendList();
 	athread_init();
@@ -32,13 +34,17 @@ void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
 }
 
 void edge2VertexIteration_host(Arrays* edgeData, Arrays* vertexData,
-			void (*operatorFunPointer)(MLBFunParameters *MLBFunParas),
+			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
+			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
 			MLBParameters* MLBParas)
 {
-	edge2VertexIteration_init(edgeData, vertexData,
-				operatorFunPointer, MLBParas);
+	edge2VertexIteration_init(edgeData, vertexData, operatorFunPointer_host,
+				operatorFunPointer_slave, MLBParas);
 
 	swInt j,k,idxMP,blockIdx,startIdx,endIdx,row,col;
+	topoArrays tArrays = {owner, NULL, neighbor, NULL, NULL, NULL};
+	MLBFunParameters MLBFunParas = {edgeData, vertexData, &tArrays,
+		0, 0, 0, 5};
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
 	for(j=0;j<BLOCKNUM64K;j++)
@@ -50,11 +56,14 @@ void edge2VertexIteration_host(Arrays* edgeData, Arrays* vertexData,
 		col = cpeBlockNum-1;
 		blockIdx = row*(1+2*cpeBlockNum-row)/2+col-row;
 		endIdx = blockStarts[4*blockIdx+3];
-		for(k=startIdx;k<endIdx;k++)
-		{
-			b[neighbor[k]] += lower[k] * x[owner[k]];
-			b[owner[k]]    += upper[k] * x[neighbor[k]];
-		}
+		MLBFunParas.count = endIdx-startIdx;
+		MLBFunParas.k1    = startIdx;
+		operatorFunPointer_h(&MLBFunParas);
+//		for(k=startIdx;k<endIdx;k++)
+//		{
+//			b[neighbor[k]] += lower[k] * x[owner[k]];
+//			b[owner[k]]    += upper[k] * x[neighbor[k]];
+//		}
 	}
 
 	for(spIndex=0;spIndex<mshBlockNum;spIndex++)
@@ -73,11 +82,14 @@ void edge2VertexIteration_host(Arrays* edgeData, Arrays* vertexData,
 			col      = cpeBlockNum-1;
 			blockIdx = row*(1+2*cpeBlockNum-row)/2+col-row;
 			endIdx   = blockStarts[4*blockIdx+3];
-			for(k=startIdx;k<endIdx;k++)
-			{
-				b[neighbor[k]] +=lower[k] * x[owner[k]];
-				b[owner[k]]    +=upper[k] * x[neighbor[k]];
-			}
+     		MLBFunParas.count = endIdx-startIdx;
+	    	MLBFunParas.k1    = startIdx;
+		    operatorFunPointer_h(&MLBFunParas);
+//			for(k=startIdx;k<endIdx;k++)
+//			{
+//				b[neighbor[k]] +=lower[k] * x[owner[k]];
+//				b[owner[k]]    +=upper[k] * x[neighbor[k]];
+//			}
 		}
 		athread_join();
 		destroyTable(spIndex);

@@ -12,7 +12,8 @@
 
 int* readFile(char* name);
 void debug(Topology t);
-void (*operatorFunPointer)(MLBFunParameters *MLBFunParas);
+void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas);
+void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas);
 //void spMV(MLBFunParameters *MLBFunParas);
 void checkResult(swFloat* array1, swFloat* array2, swInt count);
 //extern void SLAVE_FUNC(spMV)(MLBFunParameters *MLBFunParas);
@@ -36,11 +37,13 @@ int main()
 	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
 	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
 	swFloat* b_mlb = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
+	swInt*   tmp   = (swInt*)malloc(sizeof(swInt)*t.getEdgeNumber());
 
 	for(int i=0;i<t.getEdgeNumber();i++)
 	{
 		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
 		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
+		tmp[i]   = 1;
 	}
 	for(int i=0;i<t.getVertexNumber();i++)
 	{
@@ -74,13 +77,15 @@ int main()
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer = funcPointer();
+	operatorFunPointer_host  = funcPointer_host();
+	operatorFunPointer_slave = funcPointer_slave();
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays vertexData = {b_mlb,     x, diag, NULL, t.getVertexNumber()};
 	mlbIter.reorderEdgeData(&edgeData);
 	mlbIter.reorderVertexData(&vertexData);
 
-	mlbIter.edge2VertexIteration(&edgeData,&vertexData,operatorFunPointer);
+	mlbIter.edge2VertexIteration(&edgeData,&vertexData,
+				operatorFunPointer_host, operatorFunPointer_slave);
 
 	checkResult(b, vertexData.A4Ptr, t.getVertexNumber());
 

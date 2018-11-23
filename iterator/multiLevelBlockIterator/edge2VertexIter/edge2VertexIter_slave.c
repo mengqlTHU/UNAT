@@ -6,11 +6,12 @@
 #include "rlmpi.h"
 #include "swMacro.h"
 #include "iterator_struct.h"
-#include "userFunc.h"
+#include "userFunc_slave.h"
+#include "edge2VertexIter_slave.h"
 
 __thread_local volatile int myId;
 
-extern void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas);
+extern void (*operatorFunPointer_s)(MLBFunParameters *MLBFunParas);
 extern swInt spIndex, maxXNum, maxCell, maxEdge, cpeBlockNum;
 extern swInt *blockStarts, *cellStarts, *ownNeiSendList, *owner, *neighbor;
 extern swFloat *upper, *lower, *diag, *x, *b;
@@ -60,15 +61,20 @@ void func()
 	volatile swInt ownNeiRecvIdx[BLOCKNUM64K];
 	volatile swInt ownNeiSendIdx[BLOCKNUM64K];
 
-	Arrays edgeData_slave
-		= {&sLower_slave[0], &rLower_slave[0], NULL, NULL, nonZeroNum};
-	Arrays vertexData_slave = {&b_slave[0], &recvX_slave[0],
-		&diagUpper_slave[0], NULL, nonZeroNum};
-
 	row = myId + index*BLOCKNUM64K;
 	startBlockIdx = row*(1+2*cpeBlockNum-row)/2;
 	cell_slave[0] = cellStarts[row];
 	cell_slave[1] = cellStarts[row+1];
+
+	Arrays edgeData_slave = {&sLower_slave[0], &rLower_slave[0],
+		&diagUpper_slave[0], NULL, nonZeroNum};
+	Arrays vertexData_slave = {&b_slave[0], &sendX_slave[0],
+		&recvX_slave[0], NULL, nonZeroNum};
+	topoArrays tArrays = {NULL, NULL, &sNeighbor_slave[0],
+		&rNeighbor_slave[0], &diagOwner_slave[0], &diagNeighbor_slave[0]};
+	MLBFunParameters MLBFunParas = {&edgeData_slave, &vertexData_slave,
+		&tArrays, nonZeroNum, cell_slave[0], 0 , 0};
+
 //	DMA_Get(&cell_slave[0],&cellStarts[row],2*sizeof(swInt));
 	DMA_Get(&blockStarts_slave[0],&blockStarts[4*startBlockIdx],
 				BLOCKNUM64K*4*sizeof(swInt));
@@ -86,8 +92,11 @@ void func()
 					blockLen*sizeof(swFloat));
 	}
 
-	DMA_Get(&sendX_slave[0],&x[cell_slave[0]],
-				(cell_slave[1]-cell_slave[0])*sizeof(swFloat));
+	if(x!=NULL)
+	{
+		DMA_Get(&sendX_slave[0],&x[cell_slave[0]],
+					(cell_slave[1]-cell_slave[0])*sizeof(swFloat));
+	}
 
 
 	//communicate Lower
@@ -175,11 +184,16 @@ void func()
 	}
 
 	//计算稠密块中下三角
-	for(i=0;i<nonZeroNum;i++){
-		b_slave[rNeighbor_slave[i]-cell_slave[0]] += rLower_slave[i];
-	}
+	MLBFunParas.count = nonZeroNum;
+	MLBFunParas.flag = 0;
+	operatorFunPointer_s(&MLBFunParas);
+//	for(i=0;i<nonZeroNum;i++){
+//		b_slave[rNeighbor_slave[i]-cell_slave[0]] += rLower_slave[i];
+//	}
 
 	//communicate X
+	if(x!=NULL)
+	{
 	for(j=0;j<BLOCKNUM64K;j++){ownNeiSendIdx[j]=0;}
 	for(j=0;j<total_send_pcg;j++){
 		if(myId<_sPacks[j].dst_id) continue;
@@ -214,6 +228,7 @@ void func()
 			}
 		}
 	}
+	}
 
     //计算稠密块中上三角
     if(blockLen>0)
@@ -223,14 +238,14 @@ void func()
 		  			blockLen*sizeof(swFloat));
 		DMA_Get(&sNeighbor_slave[0],&owner[startIdx],
 		  			blockLen*sizeof(swInt));
-		MLBFunParameters MLBFunParas = {&edgeData_slave, &vertexData_slave,
-			NULL, &sNeighbor_slave[0], nonZeroNum, cell_slave[0], 0 , 0};
-//		operatorFunPointer_host(&MLBFunParas);
-  		for(i=0;i<nonZeroNum;i++)
-		{
-  			b_slave[sNeighbor_slave[i]-cell_slave[0]]
-				+= sLower_slave[i]*recvX_slave[i];
-  		}
+		MLBFunParas.count = nonZeroNum;
+		MLBFunParas.flag = 1;
+		operatorFunPointer_s(&MLBFunParas);
+//  		for(i=0;i<nonZeroNum;i++)
+//		{
+//  			b_slave[sNeighbor_slave[i]-cell_slave[0]]
+//				+= sLower_slave[i]*recvX_slave[i];
+//  		}
 	}
 
 	startIdx = blockStarts_slave[2];
@@ -241,27 +256,38 @@ void func()
 			  blockLen*sizeof(swInt));
   	DMA_Get(&diagNeighbor_slave[0],&neighbor[startIdx],
   				blockLen*sizeof(swInt));
-	for(k=0;k<blockStarts_slave[3]-blockStarts_slave[2];k++)
-	{
-		b_slave[diagOwner_slave[k]-cell_slave[0]]
-			+= diagUpper_slave[k]
-			*  sendX_slave[diagNeighbor_slave[k]-cell_slave[0]];
-	}
+	MLBFunParas.count = blockStarts_slave[3]-blockStarts_slave[2];
+	MLBFunParas.flag = 2;
+	operatorFunPointer_s(&MLBFunParas);
+//	for(k=0;k<blockStarts_slave[3]-blockStarts_slave[2];k++)
+//	{
+//		b_slave[diagOwner_slave[k]-cell_slave[0]]
+//			+= diagUpper_slave[k]
+//			*  sendX_slave[diagNeighbor_slave[k]-cell_slave[0]];
+//	}
 
   	DMA_Get(&diagUpper_slave[0],&lower[startIdx],
 			  blockLen*sizeof(swFloat));
-	for(k=0;k<blockStarts_slave[3]-blockStarts_slave[2];k++)
-	{
-		b_slave[diagNeighbor_slave[k]-cell_slave[0]]
-			+= diagUpper_slave[k]
-			*  sendX_slave[diagOwner_slave[k]-cell_slave[0]];
-	}
+	MLBFunParas.flag = 3;
+	operatorFunPointer_s(&MLBFunParas);
+//	for(k=0;k<blockStarts_slave[3]-blockStarts_slave[2];k++)
+//	{
+//		b_slave[diagNeighbor_slave[k]-cell_slave[0]]
+//			+= diagUpper_slave[k]
+//			*  sendX_slave[diagOwner_slave[k]-cell_slave[0]];
+//	}
 
+	if(x!=NULL)
+	{
   	DMA_Get(&recvX_slave[0],&diag[cell_slave[0]],
 			  (cell_slave[1]-cell_slave[0])*sizeof(swFloat));
-	for(k=0;k<cell_slave[1]-cell_slave[0];k++){
-		b_slave[k] += recvX_slave[k]*sendX_slave[k];
+	MLBFunParas.count = cell_slave[1]-cell_slave[0];
+	MLBFunParas.flag = 4;
+	operatorFunPointer_s(&MLBFunParas);
 	}
+//	for(k=0;k<cell_slave[1]-cell_slave[0];k++){
+//		b_slave[k] += recvX_slave[k]*sendX_slave[k];
+//	}
 
 	DMA_Put(&b[cell_slave[0]],&b_slave[0],
 				(cell_slave[1]-cell_slave[0])*sizeof(swFloat));

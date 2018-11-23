@@ -155,7 +155,8 @@ void MultiLevelBlockIterator::reorderEdgesFromVertex(
 }
 
 void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
-			Arrays* vertexData,void (*operatorFunPointer)
+			Arrays* vertexData,void(*operatorFunPointer_host)
+			(MLBFunParameters *MLBFunParas), void(*operatorFunPointer_slave)
 			(MLBFunParameters *MLBFunParas))
 {
 	cout<<"operatorFunPointer"<<endl;
@@ -191,8 +192,8 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 //		vertexData->A1Ptr[i] = vertexData->A2Ptr[i]*vertexData->A3Ptr[i];
 //	}
 
-	edge2VertexIteration_host(edgeData, vertexData,
-				operatorFunPointer, &MLBParas);
+	edge2VertexIteration_host(edgeData, vertexData, operatorFunPointer_host,
+			   	operatorFunPointer_slave, &MLBParas);
 
 //	for(int i=0;i<mshBlockNum;i++)
 //	{
@@ -252,7 +253,8 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 }
 
 void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays* neighbourData,
-			Arrays* vertexData,void (*operatorFunPointer)
+			Arrays* vertexData,void(*operatorFunPointer_host)
+			(MLBFunParameters *MLBFunParas), void(*operatorFunPointer_slave)
 			(MLBFunParameters *MLBFunParas))
 {
 	cout<<"!!!---Not implemented in MLB"<<endl;

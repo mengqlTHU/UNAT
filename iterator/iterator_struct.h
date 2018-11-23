@@ -31,17 +31,17 @@ typedef struct
 	swInt  maxEdges;
 }MLBParameters;
 
-typedef struct
-{
-	Arrays* edgeData;
-	Arrays* vertexData;
-	swInt*  owner;
-	swInt*  neighbor;
-	swInt   count;
-	swInt   k1;
-	swInt   k2;
-	swInt   flag;
-}MLBFunParameters;
+//typedef struct
+//{
+//	Arrays* edgeData;
+//	Arrays* vertexData;
+//	swInt*  owner;
+//	swInt*  neighbor;
+//	swInt   count;
+//	swInt   k1;
+//	swInt   k2;
+//	swInt   flag;
+//}MLBFunParameters;
 
 #ifdef __cplusplus
 }

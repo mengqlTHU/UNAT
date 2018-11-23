@@ -5,10 +5,11 @@
 extern "C"{
 #endif
 
-#include "iterator_struct.h"
+#include "edge2VertexIter_slave.h"
 
 typedef void (*PF)(MLBFunParameters *MLBFunParas);
-PF funcPointer();
+PF funcPointer_host();
+PF funcPointer_slave();
 
 #ifdef __cplusplus
 }
