@@ -80,7 +80,7 @@ int main()
 	operatorFunPointer_host  = funcPointer_host(1);
 	operatorFunPointer_slave = funcPointer_slave(1);
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
-	Arrays vertexData = {b_mlb,     x, diag, NULL, t.getVertexNumber()};
+	Arrays vertexData = {b_mlb,  NULL, diag, NULL, t.getVertexNumber()};
 	mlbIter.reorderEdgeData(&edgeData);
 	mlbIter.reorderVertexData(&vertexData);
 

@@ -11,6 +11,7 @@ swInt spIndex, maxXNum, maxCell, maxEdge, cpeBlockNum, mshBlockNum;
 swInt *blockStarts, *cellStarts;
 swInt *ownNeiSendList, *owner, *neighbor;
 swFloat *upper, *lower, *diag, *x, *b;
+bool isXExist;
 void (*operatorFunPointer_h)(MLBFunParameters *MLBFunParas);
 void (*operatorFunPointer_s)(MLBFunParameters *MLBFunParas);
 

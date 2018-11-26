@@ -24,9 +24,17 @@ void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
 	upper       = edgeData->A2Ptr;
 	b           = vertexData->A1Ptr;
 	x           = vertexData->A2Ptr;
+	isXExist    = true;
 	diag        = vertexData->A3Ptr;
 	operatorFunPointer_h = operatorFunPointer_host;
 	operatorFunPointer_s = operatorFunPointer_slave;
+	if(x == NULL)
+	{
+		int i=0;
+		isXExist=false;
+		x = (swFloat*)malloc(vertexData->num*sizeof(swFloat));
+		for(i=0;i<vertexData->num;i++){x[i]=1;}
+	}
 
 	initOwnNeiSendList();
 	athread_init();

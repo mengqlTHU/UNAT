@@ -3,6 +3,7 @@
 // flag = 2 : 对角块上三角元素
 // flag = 3 : 对角块下三角元素
 // flag = 4 : 对角块对角元素
+// integrate: x需要指定为NULL
 
 #include "userFunc_slave.h"
 #include <stdlib.h>
@@ -59,7 +60,7 @@ void spMV(MLBFunParameters *MLBFunParas)
 		}
 	}else
 	{
-		LOG("The flag is not defined");
+		LOG("The flag in this function is not defined");
 	}
 }
 
@@ -108,6 +109,6 @@ void integrate(MLBFunParameters *MLBFunParas)
 		}
 	}else
 	{
-		LOG("The flag is not defined");
+		LOG("The flag in this function is not defined");
 	}
 }
