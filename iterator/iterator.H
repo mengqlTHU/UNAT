@@ -38,7 +38,7 @@ class Iterator
 						this->_topo->getEndVertices(),
 						this->_topo->getEdgeNumber(),
 						this->_topo->getVertexNumber());
-			reorderEdgesFromVertex(this->_topo->getAccuVertexEdgeNumbers(),
+			reorderEdgesFromVertex(this->_topo->getFirstEdgeVertices(),
 						this->_topo->getVertexNeighbours(),
 						this->_topo->getEdgeNumber(),
 						this->_topo->getVertexNumber());
@@ -51,10 +51,11 @@ class Iterator
 		virtual void reorderEdgesFromEdge(swInt* startVertices,
 					swInt* endVertices,
 					swInt edgeNumber, swInt vertexNumber) = 0;
-		virtual void reorderEdgesFromVertex(swInt* accuVertexEdgeNumbers,
+		virtual void reorderEdgesFromVertex(swInt* firstEdgeVertices,
 					swInt* vertexNeighbours,
 					swInt edgeNumber, swInt vertexNumber) = 0;
 		virtual void reorderEdgeData(Arrays* edgeData) = 0;
+		virtual void reorderEdgeDataUnsymm(Arrays* edgeData) = 0;
 		virtual void reorderVertexData(Arrays* edgeData) = 0;
 
 		virtual void edge2VertexIteration(Arrays* edgeData,

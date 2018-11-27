@@ -23,6 +23,8 @@ typedef struct
 	swInt* vertexStarts;
 	swInt* owner;
 	swInt* neighbor;
+	swInt* firstEdgeVertices;
+	swInt* vertexNeighbor;
 	swInt  cpeBlockNum;
 	swInt  mshBlockNum;
 	swInt  mtxBlockNum;

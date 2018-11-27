@@ -6,9 +6,6 @@
 #define BLOCKNUM64K 64
 #define EPS 1e-6
 #define DEBUG
-#define bool int
-#define true 0x0001
-#define false 0x0000
 
 #ifdef DEBUG
 #define LOG(format,...) printf("File: "__FILE__",Line: %05d: "format"\n", __LINE__, ##__VA_ARGS__)

@@ -15,7 +15,7 @@ extern void (*operatorFunPointer_s)(MLBFunParameters *MLBFunParas);
 extern swInt spIndex, maxXNum, maxCell, maxEdge, cpeBlockNum;
 extern swInt *blockStarts, *cellStarts, *ownNeiSendList, *owner, *neighbor;
 extern swFloat *upper, *lower, *diag, *x, *b;
-extern bool isXExist;
+extern int isXExist;
 
 void func()
 {

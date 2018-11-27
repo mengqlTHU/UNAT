@@ -10,6 +10,7 @@ PROJDIR=/home/export/online1/systest/swrh/lhb/UNAT
 
 files= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_host.o \
+${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/funcPointer.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.o \
@@ -30,7 +31,7 @@ ${PROJDIR}/RL_MPI/register.o
 tools= \
 ${PROJDIR}/tools/slaveUtils.o
 
-INCLUDE=-I${PROJDIR}/topology/ -I${PROJDIR}/iterator/ -I${PROJDIR}/iterator/multiLevelBlockIterator/ -I${PROJDIR}/ -I${PROJDIR}/RL_MPI/ -I${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/ -I${PROJDIR}/tools/
+INCLUDE=-I${PROJDIR}/topology/ -I${PROJDIR}/iterator/ -I${PROJDIR}/iterator/multiLevelBlockIterator/ -I${PROJDIR}/ -I${PROJDIR}/RL_MPI/ -I${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/ -I${PROJDIR}/tools/ -I${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/
 LIBRARY=-L${PROJDIR}/lib/LIB_SW
 
 OBJECT=a.out

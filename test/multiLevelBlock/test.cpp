@@ -28,8 +28,6 @@ int main()
 //	Topology::constructFromEdge(t,rowAddr,colAddr,NONZERONUM);
 //	debug(t);
 
-	MultiLevelBlockIterator mlbIter(t);
-	mlbIter.reformInnerTopology();
 
 	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber());
 	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber());
@@ -37,14 +35,14 @@ int main()
 	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
 	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
 	swFloat* b_mlb = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swInt*   tmp   = (swInt*)malloc(sizeof(swInt)*t.getEdgeNumber());
+	swFloat* b_csr = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
+	swFloat* data  = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber()*2);
 
-	for(int i=0;i<t.getEdgeNumber();i++)
-	{
-		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
-		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
-		tmp[i]   = 1;
-	}
+//	for(int i=0;i<t.getEdgeNumber();i++)
+//	{
+//		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
+//		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
+//	}
 	for(int i=0;i<t.getVertexNumber();i++)
 	{
 		diag[i] = i;
@@ -55,36 +53,49 @@ int main()
 
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
-//	for(int i=0;i<t.getVertexNumber();i++)
-//	{
-//		b[i] = diag[i]*x[i];
-//	}
-	for(int i=0;i<t.getEdgeNumber();i++)
+	for(int i=0;i<t.getVertexNumber();i++)
 	{
-//		if(rowAddr[i]==7)
-//		{
-//			cout<<"row"<<i<<","<<b[rowAddr[i]]<<","<<upper[i]<<","<<x[colAddr[i]]<<endl;
-//		}
-     	b[rowAddr[i]] += upper[i];
-//		if(colAddr[i]==7)
-//		{
-//			cout<<"col"<<i<<","<<b[colAddr[i]]<<","<<lower[i]<<","<<x[rowAddr[i]]<<endl;
-//		}
-		b[colAddr[i]] += lower[i];
+		b[i] = diag[i]*x[i];
+	}
+//	for(int i=0;i<t.getEdgeNumber();i++)
+//	{
+//     	b[rowAddr[i]] += upper[i];
+//		b[colAddr[i]] += lower[i];
+//	}
+//	gettimeofday(&end,NULL);
+//	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
+//		+ end.tv_usec-start.tv_usec;
+//	printf("CPU Processor Time: %f us\n",(double)timeuse); 
+
+	for(int i=0;i<t.getEdgeNumber()*2;i++)
+	{
+		data[i] = (double)(i+1)/(i+2);
+	}
+	swInt* firstEdgeVertices = t.getFirstEdgeVertices();
+	swInt* vertexNeighbor    = t.getVertexNeighbours();
+	for(int i=0;i<t.getEdgeNumber()*2;i++)
+	{
+		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
 	}
 	gettimeofday(&end,NULL);
 	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer_host  = funcPointer_host(1);
-	operatorFunPointer_slave = funcPointer_slave(1);
-	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
-	Arrays vertexData = {b_mlb,  NULL, diag, NULL, t.getVertexNumber()};
-	mlbIter.reorderEdgeData(&edgeData);
+	operatorFunPointer_host  = funcPointer_host(0);
+	operatorFunPointer_slave = funcPointer_slave(0);
+//	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
+	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
+	Arrays vertexData    = {b_mlb,    x, diag, NULL, t.getVertexNumber()};
+
+	MultiLevelBlockIterator mlbIter(t);
+	mlbIter.reformInnerTopology();
+//	mlbIter.reorderEdgeData(&edgeData);
 	mlbIter.reorderVertexData(&vertexData);
 
-	mlbIter.edge2VertexIteration(&edgeData,&vertexData,
+//	mlbIter.edge2VertexIteration(&edgeData,&vertexData,
+//				operatorFunPointer_host, operatorFunPointer_slave);
+	mlbIter.vertex2EdgeIteration(&neighbourData,&vertexData,
 				operatorFunPointer_host, operatorFunPointer_slave);
 
 	checkResult(b, vertexData.A4Ptr, t.getVertexNumber());

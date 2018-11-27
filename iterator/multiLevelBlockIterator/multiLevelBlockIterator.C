@@ -1,12 +1,14 @@
 #include "multiLevelBlockIterator.H"
 #include <stdlib.h>
 #include <iostream>
+#include <assert.h>
 
 #ifdef __cplusplus
 extern "C"{
 #endif
 #include "BlockOrdering/BlockOrdering.h"
 #include "edge2VertexIter_host.h"
+#include "vertex2EdgeIter_host.h"
 #ifdef __cplusplus
 }
 #endif
@@ -16,7 +18,7 @@ extern "C"{
 MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 		: Iterator(topo)
 {
-	cout<<"MultiLevelBlockIterator"<<endl;
+	LOG("MultiLevelBlockIterator");
 	swInt* vertexWeights;
 	swInt* edgeWeights;
 	swInt* postVertexOrder;
@@ -114,44 +116,193 @@ void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
 	}
 
 	map<swInt, swInt>::iterator iter;
-	swInt* tmpStart = (swInt*)malloc(sizeof(swInt)*edgeNumber);
-	swInt* tmpEnd   = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+	this->_owner   = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+	this->_neighbor = (swInt*)malloc(sizeof(swInt)*edgeNumber);
 
 	for(iter = this->getEdgeMap().begin();
 				iter!=this->getEdgeMap().end();iter++)
 	{
 		if(iter->second<0)
 		{
-			tmpStart[-iter->second]
+			this->_owner[-iter->second]
 				= this->getVertexMap()[endVertices[iter->first]];
-			tmpEnd[-iter->second]
+			this->_neighbor[-iter->second]
 				= this->getVertexMap()[startVertices[iter->first]];
 		} else
 		{
-			tmpStart[iter->second]
+			this->_owner[iter->second]
 				= this->getVertexMap()[startVertices[iter->first]];
-			tmpEnd[iter->second]
+			this->_neighbor[iter->second]
 				= this->getVertexMap()[endVertices[iter->first]];
 		}
 	}
 
 	for(int i=0;i<edgeNumber;i++)
 	{
-		startVertices[i] = tmpStart[i];
-		endVertices[i]   = tmpEnd[i];
+		startVertices[i] = this->_owner[i];
+		endVertices[i]   = this->_neighbor[i];
 	}
 	
-	free(tmpStart);
-	free(tmpEnd);
-
-	cout<<"reorderEdgesFromEdge"<<endl;
+	LOG("reorderEdgesFromEdge");
 }
 
 void MultiLevelBlockIterator::reorderEdgesFromVertex(
-			swInt* accuVertexEdgeNumbers, swInt* vertexNeighbours,
+			swInt* firstEdgeVertices, swInt* vertexNeighbours,
 			swInt edgeNumber, swInt vertexNumber)
 {
-	cout<<"!!!---Not implemented in MLB"<<endl;
+	swInt cpeBlockNum   = this->getCpeBlockNum();
+	swInt mshBlockNum   = this->getMshBlockNum();
+	swInt mtxBlockNum   = this->getMtxBlockNum();
+	swInt* blockStarts  = this->getBlockStarts();
+	swInt* blockStartsV = this->getBlockStartsV();
+	swInt* vertexStarts = this->getVertexStarts();
+	swInt* owner        = this->getTopology()->getStartVertices();
+	swInt* neighbor     = this->getTopology()->getEndVertices();
+
+	swInt* vertexEdgeNumbers
+		= (swInt*)malloc(sizeof(swInt)*vertexNumber/cpeBlockNum*2);
+	swInt* accuVertexEdgeNumbers
+		= (swInt*)malloc(sizeof(swInt)*vertexNumber/cpeBlockNum*2);
+	vertexNeighbours
+		= (swInt*)malloc(sizeof(swInt)*edgeNumber*2);
+	firstEdgeVertices
+		= (swInt*)malloc(sizeof(swInt)*edgeNumber*2);
+	blockStartsV
+		= (swInt*)malloc(sizeof(swInt)*cpeBlockNum*cpeBlockNum*4);
+
+//	for(int i=0;i<edgeNumber*2;i++) {vertexNeighbours[i]=-1;}
+//	for(int i=0;i<edgeNumber*2;i++) {firstEdgeVertices[i]=-1;}
+
+	int blockIdx, startBlockIdx, endBlockIdx, row1, col1, blockIdxV;
+	int accuEdges= 0;
+	int startIdx = 0;
+	int endIdx   = 0;
+	for(int i=0;i<mshBlockNum;i++)
+	{
+		for(int j=0;j<BLOCKNUM64K;j++)
+		{
+			int row = i*BLOCKNUM64K+j;
+			int cellLen = vertexStarts[row+1]-vertexStarts[row];
+			assert(cellLen<vertexNumber/cpeBlockNum*2);
+			for(int col=0;col<cpeBlockNum;col++)
+			{
+				blockIdxV = row*cpeBlockNum+col;
+				blockStartsV[4*blockIdxV  ] = row;	
+				blockStartsV[4*blockIdxV+1] = col;	
+				for(int k=0;k<vertexNumber/cpeBlockNum*2;k++)
+				{
+					vertexEdgeNumbers[k]=0;
+					accuVertexEdgeNumbers[k]=0;
+				}
+				if(col==row)
+				{
+     				blockIdx = row*(1+2*this->_cpeBlockNum-row)/2;
+     				startBlockIdx = this->_blockStarts[4*blockIdx+2];
+     				endBlockIdx   = this->_blockStarts[4*blockIdx+3];
+		    		for(int k=startBlockIdx;k<endBlockIdx;k++)
+		    		{
+		    			vertexEdgeNumbers[owner[k]-vertexStarts[row]]++;
+		    			vertexEdgeNumbers[neighbor[k]-vertexStarts[row]]++;
+		    		}
+					for(int k=1;k<cellLen;k++)
+					{
+						assert(vertexEdgeNumbers[k-1]>=0);
+						accuVertexEdgeNumbers[k+1]
+							= accuVertexEdgeNumbers[k]
+							+ vertexEdgeNumbers[k-1];
+					}
+					for(int k=startBlockIdx;k<endBlockIdx;k++)
+					{
+						row1 = neighbor[k]+1-vertexStarts[row];
+						col1 = owner[k];
+						vertexNeighbours
+							[accuVertexEdgeNumbers[row1]+startIdx]=col1;
+						firstEdgeVertices
+							[accuVertexEdgeNumbers[row1]+startIdx]
+							=neighbor[k];
+						accuVertexEdgeNumbers[row1]++;
+					}
+					for(int k=startBlockIdx;k<endBlockIdx;k++)
+					{
+						row1 = owner[k]+1-vertexStarts[row];
+						col1 = neighbor[k];
+						vertexNeighbours
+							[accuVertexEdgeNumbers[row1]+startIdx]=col1;
+						firstEdgeVertices
+							[accuVertexEdgeNumbers[row1]+startIdx]
+							=owner[k];
+						accuVertexEdgeNumbers[row1]++;
+					}
+					blockStartsV[4*blockIdxV+2] = startIdx;	
+					startIdx += (endBlockIdx-startBlockIdx)*2;
+					blockStartsV[4*blockIdxV+3] = startIdx;	
+				} else if(col < row)
+				{
+     				blockIdx = col*(1+2*this->_cpeBlockNum-col)/2+row-col;
+     				startBlockIdx = this->_blockStarts[4*blockIdx+2];
+     				endBlockIdx   = this->_blockStarts[4*blockIdx+3];
+		    		for(int k=startBlockIdx;k<endBlockIdx;k++)
+		    		{
+						vertexNeighbours[k-startBlockIdx+startIdx]
+							= owner[k];
+						firstEdgeVertices[k-startBlockIdx+startIdx]
+							= neighbor[k];
+		    		}
+					blockStartsV[4*blockIdxV+2] = startIdx;	
+					startIdx += (endBlockIdx-startBlockIdx);
+					blockStartsV[4*blockIdxV+3] = startIdx;	
+				} else if(col > row)
+				{
+     				blockIdx = row*(1+2*this->_cpeBlockNum-row)/2+col-row;
+     				startBlockIdx = this->_blockStarts[4*blockIdx+2];
+     				endBlockIdx   = this->_blockStarts[4*blockIdx+3];
+		    		for(int k=startBlockIdx;k<endBlockIdx;k++)
+		    		{
+						vertexNeighbours[k-startBlockIdx+startIdx]
+							= neighbor[k];
+						firstEdgeVertices[k-startBlockIdx+startIdx]
+							= owner[k];
+		    		}
+					blockStartsV[4*blockIdxV+2] = startIdx;	
+					startIdx += (endBlockIdx-startBlockIdx);
+					blockStartsV[4*blockIdxV+3] = startIdx;	
+				}
+			}
+		}
+	}
+//	assert(startIdx==edgeNumber*2);
+//	for(int i=0;i<edgeNumber*2;i++)
+//	{
+//		if(vertexNeighbours[i]==-1 || firstEdgeVertices[i]==-1)
+//		{
+//			printf("%d,%d,%d\n",i,vertexNeighbours[i],firstEdgeVertices[i]);
+//			exit(1);
+//		}
+//	}
+//
+//	for(int i=0;i<mshBlockNum;i++)
+//	{
+//		for(int j=0;j<BLOCKNUM64K;j++)
+//		{
+//			int row = i*BLOCKNUM64K+j;
+//			for(int col=0;col<cpeBlockNum;col++)
+//			{
+//				blockIdxV = row*cpeBlockNum+col;
+//				printf("(%4d,%4d),",blockStartsV[4*blockIdxV+2],blockStartsV[4*blockIdxV+3]);
+//			}
+//		}
+//	}
+//printf("row:%d, col:%d, edgeNums:%d, vertexNums:%d, startIdx:%d\n",row,col,endBlockIdx-startBlockIdx,cellLen,startIdx);
+//for(int m=0;m<40;m++)
+//{
+//	for(int n=0;n<15;n++)
+//	{
+//		printf("%4d ",accuVertexEdgeNumbers[m*15+n]);
+//	}
+//	printf("\n");
+//}
+//printf("********************************************\n");
+	LOG("reorderEdgesFromVertex");
 }
 
 void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
@@ -159,7 +310,7 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 			(MLBFunParameters *MLBFunParas), void(*operatorFunPointer_slave)
 			(MLBFunParameters *MLBFunParas))
 {
-	cout<<"operatorFunPointer"<<endl;
+	LOG("operatorFunPointer");
 
 	MLBParameters MLBParas;
 	MLBParas.blockStarts  = this->getBlockStarts();
@@ -257,15 +408,49 @@ void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays* neighbourData,
 			(MLBFunParameters *MLBFunParas), void(*operatorFunPointer_slave)
 			(MLBFunParameters *MLBFunParas))
 {
-	cout<<"!!!---Not implemented in MLB"<<endl;
+	MLBParameters MLBParas;
+	MLBParas.blockStarts       = this->getBlockStartsV();
+	MLBParas.vertexStarts      = this->getVertexStarts();
+	MLBParas.firstEdgeVertices
+		= this->getTopology()->getFirstEdgeVertices();
+	MLBParas.vertexNeighbor
+		= this->getTopology()->getVertexNeighbours();
+	MLBParas.cpeBlockNum  = this->getCpeBlockNum();
+	MLBParas.mshBlockNum  = this->getMshBlockNum();
+	MLBParas.mtxBlockNum  = this->getMtxBlockNum();
+	MLBParas.maxXNum      = this->getMaxXNum();
+	MLBParas.maxCells     = this->getMaxCells();
+	MLBParas.maxEdges     = this->getMaxEdges();
+
+	vertex2EdgeIteration_host(neighbourData, vertexData,
+				operatorFunPointer_host, operatorFunPointer_slave,
+				&MLBParas);
+
+	map<swInt, swInt>::iterator iter;
+	vertexData->A4Ptr=(swFloat*)malloc
+		(this->getTopology()->getVertexNumber()*sizeof(swFloat));
+	for(iter = this->getVertexMap().begin();
+				iter!=this->getVertexMap().end();iter++)
+	{
+		if(iter->first==0) printf("%d\n",iter->second);
+		vertexData->A4Ptr[iter->first]=vertexData->A1Ptr[iter->second];
+	}
+	printf("%f\n",vertexData->A4Ptr[0]);
+
+	LOG("!!!---Not implemented in MLB");
 //	operatorFunPointer(edgeData, vertexData, this->_topo);
+}
+
+void MultiLevelBlockIterator::reorderEdgeDataUnsymm(Arrays* edgeData)
+{
+
 }
 
 void MultiLevelBlockIterator::reorderEdgeData(Arrays* edgeData)
 {
 	swFloat* lower = edgeData->A1Ptr;
 	swFloat* upper = edgeData->A2Ptr;
-	cout<<"reorderEdgeData"<<endl;
+	LOG("reorderEdgeData");
 	map<swInt, swInt>::iterator iter;
 	swFloat* tmpL=(swFloat*)malloc
 		(this->getTopology()->getEdgeNumber()*sizeof(swFloat));

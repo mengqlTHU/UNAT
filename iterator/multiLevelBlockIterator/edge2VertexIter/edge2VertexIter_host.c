@@ -5,6 +5,14 @@
 #include <sys/time.h>
 
 extern SLAVE_FUN(func)();
+swInt spIndex, maxXNum, maxCell, maxEdge, cpeBlockNum, mshBlockNum;
+swInt *blockStarts, *cellStarts;
+swInt *ownNeiSendList, *owner, *neighbor;
+swFloat *upper, *lower, *diag, *x, *b;
+int isXExist;
+void (*operatorFunPointer_h)(MLBFunParameters *MLBFunParas);
+void (*operatorFunPointer_s)(MLBFunParameters *MLBFunParas);
+void initOwnNeiSendList();
 
 void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
 			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
@@ -24,14 +32,14 @@ void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
 	upper       = edgeData->A2Ptr;
 	b           = vertexData->A1Ptr;
 	x           = vertexData->A2Ptr;
-	isXExist    = true;
+	isXExist    = 1;
 	diag        = vertexData->A3Ptr;
 	operatorFunPointer_h = operatorFunPointer_host;
 	operatorFunPointer_s = operatorFunPointer_slave;
 	if(x == NULL)
 	{
 		int i=0;
-		isXExist=false;
+		isXExist=0;
 		x = (swFloat*)malloc(vertexData->num*sizeof(swFloat));
 		for(i=0;i<vertexData->num;i++){x[i]=1;}
 	}
