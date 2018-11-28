@@ -19,6 +19,8 @@ class Iterator
 		map<swInt, swInt> _edgeMap;
 		map<swInt, swInt> _vertexMap;
 
+	protected:
+		Topology* getTopology(){return this->_topo;};
 	public:
 
 		// Constructors
@@ -44,7 +46,6 @@ class Iterator
 						this->_topo->getVertexNumber());
 		};
 
-		Topology* getTopology(){return this->_topo;};
 		map<swInt, swInt>& getEdgeMap(){return this->_edgeMap;};
 		map<swInt, swInt>& getVertexMap(){return this->_vertexMap;};
 

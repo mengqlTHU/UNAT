@@ -18,15 +18,19 @@ class MultiLevelBlockIterator : public Iterator
 		swInt  _mshBlockNum;
 		swInt  _mtxBlockNum;
 		swInt* _blockStarts;
-		swInt* _blockStartsV;
+		swInt* _blockStartsUnsymm;
 		swInt* _vertexStarts;
 		swInt  _maxXNum;
 		swInt  _maxCells;
 		swInt  _maxEdges;
 		swInt* _owner;
 		swInt* _neighbor;
+		// 此处保存一份未重排的COO形式拓扑拷贝
+		swInt* _firstEdgeVertices;
+		swInt* _vertexNeighbours;
 
 		void reorderVertexArray(swFloat* array);
+		void reorderEdgeArrayUnsymm(swFloat* array);
 	public:
 		// Constructors
 		MultiLevelBlockIterator(Topology &topo);
@@ -61,7 +65,7 @@ class MultiLevelBlockIterator : public Iterator
 		swInt getMaxCells(){return this->_maxCells;};
 		swInt getMaxEdges(){return this->_maxEdges;};
 		swInt* getBlockStarts(){return this->_blockStarts;};
-		swInt* getBlockStartsV(){return this->_blockStartsV;};
+		swInt* getBlockStartsUnsymm(){return this->_blockStartsUnsymm;};
 		swInt* getVertexStarts(){return this->_vertexStarts;};
 };
 

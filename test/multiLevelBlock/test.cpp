@@ -50,6 +50,10 @@ int main()
 		b[i]    = 0;
 		b_mlb[i]= 0;
 	}
+	for(int i=0;i<t.getEdgeNumber()*2;i++)
+	{
+		data[i] = (double)(i+1)/(i+2);
+	}
 
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
@@ -67,14 +71,14 @@ int main()
 //		+ end.tv_usec-start.tv_usec;
 //	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	for(int i=0;i<t.getEdgeNumber()*2;i++)
-	{
-		data[i] = (double)(i+1)/(i+2);
-	}
 	swInt* firstEdgeVertices = t.getFirstEdgeVertices();
 	swInt* vertexNeighbor    = t.getVertexNeighbours();
 	for(int i=0;i<t.getEdgeNumber()*2;i++)
 	{
+//		if(firstEdgeVertices[i]==0)
+//		{
+//			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
+//		}
 		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
 	}
 	gettimeofday(&end,NULL);
@@ -90,7 +94,7 @@ int main()
 
 	MultiLevelBlockIterator mlbIter(t);
 	mlbIter.reformInnerTopology();
-//	mlbIter.reorderEdgeData(&edgeData);
+	mlbIter.reorderEdgeDataUnsymm(&neighbourData);
 	mlbIter.reorderVertexData(&vertexData);
 
 //	mlbIter.edge2VertexIteration(&edgeData,&vertexData,

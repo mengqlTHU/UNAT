@@ -20,7 +20,8 @@ ${PROJDIR}/iterator/multiLevelBlockIterator/extensibleArray/extensibleScalarArra
 
 slaveFiles= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_slave.o \
-${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_slave.o
+${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_slave.o \
+${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter_slave.o \
 
 cppFiles= \
 ${PROJDIR}/test/multiLevelBlock/test.o 
