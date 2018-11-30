@@ -23,6 +23,7 @@ class MultiLevelBlockIterator : public Iterator
 		swInt  _maxXNum;
 		swInt  _maxCells;
 		swInt  _maxEdges;
+		swInt  _maxEdgesUnsymm;
 		swInt* _owner;
 		swInt* _neighbor;
 		// 此处保存一份未重排的COO形式拓扑拷贝
@@ -64,6 +65,7 @@ class MultiLevelBlockIterator : public Iterator
 		swInt getMaxXNum(){return this->_maxXNum;};
 		swInt getMaxCells(){return this->_maxCells;};
 		swInt getMaxEdges(){return this->_maxEdges;};
+		swInt getMaxEdgesUnsymm(){return this->_maxEdgesUnsymm;};
 		swInt* getBlockStarts(){return this->_blockStarts;};
 		swInt* getBlockStartsUnsymm(){return this->_blockStartsUnsymm;};
 		swInt* getVertexStarts(){return this->_vertexStarts;};

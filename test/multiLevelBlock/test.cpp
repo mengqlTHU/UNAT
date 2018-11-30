@@ -38,11 +38,11 @@ int main()
 	swFloat* b_csr = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
 	swFloat* data  = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber()*2);
 
-//	for(int i=0;i<t.getEdgeNumber();i++)
-//	{
-//		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
-//		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
-//	}
+	for(int i=0;i<t.getEdgeNumber();i++)
+	{
+		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
+		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
+	}
 	for(int i=0;i<t.getVertexNumber();i++)
 	{
 		diag[i] = i;
@@ -59,6 +59,10 @@ int main()
 	gettimeofday(&start,NULL);
 	for(int i=0;i<t.getVertexNumber();i++)
 	{
+		if(i==6)
+		{
+			printf("%d,%f,%f\n",i,diag[i],x[i]);
+		}
 		b[i] = diag[i]*x[i];
 	}
 //	for(int i=0;i<t.getEdgeNumber();i++)
@@ -75,10 +79,10 @@ int main()
 	swInt* vertexNeighbor    = t.getVertexNeighbours();
 	for(int i=0;i<t.getEdgeNumber()*2;i++)
 	{
-//		if(firstEdgeVertices[i]==0)
-//		{
-//			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
-//		}
+		if(firstEdgeVertices[i]==6)
+		{
+			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
+		}
 		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
 	}
 	gettimeofday(&end,NULL);
@@ -88,7 +92,7 @@ int main()
 
 	operatorFunPointer_host  = funcPointer_host(0);
 	operatorFunPointer_slave = funcPointer_slave(0);
-//	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
+	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
 	Arrays vertexData    = {b_mlb,    x, diag, NULL, t.getVertexNumber()};
 

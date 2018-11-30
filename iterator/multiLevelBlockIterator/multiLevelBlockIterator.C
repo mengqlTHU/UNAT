@@ -43,7 +43,7 @@ MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 		// 发送接收计数数组和blockStart，cellStarts
 		+ BLOCKNUM64K*BLOCKNUM64K*8*sizeof(swInt);
 
-	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,2);
+	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,3);
 	printf("The estimated mshBlockNum = %d\n",this->_mshBlockNum);
 
 	vertexWeights = (swInt*)malloc(sizeof(swInt)*vertexNumber);
@@ -73,6 +73,8 @@ MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 
 	this->_maxEdges = 0;
 	this->_maxCells = 0;
+	this->_maxXNum  = 0;
+	swInt xNum    = 0;
 	swInt edgeNum = 0;
 	swInt cellNum = 0;
 	swInt blockIdx;
@@ -87,13 +89,16 @@ MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 		blockIdx = i*(1+2*this->_cpeBlockNum-i)/2;
 		cellNum = this->_blockStarts[4*blockIdx+3]
 			- this->_blockStarts[4*blockIdx+2];
+		xNum = this->_vertexStarts[i+1]-this->_vertexStarts[i];
+		this->_maxXNum
+			= this->_maxXNum > xNum ? this->_maxXNum : xNum;	
 		this->_maxCells
 			= this->_maxCells > cellNum ? this->_maxCells : cellNum;
 		this->_maxEdges
 			= this->_maxEdges > edgeNum ? this->_maxEdges : edgeNum;
 		edgeNum = 0;
 	}
-	this->_maxXNum = vertexNumber/this->_cpeBlockNum*1.2;
+	this->_maxEdgesUnsymm = 0;
 
 	for(int i=0;i<edgeNumber;i++)
 	{
@@ -274,6 +279,15 @@ void MultiLevelBlockIterator::reorderEdgesFromVertex(
 		firstEdgeVertices[i] = tmpFEV[i];
 		vertexNeighbours[i] = tmpVN[i];
 	}
+	this->_maxEdgesUnsymm = 0;
+	swInt edgeNum = 0;
+	for(int i=0;i<cpeBlockNum;i++)
+	{
+		edgeNum = blockStartsUnsymm[4*(i+1)*(cpeBlockNum-1)+3]
+			- blockStartsUnsymm[4*i*cpeBlockNum+2];
+		this->_maxEdgesUnsymm
+			= this->_maxEdgesUnsymm>edgeNum?this->_maxEdgesUnsymm:edgeNum;
+	}
 	free(tmpFEV);
 	free(tmpVN);
 	free(vertexEdgeNumbers);
@@ -417,22 +431,25 @@ void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays* neighbourData,
 			(MLBFunParameters *MLBFunParas))
 {
 	MLBParameters MLBParas;
-	MLBParas.blockStarts       = this->getBlockStartsUnsymm();
+	MLBParas.blockStarts       = this->getBlockStarts();
+	MLBParas.blockStartsUnsymm = this->getBlockStartsUnsymm();
 	MLBParas.vertexStarts      = this->getVertexStarts();
 	MLBParas.firstEdgeVertices
 		= this->getTopology()->getFirstEdgeVertices();
 	MLBParas.vertexNeighbor
 		= this->getTopology()->getVertexNeighbours();
+	MLBParas.owner        = this->getTopology()->getStartVertices();
+	MLBParas.neighbor     = this->getTopology()->getEndVertices();
 	MLBParas.cpeBlockNum  = this->getCpeBlockNum();
 	MLBParas.mshBlockNum  = this->getMshBlockNum();
 	MLBParas.mtxBlockNum  = this->getMtxBlockNum();
 	MLBParas.maxXNum      = this->getMaxXNum();
 	MLBParas.maxCells     = this->getMaxCells();
-	MLBParas.maxEdges     = this->getMaxEdges();
+	MLBParas.maxEdges     = this->getMaxEdgesUnsymm();
+	MLBParas.operatorFunPointer_host  = operatorFunPointer_host;
+	MLBParas.operatorFunPointer_slave = operatorFunPointer_slave;
 
-	vertex2EdgeIteration_host(neighbourData, vertexData,
-				operatorFunPointer_host, operatorFunPointer_slave,
-				&MLBParas);
+	vertex2EdgeIteration_host(neighbourData, vertexData, &MLBParas);
 
 	map<swInt, swInt>::iterator iter;
 	vertexData->A4Ptr=(swFloat*)malloc
@@ -440,7 +457,7 @@ void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays* neighbourData,
 	for(iter = this->getVertexMap().begin();
 				iter!=this->getVertexMap().end();iter++)
 	{
-		if(iter->first==0) printf("%d\n",iter->second);
+//		if(iter->first==0) printf("%d\n",iter->second);
 		vertexData->A4Ptr[iter->first]=vertexData->A1Ptr[iter->second];
 	}
 
@@ -643,7 +660,7 @@ void MultiLevelBlockIterator::reorderVertexArray(swFloat* array)
 	for(iter = this->getVertexMap().begin();
 				iter!=this->getVertexMap().end();iter++)
 	{
-//		if(iter->first==0) cout<<iter->second<<endl;
+//		if(iter->first==6) cout<<iter->second<<endl;
 		tmp[iter->second] = array[iter->first];
 	}
 	for(int i=0;i<this->getTopology()->getVertexNumber();i++)

@@ -6,6 +6,17 @@
 #include "iterator_struct.h"
 #include "edge2VertexIter_slave.h"
 
+typedef struct
+{
+	MLBParameters* MLBParas;
+	swFloat*       lower;
+	swFloat*       upper;
+	swFloat*       x;
+	swFloat*       b;
+	swFloat*       diag;
+	swInt*         isXExist;
+}e2VParas;
+
 void edge2VertexIteration_host(Arrays* edgeData, Arrays* vertexData,
 			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
 			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),

@@ -19,7 +19,29 @@ typedef struct
 
 typedef struct
 {
+	swInt* sOwner;
+	swInt* rOwner;
+	swInt* sNeighbor;
+	swInt* rNeighbor;
+	swInt* diagOwner;
+	swInt* diagNeighbor;
+}topoArrays;
+
+typedef struct
+{
+	Arrays*     edgeData;
+	Arrays*     vertexData;
+	topoArrays* tArrays;
+	swInt       count;
+	swInt       k1;
+	swInt       k2;
+	swInt       flag;
+}MLBFunParameters;
+
+typedef struct
+{
 	swInt* blockStarts;
+	swInt* blockStartsUnsymm;
 	swInt* vertexStarts;
 	swInt* owner;
 	swInt* neighbor;
@@ -31,6 +53,8 @@ typedef struct
 	swInt  maxXNum;
 	swInt  maxCells;
 	swInt  maxEdges;
+	void   (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas);
+	void   (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas);
 }MLBParameters;
 
 //typedef struct
