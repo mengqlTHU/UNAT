@@ -13,6 +13,7 @@ ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_host
 ${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/funcPointer.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_host.o \
+${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm_host.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/BlockOrdering/BOrderUtils.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/extensibleArray/extensibleLabelArray.o \
@@ -22,6 +23,7 @@ slaveFiles= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_slave.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/userFunc_slave.o \
 ${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter_slave.o \
+${PROJDIR}/iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm_slave.o \
 
 cppFiles= \
 ${PROJDIR}/test/multiLevelBlock/test.o 

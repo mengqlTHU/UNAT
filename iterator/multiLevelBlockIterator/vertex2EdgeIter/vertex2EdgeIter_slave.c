@@ -40,10 +40,10 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 	diag = v2EParas->diag;
 
 	swInt totalLength
-		= maxXNum*3*sizeof(swFloat)
+		= maxXNum*2*sizeof(swFloat)
 		+ maxEdges*2*sizeof(swFloat)
 		+ maxEdges*2*sizeof(swInt)
-		+ BLOCKNUM64K*4*sizeof(swInt);
+		+ BLOCKNUM64K*5*sizeof(swInt);
 	if(totalLength>64*1024*0.94 && myId==0)
 	{
 		printf("The allocated LDM exceeds 64KB, the memory size is %d\n",
@@ -65,8 +65,6 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 	DMA_Get(&blockStarts_slave[0],&blockStarts[4*startBlockIdx],
 				BLOCKNUM64K*4*sizeof(swInt));
 	DMA_Get(&b_slave[0],&b[cellStart],(cellEnd-cellStart)*sizeof(swFloat));
-	DMA_Get(&sendX_slave[0],&x[cellStart],
-				(cellEnd-cellStart)*sizeof(swFloat));
 
 	blockLen = blockStarts_slave[4*(BLOCKNUM64K-1)+3]-blockStarts_slave[2];
 	DMA_Get(&data_slave[0],&data[blockStarts_slave[2]],
@@ -74,8 +72,32 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 	DMA_Get(&firstEdgeVertices_slave[0],
 				&firstEdgeVertices[blockStarts_slave[2]],
 				blockLen*sizeof(swInt));
+
+	Arrays neighborData_slave = {&data_slave[0],NULL,NULL,NULL,0};
+	Arrays vertexData_slave = {&b_slave[0],&sendX_slave[0],
+		&recvX_slave[0],NULL,0};
+	topoArrays tArrays = {&firstEdgeVertices_slave[0],NULL,
+		&vertexNeighbor_slave[0],NULL,NULL,NULL};
+	MLBFunParameters MLBFunParas = {&neighborData_slave, &vertexData_slave,
+		&tArrays, 0, 0, 0, 0};
+
+	if(x!=NULL)
+	{
+	DMA_Get(&sendX_slave[0],&x[cellStart],
+				(cellEnd-cellStart)*sizeof(swFloat));
 	DMA_Get(&vertexNeighbor_slave[0], &vertexNeighbor[blockStarts_slave[2]],
 				blockLen*sizeof(swInt));
+	DMA_Get(&recvX_slave[0],&diag[cellStart],
+				(cellEnd-cellStart)*sizeof(swFloat));
+	MLBFunParas.count = cellEnd-cellStart;
+	MLBFunParas.flag  = 1;
+	v2EParas->MLBParas->operatorFunPointer_slave(&MLBFunParas);
+
+	for(i=0;i<cellEnd-cellStart;i++)
+	{
+//		if(i+cellStart==10723) printf("slave diag:%d,%f,%f\n",i,recvX_slave[i],sendX_slave[i]);
+		b_slave[i] += recvX_slave[i]*sendX_slave[i];
+	}
 
 
 	for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
@@ -122,24 +144,21 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 			= sendX_slave[vertexNeighbor_slave[i-blockStarts_slave[2]]
 			- cellStart];
 	}
-
-//	if(myId==1) printf("%d,%d,%d,%f,%f\n",blockStarts_slave[2],blockStarts_slave[4*myId+2],blockStarts_slave[4*myId+3],recvX_slave[1740],x[vertexNeighbor_slave[1740]]);
-	for(i=0;i<blockLen;i++)
-	{
-//		if(firstEdgeVertices_slave[i]==10723) printf("slave nondiag:%d,%f,%f\n",i,data_slave[i],recvX_slave[i]);
-//		if(firstEdgeVertices_slave[i]>=cellEnd) printf("%d,%d,%d\n",i,firstEdgeVertices_slave[i],cellEnd);
-//		assert(firstEdgeVertices_slave[i]<cellEnd);
-		b_slave[firstEdgeVertices_slave[i]-cellStart]
-			+= data_slave[i]*recvX_slave[i];
 	}
 
-	DMA_Get(&recvX_slave[0],&diag[cellStart],
-				(cellEnd-cellStart)*sizeof(swFloat));
-	for(i=0;i<cellEnd-cellStart;i++)
-	{
-//		if(i+cellStart==10723) printf("slave diag:%d,%f,%f\n",i,recvX_slave[i],sendX_slave[i]);
-		b_slave[i] += recvX_slave[i]*sendX_slave[i];
-	}
+	MLBFunParas.count = blockLen;
+	MLBFunParas.k1    = cellStart;
+	v2EParas->MLBParas->operatorFunPointer_slave(&MLBFunParas);
+
+//	for(i=0;i<blockLen;i++)
+//	{
+////		if(firstEdgeVertices_slave[i]==10723) printf("slave nondiag:%d,%f,%f\n",i,data_slave[i],recvX_slave[i]);
+////		if(firstEdgeVertices_slave[i]>=cellEnd) printf("%d,%d,%d\n",i,firstEdgeVertices_slave[i],cellEnd);
+////		assert(firstEdgeVertices_slave[i]<cellEnd);
+//		b_slave[firstEdgeVertices_slave[i]-cellStart]
+//			+= data_slave[i]*recvX_slave[i];
+//	}
+
 
 	DMA_Put(&b[cellStart],&b_slave[0],(cellEnd-cellStart)*sizeof(swFloat));
 }

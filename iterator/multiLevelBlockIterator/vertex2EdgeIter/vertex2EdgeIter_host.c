@@ -56,20 +56,15 @@ void vertex2EdgeIteration_host(Arrays* neighbourData, Arrays* vertexData,
 	initOwnNeiSendListV2E(&v2EParas, ownNeiSendList);
 	initSendList(ownNeiSendList,mshBlockNum);
 
+	topoArrays tArrays = {firstEdgeVertices,NULL,vertexNeighbor,
+		NULL,NULL,NULL};
+	MLBFunParameters MLBFunParas = {neighbourData, vertexData,&tArrays,
+		0,0,0,0};
+
+	if(x==NULL) printf("hello world\n");
+
 	struct timeval start,end;
 	gettimeofday(&start,NULL);
-	for(i=0;i<BLOCKNUM64K;i++)
-	{
-		blockIdx = i*cpeBlockNum+BLOCKNUM64K;
-		startIdx = blockStartsUnsymm[4*blockIdx+2];
-		blockIdx = (i+1)*cpeBlockNum-1;
-		endIdx   = blockStartsUnsymm[4*blockIdx+3];
-		for(j=startIdx;j<endIdx;j++)
-		{
-			if(firstEdgeVertices[j]==10723) printf("1:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
-			b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
-		}
-	}
 
 	for(spIndex=0;spIndex<mshBlockNum;spIndex++)
 	{
@@ -88,11 +83,14 @@ void vertex2EdgeIteration_host(Arrays* neighbourData, Arrays* vertexData,
     			col = idxMP*BLOCKNUM64K-1;
     			blockIdx = row*cpeBlockNum+col;
     			endIdx   = blockStartsUnsymm[4*blockIdx+3];
-    			for(j=startIdx;j<endIdx;j++)
-    			{
-			if(firstEdgeVertices[j]==10723) printf("lower:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
-    				b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
-    			}
+				MLBFunParas.count = endIdx-startIdx;
+				MLBFunParas.k1    = startIdx;
+				MLBParas->operatorFunPointer_host(&MLBFunParas);
+//    			for(j=startIdx;j<endIdx;j++)
+//    			{
+////			if(firstEdgeVertices[j]==10723) printf("lower:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
+//    				b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
+//    			}
     
     			col = (idxMP+1)*BLOCKNUM64K;
     			if(col>=cpeBlockNum) continue;
@@ -101,12 +99,32 @@ void vertex2EdgeIteration_host(Arrays* neighbourData, Arrays* vertexData,
     			col = cpeBlockNum-1;
     			blockIdx = row*cpeBlockNum+col;
     			endIdx   = blockStartsUnsymm[4*blockIdx+2];
-    			for(j=startIdx;j<endIdx;j++)
-    			{
-			if(firstEdgeVertices[j]==10723) printf("upper:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
-    				b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
-    			}
+				MLBFunParas.count = endIdx-startIdx;
+				MLBFunParas.k1    = startIdx;
+				MLBParas->operatorFunPointer_host(&MLBFunParas);
+//    			for(j=startIdx;j<endIdx;j++)
+//    			{
+////			if(firstEdgeVertices[j]==10723) printf("upper:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
+//    				b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
+//    			}
     		}
+		}else
+		{
+        	for(i=0;i<BLOCKNUM64K;i++)
+        	{
+        		blockIdx = i*cpeBlockNum+BLOCKNUM64K;
+        		startIdx = blockStartsUnsymm[4*blockIdx+2];
+        		blockIdx = (i+1)*cpeBlockNum-1;
+        		endIdx   = blockStartsUnsymm[4*blockIdx+3];
+				MLBFunParas.count = endIdx-startIdx;
+				MLBFunParas.k1    = startIdx;
+				MLBParas->operatorFunPointer_host(&MLBFunParas);
+//        		for(j=startIdx;j<endIdx;j++)
+//        		{
+//        //			if(firstEdgeVertices[j]==10723) printf("1:%d,%f,%f\n",j,data[j],x[vertexNeighbor[j]]);
+//        			b[firstEdgeVertices[j]] += data[j]*x[vertexNeighbor[j]];
+//        		}
+        	}
 		}
 		athread_join();
 		destroyTable(spIndex);

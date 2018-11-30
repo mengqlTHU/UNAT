@@ -57,14 +57,14 @@ int main()
 
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
-	for(int i=0;i<t.getVertexNumber();i++)
-	{
-		if(i==6)
-		{
-			printf("%d,%f,%f\n",i,diag[i],x[i]);
-		}
-		b[i] = diag[i]*x[i];
-	}
+//	for(int i=0;i<t.getVertexNumber();i++)
+//	{
+////		if(i==6)
+////		{
+////			printf("%d,%f,%f\n",i,diag[i],x[i]);
+////		}
+//		b[i] = diag[i]*x[i];
+//	}
 //	for(int i=0;i<t.getEdgeNumber();i++)
 //	{
 //     	b[rowAddr[i]] += upper[i];
@@ -79,22 +79,23 @@ int main()
 	swInt* vertexNeighbor    = t.getVertexNeighbours();
 	for(int i=0;i<t.getEdgeNumber()*2;i++)
 	{
-		if(firstEdgeVertices[i]==6)
-		{
-			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
-		}
-		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
+//		if(firstEdgeVertices[i]==6)
+//		{
+//			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
+//		}
+		b[firstEdgeVertices[i]] += data[i];
+//		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
 	}
 	gettimeofday(&end,NULL);
 	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer_host  = funcPointer_host(0);
-	operatorFunPointer_slave = funcPointer_slave(0);
+	operatorFunPointer_host  = funcPointer_host(1);
+	operatorFunPointer_slave = funcPointer_slave(1);
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
-	Arrays vertexData    = {b_mlb,    x, diag, NULL, t.getVertexNumber()};
+	Arrays vertexData    = {b_mlb, NULL, NULL, NULL, t.getVertexNumber()};
 
 	MultiLevelBlockIterator mlbIter(t);
 	mlbIter.reformInnerTopology();
