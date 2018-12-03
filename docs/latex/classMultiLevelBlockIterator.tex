@@ -1,0 +1,316 @@
+\hypertarget{classMultiLevelBlockIterator}{
+\section{MultiLevelBlockIterator Class Reference}
+\label{classMultiLevelBlockIterator}\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+}
+
+
+{\ttfamily \#include $<$multiLevelBlockIterator.H$>$}Inheritance diagram for MultiLevelBlockIterator::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classMultiLevelBlockIterator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMultiLevelBlockIterator_a6d43aae7b5472800853effe7fb4c122a}{MultiLevelBlockIterator} (\hyperlink{classTopology}{Topology} \&topo)
+\item 
+\hyperlink{classMultiLevelBlockIterator_ae18852417b5b2b7db13b4aa727afa106}{$\sim$MultiLevelBlockIterator} ()
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a329b89b35011569fd4c4c3e93518eea3}{reorderEdgesFromEdge} (\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$startVertices, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$endVertices, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} edgeNumber, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} vertexNumber)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_af2bc453fc11f9e0ba34a1edc7eafc34e}{reorderEdgesFromVertex} (\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$firstEdgeVertices, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$vertexNeighbours, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} edgeNumber, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} vertexNumber)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_ac43a134b15498ad6e7eec873b2f45f79}{edge2VertexIteration} (\hyperlink{structArrays}{Arrays} $\ast$edgeData, \hyperlink{structArrays}{Arrays} $\ast$vertexData, void($\ast$\hyperlink{test_8cpp_aecc50c51899b7a8153dc83e95c3e6976}{operatorFunPointer\_\-host})(\hyperlink{structMLBFunParameters}{MLBFunParameters} $\ast$MLBFunParas), void($\ast$\hyperlink{test_8cpp_a434737e1969edf175d1bea960d600584}{operatorFunPointer\_\-slave})(\hyperlink{structMLBFunParameters}{MLBFunParameters} $\ast$MLBFunParas))
+\item 
+void \hyperlink{classMultiLevelBlockIterator_ac4035c51b1a940a7661a7e1b15e7b086}{vertex2EdgeIteration} (\hyperlink{structArrays}{Arrays} $\ast$neighbourData, \hyperlink{structArrays}{Arrays} $\ast$vertexData, void($\ast$\hyperlink{test_8cpp_aecc50c51899b7a8153dc83e95c3e6976}{operatorFunPointer\_\-host})(\hyperlink{structMLBFunParameters}{MLBFunParameters} $\ast$MLBFunParas), void($\ast$\hyperlink{test_8cpp_a434737e1969edf175d1bea960d600584}{operatorFunPointer\_\-slave})(\hyperlink{structMLBFunParameters}{MLBFunParameters} $\ast$MLBFunParas))
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a6db1df64cc6cb8c7fdc8ad6587f51a87}{reorderEdgeData} (\hyperlink{structArrays}{Arrays} $\ast$edgeData)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a96adad6f8220ff77653f75150bbd1b3c}{reorderEdgeDataUnsymm} (\hyperlink{structArrays}{Arrays} $\ast$edgeData)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_ac442935a4731bb5ae8548bad040ac692}{reorderVertexData} (\hyperlink{structArrays}{Arrays} $\ast$edgeData)
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a66bb952127c40b44e45ec853e3ff7af6}{getCpeBlockNum} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a6076c2b3469188f4e1399c5c21216419}{getMshBlockNum} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a363f06fbb8acd59e7a8211bdc8afe3d5}{getMtxBlockNum} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a86ec532cd96ba3e75346f8dfd1011595}{getMaxXNum} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a39bd10d2154b5e429e49d9c9a2f82cff}{getMaxCells} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a29a4f30de98e453ff26d14d44ca97e65}{getMaxEdges} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a0148ef791de73511bb725a3d2f71d49b}{getMaxEdgesUnsymm} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_afd32075e0f371fbcb5c9a577c11bdb7a}{getBlockStarts} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_ac7c3935ce8f4a3d6f4634c85b6a2dc39}{getBlockStartsUnsymm} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_aee947df3eaa77066c7d5fbc23a6e3ca4}{getVertexStarts} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a184e9a87ccff9f3eb2c5960434175936}{reorderVertexArray} (\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$array)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a2c8b4ee175d96866d03cf0196312a4ea}{reorderEdgeArrayUnsymm} (\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$array)
+\item 
+void \hyperlink{classMultiLevelBlockIterator_a40f5b13a4c39c42b035c7bf4b72e8edb}{MLBReorder} (\hyperlink{classTopology}{Topology} \&topo, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} ref)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a9c114d72d33e1c5117273a3f20d5786e}{\_\-cpeBlockNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a4ea166f78f24421ee5c61f19bfed316b}{\_\-mshBlockNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_ae526c16297ad2215dc3781c154359aab}{\_\-mtxBlockNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a1b81d90682525ad806b12f851db9e9a4}{\_\-blockStarts}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_ae42fe424b7278c9a9f117941bb2c59e0}{\_\-blockStartsUnsymm}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a89e43d3ad8cde9c322089090fa1a2413}{\_\-vertexStarts}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a44407268a1f8292caf90e7f963f601f7}{\_\-maxXNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_ae35d89b26c36bdead2af0d18b5f614bc}{\_\-maxCells}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a01700d9c19041caee23d3de1600a3efa}{\_\-maxEdges}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classMultiLevelBlockIterator_a6e5c377723068f37e62d6ca0f2e7e3ee}{\_\-maxEdgesUnsymm}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a4054111d27eef080343d7b199cf319e7}{\_\-owner}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a346749a01a887ef338a94c794f577ffe}{\_\-neighbor}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a72ac8d61d98eb9ab3e95db11e8eb4592}{\_\-postEdgeOrder}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a68c79e502eb1bae881fe08b25eeea2e3}{\_\-postVertexOrder}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_ad01e907226fdf1af73ce3bc3ef11ef46}{\_\-firstEdgeVertices}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classMultiLevelBlockIterator_a8e339eb75b0dfb8a789d9db1727b73c4}{\_\-vertexNeighbours}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMultiLevelBlockIterator_a6d43aae7b5472800853effe7fb4c122a}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{MultiLevelBlockIterator}]{\setlength{\rightskip}{0pt plus 5cm}MultiLevelBlockIterator::MultiLevelBlockIterator ({\bf Topology} \& {\em topo})}}
+\label{classMultiLevelBlockIterator_a6d43aae7b5472800853effe7fb4c122a}
+\hypertarget{classMultiLevelBlockIterator_ae18852417b5b2b7db13b4aa727afa106}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!$\sim$MultiLevelBlockIterator@{$\sim$MultiLevelBlockIterator}}
+\index{$\sim$MultiLevelBlockIterator@{$\sim$MultiLevelBlockIterator}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{$\sim$MultiLevelBlockIterator}]{\setlength{\rightskip}{0pt plus 5cm}MultiLevelBlockIterator::$\sim$MultiLevelBlockIterator ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ae18852417b5b2b7db13b4aa727afa106}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMultiLevelBlockIterator_ac43a134b15498ad6e7eec873b2f45f79}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!edge2VertexIteration@{edge2VertexIteration}}
+\index{edge2VertexIteration@{edge2VertexIteration}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{edge2VertexIteration}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::edge2VertexIteration ({\bf Arrays} $\ast$ {\em edgeData}, \/  {\bf Arrays} $\ast$ {\em vertexData}, \/  void($\ast$)({\bf MLBFunParameters} $\ast$MLBFunParas) {\em operatorFunPointer\_\-host}, \/  void($\ast$)({\bf MLBFunParameters} $\ast$MLBFunParas) {\em operatorFunPointer\_\-slave})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ac43a134b15498ad6e7eec873b2f45f79}
+
+
+Implements \hyperlink{classIterator_a9606486fd118ee0131bc85a4c825feb8}{Iterator}.\hypertarget{classMultiLevelBlockIterator_afd32075e0f371fbcb5c9a577c11bdb7a}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getBlockStarts@{getBlockStarts}}
+\index{getBlockStarts@{getBlockStarts}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getBlockStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ MultiLevelBlockIterator::getBlockStarts ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_afd32075e0f371fbcb5c9a577c11bdb7a}
+\hypertarget{classMultiLevelBlockIterator_ac7c3935ce8f4a3d6f4634c85b6a2dc39}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getBlockStartsUnsymm@{getBlockStartsUnsymm}}
+\index{getBlockStartsUnsymm@{getBlockStartsUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getBlockStartsUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ MultiLevelBlockIterator::getBlockStartsUnsymm ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ac7c3935ce8f4a3d6f4634c85b6a2dc39}
+\hypertarget{classMultiLevelBlockIterator_a66bb952127c40b44e45ec853e3ff7af6}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getCpeBlockNum@{getCpeBlockNum}}
+\index{getCpeBlockNum@{getCpeBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getCpeBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getCpeBlockNum ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a66bb952127c40b44e45ec853e3ff7af6}
+\hypertarget{classMultiLevelBlockIterator_a39bd10d2154b5e429e49d9c9a2f82cff}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMaxCells@{getMaxCells}}
+\index{getMaxCells@{getMaxCells}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMaxCells}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMaxCells ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a39bd10d2154b5e429e49d9c9a2f82cff}
+\hypertarget{classMultiLevelBlockIterator_a29a4f30de98e453ff26d14d44ca97e65}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMaxEdges@{getMaxEdges}}
+\index{getMaxEdges@{getMaxEdges}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMaxEdges}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMaxEdges ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a29a4f30de98e453ff26d14d44ca97e65}
+\hypertarget{classMultiLevelBlockIterator_a0148ef791de73511bb725a3d2f71d49b}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMaxEdgesUnsymm@{getMaxEdgesUnsymm}}
+\index{getMaxEdgesUnsymm@{getMaxEdgesUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMaxEdgesUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMaxEdgesUnsymm ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a0148ef791de73511bb725a3d2f71d49b}
+\hypertarget{classMultiLevelBlockIterator_a86ec532cd96ba3e75346f8dfd1011595}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMaxXNum@{getMaxXNum}}
+\index{getMaxXNum@{getMaxXNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMaxXNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMaxXNum ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a86ec532cd96ba3e75346f8dfd1011595}
+\hypertarget{classMultiLevelBlockIterator_a6076c2b3469188f4e1399c5c21216419}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMshBlockNum@{getMshBlockNum}}
+\index{getMshBlockNum@{getMshBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMshBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMshBlockNum ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a6076c2b3469188f4e1399c5c21216419}
+\hypertarget{classMultiLevelBlockIterator_a363f06fbb8acd59e7a8211bdc8afe3d5}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getMtxBlockNum@{getMtxBlockNum}}
+\index{getMtxBlockNum@{getMtxBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getMtxBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} MultiLevelBlockIterator::getMtxBlockNum ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a363f06fbb8acd59e7a8211bdc8afe3d5}
+\hypertarget{classMultiLevelBlockIterator_aee947df3eaa77066c7d5fbc23a6e3ca4}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!getVertexStarts@{getVertexStarts}}
+\index{getVertexStarts@{getVertexStarts}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{getVertexStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ MultiLevelBlockIterator::getVertexStarts ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classMultiLevelBlockIterator_aee947df3eaa77066c7d5fbc23a6e3ca4}
+\hypertarget{classMultiLevelBlockIterator_a40f5b13a4c39c42b035c7bf4b72e8edb}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!MLBReorder@{MLBReorder}}
+\index{MLBReorder@{MLBReorder}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{MLBReorder}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::MLBReorder ({\bf Topology} \& {\em topo}, \/  {\bf swInt} {\em ref})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a40f5b13a4c39c42b035c7bf4b72e8edb}
+\hypertarget{classMultiLevelBlockIterator_a2c8b4ee175d96866d03cf0196312a4ea}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderEdgeArrayUnsymm@{reorderEdgeArrayUnsymm}}
+\index{reorderEdgeArrayUnsymm@{reorderEdgeArrayUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderEdgeArrayUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderEdgeArrayUnsymm ({\bf swFloat} $\ast$ {\em array})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a2c8b4ee175d96866d03cf0196312a4ea}
+\hypertarget{classMultiLevelBlockIterator_a6db1df64cc6cb8c7fdc8ad6587f51a87}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderEdgeData@{reorderEdgeData}}
+\index{reorderEdgeData@{reorderEdgeData}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderEdgeData}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderEdgeData ({\bf Arrays} $\ast$ {\em edgeData})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a6db1df64cc6cb8c7fdc8ad6587f51a87}
+
+
+Implements \hyperlink{classIterator_a4a803a634065aba90c6a7572542aa8c3}{Iterator}.\hypertarget{classMultiLevelBlockIterator_a96adad6f8220ff77653f75150bbd1b3c}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderEdgeDataUnsymm@{reorderEdgeDataUnsymm}}
+\index{reorderEdgeDataUnsymm@{reorderEdgeDataUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderEdgeDataUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderEdgeDataUnsymm ({\bf Arrays} $\ast$ {\em edgeData})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a96adad6f8220ff77653f75150bbd1b3c}
+
+
+Implements \hyperlink{classIterator_aea73c3b4ba7c3cb6c56df6c5ddbe1f31}{Iterator}.\hypertarget{classMultiLevelBlockIterator_a329b89b35011569fd4c4c3e93518eea3}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderEdgesFromEdge@{reorderEdgesFromEdge}}
+\index{reorderEdgesFromEdge@{reorderEdgesFromEdge}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderEdgesFromEdge}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderEdgesFromEdge ({\bf swInt} $\ast$ {\em startVertices}, \/  {\bf swInt} $\ast$ {\em endVertices}, \/  {\bf swInt} {\em edgeNumber}, \/  {\bf swInt} {\em vertexNumber})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a329b89b35011569fd4c4c3e93518eea3}
+
+
+Implements \hyperlink{classIterator_ad467453135759642e4e4a9f9e5233771}{Iterator}.\hypertarget{classMultiLevelBlockIterator_af2bc453fc11f9e0ba34a1edc7eafc34e}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderEdgesFromVertex@{reorderEdgesFromVertex}}
+\index{reorderEdgesFromVertex@{reorderEdgesFromVertex}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderEdgesFromVertex}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderEdgesFromVertex ({\bf swInt} $\ast$ {\em firstEdgeVertices}, \/  {\bf swInt} $\ast$ {\em vertexNeighbours}, \/  {\bf swInt} {\em edgeNumber}, \/  {\bf swInt} {\em vertexNumber})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_af2bc453fc11f9e0ba34a1edc7eafc34e}
+
+
+Implements \hyperlink{classIterator_a852bc84ccdfc84a9f0802ee070dd4cac}{Iterator}.\hypertarget{classMultiLevelBlockIterator_a184e9a87ccff9f3eb2c5960434175936}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderVertexArray@{reorderVertexArray}}
+\index{reorderVertexArray@{reorderVertexArray}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderVertexArray}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderVertexArray ({\bf swFloat} $\ast$ {\em array})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a184e9a87ccff9f3eb2c5960434175936}
+\hypertarget{classMultiLevelBlockIterator_ac442935a4731bb5ae8548bad040ac692}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!reorderVertexData@{reorderVertexData}}
+\index{reorderVertexData@{reorderVertexData}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{reorderVertexData}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::reorderVertexData ({\bf Arrays} $\ast$ {\em edgeData})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ac442935a4731bb5ae8548bad040ac692}
+
+
+Implements \hyperlink{classIterator_abe5bcf1a342b1ed4e3a5efe7f630e6d9}{Iterator}.\hypertarget{classMultiLevelBlockIterator_ac4035c51b1a940a7661a7e1b15e7b086}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!vertex2EdgeIteration@{vertex2EdgeIteration}}
+\index{vertex2EdgeIteration@{vertex2EdgeIteration}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{vertex2EdgeIteration}]{\setlength{\rightskip}{0pt plus 5cm}void MultiLevelBlockIterator::vertex2EdgeIteration ({\bf Arrays} $\ast$ {\em neighbourData}, \/  {\bf Arrays} $\ast$ {\em vertexData}, \/  void($\ast$)({\bf MLBFunParameters} $\ast$MLBFunParas) {\em operatorFunPointer\_\-host}, \/  void($\ast$)({\bf MLBFunParameters} $\ast$MLBFunParas) {\em operatorFunPointer\_\-slave})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ac4035c51b1a940a7661a7e1b15e7b086}
+
+
+Implements \hyperlink{classIterator_af3f4a8ad925b4a2029d9b2db74787094}{Iterator}.
+
+\subsection{Member Data Documentation}
+\hypertarget{classMultiLevelBlockIterator_a1b81d90682525ad806b12f851db9e9a4}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-blockStarts@{\_\-blockStarts}}
+\index{\_\-blockStarts@{\_\-blockStarts}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-blockStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-blockStarts}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a1b81d90682525ad806b12f851db9e9a4}
+\hypertarget{classMultiLevelBlockIterator_ae42fe424b7278c9a9f117941bb2c59e0}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-blockStartsUnsymm@{\_\-blockStartsUnsymm}}
+\index{\_\-blockStartsUnsymm@{\_\-blockStartsUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-blockStartsUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-blockStartsUnsymm}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ae42fe424b7278c9a9f117941bb2c59e0}
+\hypertarget{classMultiLevelBlockIterator_a9c114d72d33e1c5117273a3f20d5786e}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-cpeBlockNum@{\_\-cpeBlockNum}}
+\index{\_\-cpeBlockNum@{\_\-cpeBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-cpeBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-cpeBlockNum}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a9c114d72d33e1c5117273a3f20d5786e}
+\hypertarget{classMultiLevelBlockIterator_ad01e907226fdf1af73ce3bc3ef11ef46}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-firstEdgeVertices@{\_\-firstEdgeVertices}}
+\index{\_\-firstEdgeVertices@{\_\-firstEdgeVertices}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-firstEdgeVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-firstEdgeVertices}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ad01e907226fdf1af73ce3bc3ef11ef46}
+\hypertarget{classMultiLevelBlockIterator_ae35d89b26c36bdead2af0d18b5f614bc}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-maxCells@{\_\-maxCells}}
+\index{\_\-maxCells@{\_\-maxCells}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-maxCells}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-maxCells}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ae35d89b26c36bdead2af0d18b5f614bc}
+\hypertarget{classMultiLevelBlockIterator_a01700d9c19041caee23d3de1600a3efa}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-maxEdges@{\_\-maxEdges}}
+\index{\_\-maxEdges@{\_\-maxEdges}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-maxEdges}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-maxEdges}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a01700d9c19041caee23d3de1600a3efa}
+\hypertarget{classMultiLevelBlockIterator_a6e5c377723068f37e62d6ca0f2e7e3ee}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-maxEdgesUnsymm@{\_\-maxEdgesUnsymm}}
+\index{\_\-maxEdgesUnsymm@{\_\-maxEdgesUnsymm}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-maxEdgesUnsymm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-maxEdgesUnsymm}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a6e5c377723068f37e62d6ca0f2e7e3ee}
+\hypertarget{classMultiLevelBlockIterator_a44407268a1f8292caf90e7f963f601f7}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-maxXNum@{\_\-maxXNum}}
+\index{\_\-maxXNum@{\_\-maxXNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-maxXNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-maxXNum}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a44407268a1f8292caf90e7f963f601f7}
+\hypertarget{classMultiLevelBlockIterator_a4ea166f78f24421ee5c61f19bfed316b}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-mshBlockNum@{\_\-mshBlockNum}}
+\index{\_\-mshBlockNum@{\_\-mshBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-mshBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-mshBlockNum}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a4ea166f78f24421ee5c61f19bfed316b}
+\hypertarget{classMultiLevelBlockIterator_ae526c16297ad2215dc3781c154359aab}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-mtxBlockNum@{\_\-mtxBlockNum}}
+\index{\_\-mtxBlockNum@{\_\-mtxBlockNum}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-mtxBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf MultiLevelBlockIterator::\_\-mtxBlockNum}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_ae526c16297ad2215dc3781c154359aab}
+\hypertarget{classMultiLevelBlockIterator_a346749a01a887ef338a94c794f577ffe}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-neighbor@{\_\-neighbor}}
+\index{\_\-neighbor@{\_\-neighbor}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-neighbor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-neighbor}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a346749a01a887ef338a94c794f577ffe}
+\hypertarget{classMultiLevelBlockIterator_a4054111d27eef080343d7b199cf319e7}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-owner@{\_\-owner}}
+\index{\_\-owner@{\_\-owner}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-owner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-owner}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a4054111d27eef080343d7b199cf319e7}
+\hypertarget{classMultiLevelBlockIterator_a72ac8d61d98eb9ab3e95db11e8eb4592}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-postEdgeOrder@{\_\-postEdgeOrder}}
+\index{\_\-postEdgeOrder@{\_\-postEdgeOrder}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-postEdgeOrder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-postEdgeOrder}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a72ac8d61d98eb9ab3e95db11e8eb4592}
+\hypertarget{classMultiLevelBlockIterator_a68c79e502eb1bae881fe08b25eeea2e3}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-postVertexOrder@{\_\-postVertexOrder}}
+\index{\_\-postVertexOrder@{\_\-postVertexOrder}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-postVertexOrder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-postVertexOrder}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a68c79e502eb1bae881fe08b25eeea2e3}
+\hypertarget{classMultiLevelBlockIterator_a8e339eb75b0dfb8a789d9db1727b73c4}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-vertexNeighbours@{\_\-vertexNeighbours}}
+\index{\_\-vertexNeighbours@{\_\-vertexNeighbours}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-vertexNeighbours}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-vertexNeighbours}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a8e339eb75b0dfb8a789d9db1727b73c4}
+\hypertarget{classMultiLevelBlockIterator_a89e43d3ad8cde9c322089090fa1a2413}{
+\index{MultiLevelBlockIterator@{MultiLevelBlockIterator}!\_\-vertexStarts@{\_\-vertexStarts}}
+\index{\_\-vertexStarts@{\_\-vertexStarts}!MultiLevelBlockIterator@{MultiLevelBlockIterator}}
+\subsubsection[{\_\-vertexStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf MultiLevelBlockIterator::\_\-vertexStarts}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classMultiLevelBlockIterator_a89e43d3ad8cde9c322089090fa1a2413}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+iterator/multiLevelBlockIterator/\hyperlink{multiLevelBlockIterator_8H}{multiLevelBlockIterator.H}\item 
+iterator/multiLevelBlockIterator/\hyperlink{multiLevelBlockIterator_8C}{multiLevelBlockIterator.C}\end{DoxyCompactItemize}

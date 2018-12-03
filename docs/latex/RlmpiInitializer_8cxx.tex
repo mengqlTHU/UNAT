@@ -1,0 +1,52 @@
+\hypertarget{RlmpiInitializer_8cxx}{
+\section{RL\_\-MPI/RlmpiInitializer.cxx File Reference}
+\label{RlmpiInitializer_8cxx}\index{RL\_\-MPI/RlmpiInitializer.cxx@{RL\_\-MPI/RlmpiInitializer.cxx}}
+}
+{\ttfamily \#include \char`\"{}RlmpiInitializer.hxx\char`\"{}}\par
+{\ttfamily \#include $<$vector$>$}\par
+{\ttfamily \#include $<$map$>$}\par
+{\ttfamily \#include $<$iostream$>$}\par
+{\ttfamily \#include $<$cstdlib$>$}\par
+{\ttfamily \#include $<$algorithm$>$}\par
+{\ttfamily \#include $<$utility$>$}\par
+{\ttfamily \#include $<$string$>$}\par
+{\ttfamily \#include $<$fstream$>$}\par
+{\ttfamily \#include $<$sstream$>$}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{RlmpiInitializer_8cxx_aa9cca8e4d882112207c34b03bf945a20}{generate\_\-register\_\-transform\_\-table} (int($\ast$dst\_\-list)\mbox{[}64\mbox{]}, int($\ast$sendN)\mbox{[}64\mbox{]}, Table $\ast$table)
+\item 
+void \hyperlink{RlmpiInitializer_8cxx_af5b98639ee3f637ee3b94b890a8f8ea1}{generate\_\-register\_\-transform\_\-table\_\-same\_\-row} (const int($\ast$dst\_\-list)\mbox{[}64\mbox{]}, const int($\ast$sendN)\mbox{[}64\mbox{]}, Table $\ast$table)
+\item 
+void \hyperlink{RlmpiInitializer_8cxx_ac67b230ec20837a9ead28023dcfe7332}{generate\_\-register\_\-transform\_\-table\_\-same\_\-col} (int($\ast$dst\_\-list)\mbox{[}64\mbox{]}, int($\ast$sendN)\mbox{[}64\mbox{]}, Table $\ast$table)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std::string \hyperlink{RlmpiInitializer_8cxx_aa4a658c3f8b0fef7842c0c1ca7eadf34}{NumberToString} (T Number)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{RlmpiInitializer_8cxx_aa9cca8e4d882112207c34b03bf945a20}{
+\index{RlmpiInitializer.cxx@{RlmpiInitializer.cxx}!generate\_\-register\_\-transform\_\-table@{generate\_\-register\_\-transform\_\-table}}
+\index{generate\_\-register\_\-transform\_\-table@{generate\_\-register\_\-transform\_\-table}!RlmpiInitializer.cxx@{RlmpiInitializer.cxx}}
+\subsubsection[{generate\_\-register\_\-transform\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void generate\_\-register\_\-transform\_\-table (int($\ast$) {\em dst\_\-list}\mbox{[}64\mbox{]}, \/  int($\ast$) {\em sendN}\mbox{[}64\mbox{]}, \/  Table $\ast$ {\em table})}}
+\label{RlmpiInitializer_8cxx_aa9cca8e4d882112207c34b03bf945a20}
+\hypertarget{RlmpiInitializer_8cxx_ac67b230ec20837a9ead28023dcfe7332}{
+\index{RlmpiInitializer.cxx@{RlmpiInitializer.cxx}!generate\_\-register\_\-transform\_\-table\_\-same\_\-col@{generate\_\-register\_\-transform\_\-table\_\-same\_\-col}}
+\index{generate\_\-register\_\-transform\_\-table\_\-same\_\-col@{generate\_\-register\_\-transform\_\-table\_\-same\_\-col}!RlmpiInitializer.cxx@{RlmpiInitializer.cxx}}
+\subsubsection[{generate\_\-register\_\-transform\_\-table\_\-same\_\-col}]{\setlength{\rightskip}{0pt plus 5cm}void generate\_\-register\_\-transform\_\-table\_\-same\_\-col (int($\ast$) {\em dst\_\-list}\mbox{[}64\mbox{]}, \/  int($\ast$) {\em sendN}\mbox{[}64\mbox{]}, \/  Table $\ast$ {\em table})}}
+\label{RlmpiInitializer_8cxx_ac67b230ec20837a9ead28023dcfe7332}
+
+
+for test//// \hypertarget{RlmpiInitializer_8cxx_af5b98639ee3f637ee3b94b890a8f8ea1}{
+\index{RlmpiInitializer.cxx@{RlmpiInitializer.cxx}!generate\_\-register\_\-transform\_\-table\_\-same\_\-row@{generate\_\-register\_\-transform\_\-table\_\-same\_\-row}}
+\index{generate\_\-register\_\-transform\_\-table\_\-same\_\-row@{generate\_\-register\_\-transform\_\-table\_\-same\_\-row}!RlmpiInitializer.cxx@{RlmpiInitializer.cxx}}
+\subsubsection[{generate\_\-register\_\-transform\_\-table\_\-same\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}void generate\_\-register\_\-transform\_\-table\_\-same\_\-row (const int($\ast$) {\em dst\_\-list}\mbox{[}64\mbox{]}, \/  const int($\ast$) {\em sendN}\mbox{[}64\mbox{]}, \/  Table $\ast$ {\em table})}}
+\label{RlmpiInitializer_8cxx_af5b98639ee3f637ee3b94b890a8f8ea1}
+
+
+for test//// \hypertarget{RlmpiInitializer_8cxx_aa4a658c3f8b0fef7842c0c1ca7eadf34}{
+\index{RlmpiInitializer.cxx@{RlmpiInitializer.cxx}!NumberToString@{NumberToString}}
+\index{NumberToString@{NumberToString}!RlmpiInitializer.cxx@{RlmpiInitializer.cxx}}
+\subsubsection[{NumberToString}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ std::string NumberToString (T {\em Number})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{RlmpiInitializer_8cxx_aa4a658c3f8b0fef7842c0c1ca7eadf34}

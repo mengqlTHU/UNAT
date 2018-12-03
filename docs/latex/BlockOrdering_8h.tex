@@ -1,0 +1,182 @@
+\hypertarget{BlockOrdering_8h}{
+\section{iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.h File Reference}
+\label{BlockOrdering_8h}\index{iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.h@{iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.h}}
+}
+{\ttfamily \#include \char`\"{}stdio.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}metis.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}extensibleLabelArray.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}timer.h\char`\"{}}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structstruct__MLB__graph}{struct\_\-MLB\_\-graph}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{BlockOrdering_8h_a0b7df70d4a086a227bc482b07e2bbbca}{LABEL}~int
+\item 
+\#define \hyperlink{BlockOrdering_8h_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}~double
+\item 
+\#define \hyperlink{BlockOrdering_8h_a2f5c7920a733a4696f155e4e6e722584}{CERR}(...)
+\item 
+\#define \hyperlink{BlockOrdering_8h_a374907022dd0f55103d6159432844084}{forprt}(array, n)
+\item 
+\#define \hyperlink{BlockOrdering_8h_a07fa929dcbc40b6b003a380d3d08246d}{startTime}()~LABEL printTime\_\-start = getSystemTime()
+\item 
+\#define \hyperlink{BlockOrdering_8h_a20241f069e59683079e29f88a0868c66}{printTime}(tag)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structstruct__MLB__graph}{struct\_\-MLB\_\-graph} \hyperlink{BlockOrdering_8h_acab48a1c8883b56e744e6e95e3c3f48d}{MLB\_\-graph}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{BlockOrdering_8h_af16e9ef199c5a709d3354854dfe189f4}{MLB\_\-Multilevel\_\-ordering} (\hyperlink{structstruct__MLB__graph}{MLB\_\-graph} graph, LABEL levels, LABEL $\ast$blockNums, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_ac11755d1b7b7663b6c608cff96d0216e}{blockStarts}, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a0add968a4492f5f3bdc13cba56330c7d}{cellStarts}, LABEL $\ast$postCellOrder, LABEL $\ast$postEdgeOrder)
+\item 
+void \hyperlink{BlockOrdering_8h_a5d78ed73eb018835a284c397c45689ae}{MLB\_\-ordering} (\hyperlink{structstruct__MLB__graph}{MLB\_\-graph} graph, LABEL blockNum, LABEL $\ast$postCellOrder, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a0add968a4492f5f3bdc13cba56330c7d}{cellStarts})
+\item 
+void \hyperlink{BlockOrdering_8h_a9716e30fb2bab193424ec15359d63a6f}{MLB\_\-postSCALAR} (LABEL $\ast$postOrder, SCALAR $\ast$dataArray, LABEL length, LABEL dim)
+\item 
+void \hyperlink{BlockOrdering_8h_ad0b24ed2a396f5970b41888c2327fb42}{MLB\_\-postLABEL} (LABEL $\ast$postOrder, LABEL $\ast$dataArray, LABEL length, LABEL dim)
+\item 
+void \hyperlink{BlockOrdering_8h_a76ca019f3e6496eb19f5a0d3129457d1}{MLB\_\-metis\_\-decompose} (\hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} cellNum, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} edgeNum, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$adj, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$\hyperlink{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{neighbor}, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$cellWeight, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$edgeWeight, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} blockNum, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$\hyperlink{metis_8h_ae05550f39842f042f577f0358c15dca3}{options}, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$edgeCut, \hyperlink{metis_8h_aaa5262be3e700770163401acb0150f52}{idx\_\-t} $\ast$blockCells, char $\ast$method)
+\item 
+void \hyperlink{BlockOrdering_8h_aa94341ca31937ae68365528ea4757759}{MLB\_\-generateCellID} (LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}{owner}, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{neighbor}, LABEL $\ast$cellID, LABEL cellNum, LABEL edgeNum)
+\item 
+void \hyperlink{BlockOrdering_8h_a4c13a360876a446ffcbb890fa1439f43}{MLB\_\-offsetEdges} (LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}{owner}, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{neighbor}, LABEL $\ast$cellID, LABEL $\ast$ownerNorm, LABEL $\ast$neighborNorm, LABEL cellNum, LABEL edgeNum)
+\item 
+void \hyperlink{BlockOrdering_8h_aaafcb22373d387caa0b51c015035d5dd}{MLB\_\-constructMetisCSR} (LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}{owner}, LABEL $\ast$\hyperlink{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{neighbor}, LABEL $\ast$edegWeight, LABEL $\ast$\hyperlink{metis_8h_a695ac86d6d43da32592b0a4e36a0a62e}{xadj}, LABEL $\ast$\hyperlink{metis_8h_a65c53353afda9ccc21c714c1f031f535}{adjncy}, LABEL $\ast$edge\_\-wgt, LABEL cellNum, LABEL edgeNum)
+\item 
+LABEL \hyperlink{BlockOrdering_8h_acf6d2f14eecd82309bdf24bbb855d58a}{MLB\_\-find} (LABEL id, LABEL $\ast$array, LABEL num)
+\item 
+void \hyperlink{BlockOrdering_8h_a0ffc741dee7604ab2deb96451aae7eab}{MLB\_\-quickSort} (int $\ast$arr, int elements)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{BlockOrdering_8h_a2f5c7920a733a4696f155e4e6e722584}{
+\index{BlockOrdering.h@{BlockOrdering.h}!CERR@{CERR}}
+\index{CERR@{CERR}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{CERR}]{\setlength{\rightskip}{0pt plus 5cm}\#define CERR( {\em ...})}}
+\label{BlockOrdering_8h_a2f5c7920a733a4696f155e4e6e722584}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+        printf("***Error: at "); \
+        printf("%s",__FILE__); \
+        printf("+%d:",__LINE__); \
+        printf("\n\t"); \
+        printf("in function \"%s\": ", __FUNCTION__); \
+        printf(__VA_ARGS__); \
+}
+\end{DoxyCode}
+\hypertarget{BlockOrdering_8h_a374907022dd0f55103d6159432844084}{
+\index{BlockOrdering.h@{BlockOrdering.h}!forprt@{forprt}}
+\index{forprt@{forprt}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{forprt}]{\setlength{\rightskip}{0pt plus 5cm}\#define forprt(array, \/  n)}}
+\label{BlockOrdering_8h_a374907022dd0f55103d6159432844084}
+{\bfseries Value:}
+\begin{DoxyCode}
+{\
+        printf(#array);\
+        printf(":{");\
+        LABEL i;\
+        for(i=0; i<n; i++)\
+          printf(" %d", (LABEL)(array[i]));\
+        printf("}\n");\
+}
+\end{DoxyCode}
+\hypertarget{BlockOrdering_8h_a0b7df70d4a086a227bc482b07e2bbbca}{
+\index{BlockOrdering.h@{BlockOrdering.h}!LABEL@{LABEL}}
+\index{LABEL@{LABEL}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{LABEL}]{\setlength{\rightskip}{0pt plus 5cm}\#define LABEL~int}}
+\label{BlockOrdering_8h_a0b7df70d4a086a227bc482b07e2bbbca}
+\hypertarget{BlockOrdering_8h_a20241f069e59683079e29f88a0868c66}{
+\index{BlockOrdering.h@{BlockOrdering.h}!printTime@{printTime}}
+\index{printTime@{printTime}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{printTime}]{\setlength{\rightskip}{0pt plus 5cm}\#define printTime(tag)}}
+\label{BlockOrdering_8h_a20241f069e59683079e29f88a0868c66}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+        printf("=======================\n");\
+        printf(#tag);\
+        printf(": %fs\n", getSystemTime()-printTime_start); \
+        printTime_start = getSystemTime(); \
+        printf("=======================\n");\
+}
+\end{DoxyCode}
+\hypertarget{BlockOrdering_8h_aae7e5362e39df9265f4fd78ffa61660a}{
+\index{BlockOrdering.h@{BlockOrdering.h}!SCALAR@{SCALAR}}
+\index{SCALAR@{SCALAR}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{SCALAR}]{\setlength{\rightskip}{0pt plus 5cm}\#define SCALAR~double}}
+\label{BlockOrdering_8h_aae7e5362e39df9265f4fd78ffa61660a}
+\hypertarget{BlockOrdering_8h_a07fa929dcbc40b6b003a380d3d08246d}{
+\index{BlockOrdering.h@{BlockOrdering.h}!startTime@{startTime}}
+\index{startTime@{startTime}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{startTime}]{\setlength{\rightskip}{0pt plus 5cm}\#define startTime()~LABEL printTime\_\-start = getSystemTime()}}
+\label{BlockOrdering_8h_a07fa929dcbc40b6b003a380d3d08246d}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{BlockOrdering_8h_acab48a1c8883b56e744e6e95e3c3f48d}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-graph@{MLB\_\-graph}}
+\index{MLB\_\-graph@{MLB\_\-graph}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-graph}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf struct\_\-MLB\_\-graph}  {\bf MLB\_\-graph}}}
+\label{BlockOrdering_8h_acab48a1c8883b56e744e6e95e3c3f48d}
+
+
+\subsection{Function Documentation}
+\hypertarget{BlockOrdering_8h_aaafcb22373d387caa0b51c015035d5dd}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-constructMetisCSR@{MLB\_\-constructMetisCSR}}
+\index{MLB\_\-constructMetisCSR@{MLB\_\-constructMetisCSR}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-constructMetisCSR}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-constructMetisCSR (LABEL $\ast$ {\em owner}, \/  LABEL $\ast$ {\em neighbor}, \/  LABEL $\ast$ {\em edegWeight}, \/  LABEL $\ast$ {\em xadj}, \/  LABEL $\ast$ {\em adjncy}, \/  LABEL $\ast$ {\em edge\_\-wgt}, \/  LABEL {\em cellNum}, \/  LABEL {\em edgeNum})}}
+\label{BlockOrdering_8h_aaafcb22373d387caa0b51c015035d5dd}
+\hypertarget{BlockOrdering_8h_acf6d2f14eecd82309bdf24bbb855d58a}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-find@{MLB\_\-find}}
+\index{MLB\_\-find@{MLB\_\-find}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-find}]{\setlength{\rightskip}{0pt plus 5cm}LABEL MLB\_\-find (LABEL {\em id}, \/  LABEL $\ast$ {\em array}, \/  LABEL {\em num})}}
+\label{BlockOrdering_8h_acf6d2f14eecd82309bdf24bbb855d58a}
+\hypertarget{BlockOrdering_8h_aa94341ca31937ae68365528ea4757759}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-generateCellID@{MLB\_\-generateCellID}}
+\index{MLB\_\-generateCellID@{MLB\_\-generateCellID}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-generateCellID}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-generateCellID (LABEL $\ast$ {\em owner}, \/  LABEL $\ast$ {\em neighbor}, \/  LABEL $\ast$ {\em cellID}, \/  LABEL {\em cellNum}, \/  LABEL {\em edgeNum})}}
+\label{BlockOrdering_8h_aa94341ca31937ae68365528ea4757759}
+\hypertarget{BlockOrdering_8h_a76ca019f3e6496eb19f5a0d3129457d1}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-metis\_\-decompose@{MLB\_\-metis\_\-decompose}}
+\index{MLB\_\-metis\_\-decompose@{MLB\_\-metis\_\-decompose}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-metis\_\-decompose}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-metis\_\-decompose ({\bf idx\_\-t} {\em cellNum}, \/  {\bf idx\_\-t} {\em edgeNum}, \/  {\bf idx\_\-t} $\ast$ {\em adj}, \/  {\bf idx\_\-t} $\ast$ {\em neighbor}, \/  {\bf idx\_\-t} $\ast$ {\em cellWeight}, \/  {\bf idx\_\-t} $\ast$ {\em edgeWeight}, \/  {\bf idx\_\-t} {\em blockNum}, \/  {\bf idx\_\-t} $\ast$ {\em options}, \/  {\bf idx\_\-t} $\ast$ {\em edgeCut}, \/  {\bf idx\_\-t} $\ast$ {\em blockCells}, \/  char $\ast$ {\em method})}}
+\label{BlockOrdering_8h_a76ca019f3e6496eb19f5a0d3129457d1}
+\hypertarget{BlockOrdering_8h_af16e9ef199c5a709d3354854dfe189f4}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-Multilevel\_\-ordering@{MLB\_\-Multilevel\_\-ordering}}
+\index{MLB\_\-Multilevel\_\-ordering@{MLB\_\-Multilevel\_\-ordering}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-Multilevel\_\-ordering}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-Multilevel\_\-ordering ({\bf MLB\_\-graph} {\em graph}, \/  LABEL {\em levels}, \/  LABEL $\ast$ {\em blockNums}, \/  LABEL $\ast$ {\em blockStarts}, \/  LABEL $\ast$ {\em cellStarts}, \/  LABEL $\ast$ {\em postCellOrder}, \/  LABEL $\ast$ {\em postEdgeOrder})}}
+\label{BlockOrdering_8h_af16e9ef199c5a709d3354854dfe189f4}
+\hypertarget{BlockOrdering_8h_a4c13a360876a446ffcbb890fa1439f43}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-offsetEdges@{MLB\_\-offsetEdges}}
+\index{MLB\_\-offsetEdges@{MLB\_\-offsetEdges}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-offsetEdges}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-offsetEdges (LABEL $\ast$ {\em owner}, \/  LABEL $\ast$ {\em neighbor}, \/  LABEL $\ast$ {\em cellID}, \/  LABEL $\ast$ {\em ownerNorm}, \/  LABEL $\ast$ {\em neighborNorm}, \/  LABEL {\em cellNum}, \/  LABEL {\em edgeNum})}}
+\label{BlockOrdering_8h_a4c13a360876a446ffcbb890fa1439f43}
+\hypertarget{BlockOrdering_8h_a5d78ed73eb018835a284c397c45689ae}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-ordering@{MLB\_\-ordering}}
+\index{MLB\_\-ordering@{MLB\_\-ordering}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-ordering}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-ordering ({\bf MLB\_\-graph} {\em graph}, \/  LABEL {\em blockNum}, \/  LABEL $\ast$ {\em postCellOrder}, \/  LABEL $\ast$ {\em cellStarts})}}
+\label{BlockOrdering_8h_a5d78ed73eb018835a284c397c45689ae}
+\hypertarget{BlockOrdering_8h_ad0b24ed2a396f5970b41888c2327fb42}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-postLABEL@{MLB\_\-postLABEL}}
+\index{MLB\_\-postLABEL@{MLB\_\-postLABEL}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-postLABEL}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-postLABEL (LABEL $\ast$ {\em postOrder}, \/  LABEL $\ast$ {\em dataArray}, \/  LABEL {\em length}, \/  LABEL {\em dim})}}
+\label{BlockOrdering_8h_ad0b24ed2a396f5970b41888c2327fb42}
+\hypertarget{BlockOrdering_8h_a9716e30fb2bab193424ec15359d63a6f}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-postSCALAR@{MLB\_\-postSCALAR}}
+\index{MLB\_\-postSCALAR@{MLB\_\-postSCALAR}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-postSCALAR}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-postSCALAR (LABEL $\ast$ {\em postOrder}, \/  SCALAR $\ast$ {\em dataArray}, \/  LABEL {\em length}, \/  LABEL {\em dim})}}
+\label{BlockOrdering_8h_a9716e30fb2bab193424ec15359d63a6f}
+\hypertarget{BlockOrdering_8h_a0ffc741dee7604ab2deb96451aae7eab}{
+\index{BlockOrdering.h@{BlockOrdering.h}!MLB\_\-quickSort@{MLB\_\-quickSort}}
+\index{MLB\_\-quickSort@{MLB\_\-quickSort}!BlockOrdering.h@{BlockOrdering.h}}
+\subsubsection[{MLB\_\-quickSort}]{\setlength{\rightskip}{0pt plus 5cm}void MLB\_\-quickSort (int $\ast$ {\em arr}, \/  int {\em elements})}}
+\label{BlockOrdering_8h_a0ffc741dee7604ab2deb96451aae7eab}

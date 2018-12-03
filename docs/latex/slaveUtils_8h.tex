@@ -1,0 +1,138 @@
+\hypertarget{slaveUtils_8h}{
+\section{tools/slaveUtils.h File Reference}
+\label{slaveUtils_8h}\index{tools/slaveUtils.h@{tools/slaveUtils.h}}
+}
+{\ttfamily \#include $<$slave.h$>$}\par
+{\ttfamily \#include $<$dma.h$>$}\par
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}{ALIGNED}(addr)~((((unsigned long)(addr-\/1)$>$$>$5)+1)$<$$<$5)
+\item 
+\#define \hyperlink{slaveUtils_8h_accc713afec869f97a0972b745dca28cd}{A\_\-DMA\_\-GET\_\-SET}(da, mode, len, re\_\-addr)
+\item 
+\#define \hyperlink{slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}{A\_\-DMA\_\-GET\_\-RUN}(da, src, dest)
+\item 
+\#define \hyperlink{slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}{A\_\-DMA\_\-PUT\_\-SET}(da, mode, len, re\_\-addr)
+\item 
+\#define \hyperlink{slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}{A\_\-DMA\_\-PUT\_\-RUN}(da, src, dest)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long \hyperlink{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{DMA\_\-Status}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}{DMA\_\-Get} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \hyperlink{slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}{DMA\_\-IGet} (void $\ast$dest, const void $\ast$source, const int size, \hyperlink{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{DMA\_\-Status} $\ast$status)
+\item 
+void \hyperlink{slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}{DMA\_\-Put} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \hyperlink{slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}{DMA\_\-IPut} (void $\ast$dest, const void $\ast$source, const int size, \hyperlink{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{DMA\_\-Status} $\ast$status)
+\item 
+void \hyperlink{slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}{DMA\_\-Wait} (\hyperlink{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{DMA\_\-Status} $\ast$status, const int num)
+\item 
+void \hyperlink{slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}{athread\_\-wait} (int $\ast$reply, int count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}{
+\index{slaveUtils.h@{slaveUtils.h}!A\_\-DMA\_\-GET\_\-RUN@{A\_\-DMA\_\-GET\_\-RUN}}
+\index{A\_\-DMA\_\-GET\_\-RUN@{A\_\-DMA\_\-GET\_\-RUN}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{A\_\-DMA\_\-GET\_\-RUN}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\_\-DMA\_\-GET\_\-RUN(da, \/  src, \/  dest)}}
+\label{slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+    dma(da,src,dest); \
+}
+\end{DoxyCode}
+\hypertarget{slaveUtils_8h_accc713afec869f97a0972b745dca28cd}{
+\index{slaveUtils.h@{slaveUtils.h}!A\_\-DMA\_\-GET\_\-SET@{A\_\-DMA\_\-GET\_\-SET}}
+\index{A\_\-DMA\_\-GET\_\-SET@{A\_\-DMA\_\-GET\_\-SET}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{A\_\-DMA\_\-GET\_\-SET}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\_\-DMA\_\-GET\_\-SET(da, \/  mode, \/  len, \/  re\_\-addr)}}
+\label{slaveUtils_8h_accc713afec869f97a0972b745dca28cd}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+    dma_set_op(&da,DMA_GET); \
+    dma_set_mode(&da,mode); \
+    dma_set_size(&da,len); \
+    dma_set_reply(&da,re_addr); \
+}
+\end{DoxyCode}
+\hypertarget{slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}{
+\index{slaveUtils.h@{slaveUtils.h}!A\_\-DMA\_\-PUT\_\-RUN@{A\_\-DMA\_\-PUT\_\-RUN}}
+\index{A\_\-DMA\_\-PUT\_\-RUN@{A\_\-DMA\_\-PUT\_\-RUN}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{A\_\-DMA\_\-PUT\_\-RUN}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\_\-DMA\_\-PUT\_\-RUN(da, \/  src, \/  dest)}}
+\label{slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+    dma(da,dest,src); \
+}
+\end{DoxyCode}
+\hypertarget{slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}{
+\index{slaveUtils.h@{slaveUtils.h}!A\_\-DMA\_\-PUT\_\-SET@{A\_\-DMA\_\-PUT\_\-SET}}
+\index{A\_\-DMA\_\-PUT\_\-SET@{A\_\-DMA\_\-PUT\_\-SET}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{A\_\-DMA\_\-PUT\_\-SET}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\_\-DMA\_\-PUT\_\-SET(da, \/  mode, \/  len, \/  re\_\-addr)}}
+\label{slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}
+{\bfseries Value:}
+\begin{DoxyCode}
+{ \
+    dma_set_op(&da,DMA_PUT); \
+    dma_set_mode(&da,mode); \
+    dma_set_size(&da,len); \
+    dma_set_reply(&da,re_addr); \
+}
+\end{DoxyCode}
+\hypertarget{slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}{
+\index{slaveUtils.h@{slaveUtils.h}!ALIGNED@{ALIGNED}}
+\index{ALIGNED@{ALIGNED}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{ALIGNED}]{\setlength{\rightskip}{0pt plus 5cm}\#define ALIGNED(addr)~((((unsigned long)(addr-\/1)$>$$>$5)+1)$<$$<$5)}}
+\label{slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-Status@{DMA\_\-Status}}
+\index{DMA\_\-Status@{DMA\_\-Status}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-Status}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long {\bf DMA\_\-Status}}}
+\label{slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}
+
+
+\subsection{Function Documentation}
+\hypertarget{slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}{
+\index{slaveUtils.h@{slaveUtils.h}!athread\_\-wait@{athread\_\-wait}}
+\index{athread\_\-wait@{athread\_\-wait}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{athread\_\-wait}]{\setlength{\rightskip}{0pt plus 5cm}void athread\_\-wait (int $\ast$ {\em reply}, \/  int {\em count})}}
+\label{slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}
+\hypertarget{slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-Get@{DMA\_\-Get}}
+\index{DMA\_\-Get@{DMA\_\-Get}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-Get}]{\setlength{\rightskip}{0pt plus 5cm}void DMA\_\-Get (void $\ast$ {\em dest}, \/  const void $\ast$ {\em source}, \/  const int {\em size})}}
+\label{slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}
+\hypertarget{slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-IGet@{DMA\_\-IGet}}
+\index{DMA\_\-IGet@{DMA\_\-IGet}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-IGet}]{\setlength{\rightskip}{0pt plus 5cm}void DMA\_\-IGet (void $\ast$ {\em dest}, \/  const void $\ast$ {\em source}, \/  const int {\em size}, \/  {\bf DMA\_\-Status} $\ast$ {\em status})}}
+\label{slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}
+\hypertarget{slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-IPut@{DMA\_\-IPut}}
+\index{DMA\_\-IPut@{DMA\_\-IPut}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-IPut}]{\setlength{\rightskip}{0pt plus 5cm}void DMA\_\-IPut (void $\ast$ {\em dest}, \/  const void $\ast$ {\em source}, \/  const int {\em size}, \/  {\bf DMA\_\-Status} $\ast$ {\em status})}}
+\label{slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}
+\hypertarget{slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-Put@{DMA\_\-Put}}
+\index{DMA\_\-Put@{DMA\_\-Put}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-Put}]{\setlength{\rightskip}{0pt plus 5cm}void DMA\_\-Put (void $\ast$ {\em dest}, \/  const void $\ast$ {\em source}, \/  const int {\em size})}}
+\label{slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}
+\hypertarget{slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}{
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_\-Wait@{DMA\_\-Wait}}
+\index{DMA\_\-Wait@{DMA\_\-Wait}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection[{DMA\_\-Wait}]{\setlength{\rightskip}{0pt plus 5cm}void DMA\_\-Wait ({\bf DMA\_\-Status} $\ast$ {\em status}, \/  const int {\em num})}}
+\label{slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}

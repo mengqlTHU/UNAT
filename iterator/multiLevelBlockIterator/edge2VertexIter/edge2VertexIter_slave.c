@@ -192,6 +192,12 @@ void func()
 	//communicate X
 	if(isXExist)
 	{
+  	DMA_Get(&recvX_slave[0],&diag[cell_slave[0]],
+			  (cell_slave[1]-cell_slave[0])*sizeof(swFloat));
+	MLBFunParas.count = cell_slave[1]-cell_slave[0];
+	MLBFunParas.flag = 4;
+	operatorFunPointer_s(&MLBFunParas);
+
 	for(j=0;j<BLOCKNUM64K;j++){ownNeiSendIdx[j]=0;}
 	for(j=0;j<total_send_pcg;j++){
 		if(myId<_sPacks[j].dst_id) continue;
@@ -232,8 +238,11 @@ void func()
     if(blockLen>0)
 	{
 		startIdx = blockStarts_slave[6];
-	    DMA_Get(&sLower_slave[0],&upper[startIdx],
-		  			blockLen*sizeof(swFloat));
+		if(lower!=upper)
+		{
+		    DMA_Get(&sLower_slave[0],&upper[startIdx],
+			  			blockLen*sizeof(swFloat));
+		}
 		DMA_Get(&sNeighbor_slave[0],&owner[startIdx],
 		  			blockLen*sizeof(swInt));
 		MLBFunParas.count = blockLen;
@@ -264,8 +273,11 @@ void func()
 //			*  sendX_slave[diagNeighbor_slave[k]-cell_slave[0]];
 //	}
 
-  	DMA_Get(&diagUpper_slave[0],&lower[startIdx],
-			  blockLen*sizeof(swFloat));
+	if(lower!=upper)
+	{
+	  	DMA_Get(&diagUpper_slave[0],&lower[startIdx],
+				  blockLen*sizeof(swFloat));
+	}
 	MLBFunParas.flag = 3;
 	operatorFunPointer_s(&MLBFunParas);
 //	for(k=0;k<blockStarts_slave[3]-blockStarts_slave[2];k++)
@@ -275,17 +287,9 @@ void func()
 //			*  sendX_slave[diagOwner_slave[k]-cell_slave[0]];
 //	}
 
-	if(isXExist)
-	{
-  	DMA_Get(&recvX_slave[0],&diag[cell_slave[0]],
-			  (cell_slave[1]-cell_slave[0])*sizeof(swFloat));
-	MLBFunParas.count = cell_slave[1]-cell_slave[0];
-	MLBFunParas.flag = 4;
-	operatorFunPointer_s(&MLBFunParas);
-	}
-	for(k=0;k<cell_slave[1]-cell_slave[0];k++){
-		b_slave[k] += recvX_slave[k]*sendX_slave[k];
-	}
+//	for(k=0;k<cell_slave[1]-cell_slave[0];k++){
+//		b_slave[k] += recvX_slave[k]*sendX_slave[k];
+//	}
 
 	DMA_Put(&b[cell_slave[0]],&b_slave[0],
 				(cell_slave[1]-cell_slave[0])*sizeof(swFloat));

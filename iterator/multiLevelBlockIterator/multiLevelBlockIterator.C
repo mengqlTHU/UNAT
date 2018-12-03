@@ -61,7 +61,7 @@ void MultiLevelBlockIterator::MLBReorder(Topology &topo, swInt ref)
 		// 发送接收计数数组和blockStart，cellStarts
 		+ BLOCKNUM64K*BLOCKNUM64K*5*sizeof(swInt);
 
-	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,24);
+	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,25);
 	printf("The estimated mshBlockNum = %d\n",this->_mshBlockNum);
 
 	vertexWeights = (swInt*)malloc(sizeof(swInt)*vertexNumber);
@@ -674,7 +674,7 @@ void MultiLevelBlockIterator::reorderVertexArray(swFloat* array)
 	for(iter = this->getVertexMap().begin();
 				iter!=this->getVertexMap().end();iter++)
 	{
-//		if(iter->first==6) cout<<iter->second<<endl;
+//		if(iter->first==1) cout<<iter->second<<endl;
 		tmp[iter->second] = array[iter->first];
 	}
 	for(int i=0;i<this->getTopology()->getVertexNumber();i++)

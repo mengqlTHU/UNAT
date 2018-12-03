@@ -1,0 +1,299 @@
+\hypertarget{classTopology}{
+\section{Topology Class Reference}
+\label{classTopology}\index{Topology@{Topology}}
+}
+
+
+{\ttfamily \#include $<$topology.H$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTopology_aa3336e10118cd76ab4b4c2ebc5062a9a}{Topology} ()
+\item 
+\hyperlink{classTopology_a2659381e385f238e8d79ffb1a12e8d70}{Topology} (const \hyperlink{classTopology}{Topology} \&topo)
+\item 
+\hyperlink{classTopology_a3e447669757c8311c7f6f8edc705abf2}{$\sim$Topology} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classTopology_a1739e171c7b41c15482ed3237a02f726}{getVertexNumber} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classTopology_aa6a105cef3b34f662ce1f65ceed61417}{getEdgeNumber} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a76539d6c987a01998e17868bb6b1f50f}{getStartVertices} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a5d092ac1351da3209c474c6f363cde78}{getEndVertices} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_ad0330e56f4b1c6c5694fd346ff830319}{getStartVertexNumbers} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_af02d63f9a15edd86363e5395f6144279}{getAccuStartVertexNumbers} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a4c930048181f07141db0378ad780109f}{getFirstEdgeVertices} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_abda57225c9ada001a4a3a7bb12a344c7}{getVertexNeighbours} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_aa764ec0eb01782b1da56e7882fbdfa4b}{getVertexEdgeNumbers} ()
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_aa7c5f72a9b75c9e706495bc02b8b0d00}{getAccuVertexEdgeNumbers} ()
+\item 
+\hyperlink{classTopology}{Topology} \& \hyperlink{classTopology_aa1e29c8e1c83691efb7eced75d8e085b}{operator=} (const \hyperlink{classTopology}{Topology} \&topo)
+\item 
+\hyperlink{classTopology}{Topology} $\ast$ \hyperlink{classTopology_a3682f43de839774aea84e68cc8a72c4c}{clone} () const 
+\item 
+void \hyperlink{classTopology_ab38dc5ab7bd2e7f88e067bc065c5cd94}{addEdge} ()
+\item 
+void \hyperlink{classTopology_a6675efbf0f6f4298edfd96746ec83ebf}{addVertex} ()
+\item 
+void \hyperlink{classTopology_a35b065f16c37e1c1be58c51eef36cacd}{removeEdge} ()
+\item 
+void \hyperlink{classTopology_ac585ff2173a25474b68d6824d3cee325}{removeVertex} ()
+\item 
+void \hyperlink{classTopology_a27b3fda247b9416dd3558fe8c1c8911e}{transpose} ()
+\item 
+void \hyperlink{classTopology_a44b957d83b0f281f3c16471db4736041}{sortAndCompress} ()
+\item 
+void \hyperlink{classTopology_a6d90d44f0630181bfe5dc6b9d4d685a9}{edgeBasedToVertexBased} ()
+\item 
+void \hyperlink{classTopology_a2b272ddb973a6782dceb068fd3266002}{vertexBasedToEdgeBased} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTopology}{Topology} \hyperlink{classTopology_aa80e5ef0bdfb3a1110b138f67ca2095d}{constructFromEdge} (\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$startVertices, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$endVertices, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} edgeNumber, bool copy=false)
+\item 
+static \hyperlink{classTopology}{Topology} \hyperlink{classTopology_adda62b196db7dd8bcaa619b4c93f3fa4}{constructFromVertex} (\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$accuVertexEdgeNumbers, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$vertexNeighbours, \hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} vertexNumber, bool copy=false)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classTopology_ad6fc372c14f66f783e82b232ed19f490}{EdgeBasedInit} ()
+\item 
+void \hyperlink{classTopology_ac5b0af485327b4a3bb924ebbc1687f3b}{VertexBasedInit} ()
+\item 
+void \hyperlink{classTopology_a67e65a4845822ce3283fca569479f2aa}{copy} (const \hyperlink{classTopology}{Topology} \&topo)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classTopology_a622029bc7be2f3f9cbcbd47530062c2a}{\_\-vertexNumber}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{classTopology_a23fdfaed6869d854a45a179bab71149d}{\_\-edgeNumber}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_ae24916cab2e48d159e5894ee381fa044}{\_\-startVertices}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a511853b9823e76e44a3dc018f22d6693}{\_\-endVertices}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_afe66f14272fa860fcd947053fec0f5fa}{\_\-startVertexNumbers}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a46bf4262d784a61a1742e75e116d133f}{\_\-accuStartVertexNumbers}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a64f2be86b47d7aa94e44a4e7f86b6fb0}{\_\-firstEdgeVertices}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_ad8a74f2e5d075ae25040947b64e46c77}{\_\-vertexNeighbours}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a1ed0547c308694b98362a06af38cc985}{\_\-vertexEdgeNumbers}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{classTopology_a751c468a38bfd6ffe115cb85698dc8e0}{\_\-accuVertexEdgeNumbers}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTopology_aa3336e10118cd76ab4b4c2ebc5062a9a}{
+\index{Topology@{Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!Topology@{Topology}}
+\subsubsection[{Topology}]{\setlength{\rightskip}{0pt plus 5cm}Topology::Topology ()}}
+\label{classTopology_aa3336e10118cd76ab4b4c2ebc5062a9a}
+\hypertarget{classTopology_a2659381e385f238e8d79ffb1a12e8d70}{
+\index{Topology@{Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!Topology@{Topology}}
+\subsubsection[{Topology}]{\setlength{\rightskip}{0pt plus 5cm}Topology::Topology (const {\bf Topology} \& {\em topo})}}
+\label{classTopology_a2659381e385f238e8d79ffb1a12e8d70}
+\hypertarget{classTopology_a3e447669757c8311c7f6f8edc705abf2}{
+\index{Topology@{Topology}!$\sim$Topology@{$\sim$Topology}}
+\index{$\sim$Topology@{$\sim$Topology}!Topology@{Topology}}
+\subsubsection[{$\sim$Topology}]{\setlength{\rightskip}{0pt plus 5cm}Topology::$\sim$Topology ()}}
+\label{classTopology_a3e447669757c8311c7f6f8edc705abf2}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTopology_ab38dc5ab7bd2e7f88e067bc065c5cd94}{
+\index{Topology@{Topology}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Topology@{Topology}}
+\subsubsection[{addEdge}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::addEdge ()}}
+\label{classTopology_ab38dc5ab7bd2e7f88e067bc065c5cd94}
+\hypertarget{classTopology_a6675efbf0f6f4298edfd96746ec83ebf}{
+\index{Topology@{Topology}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Topology@{Topology}}
+\subsubsection[{addVertex}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::addVertex ()}}
+\label{classTopology_a6675efbf0f6f4298edfd96746ec83ebf}
+\hypertarget{classTopology_a3682f43de839774aea84e68cc8a72c4c}{
+\index{Topology@{Topology}!clone@{clone}}
+\index{clone@{clone}!Topology@{Topology}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Topology}$\ast$ Topology::clone () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classTopology_a3682f43de839774aea84e68cc8a72c4c}
+\hypertarget{classTopology_aa80e5ef0bdfb3a1110b138f67ca2095d}{
+\index{Topology@{Topology}!constructFromEdge@{constructFromEdge}}
+\index{constructFromEdge@{constructFromEdge}!Topology@{Topology}}
+\subsubsection[{constructFromEdge}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Topology} Topology::constructFromEdge ({\bf swInt} $\ast$ {\em startVertices}, \/  {\bf swInt} $\ast$ {\em endVertices}, \/  {\bf swInt} {\em edgeNumber}, \/  bool {\em copy} = {\ttfamily false})\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classTopology_aa80e5ef0bdfb3a1110b138f67ca2095d}
+\hypertarget{classTopology_adda62b196db7dd8bcaa619b4c93f3fa4}{
+\index{Topology@{Topology}!constructFromVertex@{constructFromVertex}}
+\index{constructFromVertex@{constructFromVertex}!Topology@{Topology}}
+\subsubsection[{constructFromVertex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Topology} Topology::constructFromVertex ({\bf swInt} $\ast$ {\em accuVertexEdgeNumbers}, \/  {\bf swInt} $\ast$ {\em vertexNeighbours}, \/  {\bf swInt} {\em vertexNumber}, \/  bool {\em copy} = {\ttfamily false})\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classTopology_adda62b196db7dd8bcaa619b4c93f3fa4}
+\hypertarget{classTopology_a67e65a4845822ce3283fca569479f2aa}{
+\index{Topology@{Topology}!copy@{copy}}
+\index{copy@{copy}!Topology@{Topology}}
+\subsubsection[{copy}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::copy (const {\bf Topology} \& {\em topo})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a67e65a4845822ce3283fca569479f2aa}
+\hypertarget{classTopology_ad6fc372c14f66f783e82b232ed19f490}{
+\index{Topology@{Topology}!EdgeBasedInit@{EdgeBasedInit}}
+\index{EdgeBasedInit@{EdgeBasedInit}!Topology@{Topology}}
+\subsubsection[{EdgeBasedInit}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::EdgeBasedInit ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_ad6fc372c14f66f783e82b232ed19f490}
+\hypertarget{classTopology_a6d90d44f0630181bfe5dc6b9d4d685a9}{
+\index{Topology@{Topology}!edgeBasedToVertexBased@{edgeBasedToVertexBased}}
+\index{edgeBasedToVertexBased@{edgeBasedToVertexBased}!Topology@{Topology}}
+\subsubsection[{edgeBasedToVertexBased}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::edgeBasedToVertexBased ()}}
+\label{classTopology_a6d90d44f0630181bfe5dc6b9d4d685a9}
+\hypertarget{classTopology_af02d63f9a15edd86363e5395f6144279}{
+\index{Topology@{Topology}!getAccuStartVertexNumbers@{getAccuStartVertexNumbers}}
+\index{getAccuStartVertexNumbers@{getAccuStartVertexNumbers}!Topology@{Topology}}
+\subsubsection[{getAccuStartVertexNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getAccuStartVertexNumbers ()}}
+\label{classTopology_af02d63f9a15edd86363e5395f6144279}
+\hypertarget{classTopology_aa7c5f72a9b75c9e706495bc02b8b0d00}{
+\index{Topology@{Topology}!getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}}
+\index{getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}!Topology@{Topology}}
+\subsubsection[{getAccuVertexEdgeNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getAccuVertexEdgeNumbers ()}}
+\label{classTopology_aa7c5f72a9b75c9e706495bc02b8b0d00}
+\hypertarget{classTopology_aa6a105cef3b34f662ce1f65ceed61417}{
+\index{Topology@{Topology}!getEdgeNumber@{getEdgeNumber}}
+\index{getEdgeNumber@{getEdgeNumber}!Topology@{Topology}}
+\subsubsection[{getEdgeNumber}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} Topology::getEdgeNumber ()}}
+\label{classTopology_aa6a105cef3b34f662ce1f65ceed61417}
+\hypertarget{classTopology_a5d092ac1351da3209c474c6f363cde78}{
+\index{Topology@{Topology}!getEndVertices@{getEndVertices}}
+\index{getEndVertices@{getEndVertices}!Topology@{Topology}}
+\subsubsection[{getEndVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getEndVertices ()}}
+\label{classTopology_a5d092ac1351da3209c474c6f363cde78}
+\hypertarget{classTopology_a4c930048181f07141db0378ad780109f}{
+\index{Topology@{Topology}!getFirstEdgeVertices@{getFirstEdgeVertices}}
+\index{getFirstEdgeVertices@{getFirstEdgeVertices}!Topology@{Topology}}
+\subsubsection[{getFirstEdgeVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getFirstEdgeVertices ()}}
+\label{classTopology_a4c930048181f07141db0378ad780109f}
+\hypertarget{classTopology_ad0330e56f4b1c6c5694fd346ff830319}{
+\index{Topology@{Topology}!getStartVertexNumbers@{getStartVertexNumbers}}
+\index{getStartVertexNumbers@{getStartVertexNumbers}!Topology@{Topology}}
+\subsubsection[{getStartVertexNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getStartVertexNumbers ()}}
+\label{classTopology_ad0330e56f4b1c6c5694fd346ff830319}
+\hypertarget{classTopology_a76539d6c987a01998e17868bb6b1f50f}{
+\index{Topology@{Topology}!getStartVertices@{getStartVertices}}
+\index{getStartVertices@{getStartVertices}!Topology@{Topology}}
+\subsubsection[{getStartVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getStartVertices ()}}
+\label{classTopology_a76539d6c987a01998e17868bb6b1f50f}
+\hypertarget{classTopology_aa764ec0eb01782b1da56e7882fbdfa4b}{
+\index{Topology@{Topology}!getVertexEdgeNumbers@{getVertexEdgeNumbers}}
+\index{getVertexEdgeNumbers@{getVertexEdgeNumbers}!Topology@{Topology}}
+\subsubsection[{getVertexEdgeNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getVertexEdgeNumbers ()}}
+\label{classTopology_aa764ec0eb01782b1da56e7882fbdfa4b}
+\hypertarget{classTopology_abda57225c9ada001a4a3a7bb12a344c7}{
+\index{Topology@{Topology}!getVertexNeighbours@{getVertexNeighbours}}
+\index{getVertexNeighbours@{getVertexNeighbours}!Topology@{Topology}}
+\subsubsection[{getVertexNeighbours}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ Topology::getVertexNeighbours ()}}
+\label{classTopology_abda57225c9ada001a4a3a7bb12a344c7}
+\hypertarget{classTopology_a1739e171c7b41c15482ed3237a02f726}{
+\index{Topology@{Topology}!getVertexNumber@{getVertexNumber}}
+\index{getVertexNumber@{getVertexNumber}!Topology@{Topology}}
+\subsubsection[{getVertexNumber}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} Topology::getVertexNumber ()}}
+\label{classTopology_a1739e171c7b41c15482ed3237a02f726}
+\hypertarget{classTopology_aa1e29c8e1c83691efb7eced75d8e085b}{
+\index{Topology@{Topology}!operator=@{operator=}}
+\index{operator=@{operator=}!Topology@{Topology}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Topology} \& Topology::operator= (const {\bf Topology} \& {\em topo})}}
+\label{classTopology_aa1e29c8e1c83691efb7eced75d8e085b}
+\hypertarget{classTopology_a35b065f16c37e1c1be58c51eef36cacd}{
+\index{Topology@{Topology}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!Topology@{Topology}}
+\subsubsection[{removeEdge}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::removeEdge ()}}
+\label{classTopology_a35b065f16c37e1c1be58c51eef36cacd}
+\hypertarget{classTopology_ac585ff2173a25474b68d6824d3cee325}{
+\index{Topology@{Topology}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Topology@{Topology}}
+\subsubsection[{removeVertex}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::removeVertex ()}}
+\label{classTopology_ac585ff2173a25474b68d6824d3cee325}
+\hypertarget{classTopology_a44b957d83b0f281f3c16471db4736041}{
+\index{Topology@{Topology}!sortAndCompress@{sortAndCompress}}
+\index{sortAndCompress@{sortAndCompress}!Topology@{Topology}}
+\subsubsection[{sortAndCompress}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::sortAndCompress ()}}
+\label{classTopology_a44b957d83b0f281f3c16471db4736041}
+\hypertarget{classTopology_a27b3fda247b9416dd3558fe8c1c8911e}{
+\index{Topology@{Topology}!transpose@{transpose}}
+\index{transpose@{transpose}!Topology@{Topology}}
+\subsubsection[{transpose}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::transpose ()}}
+\label{classTopology_a27b3fda247b9416dd3558fe8c1c8911e}
+\hypertarget{classTopology_ac5b0af485327b4a3bb924ebbc1687f3b}{
+\index{Topology@{Topology}!VertexBasedInit@{VertexBasedInit}}
+\index{VertexBasedInit@{VertexBasedInit}!Topology@{Topology}}
+\subsubsection[{VertexBasedInit}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::VertexBasedInit ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_ac5b0af485327b4a3bb924ebbc1687f3b}
+\hypertarget{classTopology_a2b272ddb973a6782dceb068fd3266002}{
+\index{Topology@{Topology}!vertexBasedToEdgeBased@{vertexBasedToEdgeBased}}
+\index{vertexBasedToEdgeBased@{vertexBasedToEdgeBased}!Topology@{Topology}}
+\subsubsection[{vertexBasedToEdgeBased}]{\setlength{\rightskip}{0pt plus 5cm}void Topology::vertexBasedToEdgeBased ()}}
+\label{classTopology_a2b272ddb973a6782dceb068fd3266002}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classTopology_a46bf4262d784a61a1742e75e116d133f}{
+\index{Topology@{Topology}!\_\-accuStartVertexNumbers@{\_\-accuStartVertexNumbers}}
+\index{\_\-accuStartVertexNumbers@{\_\-accuStartVertexNumbers}!Topology@{Topology}}
+\subsubsection[{\_\-accuStartVertexNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-accuStartVertexNumbers}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a46bf4262d784a61a1742e75e116d133f}
+\hypertarget{classTopology_a751c468a38bfd6ffe115cb85698dc8e0}{
+\index{Topology@{Topology}!\_\-accuVertexEdgeNumbers@{\_\-accuVertexEdgeNumbers}}
+\index{\_\-accuVertexEdgeNumbers@{\_\-accuVertexEdgeNumbers}!Topology@{Topology}}
+\subsubsection[{\_\-accuVertexEdgeNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-accuVertexEdgeNumbers}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a751c468a38bfd6ffe115cb85698dc8e0}
+\hypertarget{classTopology_a23fdfaed6869d854a45a179bab71149d}{
+\index{Topology@{Topology}!\_\-edgeNumber@{\_\-edgeNumber}}
+\index{\_\-edgeNumber@{\_\-edgeNumber}!Topology@{Topology}}
+\subsubsection[{\_\-edgeNumber}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf Topology::\_\-edgeNumber}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a23fdfaed6869d854a45a179bab71149d}
+\hypertarget{classTopology_a511853b9823e76e44a3dc018f22d6693}{
+\index{Topology@{Topology}!\_\-endVertices@{\_\-endVertices}}
+\index{\_\-endVertices@{\_\-endVertices}!Topology@{Topology}}
+\subsubsection[{\_\-endVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-endVertices}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a511853b9823e76e44a3dc018f22d6693}
+\hypertarget{classTopology_a64f2be86b47d7aa94e44a4e7f86b6fb0}{
+\index{Topology@{Topology}!\_\-firstEdgeVertices@{\_\-firstEdgeVertices}}
+\index{\_\-firstEdgeVertices@{\_\-firstEdgeVertices}!Topology@{Topology}}
+\subsubsection[{\_\-firstEdgeVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-firstEdgeVertices}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a64f2be86b47d7aa94e44a4e7f86b6fb0}
+\hypertarget{classTopology_afe66f14272fa860fcd947053fec0f5fa}{
+\index{Topology@{Topology}!\_\-startVertexNumbers@{\_\-startVertexNumbers}}
+\index{\_\-startVertexNumbers@{\_\-startVertexNumbers}!Topology@{Topology}}
+\subsubsection[{\_\-startVertexNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-startVertexNumbers}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_afe66f14272fa860fcd947053fec0f5fa}
+\hypertarget{classTopology_ae24916cab2e48d159e5894ee381fa044}{
+\index{Topology@{Topology}!\_\-startVertices@{\_\-startVertices}}
+\index{\_\-startVertices@{\_\-startVertices}!Topology@{Topology}}
+\subsubsection[{\_\-startVertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-startVertices}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_ae24916cab2e48d159e5894ee381fa044}
+\hypertarget{classTopology_a1ed0547c308694b98362a06af38cc985}{
+\index{Topology@{Topology}!\_\-vertexEdgeNumbers@{\_\-vertexEdgeNumbers}}
+\index{\_\-vertexEdgeNumbers@{\_\-vertexEdgeNumbers}!Topology@{Topology}}
+\subsubsection[{\_\-vertexEdgeNumbers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-vertexEdgeNumbers}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a1ed0547c308694b98362a06af38cc985}
+\hypertarget{classTopology_ad8a74f2e5d075ae25040947b64e46c77}{
+\index{Topology@{Topology}!\_\-vertexNeighbours@{\_\-vertexNeighbours}}
+\index{\_\-vertexNeighbours@{\_\-vertexNeighbours}!Topology@{Topology}}
+\subsubsection[{\_\-vertexNeighbours}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf Topology::\_\-vertexNeighbours}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_ad8a74f2e5d075ae25040947b64e46c77}
+\hypertarget{classTopology_a622029bc7be2f3f9cbcbd47530062c2a}{
+\index{Topology@{Topology}!\_\-vertexNumber@{\_\-vertexNumber}}
+\index{\_\-vertexNumber@{\_\-vertexNumber}!Topology@{Topology}}
+\subsubsection[{\_\-vertexNumber}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf Topology::\_\-vertexNumber}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTopology_a622029bc7be2f3f9cbcbd47530062c2a}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+topology/\hyperlink{topology_8H}{topology.H}\item 
+topology/\hyperlink{topology_8C}{topology.C}\end{DoxyCompactItemize}

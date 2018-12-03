@@ -32,30 +32,35 @@ void spMV(MLBFunParameters *MLBFunParas)
 	{
 		for(i=0;i<count;i++)
 		{
+//			if(rNeighbor[i]==358138) printf("%d,%f,%f,%f\n",k1,A2Ptr[i],0);
 			b[rNeighbor[i]-k1] += A2Ptr[i];
 		}
 	} else if(flag == 1)
 	{
 		for(i=0;i<count;i++)
 		{
+//			if(sNeighbor[i]==358138) printf("%d,%f,%f,%f\n",k1,A1Ptr[i],rx[i]);
 			b[sNeighbor[i]-k1] += A1Ptr[i]*rx[i];
 		}
 	} else if(flag == 2)
 	{
 		for(i=0;i<count;i++)
 		{
+//			if(diagOwner[i]==358138) printf("%d,%f,%f,%f\n",k1,A3Ptr[i],sx[diagNeighbor[i]-k1]);
 			b[diagOwner[i]-k1] += A3Ptr[i]*sx[diagNeighbor[i]-k1];
 		}
 	} else if(flag == 3)
 	{
 		for(i=0;i<count;i++)
 		{
+//			if(diagNeighbor[i]==358138) printf("%d,%f,%f,%f\n",k1,A3Ptr[i],sx[diagOwner[i]-k1]);
 			b[diagNeighbor[i]-k1] += A3Ptr[i]*sx[diagOwner[i]-k1];
 		}
 	} else if(flag == 4)
 	{
 		for(i=0;i<count;i++)
 		{
+//			if(i==358138) printf("%d,%f,%f,%f\n",i,rx[i],sx[i]);
 			b[i] += rx[i]*sx[i];
 		}
 	}else

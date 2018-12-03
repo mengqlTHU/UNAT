@@ -1,0 +1,60 @@
+\hypertarget{RlmpiInitializer_8hxx}{
+\section{RL\_\-MPI/RlmpiInitializer.hxx File Reference}
+\label{RlmpiInitializer_8hxx}\index{RL\_\-MPI/RlmpiInitializer.hxx@{RL\_\-MPI/RlmpiInitializer.hxx}}
+}
+{\ttfamily \#include $<$vector$>$}\par
+{\ttfamily \#include $<$map$>$}\par
+{\ttfamily \#include $<$time.h$>$}\par
+{\ttfamily \#include \char`\"{}RlmpiSharedType.h\char`\"{}}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classRlmpiInitializer}{RlmpiInitializer}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{RlmpiInitializer_8hxx_a005b28da29b25c5a55ed78e4b734bee6}{COL}(\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x})~(\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x} \& 0x07)
+\item 
+\#define \hyperlink{RlmpiInitializer_8hxx_a24630bb1cd43b553e14df6af1beba35c}{ROW}(\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x})~((\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x} \& 0x38) $>$$>$ 3)
+\item 
+\#define \hyperlink{RlmpiInitializer_8hxx_aabf8276dfa331317a1dc31f73097a6e9}{DISP}(\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x})~std::cout $<$$<$ \_\-\_\-FILE\_\-\_\-$<$$<$\char`\"{} \char`\"{}$<$$<$\_\-\_\-LINE\_\-\_\-$<$$<$ \char`\"{},    \char`\"{} $<$$<$ \#\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x} \char`\"{}: \char`\"{} $<$$<$ (\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x}) $<$$<$ std::endl
+\item 
+\#define \hyperlink{RlmpiInitializer_8hxx_a56ba24b4b6cd61fdd5f4eccc0145e4cc}{DISP2}(\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x}, y)~std::cout $<$$<$ \_\-\_\-FILE\_\-\_\-$<$$<$\char`\"{} \char`\"{}$<$$<$\_\-\_\-LINE\_\-\_\-$<$$<$ \char`\"{},    \char`\"{} $<$$<$ \#\hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x} \char`\"{}: \char`\"{} $<$$<$ \hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x} $<$$<$\char`\"{} \char`\"{}$<$$<$y$<$$<$ std::endl
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{RlmpiInitializer_8hxx_a97ddd2dc6256011c51737ca9522418f8}{timestamp} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{RlmpiInitializer_8hxx_a005b28da29b25c5a55ed78e4b734bee6}{
+\index{RlmpiInitializer.hxx@{RlmpiInitializer.hxx}!COL@{COL}}
+\index{COL@{COL}!RlmpiInitializer.hxx@{RlmpiInitializer.hxx}}
+\subsubsection[{COL}]{\setlength{\rightskip}{0pt plus 5cm}\#define COL({\bf x})~({\bf x} \& 0x07)}}
+\label{RlmpiInitializer_8hxx_a005b28da29b25c5a55ed78e4b734bee6}
+\hypertarget{RlmpiInitializer_8hxx_aabf8276dfa331317a1dc31f73097a6e9}{
+\index{RlmpiInitializer.hxx@{RlmpiInitializer.hxx}!DISP@{DISP}}
+\index{DISP@{DISP}!RlmpiInitializer.hxx@{RlmpiInitializer.hxx}}
+\subsubsection[{DISP}]{\setlength{\rightskip}{0pt plus 5cm}\#define DISP({\bf x})~std::cout $<$$<$ \_\-\_\-FILE\_\-\_\-$<$$<$\char`\"{} \char`\"{}$<$$<$\_\-\_\-LINE\_\-\_\-$<$$<$ \char`\"{},    \char`\"{} $<$$<$ \#{\bf x} \char`\"{}: \char`\"{} $<$$<$ ({\bf x}) $<$$<$ std::endl}}
+\label{RlmpiInitializer_8hxx_aabf8276dfa331317a1dc31f73097a6e9}
+\hypertarget{RlmpiInitializer_8hxx_a56ba24b4b6cd61fdd5f4eccc0145e4cc}{
+\index{RlmpiInitializer.hxx@{RlmpiInitializer.hxx}!DISP2@{DISP2}}
+\index{DISP2@{DISP2}!RlmpiInitializer.hxx@{RlmpiInitializer.hxx}}
+\subsubsection[{DISP2}]{\setlength{\rightskip}{0pt plus 5cm}\#define DISP2({\bf x}, \/  y)~std::cout $<$$<$ \_\-\_\-FILE\_\-\_\-$<$$<$\char`\"{} \char`\"{}$<$$<$\_\-\_\-LINE\_\-\_\-$<$$<$ \char`\"{},    \char`\"{} $<$$<$ \#{\bf x} \char`\"{}: \char`\"{} $<$$<$ {\bf x} $<$$<$\char`\"{} \char`\"{}$<$$<$y$<$$<$ std::endl}}
+\label{RlmpiInitializer_8hxx_a56ba24b4b6cd61fdd5f4eccc0145e4cc}
+\hypertarget{RlmpiInitializer_8hxx_a24630bb1cd43b553e14df6af1beba35c}{
+\index{RlmpiInitializer.hxx@{RlmpiInitializer.hxx}!ROW@{ROW}}
+\index{ROW@{ROW}!RlmpiInitializer.hxx@{RlmpiInitializer.hxx}}
+\subsubsection[{ROW}]{\setlength{\rightskip}{0pt plus 5cm}\#define ROW({\bf x})~(({\bf x} \& 0x38) $>$$>$ 3)}}
+\label{RlmpiInitializer_8hxx_a24630bb1cd43b553e14df6af1beba35c}
+
+
+\subsection{Function Documentation}
+\hypertarget{RlmpiInitializer_8hxx_a97ddd2dc6256011c51737ca9522418f8}{
+\index{RlmpiInitializer.hxx@{RlmpiInitializer.hxx}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!RlmpiInitializer.hxx@{RlmpiInitializer.hxx}}
+\subsubsection[{timestamp}]{\setlength{\rightskip}{0pt plus 5cm}static double timestamp ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{RlmpiInitializer_8hxx_a97ddd2dc6256011c51737ca9522418f8}

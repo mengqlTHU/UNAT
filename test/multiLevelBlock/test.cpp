@@ -57,45 +57,51 @@ int main()
 
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
-//	for(int i=0;i<t.getVertexNumber();i++)
-//	{
-////		if(i==6)
-////		{
-////			printf("%d,%f,%f\n",i,diag[i],x[i]);
-////		}
-//		b[i] = diag[i]*x[i];
-//	}
-//	for(int i=0;i<t.getEdgeNumber();i++)
-//	{
+	for(int i=0;i<t.getVertexNumber();i++)
+	{
+//		if(i==1)
+//		{
+//			printf("%d,%f,%f\n",i,diag[i],x[i]);
+//		}
+		b[i] = diag[i]*x[i];
+	}
+	for(int i=0;i<t.getEdgeNumber();i++)
+	{
+//		if(rowAddr[i]==1) printf("%d,%f,%f\n",i,upper[i],x[colAddr[i]]);
+     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
+//		if(colAddr[i]==1) printf("%d,%f,%f\n",i,lower[i],x[rowAddr[i]]);
+		b[colAddr[i]] += upper[i]*x[rowAddr[i]];
 //     	b[rowAddr[i]] += upper[i];
 //		b[colAddr[i]] += lower[i];
-//	}
+
+	}
 //	gettimeofday(&end,NULL);
 //	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
 //		+ end.tv_usec-start.tv_usec;
 //	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	swInt* firstEdgeVertices = t.getFirstEdgeVertices();
-	swInt* vertexNeighbor    = t.getVertexNeighbours();
-	for(int i=0;i<t.getEdgeNumber()*2;i++)
-	{
-//		if(firstEdgeVertices[i]==6)
-//		{
-//			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
-//		}
-		b[firstEdgeVertices[i]] += data[i];
+//	swInt* firstEdgeVertices = t.getFirstEdgeVertices();
+//	swInt* vertexNeighbor    = t.getVertexNeighbours();
+//	for(int i=0;i<t.getEdgeNumber()*2;i++)
+//	{
+////		if(firstEdgeVertices[i]==6)
+////		{
+////			printf("%d,%f,%f\n",i,data[i],x[vertexNeighbor[i]]);
+////		}
+////		b[firstEdgeVertices[i]] += data[i];
 //		b[firstEdgeVertices[i]] += data[i]*x[vertexNeighbor[i]];
-	}
+//	}
 	gettimeofday(&end,NULL);
 	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer_host  = funcPointer_host(3);
-	operatorFunPointer_slave = funcPointer_slave(3);
-	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
+	operatorFunPointer_host  = funcPointer_host(0);
+	operatorFunPointer_slave = funcPointer_slave(0);
+	Arrays edgeData   = {upper, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
-	Arrays vertexData    = {b_mlb, NULL, NULL, NULL, t.getVertexNumber()};
+	Arrays vertexData    = {b_mlb,    x, diag, NULL, t.getVertexNumber()};
+//	Arrays vertexData    = {b_mlb, NULL, NULL, NULL, t.getVertexNumber()};
 
 	MultiLevelBlockIterator mlbIter(t);
 	mlbIter.reformInnerTopology();
@@ -103,10 +109,10 @@ int main()
 	mlbIter.reorderEdgeData(&edgeData);
 	mlbIter.reorderVertexData(&vertexData);
 
-//	mlbIter.edge2VertexIteration(&edgeData,&vertexData,
-//				operatorFunPointer_host, operatorFunPointer_slave);
-	mlbIter.vertex2EdgeIteration(&neighbourData,&vertexData,
+	mlbIter.edge2VertexIteration(&edgeData,&vertexData,
 				operatorFunPointer_host, operatorFunPointer_slave);
+//	mlbIter.vertex2EdgeIteration(&neighbourData,&vertexData,
+//				operatorFunPointer_host, operatorFunPointer_slave);
 
 	checkResult(b, vertexData.A4Ptr, t.getVertexNumber());
 

@@ -90,14 +90,14 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 	DMA_Get(&recvX_slave[0],&diag[cellStart],
 				(cellEnd-cellStart)*sizeof(swFloat));
 	MLBFunParas.count = cellEnd-cellStart;
-	MLBFunParas.flag  = 1;
+	MLBFunParas.flag = 0;
 	v2EParas->MLBParas->operatorFunPointer_slave(&MLBFunParas);
 
-	for(i=0;i<cellEnd-cellStart;i++)
-	{
-//		if(i+cellStart==10723) printf("slave diag:%d,%f,%f\n",i,recvX_slave[i],sendX_slave[i]);
-		b_slave[i] += recvX_slave[i]*sendX_slave[i];
-	}
+//	for(i=0;i<cellEnd-cellStart;i++)
+//	{
+////		if(i+cellStart==10723) printf("slave diag:%d,%f,%f\n",i,recvX_slave[i],sendX_slave[i]);
+//		b_slave[i] += recvX_slave[i]*sendX_slave[i];
+//	}
 
 
 	for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
@@ -148,6 +148,7 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 
 	MLBFunParas.count = blockLen;
 	MLBFunParas.k1    = cellStart;
+	MLBFunParas.flag = 1;
 	v2EParas->MLBParas->operatorFunPointer_slave(&MLBFunParas);
 
 //	for(i=0;i<blockLen;i++)

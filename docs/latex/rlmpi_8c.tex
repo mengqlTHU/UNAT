@@ -1,0 +1,120 @@
+\hypertarget{rlmpi_8c}{
+\section{RL\_\-MPI/rlmpi.c File Reference}
+\label{rlmpi_8c}\index{RL\_\-MPI/rlmpi.c@{RL\_\-MPI/rlmpi.c}}
+}
+{\ttfamily \#include $<$slave.h$>$}\par
+{\ttfamily \#include $<$dma.h$>$}\par
+{\ttfamily \#include $<$unistd.h$>$}\par
+{\ttfamily \#include $<$simd.h$>$}\par
+{\ttfamily \#include \char`\"{}RlmpiSharedType.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}rlmpi.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\_\-\_\-thread\_\-local\_\-fix volatile \hyperlink{rlmpi_8c_a284980254ff9c5412353987744875c1d}{\_\-\_\-attribute\_\-\_\-} ((aligned(32)))
+\item 
+int \hyperlink{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}{largerest} (int a, int \hyperlink{edge2VertexIter__slave_8c_af87dbb661bee428aa06313c0567ddf41}{b}, int c)
+\item 
+void \hyperlink{rlmpi_8c_abc42190e602e292fd2b7bd41438a457b}{sunway\_\-check\_\-memory\_\-left} (int $\ast$data)
+\item 
+void \hyperlink{rlmpi_8c_af08d9249e0be638ee065314f38c52984}{load\_\-reg\_\-mpi\_\-init\_\-data} (\hyperlink{structSchedule}{Schedule} $\ast$reg\_\-data)
+\item 
+void \hyperlink{rlmpi_8c_aa3cae27baa804bf4190400deb2edd67f}{initTable} (\hyperlink{structSchedule}{Schedule} $\ast$reg\_\-data)
+\item 
+void \hyperlink{rlmpi_8c_aa765787f7c1c5ebb4120a8593267c03c}{TransformPackage3} (const Pack $\ast$sPacks\_\-, Pack $\ast$rPacks\_\-)
+\item 
+void \hyperlink{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}{TransformSameRowPackage} (const Pack $\ast$sPacks, Pack $\ast$rPacks)
+\item 
+void \hyperlink{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}{TransformSameColumnPackage} (const Pack $\ast$sPacks, Pack $\ast$rPacks)
+\item 
+void \hyperlink{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}{sort\_\-recv\_\-package} (Pack $\ast$rPacks\_\-, int npack)
+\item 
+void \hyperlink{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}{transform\_\-data} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\_\-\_\-thread\_\-local\_\-fix Pack \hyperlink{rlmpi_8c_a7fc545f3109555c8d51483cc95a328d9}{\_\-sPacks} \mbox{[}MaxNPackages\mbox{]}
+\item 
+\_\-\_\-thread\_\-local\_\-fix Pack \hyperlink{rlmpi_8c_af9c1ffbc340d52cdb835be4c107bb080}{\_\-rPacks} \mbox{[}MaxNPackages\mbox{]}
+\item 
+\_\-\_\-thread\_\-local\_\-fix Pack $\ast$ \hyperlink{rlmpi_8c_a76928eeb9bbd93ccb4d1682181d5c7a7}{\_\-sPacks\_\-same\_\-col}
+\item 
+\_\-\_\-thread\_\-local\_\-fix Pack $\ast$ \hyperlink{rlmpi_8c_a8e8861831dec614d8a20ad93aae3c3c4}{\_\-sPacks\_\-same\_\-row}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{rlmpi_8c_a284980254ff9c5412353987744875c1d}{
+\index{rlmpi.c@{rlmpi.c}!\_\-\_\-attribute\_\-\_\-@{\_\-\_\-attribute\_\-\_\-}}
+\index{\_\-\_\-attribute\_\-\_\-@{\_\-\_\-attribute\_\-\_\-}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{\_\-\_\-attribute\_\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local\_\-fix volatile {\bf \_\-\_\-attribute\_\-\_\-} ((aligned(32)))}}
+\label{rlmpi_8c_a284980254ff9c5412353987744875c1d}
+\hypertarget{rlmpi_8c_aa3cae27baa804bf4190400deb2edd67f}{
+\index{rlmpi.c@{rlmpi.c}!initTable@{initTable}}
+\index{initTable@{initTable}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{initTable}]{\setlength{\rightskip}{0pt plus 5cm}void initTable ({\bf Schedule} $\ast$ {\em reg\_\-data})}}
+\label{rlmpi_8c_aa3cae27baa804bf4190400deb2edd67f}
+\hypertarget{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}{
+\index{rlmpi.c@{rlmpi.c}!largerest@{largerest}}
+\index{largerest@{largerest}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{largerest}]{\setlength{\rightskip}{0pt plus 5cm}int largerest (int {\em a}, \/  int {\em b}, \/  int {\em c})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}
+\hypertarget{rlmpi_8c_af08d9249e0be638ee065314f38c52984}{
+\index{rlmpi.c@{rlmpi.c}!load\_\-reg\_\-mpi\_\-init\_\-data@{load\_\-reg\_\-mpi\_\-init\_\-data}}
+\index{load\_\-reg\_\-mpi\_\-init\_\-data@{load\_\-reg\_\-mpi\_\-init\_\-data}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{load\_\-reg\_\-mpi\_\-init\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void load\_\-reg\_\-mpi\_\-init\_\-data ({\bf Schedule} $\ast$ {\em reg\_\-data})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_af08d9249e0be638ee065314f38c52984}
+\hypertarget{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}{
+\index{rlmpi.c@{rlmpi.c}!sort\_\-recv\_\-package@{sort\_\-recv\_\-package}}
+\index{sort\_\-recv\_\-package@{sort\_\-recv\_\-package}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{sort\_\-recv\_\-package}]{\setlength{\rightskip}{0pt plus 5cm}void sort\_\-recv\_\-package (Pack $\ast$ {\em rPacks\_\-}, \/  int {\em npack})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}
+\hypertarget{rlmpi_8c_abc42190e602e292fd2b7bd41438a457b}{
+\index{rlmpi.c@{rlmpi.c}!sunway\_\-check\_\-memory\_\-left@{sunway\_\-check\_\-memory\_\-left}}
+\index{sunway\_\-check\_\-memory\_\-left@{sunway\_\-check\_\-memory\_\-left}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{sunway\_\-check\_\-memory\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void sunway\_\-check\_\-memory\_\-left (int $\ast$ {\em data})}}
+\label{rlmpi_8c_abc42190e602e292fd2b7bd41438a457b}
+\hypertarget{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}{
+\index{rlmpi.c@{rlmpi.c}!transform\_\-data@{transform\_\-data}}
+\index{transform\_\-data@{transform\_\-data}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{transform\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void transform\_\-data ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}
+\hypertarget{rlmpi_8c_aa765787f7c1c5ebb4120a8593267c03c}{
+\index{rlmpi.c@{rlmpi.c}!TransformPackage3@{TransformPackage3}}
+\index{TransformPackage3@{TransformPackage3}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{TransformPackage3}]{\setlength{\rightskip}{0pt plus 5cm}void TransformPackage3 (const Pack $\ast$ {\em sPacks\_\-}, \/  Pack $\ast$ {\em rPacks\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_aa765787f7c1c5ebb4120a8593267c03c}
+\hypertarget{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}{
+\index{rlmpi.c@{rlmpi.c}!TransformSameColumnPackage@{TransformSameColumnPackage}}
+\index{TransformSameColumnPackage@{TransformSameColumnPackage}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{TransformSameColumnPackage}]{\setlength{\rightskip}{0pt plus 5cm}void TransformSameColumnPackage (const Pack $\ast$ {\em sPacks}, \/  Pack $\ast$ {\em rPacks})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}
+\hypertarget{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}{
+\index{rlmpi.c@{rlmpi.c}!TransformSameRowPackage@{TransformSameRowPackage}}
+\index{TransformSameRowPackage@{TransformSameRowPackage}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{TransformSameRowPackage}]{\setlength{\rightskip}{0pt plus 5cm}void TransformSameRowPackage (const Pack $\ast$ {\em sPacks}, \/  Pack $\ast$ {\em rPacks})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rlmpi_8c_af9c1ffbc340d52cdb835be4c107bb080}{
+\index{rlmpi.c@{rlmpi.c}!\_\-rPacks@{\_\-rPacks}}
+\index{\_\-rPacks@{\_\-rPacks}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{\_\-rPacks}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local\_\-fix Pack {\bf \_\-rPacks}\mbox{[}MaxNPackages\mbox{]}}}
+\label{rlmpi_8c_af9c1ffbc340d52cdb835be4c107bb080}
+\hypertarget{rlmpi_8c_a7fc545f3109555c8d51483cc95a328d9}{
+\index{rlmpi.c@{rlmpi.c}!\_\-sPacks@{\_\-sPacks}}
+\index{\_\-sPacks@{\_\-sPacks}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{\_\-sPacks}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local\_\-fix Pack {\bf \_\-sPacks}\mbox{[}MaxNPackages\mbox{]}}}
+\label{rlmpi_8c_a7fc545f3109555c8d51483cc95a328d9}
+\hypertarget{rlmpi_8c_a76928eeb9bbd93ccb4d1682181d5c7a7}{
+\index{rlmpi.c@{rlmpi.c}!\_\-sPacks\_\-same\_\-col@{\_\-sPacks\_\-same\_\-col}}
+\index{\_\-sPacks\_\-same\_\-col@{\_\-sPacks\_\-same\_\-col}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{\_\-sPacks\_\-same\_\-col}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local\_\-fix Pack$\ast$ {\bf \_\-sPacks\_\-same\_\-col}}}
+\label{rlmpi_8c_a76928eeb9bbd93ccb4d1682181d5c7a7}
+\hypertarget{rlmpi_8c_a8e8861831dec614d8a20ad93aae3c3c4}{
+\index{rlmpi.c@{rlmpi.c}!\_\-sPacks\_\-same\_\-row@{\_\-sPacks\_\-same\_\-row}}
+\index{\_\-sPacks\_\-same\_\-row@{\_\-sPacks\_\-same\_\-row}!rlmpi.c@{rlmpi.c}}
+\subsubsection[{\_\-sPacks\_\-same\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local\_\-fix Pack$\ast$ {\bf \_\-sPacks\_\-same\_\-row}}}
+\label{rlmpi_8c_a8e8861831dec614d8a20ad93aae3c3c4}

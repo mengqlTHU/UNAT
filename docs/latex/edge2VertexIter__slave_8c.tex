@@ -1,0 +1,159 @@
+\hypertarget{edge2VertexIter__slave_8c}{
+\section{iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\-slave.c File Reference}
+\label{edge2VertexIter__slave_8c}\index{iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\-slave.c@{iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\-slave.c}}
+}
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include \char`\"{}slave.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}simd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}dma.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}rlmpi.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}swMacro.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}iterator\_\-struct.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}userFunc\_\-slave.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}edge2VertexIter\_\-slave.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{edge2VertexIter__slave_8c_a24f647174760cac13d2624b5ad74b00c}{func} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\_\-\_\-thread\_\-local volatile int \hyperlink{edge2VertexIter__slave_8c_aeaf12029768109487cb0540ba258af5a}{myId}
+\item 
+void($\ast$ \hyperlink{edge2VertexIter__slave_8c_ac1564f99530db09b15b1eed1655a00e4}{operatorFunPointer\_\-s} )(\hyperlink{structMLBFunParameters}{MLBFunParameters} $\ast$MLBFunParas)
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{edge2VertexIter__slave_8c_ab41b2eda53b4a0bfa3afd95e45ee6ac8}{spIndex}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{edge2VertexIter__slave_8c_a16aa32db15b3dbedbb3403e4561e0585}{maxXNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{edge2VertexIter__slave_8c_adb60f017b045013987fd295847b6e4ed}{maxCell}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{edge2VertexIter__slave_8c_abc82e0292bb33e03d8f524d3b1fe3f0a}{maxEdge}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} \hyperlink{edge2VertexIter__slave_8c_a94a16602fe43dc46a31e5db724a783a5}{cpeBlockNum}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{edge2VertexIter__slave_8c_ac11755d1b7b7663b6c608cff96d0216e}{blockStarts}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a0add968a4492f5f3bdc13cba56330c7d}{cellStarts}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a58c3f232b6b956ca80c49f4e561c99df}{ownNeiSendList}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}{owner}
+\item 
+\hyperlink{swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{neighbor}
+\item 
+\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a25b241b39bfe0bed5fb3eb7a6da0a3d4}{upper}
+\item 
+\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$ \hyperlink{edge2VertexIter__slave_8c_ac083545d3bca1d9ff625c90459904839}{lower}
+\item 
+\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$ \hyperlink{edge2VertexIter__slave_8c_a99f2620af54b4eb46575e0f7bc478729}{diag}
+\item 
+\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$ \hyperlink{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{x}
+\item 
+\hyperlink{swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat} $\ast$ \hyperlink{edge2VertexIter__slave_8c_af87dbb661bee428aa06313c0567ddf41}{b}
+\item 
+int \hyperlink{edge2VertexIter__slave_8c_abfa20942799486d474558e303513ac9f}{isXExist}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{edge2VertexIter__slave_8c_a24f647174760cac13d2624b5ad74b00c}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!func@{func}}
+\index{func@{func}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{func}]{\setlength{\rightskip}{0pt plus 5cm}void func ()}}
+\label{edge2VertexIter__slave_8c_a24f647174760cac13d2624b5ad74b00c}
+
+
+\subsection{Variable Documentation}
+\hypertarget{edge2VertexIter__slave_8c_af87dbb661bee428aa06313c0567ddf41}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!b@{b}}
+\index{b@{b}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{b}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swFloat} $\ast$ {\bf b}}}
+\label{edge2VertexIter__slave_8c_af87dbb661bee428aa06313c0567ddf41}
+\hypertarget{edge2VertexIter__slave_8c_ac11755d1b7b7663b6c608cff96d0216e}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!blockStarts@{blockStarts}}
+\index{blockStarts@{blockStarts}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{blockStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt}$\ast$ {\bf blockStarts}}}
+\label{edge2VertexIter__slave_8c_ac11755d1b7b7663b6c608cff96d0216e}
+\hypertarget{edge2VertexIter__slave_8c_a0add968a4492f5f3bdc13cba56330c7d}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!cellStarts@{cellStarts}}
+\index{cellStarts@{cellStarts}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{cellStarts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ {\bf cellStarts}}}
+\label{edge2VertexIter__slave_8c_a0add968a4492f5f3bdc13cba56330c7d}
+\hypertarget{edge2VertexIter__slave_8c_a94a16602fe43dc46a31e5db724a783a5}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!cpeBlockNum@{cpeBlockNum}}
+\index{cpeBlockNum@{cpeBlockNum}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{cpeBlockNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf cpeBlockNum}}}
+\label{edge2VertexIter__slave_8c_a94a16602fe43dc46a31e5db724a783a5}
+\hypertarget{edge2VertexIter__slave_8c_a99f2620af54b4eb46575e0f7bc478729}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!diag@{diag}}
+\index{diag@{diag}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{diag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swFloat} $\ast$ {\bf diag}}}
+\label{edge2VertexIter__slave_8c_a99f2620af54b4eb46575e0f7bc478729}
+\hypertarget{edge2VertexIter__slave_8c_abfa20942799486d474558e303513ac9f}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!isXExist@{isXExist}}
+\index{isXExist@{isXExist}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{isXExist}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf isXExist}}}
+\label{edge2VertexIter__slave_8c_abfa20942799486d474558e303513ac9f}
+\hypertarget{edge2VertexIter__slave_8c_ac083545d3bca1d9ff625c90459904839}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!lower@{lower}}
+\index{lower@{lower}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{lower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swFloat} $\ast$ {\bf lower}}}
+\label{edge2VertexIter__slave_8c_ac083545d3bca1d9ff625c90459904839}
+\hypertarget{edge2VertexIter__slave_8c_adb60f017b045013987fd295847b6e4ed}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!maxCell@{maxCell}}
+\index{maxCell@{maxCell}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{maxCell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf maxCell}}}
+\label{edge2VertexIter__slave_8c_adb60f017b045013987fd295847b6e4ed}
+\hypertarget{edge2VertexIter__slave_8c_abc82e0292bb33e03d8f524d3b1fe3f0a}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!maxEdge@{maxEdge}}
+\index{maxEdge@{maxEdge}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{maxEdge}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf maxEdge}}}
+\label{edge2VertexIter__slave_8c_abc82e0292bb33e03d8f524d3b1fe3f0a}
+\hypertarget{edge2VertexIter__slave_8c_a16aa32db15b3dbedbb3403e4561e0585}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!maxXNum@{maxXNum}}
+\index{maxXNum@{maxXNum}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{maxXNum}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf maxXNum}}}
+\label{edge2VertexIter__slave_8c_a16aa32db15b3dbedbb3403e4561e0585}
+\hypertarget{edge2VertexIter__slave_8c_aeaf12029768109487cb0540ba258af5a}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!myId@{myId}}
+\index{myId@{myId}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{myId}]{\setlength{\rightskip}{0pt plus 5cm}\_\-\_\-thread\_\-local volatile int {\bf myId}}}
+\label{edge2VertexIter__slave_8c_aeaf12029768109487cb0540ba258af5a}
+\hypertarget{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!neighbor@{neighbor}}
+\index{neighbor@{neighbor}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{neighbor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ {\bf neighbor}}}
+\label{edge2VertexIter__slave_8c_a895ef950959fc9873b2f0f7a453e843c}
+\hypertarget{edge2VertexIter__slave_8c_ac1564f99530db09b15b1eed1655a00e4}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!operatorFunPointer\_\-s@{operatorFunPointer\_\-s}}
+\index{operatorFunPointer\_\-s@{operatorFunPointer\_\-s}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{operatorFunPointer\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf operatorFunPointer\_\-s})({\bf MLBFunParameters} $\ast$MLBFunParas)}}
+\label{edge2VertexIter__slave_8c_ac1564f99530db09b15b1eed1655a00e4}
+\hypertarget{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!owner@{owner}}
+\index{owner@{owner}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{owner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ {\bf owner}}}
+\label{edge2VertexIter__slave_8c_a01fc05d9f3b5f12f92386d70ad9c4cea}
+\hypertarget{edge2VertexIter__slave_8c_a58c3f232b6b956ca80c49f4e561c99df}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!ownNeiSendList@{ownNeiSendList}}
+\index{ownNeiSendList@{ownNeiSendList}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{ownNeiSendList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} $\ast$ {\bf ownNeiSendList}}}
+\label{edge2VertexIter__slave_8c_a58c3f232b6b956ca80c49f4e561c99df}
+\hypertarget{edge2VertexIter__slave_8c_ab41b2eda53b4a0bfa3afd95e45ee6ac8}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!spIndex@{spIndex}}
+\index{spIndex@{spIndex}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{spIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swInt} {\bf spIndex}}}
+\label{edge2VertexIter__slave_8c_ab41b2eda53b4a0bfa3afd95e45ee6ac8}
+\hypertarget{edge2VertexIter__slave_8c_a25b241b39bfe0bed5fb3eb7a6da0a3d4}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!upper@{upper}}
+\index{upper@{upper}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{upper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swFloat}$\ast$ {\bf upper}}}
+\label{edge2VertexIter__slave_8c_a25b241b39bfe0bed5fb3eb7a6da0a3d4}
+\hypertarget{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}{
+\index{edge2VertexIter\_\-slave.c@{edge2VertexIter\_\-slave.c}!x@{x}}
+\index{x@{x}!edge2VertexIter_slave.c@{edge2VertexIter\_\-slave.c}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swFloat} $\ast$ {\bf x}}}
+\label{edge2VertexIter__slave_8c_aa1f0f95cf24b79e2f4f341a3a492940e}
