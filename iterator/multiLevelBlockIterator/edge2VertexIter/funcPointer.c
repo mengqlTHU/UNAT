@@ -16,8 +16,12 @@ PF funcPointer_host(swInt flag)
 	switch (flag)
 	{
 		case 0:
-			return spMVUnsymm;
+			return spMV;
 		case 1:
+			return integrate;
+		case 2:
+			return spMVUnsymm;
+		case 3:
 			return integrateUnsymm;
 		default:
 			return NULL;
@@ -29,8 +33,12 @@ PF funcPointer_slave(swInt flag)
 	switch (flag)
 	{
 		case 0:
-			return slave_spMVUnsymm;
+			return slave_spMV;
 		case 1:
+			return slave_integrate;
+		case 2:
+			return slave_spMVUnsymm;
+		case 3:
 			return slave_integrateUnsymm;
 		default:
 			return NULL;

@@ -6,7 +6,7 @@ gFLAGS=-slave -fPIC -msimd -g
 CXXFLAGS=-fPIC -O3
 SFLAGS=-slave -fPIC -msimd -O3
 LINKFLAGS=-hybrid
-PROJDIR=/home/export/online1/systest/swrh/lhb/UNAT
+PROJDIR=/home/export/online1/systest/swrh/lhb/UNAT_new
 
 files= \
 ${PROJDIR}/iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter_host.o \

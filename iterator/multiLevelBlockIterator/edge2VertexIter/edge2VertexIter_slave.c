@@ -36,10 +36,10 @@ void func()
 		printf("The allocated LDM exceeds 64KB, the memory size is %d\n",
 					totalLength);
 	}
-	else if(totalLength < 64*1024*0.8 && myId==0){
-		printf("The allocated LDM is too small, the memory size is %d\n",
-					totalLength);
-	}
+//	else if(totalLength < 64*1024*0.8 && myId==0){
+//		printf("The allocated LDM is too small, the memory size is %d\n",
+//					totalLength);
+//	}
 
 	volatile swFloat sendX_slave[maxXNum],recvX_slave[maxXNum],dmaX_slave;
 	volatile swFloat b_slave[maxXNum];

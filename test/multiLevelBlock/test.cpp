@@ -8,7 +8,7 @@
 #include "iterator_struct.h"
 #include "funcPointer.h"
 
-#define NONZERONUM 187200
+#define NONZERONUM 1516800
 
 int* readFile(char* name);
 void debug(Topology t);
@@ -20,8 +20,8 @@ void checkResult(swFloat* array1, swFloat* array2, swInt count);
 
 int main()
 {
-	char owner[] = "owner_64000";
-	char neighbor[] = "neighbour_64000";
+	char owner[] = "owner_512000";
+	char neighbor[] = "neighbour_512000";
 	swInt *rowAddr = readFile(owner);
 	swInt *colAddr = readFile(neighbor);
 	Topology t = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
@@ -91,8 +91,8 @@ int main()
 		+ end.tv_usec-start.tv_usec;
 	printf("CPU Processor Time: %f us\n",(double)timeuse); 
 
-	operatorFunPointer_host  = funcPointer_host(1);
-	operatorFunPointer_slave = funcPointer_slave(1);
+	operatorFunPointer_host  = funcPointer_host(3);
+	operatorFunPointer_slave = funcPointer_slave(3);
 	Arrays edgeData   = {lower, upper, NULL, NULL, t.getEdgeNumber()};
 	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
 	Arrays vertexData    = {b_mlb, NULL, NULL, NULL, t.getVertexNumber()};
@@ -100,6 +100,7 @@ int main()
 	MultiLevelBlockIterator mlbIter(t);
 	mlbIter.reformInnerTopology();
 	mlbIter.reorderEdgeDataUnsymm(&neighbourData);
+	mlbIter.reorderEdgeData(&edgeData);
 	mlbIter.reorderVertexData(&vertexData);
 
 //	mlbIter.edge2VertexIteration(&edgeData,&vertexData,

@@ -26,12 +26,15 @@ class MultiLevelBlockIterator : public Iterator
 		swInt  _maxEdgesUnsymm;
 		swInt* _owner;
 		swInt* _neighbor;
+		swInt* _postEdgeOrder;
+		swInt* _postVertexOrder;
 		// 此处保存一份未重排的COO形式拓扑拷贝
 		swInt* _firstEdgeVertices;
 		swInt* _vertexNeighbours;
 
 		void reorderVertexArray(swFloat* array);
 		void reorderEdgeArrayUnsymm(swFloat* array);
+		void MLBReorder(Topology &topo, swInt ref);
 	public:
 		// Constructors
 		MultiLevelBlockIterator(Topology &topo);

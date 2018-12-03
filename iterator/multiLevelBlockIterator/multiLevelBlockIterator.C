@@ -19,31 +19,49 @@ MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 		: Iterator(topo)
 {
 //	LOG("MultiLevelBlockIterator");
+    printf("start MultiLevelBlocking reorder...\n");
+	MLBReorder(topo,2);
+	printf("The domain is divided into %d*%d blocks.\n",
+				this->_mshBlockNum,this->_mshBlockNum);
+
+	swInt vertexNumber = this->getTopology()->getVertexNumber();
+	swInt edgeNumber   = this->getTopology()->getEdgeNumber();
+
+	for(int i=0;i<edgeNumber;i++)
+	{
+		this->getEdgeMap()
+			.insert(pair<swInt,swInt>(i,this->_postEdgeOrder[i]));
+	}
+	for(int i=0;i<vertexNumber;i++)
+	{
+		this->getVertexMap()
+			.insert(pair<swInt,swInt>(i,this->_postVertexOrder[i]));
+	}
+}
+
+void MultiLevelBlockIterator::MLBReorder(Topology &topo, swInt ref)
+{
 	swInt* vertexWeights;
 	swInt* edgeWeights;
-	swInt* postVertexOrder;
-	swInt* postEdgeOrder;
 	MLB_graph graph;
 	swInt* blockNums;
 	swInt  levels;
 	swInt vertexNumber = this->getTopology()->getVertexNumber();
 	swInt edgeNumber   = this->getTopology()->getEdgeNumber();
 
-	postVertexOrder = (swInt*)malloc(sizeof(swInt)*vertexNumber);	
-	postEdgeOrder = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+	this->_postVertexOrder = (swInt*)malloc(sizeof(swInt)*vertexNumber);	
+	this->_postEdgeOrder = (swInt*)malloc(sizeof(swInt)*edgeNumber);
+	swInt* postVertexOrder = this->_postVertexOrder;;
+	swInt* postEdgeOrder = this->_postEdgeOrder;;
 	swInt totalSize
 		// sendX, recvX, b
-		= vertexNumber*3*sizeof(swFloat)
+		= vertexNumber*2*sizeof(swFloat)
 		// 对角块的owner，neighbour和非零元素
-		+ edgeNumber*3/4*(2*sizeof(swInt)+sizeof(swFloat))
-		// 非对角块的非零元素及owner（发送+接收）
-		+ edgeNumber/4*2*(sizeof(swInt)+sizeof(swFloat))
-		// 寄存器通信Pack（32Byte）
-		+ edgeNumber/4/6*2*32
+		+ edgeNumber*2*2*(sizeof(swInt)+sizeof(swFloat))
 		// 发送接收计数数组和blockStart，cellStarts
-		+ BLOCKNUM64K*BLOCKNUM64K*8*sizeof(swInt);
+		+ BLOCKNUM64K*BLOCKNUM64K*5*sizeof(swInt);
 
-	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,3);
+	this->_mshBlockNum = MAX(totalSize/64/64/1024+1,24);
 	printf("The estimated mshBlockNum = %d\n",this->_mshBlockNum);
 
 	vertexWeights = (swInt*)malloc(sizeof(swInt)*vertexNumber);
@@ -98,18 +116,14 @@ MultiLevelBlockIterator::MultiLevelBlockIterator(Topology &topo)
 			= this->_maxEdges > edgeNum ? this->_maxEdges : edgeNum;
 		edgeNum = 0;
 	}
-	this->_maxEdgesUnsymm = 0;
-
-	for(int i=0;i<edgeNumber;i++)
-	{
-		this->getEdgeMap().insert(pair<swInt,swInt>(i,postEdgeOrder[i]));
-	}
-	for(int i=0;i<vertexNumber;i++)
-	{
-		this->getVertexMap()
-			.insert(pair<swInt,swInt>(i,postVertexOrder[i]));
-	}
-
+	this->_maxEdgesUnsymm = (this->_maxCells*2+this->_maxEdges)*1.01;
+	swInt totalLength
+		= this->_maxXNum*2*sizeof(swFloat)
+		+ this->_maxEdgesUnsymm*2*sizeof(swFloat)
+		+ this->_maxEdgesUnsymm*2*sizeof(swInt)
+		+ BLOCKNUM64K*5*sizeof(swInt)
+		+ this->_maxEdges/6*2*32;
+//	if(totalLength > 64*1024*0.97) MLBReorder(topo,this->_mshBlockNum+1);
 }
 
 void MultiLevelBlockIterator::reorderEdgesFromEdge(swInt* startVertices,
@@ -279,15 +293,15 @@ void MultiLevelBlockIterator::reorderEdgesFromVertex(
 		firstEdgeVertices[i] = tmpFEV[i];
 		vertexNeighbours[i] = tmpVN[i];
 	}
-	this->_maxEdgesUnsymm = 0;
+	swInt maxEdgesUnsymm = 0;
 	swInt edgeNum = 0;
 	for(int i=0;i<cpeBlockNum;i++)
 	{
 		edgeNum = blockStartsUnsymm[4*(i+1)*(cpeBlockNum-1)+3]
 			- blockStartsUnsymm[4*i*cpeBlockNum+2];
-		this->_maxEdgesUnsymm
-			= this->_maxEdgesUnsymm>edgeNum?this->_maxEdgesUnsymm:edgeNum;
+		maxEdgesUnsymm = maxEdgesUnsymm>edgeNum?maxEdgesUnsymm:edgeNum;
 	}
+	assert(this->_maxEdgesUnsymm>maxEdgesUnsymm);
 	free(tmpFEV);
 	free(tmpVN);
 	free(vertexEdgeNumbers);

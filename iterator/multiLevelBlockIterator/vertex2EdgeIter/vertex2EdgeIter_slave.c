@@ -39,16 +39,16 @@ void vertex2EdgeIter_slave(v2EParameters *v2EParas)
 	b    = v2EParas->b;
 	diag = v2EParas->diag;
 
-	swInt totalLength
-		= maxXNum*2*sizeof(swFloat)
-		+ maxEdges*2*sizeof(swFloat)
-		+ maxEdges*2*sizeof(swInt)
-		+ BLOCKNUM64K*5*sizeof(swInt);
-	if(totalLength>64*1024*0.94 && myId==0)
-	{
-		printf("The allocated LDM exceeds 64KB, the memory size is %d\n",
-					totalLength);
-	}
+//	swInt totalLength
+//		= maxXNum*2*sizeof(swFloat)
+//		+ maxEdges*2*sizeof(swFloat)
+//		+ maxEdges*2*sizeof(swInt)
+//		+ BLOCKNUM64K*5*sizeof(swInt);
+//	if(totalLength>64*1024*0.94 && myId==0)
+//	{
+//		printf("The allocated LDM exceeds 64KB, the memory size is %d\n",
+//					totalLength);
+//	}
 	swFloat sendX_slave[maxXNum],b_slave[maxXNum];
 	swFloat data_slave[maxEdges],recvX_slave[maxEdges];
 	swInt firstEdgeVertices_slave[maxEdges];
