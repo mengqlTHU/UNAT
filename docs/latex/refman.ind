@@ -1,0 +1,1890 @@
+\begin{theindex}
+
+  \item {$\sim $Iterator}
+    \subitem {Iterator}, \hyperpage{12}
+  \item {$\sim $MultiLevelBlockIterator}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{18}
+  \item {$\sim $Topology}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{7}
+    \subitem {data}, \hyperpage{8}
+    \subitem {dst\_\discretionary {-}{}{}id}, \hyperpage{8}
+    \subitem {indM}, \hyperpage{8}
+    \subitem {indP}, \hyperpage{8}
+    \subitem {nGETC}, \hyperpage{8}
+    \subitem {nGetcSameCol}, \hyperpage{8}
+    \subitem {nGETR\_\discretionary {-}{}{}PUTC}, \hyperpage{8}
+    \subitem {nGetrSameRow}, \hyperpage{8}
+    \subitem {nPutcSameCol}, \hyperpage{8}
+    \subitem {nPUTR}, \hyperpage{8}
+    \subitem {nPutrSameRow}, \hyperpage{8}
+    \subitem {res\_\discretionary {-}{}{}pos}, \hyperpage{8}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {src\_\discretionary {-}{}{}id}, \hyperpage{8}
+  \item {\_\discretionary {-}{}{}accuStartVertexNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}accuVertexEdgeNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}blockStarts}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}blockStartsUnsymm}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}cpeBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}edgeMap}
+    \subitem {Iterator}, \hyperpage{13}
+  \item {\_\discretionary {-}{}{}edgeNumber}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}endVertices}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}firstEdgeVertices}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}get\_\discretionary {-}{}{}reply}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}maxCells}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}maxEdges}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}maxEdgesUnsymm}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}maxXNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}mshBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}mtxBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}nCycle}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}nCycleSameCol}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}nCycleSameRow}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}neighbor}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}owner}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}postEdgeOrder}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}postVertexOrder}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+  \item {\_\discretionary {-}{}{}put\_\discretionary {-}{}{}reply}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}rPacks}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}sPacks}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}startVertexNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}startVertices}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}table\_\discretionary {-}{}{}ldm}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}topo}
+    \subitem {Iterator}, \hyperpage{13}
+  \item {\_\discretionary {-}{}{}total\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}pcg}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}total\_\discretionary {-}{}{}send\_\discretionary {-}{}{}pcg}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {\_\discretionary {-}{}{}vertexEdgeNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}vertexMap}
+    \subitem {Iterator}, \hyperpage{13}
+  \item {\_\discretionary {-}{}{}vertexNeighbours}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}vertexNumber}
+    \subitem {Topology}, \hyperpage{36}
+  \item {\_\discretionary {-}{}{}vertexStarts}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{20}
+
+  \indexspace
+
+  \item {A1Ptr}
+    \subitem {Arrays}, \hyperpage{9}
+  \item {A2Ptr}
+    \subitem {Arrays}, \hyperpage{9}
+  \item {A3Ptr}
+    \subitem {Arrays}, \hyperpage{9}
+  \item {A4Ptr}
+    \subitem {Arrays}, \hyperpage{9}
+  \item {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}GET\_\discretionary {-}{}{}RUN}
+    \subitem {slaveUtils.h}, \hyperpage{106}
+  \item {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}GET\_\discretionary {-}{}{}SET}
+    \subitem {slaveUtils.h}, \hyperpage{106}
+  \item {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}PUT\_\discretionary {-}{}{}RUN}
+    \subitem {slaveUtils.h}, \hyperpage{106}
+  \item {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}PUT\_\discretionary {-}{}{}SET}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {addEdge}
+    \subitem {Topology}, \hyperpage{36}
+  \item {addVertex}
+    \subitem {Topology}, \hyperpage{36}
+  \item {adjncy}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {adjwgt}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {ALIGNED}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {all\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {all\_\discretionary {-}{}{}res\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {ALLSYN}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {Arrays}, \hyperpage{9}
+    \subitem {A1Ptr}, \hyperpage{9}
+    \subitem {A2Ptr}, \hyperpage{9}
+    \subitem {A3Ptr}, \hyperpage{9}
+    \subitem {A4Ptr}, \hyperpage{9}
+    \subitem {num}, \hyperpage{9}
+  \item {assemble\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {athread\_\discretionary {-}{}{}wait}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+
+  \indexspace
+
+  \item {b}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {BLOCKNUM64K}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {BlockOrdering.c}
+    \subitem {LOG}, \hyperpage{41}
+    \subitem {MLB\_\discretionary {-}{}{}Multilevel\_\discretionary {-}{}{}ordering}, \hyperpage{41}
+    \subitem {MLB\_\discretionary {-}{}{}ordering}, \hyperpage{41}
+  \item {BlockOrdering.h}
+    \subitem {CERR}, \hyperpage{43}
+    \subitem {forprt}, \hyperpage{43}
+    \subitem {LABEL}, \hyperpage{43}
+    \subitem {MLB\_\discretionary {-}{}{}constructMetisCSR}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}find}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}generateCellID}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}graph}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}metis\_\discretionary {-}{}{}decompose}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}Multilevel\_\discretionary {-}{}{}ordering}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}offsetEdges}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}ordering}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}postLABEL}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}postSCALAR}, \hyperpage{44}
+    \subitem {MLB\_\discretionary {-}{}{}quickSort}, \hyperpage{44}
+    \subitem {printTime}, \hyperpage{43}
+    \subitem {SCALAR}, \hyperpage{43}
+    \subitem {startTime}, \hyperpage{44}
+  \item {BlockOrdering/extensibleLabelArray.h}
+    \subitem {ExtensibleLABELArray}, \hyperpage{50}
+    \subitem {extensibleLABELArrayAdd}, \hyperpage{50}
+    \subitem {extensibleLABELArrayDestroy}, \hyperpage{50}
+    \subitem {extensibleLABELArrayInit}, \hyperpage{50}
+    \subitem {INITSIZE}, \hyperpage{50}
+    \subitem {LABEL}, \hyperpage{50}
+  \item {BlockOrderingSW.c}
+    \subitem {LOG}, \hyperpage{45}
+    \subitem {MLB\_\discretionary {-}{}{}Multilevel\_\discretionary {-}{}{}ordering}, \hyperpage{45}
+    \subitem {MLB\_\discretionary {-}{}{}ordering}, \hyperpage{45}
+  \item {blockStarts}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {blockStartsUnsymm}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {BOrderUtils.c}
+    \subitem {MAX\_\discretionary {-}{}{}LEVELS}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}constructMetisCSR}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}find}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}generateCellID}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}metis\_\discretionary {-}{}{}decompose}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}offsetEdges}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}postLABEL}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}postSCALAR}, \hyperpage{47}
+    \subitem {MLB\_\discretionary {-}{}{}quickSort}, \hyperpage{47}
+  \item {BOrderUtilsSW.c}
+    \subitem {MAX\_\discretionary {-}{}{}LEVELS}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}constructMetisCSR}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}find}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}generateCellID}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}metis\_\discretionary {-}{}{}decompose}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}offsetEdges}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}postLABEL}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}postSCALAR}, \hyperpage{49}
+    \subitem {MLB\_\discretionary {-}{}{}quickSort}, \hyperpage{49}
+
+  \indexspace
+
+  \item {cellNum}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {cellStarts}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {cellWeights}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {CERR}
+    \subitem {BlockOrdering.h}, \hyperpage{43}
+  \item {checkResult}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {clone}
+    \subitem {Topology}, \hyperpage{36}
+  \item {COL}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {COLSYN}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {constructFromEdge}
+    \subitem {Topology}, \hyperpage{36}
+  \item {constructFromVertex}
+    \subitem {Topology}, \hyperpage{36}
+  \item {copy}
+    \subitem {Topology}, \hyperpage{36}
+  \item {copyinfo}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {count}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {cpeBlockNum}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {MLBParameters}, \hyperpage{16}
+
+  \indexspace
+
+  \item {data}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+    \subitem {struct\_\discretionary {-}{}{}extensibleLABELArray}, \hyperpage{29}
+    \subitem {struct\_\discretionary {-}{}{}extensibleSCALARArray}, \hyperpage{30}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {DEBUG}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {debug}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {destination\_\discretionary {-}{}{}pool}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {destroy}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {destroyTable}
+    \subitem {register.C}, \hyperpage{91}
+    \subitem {register.H}, \hyperpage{92}
+  \item {diag}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {diagNeighbor}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {diagOwner}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {DISP}
+    \subitem {RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {DISP2}
+    \subitem {RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {DMA\_\discretionary {-}{}{}Get}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {DMA\_\discretionary {-}{}{}IGet}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {DMA\_\discretionary {-}{}{}IPut}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {DMA\_\discretionary {-}{}{}Put}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {DMA\_\discretionary {-}{}{}Status}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {DMA\_\discretionary {-}{}{}Wait}
+    \subitem {slaveUtils.c}, \hyperpage{105}
+    \subitem {slaveUtils.h}, \hyperpage{107}
+  \item {dReal}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {dst\_\discretionary {-}{}{}id}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {dst\_\discretionary {-}{}{}sequence}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+
+  \indexspace
+
+  \item {e2VParas}, \hyperpage{10}
+    \subitem {b}, \hyperpage{10}
+    \subitem {diag}, \hyperpage{10}
+    \subitem {isXExist}, \hyperpage{10}
+    \subitem {lower}, \hyperpage{10}
+    \subitem {MLBParas}, \hyperpage{10}
+    \subitem {upper}, \hyperpage{10}
+    \subitem {x}, \hyperpage{10}
+  \item {edge2VertexIter\_\discretionary {-}{}{}host.c}
+    \subitem {b}, \hyperpage{65}
+    \subitem {blockStarts}, \hyperpage{65}
+    \subitem {cellStarts}, \hyperpage{65}
+    \subitem {cpeBlockNum}, \hyperpage{65}
+    \subitem {diag}, \hyperpage{65}
+    \subitem {edge2VertexIteration\_\discretionary {-}{}{}host}, \hyperpage{65}
+    \subitem {edge2VertexIteration\_\discretionary {-}{}{}init}, \hyperpage{65}
+    \subitem {func}, \hyperpage{65}
+    \subitem {initOwnNeiSendList}, \hyperpage{65}
+    \subitem {isXExist}, \hyperpage{65}
+    \subitem {lower}, \hyperpage{65}
+    \subitem {maxCell}, \hyperpage{65}
+    \subitem {maxEdge}, \hyperpage{65}
+    \subitem {maxXNum}, \hyperpage{65}
+    \subitem {mshBlockNum}, \hyperpage{65}
+    \subitem {neighbor}, \hyperpage{65}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}h}, \hyperpage{65}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}s}, \hyperpage{65}
+    \subitem {owner}, \hyperpage{65}
+    \subitem {ownNeiSendList}, \hyperpage{65}
+    \subitem {spIndex}, \hyperpage{65}
+    \subitem {upper}, \hyperpage{65}
+    \subitem {x}, \hyperpage{65}
+  \item {edge2VertexIter\_\discretionary {-}{}{}host.h}
+    \subitem {edge2VertexIteration\_\discretionary {-}{}{}host}, \hyperpage{66}
+    \subitem {edge2VertexIteration\_\discretionary {-}{}{}init}, \hyperpage{66}
+  \item {edge2VertexIter\_\discretionary {-}{}{}slave.c}
+    \subitem {b}, \hyperpage{68}
+    \subitem {blockStarts}, \hyperpage{68}
+    \subitem {cellStarts}, \hyperpage{68}
+    \subitem {cpeBlockNum}, \hyperpage{68}
+    \subitem {diag}, \hyperpage{68}
+    \subitem {func}, \hyperpage{68}
+    \subitem {isXExist}, \hyperpage{68}
+    \subitem {lower}, \hyperpage{68}
+    \subitem {maxCell}, \hyperpage{68}
+    \subitem {maxEdge}, \hyperpage{68}
+    \subitem {maxXNum}, \hyperpage{68}
+    \subitem {myId}, \hyperpage{68}
+    \subitem {neighbor}, \hyperpage{68}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}s}, \hyperpage{68}
+    \subitem {owner}, \hyperpage{68}
+    \subitem {ownNeiSendList}, \hyperpage{68}
+    \subitem {spIndex}, \hyperpage{68}
+    \subitem {upper}, \hyperpage{68}
+    \subitem {x}, \hyperpage{68}
+  \item {edge2VertexIteration}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{18}
+  \item {edge2VertexIteration\_\discretionary {-}{}{}host}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.h}, \hyperpage{66}
+  \item {edge2VertexIteration\_\discretionary {-}{}{}init}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.h}, \hyperpage{66}
+  \item {EdgeBasedInit}
+    \subitem {Topology}, \hyperpage{36}
+  \item {edgeBasedToVertexBased}
+    \subitem {Topology}, \hyperpage{36}
+  \item {edgecut}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {edgeData}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {edgeNum}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {edgeWeights}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {eind}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {epart}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {EPS}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {eptr}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {extensibleArray/extensibleLabelArray.h}
+    \subitem {ExtensibleLABELArray}, \hyperpage{51}
+    \subitem {extensibleLABELArrayAdd}, \hyperpage{51}
+    \subitem {extensibleLABELArrayDestroy}, \hyperpage{51}
+    \subitem {extensibleLABELArrayInit}, \hyperpage{51}
+    \subitem {INITSIZE}, \hyperpage{51}
+    \subitem {LABEL}, \hyperpage{51}
+  \item {ExtensibleLABELArray}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+  \item {extensibleLabelArray.c}
+    \subitem {extensibleLABELArrayAdd}, \hyperpage{76}
+    \subitem {extensibleLABELArrayDestroy}, \hyperpage{76}
+    \subitem {extensibleLABELArrayInit}, \hyperpage{76}
+  \item {extensibleLABELArrayAdd}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+    \subitem {extensibleLabelArray.c}, \hyperpage{76}
+    \subitem {extensibleLabelArraySW.c}, \hyperpage{77}
+  \item {extensibleLABELArrayDestroy}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+    \subitem {extensibleLabelArray.c}, \hyperpage{76}
+    \subitem {extensibleLabelArraySW.c}, \hyperpage{77}
+  \item {extensibleLABELArrayInit}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+    \subitem {extensibleLabelArray.c}, \hyperpage{76}
+    \subitem {extensibleLabelArraySW.c}, \hyperpage{77}
+  \item {extensibleLabelArraySW.c}
+    \subitem {extensibleLABELArrayAdd}, \hyperpage{77}
+    \subitem {extensibleLABELArrayDestroy}, \hyperpage{77}
+    \subitem {extensibleLABELArrayInit}, \hyperpage{77}
+  \item {ExtensibleSCALARArray}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+  \item {extensibleScalarArray.c}
+    \subitem {extensibleSCALARArrayAdd}, \hyperpage{78}
+    \subitem {extensibleSCALARArrayDestroy}, \hyperpage{78}
+    \subitem {extensibleSCALARArrayInit}, \hyperpage{78}
+  \item {extensibleScalarArray.h}
+    \subitem {ExtensibleSCALARArray}, \hyperpage{79}
+    \subitem {extensibleSCALARArrayAdd}, \hyperpage{79}
+    \subitem {extensibleSCALARArrayDestroy}, \hyperpage{79}
+    \subitem {extensibleSCALARArrayInit}, \hyperpage{79}
+    \subitem {INITSIZE}, \hyperpage{79}
+    \subitem {LABEL}, \hyperpage{79}
+    \subitem {SCALAR}, \hyperpage{79}
+  \item {extensibleSCALARArrayAdd}
+    \subitem {extensibleScalarArray.c}, \hyperpage{78}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+    \subitem {extensibleScalarArraySW.c}, \hyperpage{80}
+  \item {extensibleSCALARArrayDestroy}
+    \subitem {extensibleScalarArray.c}, \hyperpage{78}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+    \subitem {extensibleScalarArraySW.c}, \hyperpage{80}
+  \item {extensibleSCALARArrayInit}
+    \subitem {extensibleScalarArray.c}, \hyperpage{78}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+    \subitem {extensibleScalarArraySW.c}, \hyperpage{80}
+  \item {extensibleScalarArraySW.c}
+    \subitem {extensibleSCALARArrayAdd}, \hyperpage{80}
+    \subitem {extensibleSCALARArrayDestroy}, \hyperpage{80}
+    \subitem {extensibleSCALARArrayInit}, \hyperpage{80}
+
+  \indexspace
+
+  \item {FatalError}
+    \subitem {RlmpiSharedType.h}, \hyperpage{100}
+  \item {firstEdgeVertices}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {flag}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {forprt}
+    \subitem {BlockOrdering.h}, \hyperpage{43}
+  \item {func}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {funcPointer.c}
+    \subitem {funcPointer\_\discretionary {-}{}{}host}, \hyperpage{70}
+    \subitem {funcPointer\_\discretionary {-}{}{}slave}, \hyperpage{70}
+    \subitem {integrate}, \hyperpage{70}
+    \subitem {integrateUnsymm}, \hyperpage{70}
+    \subitem {spMV}, \hyperpage{70}
+    \subitem {spMVUnsymm}, \hyperpage{70}
+  \item {funcPointer.h}
+    \subitem {funcPointer\_\discretionary {-}{}{}host}, \hyperpage{71}
+    \subitem {funcPointer\_\discretionary {-}{}{}slave}, \hyperpage{71}
+    \subitem {PF}, \hyperpage{71}
+  \item {funcPointer\_\discretionary {-}{}{}host}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {funcPointer.h}, \hyperpage{71}
+  \item {funcPointer\_\discretionary {-}{}{}slave}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {funcPointer.h}, \hyperpage{71}
+
+  \indexspace
+
+  \item {generate\_\discretionary {-}{}{}data}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}un\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}dst\_\discretionary {-}{}{}sequence}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}position}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+  \item {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+    \subitem {RlmpiInitializer.cxx}, \hyperpage{98}
+  \item {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+    \subitem {RlmpiInitializer.cxx}, \hyperpage{98}
+  \item {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+    \subitem {RlmpiInitializer.cxx}, \hyperpage{98}
+  \item {generate\_\discretionary {-}{}{}schedule}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {generate\_\discretionary {-}{}{}schedule\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {generate\_\discretionary {-}{}{}schedule\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {generate\_\discretionary {-}{}{}table}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {generate\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {generate\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {get\_\discretionary {-}{}{}destination\_\discretionary {-}{}{}pool}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {getAccuStartVertexNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getAccuVertexEdgeNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getBlockStarts}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{18}
+  \item {getBlockStartsUnsymm}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getc\_\discretionary {-}{}{}schedules}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {getc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {getCpeBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getEdgeMap}
+    \subitem {Iterator}, \hyperpage{12}
+  \item {getEdgeNumber}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getEndVertices}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getFirstEdgeVertices}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getMaxCells}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getMaxEdges}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getMaxEdgesUnsymm}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getMaxXNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getMshBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getMtxBlockNum}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {getr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {getrputc\_\discretionary {-}{}{}schedules}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {getStartVertexNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getStartVertices}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getSystemTime}
+    \subitem {timer.h}, \hyperpage{62}
+  \item {getTopology}
+    \subitem {Iterator}, \hyperpage{12}
+  \item {getVertexEdgeNumbers}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getVertexMap}
+    \subitem {Iterator}, \hyperpage{12}
+  \item {getVertexNeighbours}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getVertexNumber}
+    \subitem {Topology}, \hyperpage{36}
+  \item {getVertexStarts}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+
+  \indexspace
+
+  \item {hmarker}
+    \subitem {metis.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {iabs}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {IDX\_\discretionary {-}{}{}MAX}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {IDX\_\discretionary {-}{}{}MIN}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {idx\_\discretionary {-}{}{}t}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {IDXTYPEWIDTH}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {indM}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {indP}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {init}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {initOwnNeiSendList}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+  \item {initOwnNeiSendListV2E}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}host.c}, \hyperpage{87}
+  \item {initSendList}
+    \subitem {register.C}, \hyperpage{91}
+    \subitem {register.H}, \hyperpage{92}
+  \item {INITSIZE}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+  \item {initTable}
+    \subitem {register.C}, \hyperpage{91}
+    \subitem {register.H}, \hyperpage{92}
+    \subitem {rlmpi.c}, \hyperpage{94}
+  \item {int16LDM}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {int8LDM}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {integrate}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {userFunc\_\discretionary {-}{}{}host.c}, \hyperpage{72}
+    \subitem {userFunc\_\discretionary {-}{}{}host.h}, \hyperpage{73}
+    \subitem {userFunc\_\discretionary {-}{}{}slave.c}, \hyperpage{74}
+    \subitem {userFunc\_\discretionary {-}{}{}slave.h}, \hyperpage{75}
+  \item {integrateUnsymm}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}host.c}, \hyperpage{83}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}host.h}, \hyperpage{84}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}slave.c}, \hyperpage{85}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}slave.h}, \hyperpage{86}
+  \item {iperm}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {isXExist}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {Iterator}, \hyperpage{11}
+    \subitem {$\sim $Iterator}, \hyperpage{12}
+    \subitem {\_\discretionary {-}{}{}edgeMap}, \hyperpage{13}
+    \subitem {\_\discretionary {-}{}{}topo}, \hyperpage{13}
+    \subitem {\_\discretionary {-}{}{}vertexMap}, \hyperpage{13}
+    \subitem {edge2VertexIteration}, \hyperpage{12}
+    \subitem {getEdgeMap}, \hyperpage{12}
+    \subitem {getTopology}, \hyperpage{12}
+    \subitem {getVertexMap}, \hyperpage{12}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {reformInnerTopology}, \hyperpage{12}
+    \subitem {reorderEdgeData}, \hyperpage{12}
+    \subitem {reorderEdgeDataUnsymm}, \hyperpage{12}
+    \subitem {reorderEdgesFromEdge}, \hyperpage{12}
+    \subitem {reorderEdgesFromVertex}, \hyperpage{12}
+    \subitem {reorderVertexData}, \hyperpage{12}
+    \subitem {vertex2EdgeIteration}, \hyperpage{12}
+  \item {iterator/iterator.H}, \hyperpage{39}
+  \item {iterator/iterator\_\discretionary {-}{}{}struct.h}, \hyperpage{40}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.c}, \hyperpage{41}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/BlockOrdering.h}, \hyperpage{42}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/BlockOrderingSW.c}, \hyperpage{45}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/BOrderUtils.c}, \hyperpage{46}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/BOrderUtilsSW.c}, \hyperpage{48}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/metis.h}, \hyperpage{52}
+  \item {iterator/multiLevelBlockIterator/BlockOrdering/timer.h}, \hyperpage{62}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{63}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\discretionary {-}{}{}host.h}, \hyperpage{66}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{67}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/edge2VertexIter\_\discretionary {-}{}{}slave.h}, \hyperpage{69}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/funcPointer.c}, \hyperpage{70}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/funcPointer.h}, \hyperpage{71}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/userFunc\_\discretionary {-}{}{}host.c}, \hyperpage{72}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/userFunc\_\discretionary {-}{}{}host.h}, \hyperpage{73}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/userFunc\_\discretionary {-}{}{}slave.c}, \hyperpage{74}
+  \item {iterator/multiLevelBlockIterator/edge2VertexIter/userFunc\_\discretionary {-}{}{}slave.h}, \hyperpage{75}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleLabelArray.c}, \hyperpage{76}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleLabelArraySW.c}, \hyperpage{77}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleScalarArray.c}, \hyperpage{78}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleScalarArray.h}, \hyperpage{79}
+  \item {iterator/multiLevelBlockIterator/extensibleArray/extensibleScalarArraySW.c}, \hyperpage{80}
+  \item {iterator/multiLevelBlockIterator/multiLevelBlockIterator.C}, \hyperpage{81}
+  \item {iterator/multiLevelBlockIterator/multiLevelBlockIterator.H}, \hyperpage{82}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm\_\discretionary {-}{}{}host.c}, \hyperpage{83}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm\_\discretionary {-}{}{}host.h}, \hyperpage{84}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm\_\discretionary {-}{}{}slave.c}, \hyperpage{85}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/userFuncUnsymm\_\discretionary {-}{}{}slave.h}, \hyperpage{86}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter\_\discretionary {-}{}{}host.c}, \hyperpage{87}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter\_\discretionary {-}{}{}host.h}, \hyperpage{88}
+  \item {iterator/multiLevelBlockIterator/vertex2EdgeIter/vertex2EdgeIter\_\discretionary {-}{}{}slave.c}, \hyperpage{89}
+
+  \indexspace
+
+  \item {k1}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {k2}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+
+  \indexspace
+
+  \item {LABEL}
+    \subitem {BlockOrdering.h}, \hyperpage{43}
+    \subitem {BlockOrdering/extensibleLabelArray.h}, \hyperpage{50}
+    \subitem {extensibleArray/extensibleLabelArray.h}, \hyperpage{51}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+  \item {largerest}
+    \subitem {rlmpi.c}, \hyperpage{94}
+  \item {load\_\discretionary {-}{}{}reg\_\discretionary {-}{}{}mpi\_\discretionary {-}{}{}init\_\discretionary {-}{}{}data}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {LOG}
+    \subitem {BlockOrdering.c}, \hyperpage{41}
+    \subitem {BlockOrderingSW.c}, \hyperpage{45}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {lower}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cxx}, \hyperpage{90}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {main.cxx}
+    \subitem {main}, \hyperpage{90}
+  \item {MAX}
+    \subitem {multiLevelBlockIterator.C}, \hyperpage{81}
+  \item {MAX\_\discretionary {-}{}{}LEVELS}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {maxCell}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {maxCells}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {maxEdge}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {maxEdges}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {MaxNCycle}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {RlmpiSharedType.h}, \hyperpage{100}
+  \item {maxNdst}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {MaxNElm}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {maxNPack}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {MaxNPackages}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {maxSize}
+    \subitem {struct\_\discretionary {-}{}{}extensibleLABELArray}, \hyperpage{29}
+    \subitem {struct\_\discretionary {-}{}{}extensibleSCALARArray}, \hyperpage{30}
+  \item {maxXNum}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {mctype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {mdbglvl\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {metis.h}
+    \subitem {adjncy}, \hyperpage{61}
+    \subitem {adjwgt}, \hyperpage{61}
+    \subitem {edgecut}, \hyperpage{61}
+    \subitem {eind}, \hyperpage{61}
+    \subitem {epart}, \hyperpage{61}
+    \subitem {eptr}, \hyperpage{61}
+    \subitem {hmarker}, \hyperpage{61}
+    \subitem {iabs}, \hyperpage{56}
+    \subitem {IDX\_\discretionary {-}{}{}MAX}, \hyperpage{56}
+    \subitem {IDX\_\discretionary {-}{}{}MIN}, \hyperpage{56}
+    \subitem {idx\_\discretionary {-}{}{}t}, \hyperpage{56}
+    \subitem {IDXTYPEWIDTH}, \hyperpage{56}
+    \subitem {iperm}, \hyperpage{61}
+    \subitem {mctype\_\discretionary {-}{}{}et}, \hyperpage{56}
+    \subitem {mdbglvl\_\discretionary {-}{}{}et}, \hyperpage{57}
+    \subitem {METIS\_\-CTYPE\_\-RM}, \hyperpage{57}
+    \subitem {METIS\_\-CTYPE\_\-SHEM}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-COARSEN}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-CONNINFO}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-CONTIGINFO}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-INFO}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-IPART}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-MEMORY}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-MOVEINFO}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-REFINE}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-SEPINFO}, \hyperpage{57}
+    \subitem {METIS\_\-DBG\_\-TIME}, \hyperpage{57}
+    \subitem {METIS\_\-ERROR}, \hyperpage{59}
+    \subitem {METIS\_\-ERROR\_\-INPUT}, \hyperpage{59}
+    \subitem {METIS\_\-ERROR\_\-MEMORY}, \hyperpage{59}
+    \subitem {METIS\_\-GTYPE\_\-DUAL}, \hyperpage{57}
+    \subitem {METIS\_\-GTYPE\_\-NODAL}, \hyperpage{57}
+    \subitem {METIS\_\-IPTYPE\_\-EDGE}, \hyperpage{57}
+    \subitem {METIS\_\-IPTYPE\_\-GROW}, \hyperpage{57}
+    \subitem {METIS\_\-IPTYPE\_\-METISRB}, \hyperpage{57}
+    \subitem {METIS\_\-IPTYPE\_\-NODE}, \hyperpage{57}
+    \subitem {METIS\_\-IPTYPE\_\-RANDOM}, \hyperpage{57}
+    \subitem {METIS\_\-OBJTYPE\_\-CUT}, \hyperpage{58}
+    \subitem {METIS\_\-OBJTYPE\_\-NODE}, \hyperpage{58}
+    \subitem {METIS\_\-OBJTYPE\_\-VOL}, \hyperpage{58}
+    \subitem {METIS\_\-OK}, \hyperpage{59}
+    \subitem {METIS\_\-OP\_\-KMETIS}, \hyperpage{59}
+    \subitem {METIS\_\-OP\_\-OMETIS}, \hyperpage{59}
+    \subitem {METIS\_\-OP\_\-PMETIS}, \hyperpage{59}
+    \subitem {METIS\_\-OPTION\_\-BALANCE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-CCORDER}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-COMPRESS}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-CONTIG}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-CTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-DBGLVL}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-GTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-HELP}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-IPTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-MINCONN}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NCOMMON}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NCUTS}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NITER}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NO2HOP}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NOOUTPUT}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NSEPS}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-NUMBERING}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-OBJTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-PFACTOR}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-PTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-RTYPE}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-SEED}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-TPWGTS}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-UBVEC}, \hyperpage{58}
+    \subitem {METIS\_\-OPTION\_\-UFACTOR}, \hyperpage{58}
+    \subitem {METIS\_\-PTYPE\_\-KWAY}, \hyperpage{59}
+    \subitem {METIS\_\-PTYPE\_\-RB}, \hyperpage{59}
+    \subitem {METIS\_\-RTYPE\_\-FM}, \hyperpage{59}
+    \subitem {METIS\_\-RTYPE\_\-GREEDY}, \hyperpage{59}
+    \subitem {METIS\_\-RTYPE\_\-SEP1SIDED}, \hyperpage{59}
+    \subitem {METIS\_\-RTYPE\_\-SEP2SIDED}, \hyperpage{59}
+    \subitem {METIS\_\discretionary {-}{}{}API}, \hyperpage{56}, \hyperpage{61}
+    \subitem {METIS\_\discretionary {-}{}{}NOPTIONS}, \hyperpage{56}
+    \subitem {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}MAJOR}, \hyperpage{56}
+    \subitem {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}MINOR}, \hyperpage{56}
+    \subitem {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}SUBMINOR}, \hyperpage{56}
+    \subitem {mgtype\_\discretionary {-}{}{}et}, \hyperpage{57}
+    \subitem {miptype\_\discretionary {-}{}{}et}, \hyperpage{57}
+    \subitem {mobjtype\_\discretionary {-}{}{}et}, \hyperpage{57}
+    \subitem {moptions\_\discretionary {-}{}{}et}, \hyperpage{58}
+    \subitem {moptype\_\discretionary {-}{}{}et}, \hyperpage{58}
+    \subitem {mptype\_\discretionary {-}{}{}et}, \hyperpage{59}
+    \subitem {mrtype\_\discretionary {-}{}{}et}, \hyperpage{59}
+    \subitem {ncommon}, \hyperpage{61}
+    \subitem {ncon}, \hyperpage{61}
+    \subitem {nn}, \hyperpage{61}
+    \subitem {npart}, \hyperpage{61}
+    \subitem {nparts}, \hyperpage{61}
+    \subitem {npes}, \hyperpage{61}
+    \subitem {numflag}, \hyperpage{61}
+    \subitem {objval}, \hyperpage{61}
+    \subitem {options}, \hyperpage{61}
+    \subitem {part}, \hyperpage{61}
+    \subitem {perm}, \hyperpage{61}
+    \subitem {PRIDX}, \hyperpage{56}
+    \subitem {PRREAL}, \hyperpage{56}
+    \subitem {r\_\discretionary {-}{}{}adjncy}, \hyperpage{61}
+    \subitem {r\_\discretionary {-}{}{}xadj}, \hyperpage{61}
+    \subitem {rabs}, \hyperpage{56}
+    \subitem {REAL\_\discretionary {-}{}{}EPSILON}, \hyperpage{56}
+    \subitem {REAL\_\discretionary {-}{}{}MAX}, \hyperpage{56}
+    \subitem {REAL\_\discretionary {-}{}{}MIN}, \hyperpage{56}
+    \subitem {real\_\discretionary {-}{}{}t}, \hyperpage{56}
+    \subitem {REALEQ}, \hyperpage{56}
+    \subitem {REALTYPEWIDTH}, \hyperpage{56}
+    \subitem {rstatus\_\discretionary {-}{}{}et}, \hyperpage{59}
+    \subitem {SCIDX}, \hyperpage{56}
+    \subitem {SCREAL}, \hyperpage{56}
+    \subitem {sepsize}, \hyperpage{61}
+    \subitem {sizes}, \hyperpage{61}
+    \subitem {strtoidx}, \hyperpage{56}
+    \subitem {strtoreal}, \hyperpage{56}
+    \subitem {tpwgts}, \hyperpage{61}
+    \subitem {ubfactor}, \hyperpage{61}
+    \subitem {ubvec}, \hyperpage{61}
+    \subitem {vsize}, \hyperpage{61}
+    \subitem {vwgt}, \hyperpage{61}
+    \subitem {where}, \hyperpage{61}
+    \subitem {xadj}, \hyperpage{61}
+  \item {METIS\_\-CTYPE\_\-RM}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-CTYPE\_\-SHEM}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-COARSEN}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-CONNINFO}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-CONTIGINFO}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-INFO}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-IPART}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-MEMORY}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-MOVEINFO}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-REFINE}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-SEPINFO}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-DBG\_\-TIME}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-ERROR}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-ERROR\_\-INPUT}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-ERROR\_\-MEMORY}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-GTYPE\_\-DUAL}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-GTYPE\_\-NODAL}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-IPTYPE\_\-EDGE}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-IPTYPE\_\-GROW}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-IPTYPE\_\-METISRB}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-IPTYPE\_\-NODE}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-IPTYPE\_\-RANDOM}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {METIS\_\-OBJTYPE\_\-CUT}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OBJTYPE\_\-NODE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OBJTYPE\_\-VOL}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OK}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-OP\_\-KMETIS}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-OP\_\-OMETIS}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-OP\_\-PMETIS}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-OPTION\_\-BALANCE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-CCORDER}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-COMPRESS}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-CONTIG}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-CTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-DBGLVL}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-GTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-HELP}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-IPTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-MINCONN}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NCOMMON}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NCUTS}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NITER}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NO2HOP}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NOOUTPUT}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NSEPS}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-NUMBERING}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-OBJTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-PFACTOR}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-PTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-RTYPE}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-SEED}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-TPWGTS}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-UBVEC}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-OPTION\_\-UFACTOR}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {METIS\_\-PTYPE\_\-KWAY}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-PTYPE\_\-RB}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-RTYPE\_\-FM}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-RTYPE\_\-GREEDY}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-RTYPE\_\-SEP1SIDED}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\-RTYPE\_\-SEP2SIDED}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {METIS\_\discretionary {-}{}{}API}
+    \subitem {metis.h}, \hyperpage{56}, \hyperpage{61}
+  \item {METIS\_\discretionary {-}{}{}NOPTIONS}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}MAJOR}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}MINOR}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {METIS\_\discretionary {-}{}{}VER\_\discretionary {-}{}{}SUBMINOR}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {mgtype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {miptype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {MLB\_\discretionary {-}{}{}constructMetisCSR}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}find}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}generateCellID}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}graph}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+  \item {MLB\_\discretionary {-}{}{}metis\_\discretionary {-}{}{}decompose}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}Multilevel\_\discretionary {-}{}{}ordering}
+    \subitem {BlockOrdering.c}, \hyperpage{41}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BlockOrderingSW.c}, \hyperpage{45}
+  \item {MLB\_\discretionary {-}{}{}offsetEdges}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}ordering}
+    \subitem {BlockOrdering.c}, \hyperpage{41}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BlockOrderingSW.c}, \hyperpage{45}
+  \item {MLB\_\discretionary {-}{}{}postLABEL}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}postSCALAR}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLB\_\discretionary {-}{}{}quickSort}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+    \subitem {BOrderUtils.c}, \hyperpage{47}
+    \subitem {BOrderUtilsSW.c}, \hyperpage{49}
+  \item {MLBFunParameters}, \hyperpage{14}
+    \subitem {count}, \hyperpage{14}
+    \subitem {edgeData}, \hyperpage{14}
+    \subitem {flag}, \hyperpage{14}
+    \subitem {k1}, \hyperpage{14}
+    \subitem {k2}, \hyperpage{14}
+    \subitem {tArrays}, \hyperpage{14}
+    \subitem {vertexData}, \hyperpage{14}
+  \item {MLBParameters}, \hyperpage{15}
+    \subitem {blockStarts}, \hyperpage{16}
+    \subitem {blockStartsUnsymm}, \hyperpage{16}
+    \subitem {cpeBlockNum}, \hyperpage{16}
+    \subitem {firstEdgeVertices}, \hyperpage{16}
+    \subitem {maxCells}, \hyperpage{16}
+    \subitem {maxEdges}, \hyperpage{16}
+    \subitem {maxXNum}, \hyperpage{16}
+    \subitem {mshBlockNum}, \hyperpage{16}
+    \subitem {mtxBlockNum}, \hyperpage{16}
+    \subitem {neighbor}, \hyperpage{16}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}host}, \hyperpage{16}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}slave}, \hyperpage{16}
+    \subitem {owner}, \hyperpage{16}
+    \subitem {vertexNeighbor}, \hyperpage{16}
+    \subitem {vertexStarts}, \hyperpage{16}
+  \item {MLBParas}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {MLBReorder}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {mobjtype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{57}
+  \item {moptions\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {moptype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{58}
+  \item {mpi\_\discretionary {-}{}{}mask}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {mptype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {mrtype\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{59}
+  \item {mshBlockNum}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {mtxBlockNum}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {MultiLevelBlockIterator}, \hyperpage{17}
+    \subitem {$\sim $MultiLevelBlockIterator}, \hyperpage{18}
+    \subitem {\_\discretionary {-}{}{}blockStarts}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}blockStartsUnsymm}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}cpeBlockNum}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}firstEdgeVertices}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}maxCells}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}maxEdges}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}maxEdgesUnsymm}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}maxXNum}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}mshBlockNum}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}mtxBlockNum}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}neighbor}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}owner}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}postEdgeOrder}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}postVertexOrder}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}vertexNeighbours}, \hyperpage{20}
+    \subitem {\_\discretionary {-}{}{}vertexStarts}, \hyperpage{20}
+    \subitem {edge2VertexIteration}, \hyperpage{18}
+    \subitem {getBlockStarts}, \hyperpage{18}
+    \subitem {getBlockStartsUnsymm}, \hyperpage{19}
+    \subitem {getCpeBlockNum}, \hyperpage{19}
+    \subitem {getMaxCells}, \hyperpage{19}
+    \subitem {getMaxEdges}, \hyperpage{19}
+    \subitem {getMaxEdgesUnsymm}, \hyperpage{19}
+    \subitem {getMaxXNum}, \hyperpage{19}
+    \subitem {getMshBlockNum}, \hyperpage{19}
+    \subitem {getMtxBlockNum}, \hyperpage{19}
+    \subitem {getVertexStarts}, \hyperpage{19}
+    \subitem {MLBReorder}, \hyperpage{19}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{18}
+    \subitem {reorderEdgeArrayUnsymm}, \hyperpage{19}
+    \subitem {reorderEdgeData}, \hyperpage{19}
+    \subitem {reorderEdgeDataUnsymm}, \hyperpage{19}
+    \subitem {reorderEdgesFromEdge}, \hyperpage{19}
+    \subitem {reorderEdgesFromVertex}, \hyperpage{19}
+    \subitem {reorderVertexArray}, \hyperpage{19}
+    \subitem {reorderVertexData}, \hyperpage{19}
+    \subitem {vertex2EdgeIteration}, \hyperpage{19}
+  \item {multiLevelBlockIterator.C}
+    \subitem {MAX}, \hyperpage{81}
+  \item {myId}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}slave.c}, \hyperpage{89}
+
+  \indexspace
+
+  \item {ncommon}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {ncon}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {nCycle}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {nCycleSameCol}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {nCycleSameRow}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {neighbor}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {nGETC}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nGetcSameCol}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nGETR\_\discretionary {-}{}{}PUTC}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nGetrSameRow}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nn}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {non\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {NONZERONUM}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {not\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}dst}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {not\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}Ndata}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {npart}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {nparts}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {npes}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {nPutcSameCol}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nPUTR}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nPutrSameRow}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {nRecReg}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {nSameCol}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {nSameRow}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {nSendReg}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {nThread}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {num}
+    \subitem {Arrays}, \hyperpage{9}
+  \item {NumberToString}
+    \subitem {RlmpiInitializer.cxx}, \hyperpage{98}
+  \item {numflag}
+    \subitem {metis.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {objval}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {operator=}
+    \subitem {Topology}, \hyperpage{36}
+  \item {operatorFunPointer\_\discretionary {-}{}{}h}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+  \item {operatorFunPointer\_\discretionary {-}{}{}host}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {operatorFunPointer\_\discretionary {-}{}{}s}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {operatorFunPointer\_\discretionary {-}{}{}slave}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {options}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {owner}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+  \item {ownNeiSendList}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+
+  \indexspace
+
+  \item {package}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {part}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {perm}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {PF}
+    \subitem {funcPointer.h}, \hyperpage{71}
+  \item {PRIDX}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {printTime}
+    \subitem {BlockOrdering.h}, \hyperpage{43}
+  \item {PRREAL}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {putc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {putr\_\discretionary {-}{}{}schedules}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {putr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+
+  \indexspace
+
+  \item {r\_\discretionary {-}{}{}adjncy}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {r\_\discretionary {-}{}{}xadj}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {rabs}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {readFile}
+    \subitem {test.cpp}, \hyperpage{104}
+  \item {REAL\_\discretionary {-}{}{}EPSILON}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {REAL\_\discretionary {-}{}{}MAX}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {REAL\_\discretionary {-}{}{}MIN}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {real\_\discretionary {-}{}{}t}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {REALEQ}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {REALTYPEWIDTH}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {reformInnerTopology}
+    \subitem {Iterator}, \hyperpage{12}
+  \item {REG\_\discretionary {-}{}{}GETC}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}GETR}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}PUTC}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}PUTR}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETC}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETR}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETR\_\discretionary {-}{}{}PUTC}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}PUTC}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}PUTR}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {register.C}
+    \subitem {destroyTable}, \hyperpage{91}
+    \subitem {initSendList}, \hyperpage{91}
+    \subitem {initTable}, \hyperpage{91}
+    \subitem {slave\_\discretionary {-}{}{}initTable}, \hyperpage{91}
+  \item {register.H}
+    \subitem {destroyTable}, \hyperpage{92}
+    \subitem {initSendList}, \hyperpage{92}
+    \subitem {initTable}, \hyperpage{92}
+    \subitem {schedule\_\discretionary {-}{}{}data}, \hyperpage{92}
+  \item {removeEdge}
+    \subitem {Topology}, \hyperpage{36}
+  \item {removeVertex}
+    \subitem {Topology}, \hyperpage{36}
+  \item {reorder\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {reorder\_\discretionary {-}{}{}packages2}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {reorder\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {reorder\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {reorderEdgeArrayUnsymm}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderEdgeData}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderEdgeDataUnsymm}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderEdgesFromEdge}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderEdgesFromVertex}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderVertexArray}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {reorderVertexData}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {res\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {res\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {res\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {res\_\discretionary {-}{}{}pos}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {RL\_\discretionary {-}{}{}MPI/main.cxx}, \hyperpage{90}
+  \item {RL\_\discretionary {-}{}{}MPI/register.C}, \hyperpage{91}
+  \item {RL\_\discretionary {-}{}{}MPI/register.H}, \hyperpage{92}
+  \item {RL\_\discretionary {-}{}{}MPI/rlmpi.c}, \hyperpage{93}
+  \item {RL\_\discretionary {-}{}{}MPI/rlmpi.h}, \hyperpage{95}
+  \item {RL\_\discretionary {-}{}{}MPI/RlmpiInitializer.cxx}, \hyperpage{98}
+  \item {RL\_\discretionary {-}{}{}MPI/RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {RL\_\discretionary {-}{}{}MPI/RlmpiSharedType.h}, \hyperpage{100}
+  \item {RL\_\discretionary {-}{}{}MPI/test.c}, \hyperpage{102}
+  \item {rlmpi.c}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{94}
+    \subitem {\_\discretionary {-}{}{}rPacks}, \hyperpage{94}
+    \subitem {\_\discretionary {-}{}{}sPacks}, \hyperpage{94}
+    \subitem {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{94}
+    \subitem {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{94}
+    \subitem {initTable}, \hyperpage{94}
+    \subitem {largerest}, \hyperpage{94}
+    \subitem {load\_\discretionary {-}{}{}reg\_\discretionary {-}{}{}mpi\_\discretionary {-}{}{}init\_\discretionary {-}{}{}data}, \hyperpage{94}
+    \subitem {sort\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}package}, \hyperpage{94}
+    \subitem {sunway\_\discretionary {-}{}{}check\_\discretionary {-}{}{}memory\_\discretionary {-}{}{}left}, \hyperpage{94}
+    \subitem {transform\_\discretionary {-}{}{}data}, \hyperpage{94}
+    \subitem {TransformPackage3}, \hyperpage{94}
+    \subitem {TransformSameColumnPackage}, \hyperpage{94}
+    \subitem {TransformSameRowPackage}, \hyperpage{94}
+  \item {rlmpi.h}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}get\_\discretionary {-}{}{}reply}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}nCycle}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}nCycleSameCol}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}nCycleSameRow}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}put\_\discretionary {-}{}{}reply}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}rPacks}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}sPacks}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}sPacks\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}table\_\discretionary {-}{}{}ldm}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}total\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}pcg}, \hyperpage{97}
+    \subitem {\_\discretionary {-}{}{}total\_\discretionary {-}{}{}send\_\discretionary {-}{}{}pcg}, \hyperpage{97}
+    \subitem {ALLSYN}, \hyperpage{97}
+    \subitem {COL}, \hyperpage{97}
+    \subitem {COLSYN}, \hyperpage{97}
+    \subitem {load\_\discretionary {-}{}{}reg\_\discretionary {-}{}{}mpi\_\discretionary {-}{}{}init\_\discretionary {-}{}{}data}, \hyperpage{97}
+    \subitem {MaxNCycle}, \hyperpage{97}
+    \subitem {MaxNElm}, \hyperpage{97}
+    \subitem {MaxNPackages}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}GETC}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}GETR}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}PUTC}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}PUTR}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETC}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETR}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}GETR\_\discretionary {-}{}{}PUTC}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}PUTC}, \hyperpage{97}
+    \subitem {REG\_\discretionary {-}{}{}SIMD\_\discretionary {-}{}{}PUTR}, \hyperpage{97}
+    \subitem {ROW}, \hyperpage{97}
+    \subitem {ROWSYN}, \hyperpage{97}
+    \subitem {TransformPackage3}, \hyperpage{97}
+    \subitem {TransformSameColumnPackage}, \hyperpage{97}
+    \subitem {TransformSameRowPackage}, \hyperpage{97}
+  \item {RlmpiInitializer}, \hyperpage{21}
+    \subitem {all\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {all\_\discretionary {-}{}{}res\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {assemble\_\discretionary {-}{}{}packages}, \hyperpage{23}
+    \subitem {copyinfo}, \hyperpage{23}
+    \subitem {destination\_\discretionary {-}{}{}pool}, \hyperpage{26}
+    \subitem {dst\_\discretionary {-}{}{}sequence}, \hyperpage{26}
+    \subitem {generate\_\discretionary {-}{}{}data}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}data\_\discretionary {-}{}{}un\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}dst\_\discretionary {-}{}{}sequence}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}position}, \hyperpage{23}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}schedule}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}schedule\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}schedule\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}table}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{24}
+    \subitem {generate\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{24}
+    \subitem {get\_\discretionary {-}{}{}destination\_\discretionary {-}{}{}pool}, \hyperpage{24}
+    \subitem {getc\_\discretionary {-}{}{}schedules}, \hyperpage{26}
+    \subitem {getc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{26}
+    \subitem {getr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{26}
+    \subitem {getrputc\_\discretionary {-}{}{}schedules}, \hyperpage{26}
+    \subitem {init}, \hyperpage{24}
+    \subitem {maxNdst}, \hyperpage{26}
+    \subitem {maxNPack}, \hyperpage{26}
+    \subitem {non\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {not\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}dst}, \hyperpage{26}
+    \subitem {not\_\discretionary {-}{}{}col\_\discretionary {-}{}{}row\_\discretionary {-}{}{}Ndata}, \hyperpage{26}
+    \subitem {nRecReg}, \hyperpage{26}
+    \subitem {nSameCol}, \hyperpage{26}
+    \subitem {nSameRow}, \hyperpage{26}
+    \subitem {nSendReg}, \hyperpage{26}
+    \subitem {nThread}, \hyperpage{26}
+    \subitem {packages}, \hyperpage{26}
+    \subitem {putc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{26}
+    \subitem {putr\_\discretionary {-}{}{}schedules}, \hyperpage{26}
+    \subitem {putr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{26}
+    \subitem {reorder\_\discretionary {-}{}{}packages}, \hyperpage{24}
+    \subitem {reorder\_\discretionary {-}{}{}packages2}, \hyperpage{24}
+    \subitem {reorder\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{24}
+    \subitem {reorder\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{24}
+    \subitem {res\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {res\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{26}
+    \subitem {res\_\discretionary {-}{}{}packages\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{26}
+    \subitem {RlmpiInitializer}, \hyperpage{23}
+    \subitem {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}dst}, \hyperpage{26}
+    \subitem {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}Ndata}, \hyperpage{26}
+    \subitem {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}dst}, \hyperpage{26}
+    \subitem {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}Ndata}, \hyperpage{26}
+    \subitem {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}packages}, \hyperpage{26}
+    \subitem {table}, \hyperpage{26}
+    \subitem {transpose\_\discretionary {-}{}{}matrix}, \hyperpage{24}
+    \subitem {write\_\discretionary {-}{}{}packages}, \hyperpage{24}
+    \subitem {write\_\discretionary {-}{}{}schedule}, \hyperpage{24}
+  \item {RlmpiInitializer.cxx}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table}, \hyperpage{98}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{98}
+    \subitem {generate\_\discretionary {-}{}{}register\_\discretionary {-}{}{}transform\_\discretionary {-}{}{}table\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{98}
+    \subitem {NumberToString}, \hyperpage{98}
+  \item {RlmpiInitializer.hxx}
+    \subitem {COL}, \hyperpage{99}
+    \subitem {DISP}, \hyperpage{99}
+    \subitem {DISP2}, \hyperpage{99}
+    \subitem {ROW}, \hyperpage{99}
+    \subitem {timestamp}, \hyperpage{99}
+  \item {RlmpiSharedType.h}
+    \subitem {dReal}, \hyperpage{101}
+    \subitem {FatalError}, \hyperpage{100}
+    \subitem {int16LDM}, \hyperpage{101}
+    \subitem {int8LDM}, \hyperpage{101}
+    \subitem {MaxNCycle}, \hyperpage{100}
+    \subitem {MaxNElm}, \hyperpage{101}
+    \subitem {MaxNPackages}, \hyperpage{101}
+    \subitem {mpi\_\discretionary {-}{}{}mask}, \hyperpage{101}
+    \subitem {sReal}, \hyperpage{101}
+    \subitem {thread\_\discretionary {-}{}{}mask}, \hyperpage{101}
+    \subitem {ThreadID}, \hyperpage{101}
+    \subitem {USE\_\discretionary {-}{}{}DYNAMIC\_\discretionary {-}{}{}MEM}, \hyperpage{101}
+    \subitem {USE\_\discretionary {-}{}{}DYNAMIC\_\discretionary {-}{}{}MEM\_\discretionary {-}{}{}INDICE}, \hyperpage{101}
+  \item {rNeighbor}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {ROW}
+    \subitem {rlmpi.h}, \hyperpage{97}
+    \subitem {RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {rOwner}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {ROWSYN}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {rstatus\_\discretionary {-}{}{}et}
+    \subitem {metis.h}, \hyperpage{59}
+
+  \indexspace
+
+  \item {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}dst}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}Ndata}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {same\_\discretionary {-}{}{}col\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}dst}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}Ndata}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {same\_\discretionary {-}{}{}row\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+  \item {SCALAR}
+    \subitem {BlockOrdering.h}, \hyperpage{43}
+    \subitem {extensibleScalarArray.h}, \hyperpage{79}
+  \item {Schedule}, \hyperpage{28}
+    \subitem {destroy}, \hyperpage{28}
+    \subitem {getc\_\discretionary {-}{}{}schedules}, \hyperpage{28}
+    \subitem {getc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{28}
+    \subitem {getr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{28}
+    \subitem {getrputc\_\discretionary {-}{}{}schedules}, \hyperpage{28}
+    \subitem {nCycle}, \hyperpage{28}
+    \subitem {nCycleSameCol}, \hyperpage{28}
+    \subitem {nCycleSameRow}, \hyperpage{28}
+    \subitem {package}, \hyperpage{28}
+    \subitem {putc\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}col}, \hyperpage{28}
+    \subitem {putr\_\discretionary {-}{}{}schedules}, \hyperpage{28}
+    \subitem {putr\_\discretionary {-}{}{}schedules\_\discretionary {-}{}{}same\_\discretionary {-}{}{}row}, \hyperpage{28}
+    \subitem {table}, \hyperpage{28}
+  \item {schedule\_\discretionary {-}{}{}data}
+    \subitem {register.H}, \hyperpage{92}
+  \item {SCIDX}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {SCREAL}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {sepsize}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {size}
+    \subitem {struct\_\discretionary {-}{}{}extensibleLABELArray}, \hyperpage{29}
+    \subitem {struct\_\discretionary {-}{}{}extensibleSCALARArray}, \hyperpage{30}
+  \item {sizes}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {SLAVE\_\discretionary {-}{}{}FUNC}
+    \subitem {userFunc\_\discretionary {-}{}{}slave.h}, \hyperpage{75}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}slave.h}, \hyperpage{86}
+  \item {slave\_\discretionary {-}{}{}initTable}
+    \subitem {register.C}, \hyperpage{91}
+  \item {slaveUtils.c}
+    \subitem {athread\_\discretionary {-}{}{}wait}, \hyperpage{105}
+    \subitem {DMA\_\discretionary {-}{}{}Get}, \hyperpage{105}
+    \subitem {DMA\_\discretionary {-}{}{}IGet}, \hyperpage{105}
+    \subitem {DMA\_\discretionary {-}{}{}IPut}, \hyperpage{105}
+    \subitem {DMA\_\discretionary {-}{}{}Put}, \hyperpage{105}
+    \subitem {DMA\_\discretionary {-}{}{}Wait}, \hyperpage{105}
+  \item {slaveUtils.h}
+    \subitem {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}GET\_\discretionary {-}{}{}RUN}, \hyperpage{106}
+    \subitem {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}GET\_\discretionary {-}{}{}SET}, \hyperpage{106}
+    \subitem {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}PUT\_\discretionary {-}{}{}RUN}, \hyperpage{106}
+    \subitem {A\_\discretionary {-}{}{}DMA\_\discretionary {-}{}{}PUT\_\discretionary {-}{}{}SET}, \hyperpage{107}
+    \subitem {ALIGNED}, \hyperpage{107}
+    \subitem {athread\_\discretionary {-}{}{}wait}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}Get}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}IGet}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}IPut}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}Put}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}Status}, \hyperpage{107}
+    \subitem {DMA\_\discretionary {-}{}{}Wait}, \hyperpage{107}
+  \item {sNeighbor}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {sort\_\discretionary {-}{}{}recv\_\discretionary {-}{}{}package}
+    \subitem {rlmpi.c}, \hyperpage{94}
+  \item {sortAndCompress}
+    \subitem {Topology}, \hyperpage{36}
+  \item {sOwner}
+    \subitem {topoArrays}, \hyperpage{32}
+  \item {spIndex}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {spMV}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {userFunc\_\discretionary {-}{}{}host.c}, \hyperpage{72}
+    \subitem {userFunc\_\discretionary {-}{}{}host.h}, \hyperpage{73}
+    \subitem {userFunc\_\discretionary {-}{}{}slave.c}, \hyperpage{74}
+    \subitem {userFunc\_\discretionary {-}{}{}slave.h}, \hyperpage{75}
+  \item {spMVUnsymm}
+    \subitem {funcPointer.c}, \hyperpage{70}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}host.c}, \hyperpage{83}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}host.h}, \hyperpage{84}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}slave.c}, \hyperpage{85}
+    \subitem {userFuncUnsymm\_\discretionary {-}{}{}slave.h}, \hyperpage{86}
+  \item {src\_\discretionary {-}{}{}id}
+    \subitem {\_\discretionary {-}{}{}\_\discretionary {-}{}{}attribute\_\discretionary {-}{}{}\_\discretionary {-}{}{}}, \hyperpage{8}
+  \item {sReal}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {startTime}
+    \subitem {BlockOrdering.h}, \hyperpage{44}
+  \item {strtoidx}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {strtoreal}
+    \subitem {metis.h}, \hyperpage{56}
+  \item {struct\_\discretionary {-}{}{}extensibleLABELArray}, \hyperpage{29}
+    \subitem {data}, \hyperpage{29}
+    \subitem {maxSize}, \hyperpage{29}
+    \subitem {size}, \hyperpage{29}
+  \item {struct\_\discretionary {-}{}{}extensibleSCALARArray}, \hyperpage{30}
+    \subitem {data}, \hyperpage{30}
+    \subitem {maxSize}, \hyperpage{30}
+    \subitem {size}, \hyperpage{30}
+  \item {struct\_\discretionary {-}{}{}MLB\_\discretionary {-}{}{}graph}, \hyperpage{31}
+    \subitem {cellNum}, \hyperpage{31}
+    \subitem {cellWeights}, \hyperpage{31}
+    \subitem {edgeNum}, \hyperpage{31}
+    \subitem {edgeWeights}, \hyperpage{31}
+    \subitem {neighbor}, \hyperpage{31}
+    \subitem {owner}, \hyperpage{31}
+  \item {sunway\_\discretionary {-}{}{}check\_\discretionary {-}{}{}memory\_\discretionary {-}{}{}left}
+    \subitem {rlmpi.c}, \hyperpage{94}
+  \item {swFloat}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swFloat32}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swFloat64}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swInt}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swInt32}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swInt64}
+    \subitem {swMacro.h}, \hyperpage{108}
+  \item {swMacro.h}
+    \subitem {BLOCKNUM64K}, \hyperpage{108}
+    \subitem {DEBUG}, \hyperpage{108}
+    \subitem {EPS}, \hyperpage{108}
+    \subitem {LOG}, \hyperpage{108}
+    \subitem {swFloat}, \hyperpage{108}
+    \subitem {swFloat32}, \hyperpage{108}
+    \subitem {swFloat64}, \hyperpage{108}
+    \subitem {swInt}, \hyperpage{108}
+    \subitem {swInt32}, \hyperpage{108}
+    \subitem {swInt64}, \hyperpage{108}
+
+  \indexspace
+
+  \item {table}
+    \subitem {RlmpiInitializer}, \hyperpage{26}
+    \subitem {Schedule}, \hyperpage{28}
+  \item {tArrays}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {test}
+    \subitem {test.c}, \hyperpage{102}
+  \item {test.c}
+    \subitem {test}, \hyperpage{102}
+    \subitem {test\_\discretionary {-}{}{}athread\_\discretionary {-}{}{}get}, \hyperpage{102}
+  \item {test.cpp}
+    \subitem {checkResult}, \hyperpage{104}
+    \subitem {debug}, \hyperpage{104}
+    \subitem {main}, \hyperpage{104}
+    \subitem {NONZERONUM}, \hyperpage{104}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}host}, \hyperpage{104}
+    \subitem {operatorFunPointer\_\discretionary {-}{}{}slave}, \hyperpage{104}
+    \subitem {readFile}, \hyperpage{104}
+  \item {test/multiLevelBlock/test.cpp}, \hyperpage{103}
+  \item {test\_\discretionary {-}{}{}athread\_\discretionary {-}{}{}get}
+    \subitem {test.c}, \hyperpage{102}
+  \item {thread\_\discretionary {-}{}{}mask}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {ThreadID}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {timer.h}
+    \subitem {getSystemTime}, \hyperpage{62}
+  \item {timestamp}
+    \subitem {RlmpiInitializer.hxx}, \hyperpage{99}
+  \item {tools/slaveUtils.c}, \hyperpage{105}
+  \item {tools/slaveUtils.h}, \hyperpage{106}
+  \item {tools/swMacro.h}, \hyperpage{108}
+  \item {topoArrays}, \hyperpage{32}
+    \subitem {diagNeighbor}, \hyperpage{32}
+    \subitem {diagOwner}, \hyperpage{32}
+    \subitem {rNeighbor}, \hyperpage{32}
+    \subitem {rOwner}, \hyperpage{32}
+    \subitem {sNeighbor}, \hyperpage{32}
+    \subitem {sOwner}, \hyperpage{32}
+  \item {Topology}, \hyperpage{33}
+    \subitem {$\sim $Topology}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}accuStartVertexNumbers}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}accuVertexEdgeNumbers}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}edgeNumber}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}endVertices}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}firstEdgeVertices}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}startVertexNumbers}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}startVertices}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}vertexEdgeNumbers}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}vertexNeighbours}, \hyperpage{36}
+    \subitem {\_\discretionary {-}{}{}vertexNumber}, \hyperpage{36}
+    \subitem {addEdge}, \hyperpage{36}
+    \subitem {addVertex}, \hyperpage{36}
+    \subitem {clone}, \hyperpage{36}
+    \subitem {constructFromEdge}, \hyperpage{36}
+    \subitem {constructFromVertex}, \hyperpage{36}
+    \subitem {copy}, \hyperpage{36}
+    \subitem {EdgeBasedInit}, \hyperpage{36}
+    \subitem {edgeBasedToVertexBased}, \hyperpage{36}
+    \subitem {getAccuStartVertexNumbers}, \hyperpage{36}
+    \subitem {getAccuVertexEdgeNumbers}, \hyperpage{36}
+    \subitem {getEdgeNumber}, \hyperpage{36}
+    \subitem {getEndVertices}, \hyperpage{36}
+    \subitem {getFirstEdgeVertices}, \hyperpage{36}
+    \subitem {getStartVertexNumbers}, \hyperpage{36}
+    \subitem {getStartVertices}, \hyperpage{36}
+    \subitem {getVertexEdgeNumbers}, \hyperpage{36}
+    \subitem {getVertexNeighbours}, \hyperpage{36}
+    \subitem {getVertexNumber}, \hyperpage{36}
+    \subitem {operator=}, \hyperpage{36}
+    \subitem {removeEdge}, \hyperpage{36}
+    \subitem {removeVertex}, \hyperpage{36}
+    \subitem {sortAndCompress}, \hyperpage{36}
+    \subitem {Topology}, \hyperpage{36}
+    \subitem {transpose}, \hyperpage{36}
+    \subitem {VertexBasedInit}, \hyperpage{36}
+    \subitem {vertexBasedToEdgeBased}, \hyperpage{36}
+  \item {topology/topology.C}, \hyperpage{109}
+  \item {topology/topology.H}, \hyperpage{110}
+  \item {tpwgts}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {transform\_\discretionary {-}{}{}data}
+    \subitem {rlmpi.c}, \hyperpage{94}
+  \item {TransformPackage3}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {TransformSameColumnPackage}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {TransformSameRowPackage}
+    \subitem {rlmpi.c}, \hyperpage{94}
+    \subitem {rlmpi.h}, \hyperpage{97}
+  \item {transpose}
+    \subitem {Topology}, \hyperpage{36}
+  \item {transpose\_\discretionary {-}{}{}matrix}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+
+  \indexspace
+
+  \item {ubfactor}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {ubvec}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {upper}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+  \item {USE\_\discretionary {-}{}{}DYNAMIC\_\discretionary {-}{}{}MEM}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {USE\_\discretionary {-}{}{}DYNAMIC\_\discretionary {-}{}{}MEM\_\discretionary {-}{}{}INDICE}
+    \subitem {RlmpiSharedType.h}, \hyperpage{101}
+  \item {userFunc\_\discretionary {-}{}{}host.c}
+    \subitem {integrate}, \hyperpage{72}
+    \subitem {spMV}, \hyperpage{72}
+  \item {userFunc\_\discretionary {-}{}{}host.h}
+    \subitem {integrate}, \hyperpage{73}
+    \subitem {spMV}, \hyperpage{73}
+  \item {userFunc\_\discretionary {-}{}{}slave.c}
+    \subitem {integrate}, \hyperpage{74}
+    \subitem {spMV}, \hyperpage{74}
+  \item {userFunc\_\discretionary {-}{}{}slave.h}
+    \subitem {integrate}, \hyperpage{75}
+    \subitem {SLAVE\_\discretionary {-}{}{}FUNC}, \hyperpage{75}
+    \subitem {spMV}, \hyperpage{75}
+  \item {userFuncUnsymm\_\discretionary {-}{}{}host.c}
+    \subitem {integrateUnsymm}, \hyperpage{83}
+    \subitem {spMVUnsymm}, \hyperpage{83}
+  \item {userFuncUnsymm\_\discretionary {-}{}{}host.h}
+    \subitem {integrateUnsymm}, \hyperpage{84}
+    \subitem {spMVUnsymm}, \hyperpage{84}
+  \item {userFuncUnsymm\_\discretionary {-}{}{}slave.c}
+    \subitem {integrateUnsymm}, \hyperpage{85}
+    \subitem {spMVUnsymm}, \hyperpage{85}
+  \item {userFuncUnsymm\_\discretionary {-}{}{}slave.h}
+    \subitem {integrateUnsymm}, \hyperpage{86}
+    \subitem {SLAVE\_\discretionary {-}{}{}FUNC}, \hyperpage{86}
+    \subitem {spMVUnsymm}, \hyperpage{86}
+
+  \indexspace
+
+  \item {v2EParameters}, \hyperpage{38}
+    \subitem {b}, \hyperpage{38}
+    \subitem {data}, \hyperpage{38}
+    \subitem {diag}, \hyperpage{38}
+    \subitem {firstEdgeVertices}, \hyperpage{38}
+    \subitem {isXExist}, \hyperpage{38}
+    \subitem {MLBParas}, \hyperpage{38}
+    \subitem {spIndex}, \hyperpage{38}
+    \subitem {vertexNeighbor}, \hyperpage{38}
+    \subitem {x}, \hyperpage{38}
+  \item {vertex2EdgeIter\_\discretionary {-}{}{}host.c}
+    \subitem {initOwnNeiSendListV2E}, \hyperpage{87}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}slave}, \hyperpage{87}
+    \subitem {vertex2EdgeIteration\_\discretionary {-}{}{}host}, \hyperpage{87}
+  \item {vertex2EdgeIter\_\discretionary {-}{}{}host.h}
+    \subitem {vertex2EdgeIteration\_\discretionary {-}{}{}host}, \hyperpage{88}
+  \item {vertex2EdgeIter\_\discretionary {-}{}{}slave}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}host.c}, \hyperpage{87}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}slave.c}, \hyperpage{89}
+  \item {vertex2EdgeIter\_\discretionary {-}{}{}slave.c}
+    \subitem {myId}, \hyperpage{89}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}slave}, \hyperpage{89}
+  \item {vertex2EdgeIteration}
+    \subitem {Iterator}, \hyperpage{12}
+    \subitem {MultiLevelBlockIterator}, \hyperpage{19}
+  \item {vertex2EdgeIteration\_\discretionary {-}{}{}host}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}host.c}, \hyperpage{87}
+    \subitem {vertex2EdgeIter\_\discretionary {-}{}{}host.h}, \hyperpage{88}
+  \item {VertexBasedInit}
+    \subitem {Topology}, \hyperpage{36}
+  \item {vertexBasedToEdgeBased}
+    \subitem {Topology}, \hyperpage{36}
+  \item {vertexData}
+    \subitem {MLBFunParameters}, \hyperpage{14}
+  \item {vertexNeighbor}
+    \subitem {MLBParameters}, \hyperpage{16}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {vertexStarts}
+    \subitem {MLBParameters}, \hyperpage{16}
+  \item {vsize}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {vwgt}
+    \subitem {metis.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {where}
+    \subitem {metis.h}, \hyperpage{61}
+  \item {write\_\discretionary {-}{}{}packages}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+  \item {write\_\discretionary {-}{}{}schedule}
+    \subitem {RlmpiInitializer}, \hyperpage{24}
+
+  \indexspace
+
+  \item {x}
+    \subitem {e2VParas}, \hyperpage{10}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}host.c}, \hyperpage{65}
+    \subitem {edge2VertexIter\_\discretionary {-}{}{}slave.c}, \hyperpage{68}
+    \subitem {v2EParameters}, \hyperpage{38}
+  \item {xadj}
+    \subitem {metis.h}, \hyperpage{61}
+
+\end{theindex}
