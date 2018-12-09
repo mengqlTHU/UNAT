@@ -373,14 +373,16 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 	swInt* vertexStarts = this->getVertexStarts();
 	swInt* owner        = this->getTopology()->getStartVertices();
 	swInt* neighbor     = this->getTopology()->getEndVertices();
+	MLBParas.operatorFunPointer_host  = operatorFunPointer_host;
+	MLBParas.operatorFunPointer_slave  = operatorFunPointer_slave;
+	swInt dimension     = edgeData->dimension;
 
 //	for(int i=0;i<vertexNum;i++)
 //	{
 //		vertexData->A1Ptr[i] = vertexData->A2Ptr[i]*vertexData->A3Ptr[i];
 //	}
 
-	edge2VertexIteration_host(edgeData, vertexData, operatorFunPointer_host,
-			   	operatorFunPointer_slave, &MLBParas);
+	edge2VertexIteration_host(edgeData, vertexData, &MLBParas);
 
 //	for(int i=0;i<mshBlockNum;i++)
 //	{
@@ -431,11 +433,15 @@ void MultiLevelBlockIterator::edge2VertexIteration(Arrays* edgeData,
 
 	map<swInt, swInt>::iterator iter;
 	vertexData->A4Ptr=(swFloat*)malloc
-		(this->getTopology()->getVertexNumber()*sizeof(swFloat));
-	for(iter = this->getVertexMap().begin();
-				iter!=this->getVertexMap().end();iter++)
+		(this->getTopology()->getVertexNumber()*sizeof(swFloat)*dimension);
+	for(int j=0;j<dimension;j++)
 	{
-		vertexData->A4Ptr[iter->first]=vertexData->A1Ptr[iter->second];
+		for(iter = this->getVertexMap().begin();
+					iter!=this->getVertexMap().end();iter++)
+		{
+			vertexData->A4Ptr[iter->first+j*vertexNum]
+				= vertexData->A1Ptr[iter->second+j*vertexNum];
+		}
 	}
 }
 
@@ -640,27 +646,32 @@ void MultiLevelBlockIterator::reorderEdgeData(Arrays* edgeData)
 	swFloat* upper = edgeData->A2Ptr;
 //	LOG("reorderEdgeData");
 	map<swInt, swInt>::iterator iter;
-	swFloat* tmpL=(swFloat*)malloc
-		(this->getTopology()->getEdgeNumber()*sizeof(swFloat));
-	swFloat* tmpU=(swFloat*)malloc
-		(this->getTopology()->getEdgeNumber()*sizeof(swFloat));
-	for(iter = this->getEdgeMap().begin();
-				iter!=this->getEdgeMap().end();iter++)
+	swInt dimension = edgeData->dimension;
+	swInt num       = edgeData->num;
+	swFloat* tmpL
+		= (swFloat*)malloc(edgeData->num*sizeof(swFloat)*dimension);
+	swFloat* tmpU
+		= (swFloat*)malloc(edgeData->num*sizeof(swFloat)*dimension);
+	for(int j=0;j<dimension;j++)
 	{
-		if(iter->second<0)
+		for(iter = this->getEdgeMap().begin();
+					iter!=this->getEdgeMap().end();iter++)
 		{
-			tmpL[-iter->second] = upper[iter->first];
-			tmpU[-iter->second] = lower[iter->first];
-		} else
-		{
-			tmpL[iter->second] = lower[iter->first];
-			tmpU[iter->second] = upper[iter->first];
+			if(iter->second<0)
+			{
+				tmpL[-iter->second+j*num] = upper[iter->first+j*num];
+				tmpU[-iter->second+j*num] = lower[iter->first+j*num];
+			} else
+			{
+				tmpL[iter->second+j*num] = lower[iter->first+j*num];
+				tmpU[iter->second+j*num] = upper[iter->first+j*num];
+			}
 		}
-	}
-	for(int i=0;i<this->getTopology()->getEdgeNumber();i++)
-	{
-		edgeData->A1Ptr[i] = tmpL[i];
-		edgeData->A2Ptr[i] = tmpU[i];
+		for(int i=0;i<this->getTopology()->getEdgeNumber();i++)
+		{
+			edgeData->A1Ptr[i+j*num] = tmpL[i+j*num];
+			edgeData->A2Ptr[i+j*num] = tmpU[i+j*num];
+		}
 	}
 	free(tmpL);
 	free(tmpU);
@@ -674,7 +685,7 @@ void MultiLevelBlockIterator::reorderVertexArray(swFloat* array)
 	for(iter = this->getVertexMap().begin();
 				iter!=this->getVertexMap().end();iter++)
 	{
-//		if(iter->first==1) cout<<iter->second<<endl;
+//		if(iter->first==0) cout<<iter->second<<endl;
 		tmp[iter->second] = array[iter->first];
 	}
 	for(int i=0;i<this->getTopology()->getVertexNumber();i++)
@@ -686,9 +697,17 @@ void MultiLevelBlockIterator::reorderVertexArray(swFloat* array)
 
 void MultiLevelBlockIterator::reorderVertexData(Arrays* vertexData)
 {
-	if(vertexData->A1Ptr!=NULL) reorderVertexArray(vertexData->A1Ptr);
-	if(vertexData->A2Ptr!=NULL) reorderVertexArray(vertexData->A2Ptr);
-	if(vertexData->A3Ptr!=NULL) reorderVertexArray(vertexData->A3Ptr);
-	if(vertexData->A4Ptr!=NULL) reorderVertexArray(vertexData->A4Ptr);
+	swInt dimension = vertexData->dimension;
+	for(int j=0;j<dimension;j++)
+	{
+		if(vertexData->A1Ptr!=NULL) 
+		  reorderVertexArray(&vertexData->A1Ptr[j*vertexData->num]);
+		if(vertexData->A2Ptr!=NULL) 
+		  reorderVertexArray(&vertexData->A2Ptr[j*vertexData->num]);
+		if(vertexData->A3Ptr!=NULL)
+		  reorderVertexArray(&vertexData->A3Ptr[j*vertexData->num]);
+		if(vertexData->A4Ptr!=NULL)
+		  reorderVertexArray(&vertexData->A4Ptr[j*vertexData->num]);
+	}
 }
 

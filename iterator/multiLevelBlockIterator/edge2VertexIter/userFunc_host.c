@@ -19,12 +19,15 @@ void spMV(MLBFunParameters *MLBFunParas)
 	swInt* sNeighbor     = MLBFunParas->tArrays->sNeighbor;
 	swInt  count         = MLBFunParas->count;
 	swInt  k1            = MLBFunParas->k1;
-	swInt  k2            = MLBFunParas->k2;
+	swInt  edgeNumber    = MLBFunParas->k2;
+	swInt  vertexNumber  = MLBFunParas->k3;
 	int i;
 	for(i=k1;i<count+k1;i++)
 	{
-		b[sNeighbor[i]] += A1Ptr[i]*sx[sOwner[i]];
-		b[sOwner[i]]    += A2Ptr[i]*sx[sNeighbor[i]];
+		b[sNeighbor[i]+vertexNumber]
+			+= A1Ptr[i+edgeNumber]*sx[sOwner[i]+vertexNumber];
+		b[sOwner[i]+vertexNumber]
+			+= A2Ptr[i+edgeNumber]*sx[sNeighbor[i]+vertexNumber];
 	}
 }
 

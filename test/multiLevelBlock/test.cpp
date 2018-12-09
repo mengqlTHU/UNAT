@@ -29,51 +29,78 @@ int main()
 //	debug(t);
 
 
-	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber());
-	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber());
-	swFloat* diag  = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swFloat* b_mlb = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swFloat* b_csr = (swFloat*)malloc(sizeof(swFloat)*t.getVertexNumber());
-	swFloat* data  = (swFloat*)malloc(sizeof(swFloat)*t.getEdgeNumber()*2);
+	swInt dimension = 2;
+	swFloat* lower = (swFloat*)malloc
+		(sizeof(swFloat)*t.getEdgeNumber()*dimension);
+	swFloat* upper = (swFloat*)malloc
+		(sizeof(swFloat)*t.getEdgeNumber()*dimension);
+	swFloat* diag  = (swFloat*)malloc
+		(sizeof(swFloat)*t.getVertexNumber()*dimension);
+	swFloat* x     = (swFloat*)malloc
+		(sizeof(swFloat)*t.getVertexNumber()*dimension);
+	swFloat* b     = (swFloat*)malloc
+		(sizeof(swFloat)*t.getVertexNumber()*dimension);
+	swFloat* b_mlb = (swFloat*)malloc
+		(sizeof(swFloat)*t.getVertexNumber()*dimension);
+	swFloat* b_csr = (swFloat*)malloc
+		(sizeof(swFloat)*t.getVertexNumber()*dimension);
+	swFloat* data  = (swFloat*)malloc
+		(sizeof(swFloat)*t.getEdgeNumber()*2*dimension);
 
-	for(int i=0;i<t.getEdgeNumber();i++)
+	for(int j=0;j<dimension;j++)
 	{
-		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
-		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
+		for(int i=0;i<t.getEdgeNumber();i++)
+		{
+			lower[i+j*t.getEdgeNumber()]
+				= (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
+			upper[i+j*t.getEdgeNumber()]
+				= (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
+		}
 	}
-	for(int i=0;i<t.getVertexNumber();i++)
+	for(int j=0;j<dimension;j++)
 	{
-		diag[i] = i;
-		x[i]    = (double)(i+1)/(i+2);
-		b[i]    = 0;
-		b_mlb[i]= 0;
+		for(int i=0;i<t.getVertexNumber();i++)
+		{
+			diag[i+j*t.getVertexNumber()]  = i+1;
+			x[i+j*t.getVertexNumber()]     = (double)(i+1)/(i+2);
+			b[i+j*t.getVertexNumber()]     = 0;
+			b_mlb[i+j*t.getVertexNumber()] = 0;
+		}
 	}
-	for(int i=0;i<t.getEdgeNumber()*2;i++)
+	for(int j=0;j<dimension;j++)
 	{
-		data[i] = (double)(i+1)/(i+2);
+		for(int i=0;i<t.getEdgeNumber()*2;i++)
+		{
+			data[i+j*t.getEdgeNumber()*2] = (double)(i+1)/(i+2);
+		}
 	}
 
+	swInt vertexNumber = t.getVertexNumber();
+	swInt edgeNumber   = t.getEdgeNumber();
 	struct timeval start, end;
 	gettimeofday(&start,NULL);
-	for(int i=0;i<t.getVertexNumber();i++)
+	for(int j=0;j<dimension;j++)
 	{
+		for(int i=0;i<vertexNumber;i++)
+		{
 //		if(i==1)
 //		{
 //			printf("%d,%f,%f\n",i,diag[i],x[i]);
 //		}
-		b[i] = diag[i]*x[i];
-	}
-	for(int i=0;i<t.getEdgeNumber();i++)
-	{
+			b[i+j*vertexNumber]
+				= diag[i+j*vertexNumber]*x[i+j*vertexNumber];
+		}
+		for(int i=0;i<edgeNumber;i++)
+		{
 //		if(rowAddr[i]==1) printf("%d,%f,%f\n",i,upper[i],x[colAddr[i]]);
-     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
+			b[rowAddr[i]+j*vertexNumber]
+				+= upper[i+j*edgeNumber] * x[colAddr[i]+j*vertexNumber];
 //		if(colAddr[i]==1) printf("%d,%f,%f\n",i,lower[i],x[rowAddr[i]]);
-		b[colAddr[i]] += upper[i]*x[rowAddr[i]];
-//     	b[rowAddr[i]] += upper[i];
-//		b[colAddr[i]] += lower[i];
-
+			b[colAddr[i]+j*vertexNumber]
+				+= lower[i+j*edgeNumber] * x[rowAddr[i]+j*vertexNumber];
+//     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
+//		b[colAddr[i]] += lower[i]*x[rowAddr[i]];
+		}
 	}
 //	gettimeofday(&end,NULL);
 //	int timeuse = 1000000*(end.tv_sec-start.tv_sec)
@@ -98,9 +125,12 @@ int main()
 
 	operatorFunPointer_host  = funcPointer_host(0);
 	operatorFunPointer_slave = funcPointer_slave(0);
-	Arrays edgeData   = {upper, upper, NULL, NULL, t.getEdgeNumber()};
-	Arrays neighbourData = { data, NULL, NULL, NULL, t.getEdgeNumber()};
-	Arrays vertexData    = {b_mlb,    x, diag, NULL, t.getVertexNumber()};
+	Arrays edgeData
+		= {lower, upper, NULL, NULL, t.getEdgeNumber(), dimension};
+	Arrays neighbourData
+		= { data, NULL, NULL, NULL, t.getEdgeNumber(), dimension};
+	Arrays vertexData
+		= {b_mlb,    x, diag, NULL, t.getVertexNumber(), dimension};
 //	Arrays vertexData    = {b_mlb, NULL, NULL, NULL, t.getVertexNumber()};
 
 	MultiLevelBlockIterator mlbIter(t);
@@ -114,7 +144,7 @@ int main()
 //	mlbIter.vertex2EdgeIteration(&neighbourData,&vertexData,
 //				operatorFunPointer_host, operatorFunPointer_slave);
 
-	checkResult(b, vertexData.A4Ptr, t.getVertexNumber());
+	checkResult(b, vertexData.A4Ptr, t.getVertexNumber()*dimension);
 
 //	swInt accuVertexEdgeNumbers[] = {0,3,6,8,9,12};
 //	swInt vertexNeighbours[] = {1,2,4,0,2,4,0,1,4,0,1,3};
@@ -146,9 +176,18 @@ void checkResult(swFloat* array1, swFloat* array2, swInt count)
 	cout<<"check result..."<<endl;
 	for(int i=0;i<count;i++)
 	{
+//		printf("%d,%f,%f\n",i,array1[i],array2[i]);
 		if(fabs(array1[i]-array2[i])>EPS)
 		{
-			if(fabs(array1[i]-array2[i])/array1[i]>EPS)
+			if(array2[i]==0)
+			{
+				if(fabs(array1[i])>1e-14)
+				{
+					cout<<"Error on index["<<i<<"], "
+						<<array1[i]<<", "<<array2[i]<<endl;
+					exit(1);
+				}
+			}else if(fabs(array1[i]-array2[i])/array1[i]>EPS)
 			{
 				cout<<"Error on index["<<i<<"], "
 					<<array1[i]<<", "<<array2[i]<<endl;

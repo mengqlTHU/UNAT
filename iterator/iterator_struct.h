@@ -15,6 +15,7 @@ typedef struct
 	swFloat* A3Ptr;
 	swFloat* A4Ptr;
 	swInt    num;
+	swInt    dimension;
 }Arrays;
 
 typedef struct
@@ -35,6 +36,7 @@ typedef struct
 	swInt       count;
 	swInt       k1;
 	swInt       k2;
+	swInt       k3;
 	swInt       flag;
 }MLBFunParameters;
 

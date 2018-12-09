@@ -20,7 +20,6 @@ void spMV(MLBFunParameters *MLBFunParas)
 	swInt* sOwner        = MLBFunParas->tArrays->sOwner;
 	swInt* rOwner        = MLBFunParas->tArrays->rOwner;
 	swInt* diagOwner     = MLBFunParas->tArrays->diagOwner;
-	swInt* sNeighbor     = MLBFunParas->tArrays->sNeighbor;
 	swInt* rNeighbor     = MLBFunParas->tArrays->rNeighbor;
 	swInt* diagNeighbor  = MLBFunParas->tArrays->diagNeighbor;
 	swInt  count         = MLBFunParas->count;
@@ -40,7 +39,7 @@ void spMV(MLBFunParameters *MLBFunParas)
 		for(i=0;i<count;i++)
 		{
 //			if(sNeighbor[i]==358138) printf("%d,%f,%f,%f\n",k1,A1Ptr[i],rx[i]);
-			b[sNeighbor[i]-k1] += A1Ptr[i]*rx[i];
+			b[sOwner[i]-k1] += A1Ptr[i]*rx[i];
 		}
 	} else if(flag == 2)
 	{

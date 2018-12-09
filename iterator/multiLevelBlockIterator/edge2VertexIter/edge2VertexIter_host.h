@@ -14,16 +14,22 @@ typedef struct
 	swFloat*       x;
 	swFloat*       b;
 	swFloat*       diag;
-	swInt*         isXExist;
-}e2VParas;
+	swInt*         owner;
+	swInt*         neighbor;
+	swInt          spIndex;
+	swInt          isXExist;
+	swInt          dimension;
+	swInt          vertexNumber;
+	swInt          edgeNumber;
+}e2VParameters;
 
 void edge2VertexIteration_host(Arrays* edgeData, Arrays* vertexData,
-			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
-			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
+//			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
+//			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
 			MLBParameters* MLBParas);
 void edge2VertexIteration_init(Arrays* edgeData, Arrays* vertexData,
-			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
-			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
+//			void (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas),
+//			void (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas),
 			MLBParameters* MLBParas);
 
 #endif
