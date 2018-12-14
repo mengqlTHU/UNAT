@@ -2,9 +2,14 @@
 #include <iostream>
 #include <math.h>
 #include <assert.h>
+#include "topology.H"
 
 using namespace std;
 
+namespace UNAT
+{
+
+// Dummy constructor
 Topology::Topology()
 {
 	cout<<"default constructor"<<endl;
@@ -20,11 +25,75 @@ Topology::Topology()
 	this->_accuVertexEdgeNumbers=NULL;
 }
 
+// Factory Constructor
+Topology* Topology::constructFromEdge(swInt *startVertices,
+			swInt *endVertices, swInt edgeNumber, bool duplicate)
+{
+	Topology* topo = new Topology();
+	topo->setStartVertices(startVertices);
+	topo->setEndVertices(endVertices);
+	topo->setEdgeNumber(edgeNumber);
+//printf("edgeNumber is %d\n", topo->_edgeNumber);
+//printArray("%d", topo->_startVertices, edgeNumber);
+//printArray("%d", topo->_endVertices, edgeNumber);
+	cout<<"Constructor based on LDU"<<endl;
+	topo->setDuplicate(0);
+	topo->EdgeBasedInit();
+	if( ! duplicate )
+	{
+		return topo;
+	}
+	else
+	{
+		Topology *topoCopy = new Topology();
+		topoCopy->copy(*topo);
+		delete topo;
+		topoCopy->setDuplicate(1);
+//printf("edgeNumber is %d\n", topoCopy->_edgeNumber);
+//printArray("%d", topoCopy->_startVertices, edgeNumber);
+//printArray("%d", topoCopy->_endVertices, edgeNumber);
+		return topoCopy;
+	}
+}
+
+Topology* Topology::constructFromVertex(swInt *accuVertexEdgeNumbers,
+			swInt *vertexNeighbours, swInt vertexNumber, bool duplicate)
+{
+	Topology* topo = new Topology();
+	topo->setAccuVertexEdgeNumbers(accuVertexEdgeNumbers);
+	topo->setVertexNeighbours(vertexNeighbours);
+	topo->setVertexNumber(vertexNumber);
+	cout<<"Constructor based on CSR"<<endl;
+	topo->VertexBasedInit();
+	topo->setDuplicate(2);
+	if( ! duplicate )
+	{
+		return topo;
+	}
+	else
+	{
+		Topology *topoCopy = new Topology();
+		topoCopy->copy(*topo);
+		delete topo;
+		topoCopy->setDuplicate(3);
+		return topoCopy;
+	}
+}
+
 // Copy constructors
 Topology::Topology(const Topology &topo)
 {
 	cout<<"Copy constructor"<<endl;
 	this->copy(topo);
+}
+
+Topology& Topology::operator=(const Topology& topo)
+{
+	cout<<"operator="<<endl;
+	if(this == &topo) return *this;
+	this->~Topology();
+	this->copy(topo);
+	return *this;
 }
 
 void Topology::copy(const Topology &topo)
@@ -74,33 +143,37 @@ void Topology::copy(const Topology &topo)
 // Deconstructors
 Topology::~Topology()
 {
+	if(duplicate_ == 0)
+	{
+		free(_startVertexNumbers);
+		free(_accuStartVertexNumbers);
+		free(_firstEdgeVertices);
+		free(_vertexNeighbours);
+		free(_vertexEdgeNumbers);
+		free(_accuVertexEdgeNumbers);
+	}
+	else if(duplicate_ == 2)
+	{
+		free(_startVertices);
+		free(_endVertices);
+		free(_startVertexNumbers);
+		free(_accuStartVertexNumbers);
+		free(_firstEdgeVertices);
+		free(_vertexEdgeNumbers);
+	}
+	else
+	{
+		free(_startVertices);
+		free(_endVertices);
+		free(_startVertexNumbers);
+		free(_accuStartVertexNumbers);
+		free(_firstEdgeVertices);
+		free(_vertexNeighbours);
+		free(_vertexEdgeNumbers);
+		free(_accuVertexEdgeNumbers);
+	}
 }
 
-Topology Topology::constructFromEdge(swInt *startVertices,
-			swInt *endVertices, swInt edgeNumber, bool copy)
-{
-	Topology topo;
-	topo._startVertices = startVertices;
-	topo._endVertices = endVertices;
-	topo._edgeNumber = edgeNumber;
-	cout<<"Constructor based on LDU"<<endl;
-	topo.EdgeBasedInit();
-	return topo;
-}
-
-Topology Topology::constructFromVertex(swInt *accuVertexEdgeNumbers,
-			swInt *vertexNeighbours, swInt vertexNumber, bool copy)
-{
-	Topology topo;
-	topo._accuVertexEdgeNumbers = accuVertexEdgeNumbers;
-	topo._vertexNeighbours = vertexNeighbours;
-	topo._vertexNumber = vertexNumber;
-	cout<<"Constructor based on CSR"<<endl;
-	topo.VertexBasedInit();
-	return topo;
-
-}
-		
 void Topology::sortAndCompress()
 {
 }
@@ -279,13 +352,7 @@ swInt* Topology::getAccuVertexEdgeNumbers()
 	return this->_accuVertexEdgeNumbers;
 }
 
-Topology& Topology::operator=(const Topology& topo)
-{
-	cout<<"operator="<<endl;
-	if(this == &topo) return *this;
-	this->~Topology();
-	this->copy(topo);
-	return *this;
-}
+
+} // namespace UNAT
 
 

@@ -1,0 +1,5 @@
+This is part of OpenFOAM "motorBike" les case
+
+structured mesh can generated with OpenFOAM(blockMesh) and "blockMeshDict"
+
+unstructurd mesh can generated with OpenFOAM(snappyHexMesh) and "snappyHexMeshDict"

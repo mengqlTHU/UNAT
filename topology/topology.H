@@ -8,6 +8,9 @@ using namespace std;
 // ------------------------------------------------------------------------
 //                         class Topology
 // ------------------------------------------------------------------------
+namespace UNAT
+{
+
 class Topology{
 	private:
 		swInt  _vertexNumber;
@@ -24,20 +27,34 @@ class Topology{
 		void VertexBasedInit();
 		void copy(const Topology &topo);
 
+		// duplicate indicator
+		// 0 for constructFromEdge don't duplicate
+		// 1 for constructFromEdge duplicate
+		// 2 for constructFromEdge don't duplicate
+		// 3 for constructFromEdge duplicate
+		swInt duplicate_;
+
+		//friend Topology* constructFromEdge(swInt *startVertices,
+		//			swInt *endVertices, swInt edgeNumber, bool duplicate);
+		//friend Topology* constructFromVertex(swInt *accuVertexEdgeNumbers,
+		//			swInt *vertexNeighbours,swInt vertexNumber, bool duplicate);
 	public:
 		// Constructors
 		Topology();
+		// Factory constructors
+		static Topology* constructFromEdge(swInt *startVertices, 
+					swInt *endVertices, swInt edgeNumber, bool duplicate = true);
+		static Topology* constructFromVertex(swInt *accuVertexEdgeNumbers,
+					swInt *vertexNeighbours,swInt vertexNumber, bool duplicate = true);
 		// Copy constructors
 		Topology(const Topology &topo);
-		static Topology constructFromEdge(swInt *startVertices,
-					swInt *endVertices, swInt edgeNumber, bool copy=false);
-		static Topology constructFromVertex(swInt *accuVertexEdgeNumbers,
-					swInt *vertexNeighbours,swInt vertexNumber,
-					bool copy=false);
-		
+		Topology& operator=(const Topology& topo);
+		Topology* clone() const {return new Topology(*this);};
+
 		// Deconstructors
 		~Topology();
 
+		// Data accessers
 		swInt  getVertexNumber();
 		swInt  getEdgeNumber();
 		swInt* getStartVertices();
@@ -49,8 +66,20 @@ class Topology{
 		swInt* getVertexEdgeNumbers();
 		swInt* getAccuVertexEdgeNumbers();
 
-		Topology& operator=(const Topology& topo);
-		Topology* clone() const {return new Topology(*this);};
+		void setStartVertices(swInt* startVertices)
+		{ _startVertices = startVertices; }
+		void setEndVertices(swInt* endVertices)
+		{ _endVertices = endVertices; }
+		void setEdgeNumber(swInt edgeNumber)
+		{ _edgeNumber = edgeNumber; }
+		void setAccuVertexEdgeNumbers(swInt* accuVertexEdgeNumbers)
+		{ _accuVertexEdgeNumbers = accuVertexEdgeNumbers; }
+		void setVertexNeighbours(swInt* vertexNeighbours)
+		{ _vertexNeighbours = vertexNeighbours; }
+		void setVertexNumber(swInt vertexNumber)
+		{ _vertexNumber = vertexNumber; }
+		void setDuplicate( swInt duplicate)
+		{ duplicate_ = duplicate; }
 
 		// TODO: 对于未按顺序排列的LDU方式存储拓扑，提供排序接口，
 		// 返回类型为LDUMatrix，CSR同理
@@ -66,6 +95,9 @@ class Topology{
 		void vertexBasedToEdgeBased();
 };
 
-#include "topology.C"
+
+} // namespace UNAT
+
+//#include "topology.C"
 
 #endif

@@ -1,0 +1,976 @@
+diff --git a/Makefile b/Makefile
+index b695521..5b4e49b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -9,9 +9,9 @@ OBJPATH=${PROJECT}/objects
+ #############################################################
+ # build tool set setting
+ #############################################################
+-CC="sw5cc -host"
+-CXX=mpiCC
+-SLAVECC="sw5cc -slave -msimd"
++CC="sw5cc -host -g"
++CXX="mpiCC -g"
++SLAVECC="sw5cc -slave -msimd -g"
+ AR=swar cru
+ RANLIB=swranlib
+ LD=${CXX}
+@@ -30,13 +30,13 @@ TESTPATH=${PROJECT}/test
+ #############################################################
+ .PHONY:all libobjs makepath
+ 
+-all: libUNAT.a
++${LIBPATH}/libUNAT.a: libUNAT.a
++	@cp $< $@
+ 	@echo -e "\033[32mBuild completed! \033[0m"
+ 
+ libUNAT.a: libobjs
+ 	${AR} $@ ${OBJPATH}/*.o
+ 	${RANLIB} $@ 
+-	@cp $@ ./lib/$@
+ 	
+ test: libUNAT.a
+ 	(cd ${path}; make CC=${CC} CXX=${CXX} OBJPATH=${OBJPATH} \
+diff --git a/iterator/directSegmentIterator/directSegmentIterator.C b/iterator/directSegmentIterator/directSegmentIterator.C
+index 8b6ac04..173956e 100644
+--- a/iterator/directSegmentIterator/directSegmentIterator.C
++++ b/iterator/directSegmentIterator/directSegmentIterator.C
+@@ -12,8 +12,15 @@ with high cohesion to ensure high efficiency of the Iterator
+ ##########################################################*/
+ 
+ #include <vector>
+-#include "directSegmentIterator.H"
+ #include "swMacro.h"
++#include "iterator.h"
++#include "directSegmentIterator.H"
++#include "directSegmentIterator.h"
++
++//extern "C"
++//{
++//	void SLAVE_FUNC(directSegmentIterator_e2v_slave)(DS_edge2VertexPara);
++//}
+ 
+ namespace UNAT
+ {
+@@ -30,42 +37,86 @@ DirectSegmentIterator::DirectSegmentIterator(Topology &topo,
+ 	swInt edgeNumber = topo_->getEdgeNumber();
+ 	swInt* startVertex = topo_->getStartVertices();
+ 	swInt* endVertex = topo_->getEndVertices();
++//printArray("%d", startVertex, edgeNumber);
++//printArray("%d", endVertex, edgeNumber);
++//printArray("%d", vertexWeights, vertexNumber);
++//printArray("%d", edgeWeights, edgeNumber);
+ 
+ 	// add up the data weights on vertex and conneted edges	
+ 	swInt dataWeights[vertexNumber];
+ 	memcpy(dataWeights, vertexWeights, vertexNumber*sizeof(swInt));
+-	for(swInt iedge; iedge<edgeNumber; iedge++)
++	for(swInt iedge = 0; iedge<edgeNumber; iedge++)
+ 		dataWeights[startVertex[iedge]] += edgeWeights[iedge];
+ 
+ 	// segmentation
+ 	subSegNum_ = BLOCKNUM64K;
+ 	swInt subSegDataLimit = SAFELDM/sizeof(swInt);
++//printArray("%d", dataWeights, vertexNumber);
+ 	decomposeArray(subSegNum_, subSegDataLimit, dataWeights, vertexNumber);
+-
++	
++//printArray("%d", segStarts_, segNum_*subSegNum_+1);
+ 	// decompose edge
+ 	edgeStarts_ = new swInt[segNum_*subSegNum_+1];
+ 	edgeStarts_[0] = 0;
+ 	for(swInt istart = 1; istart < segNum_*subSegNum_+1; istart++)
+ 	{
+-		swInt posi; 
+-		biSearch(posi, &startVertex[istart-1], 
+-					segStarts_[istart], edgeNumber-edgeStarts_[istart-1]);
+-		posi += edgeStarts_[istart-1];
+-		while( posi < edgeNumber-1
+-					&& startVertex[posi] == startVertex[posi+1])
+-			posi++;
+-		edgeStarts_[istart] = posi+1;
++		swInt posi;
++		if(segStarts_[istart] < vertexNumber)
++		{	  
++//printf("*searching %d, from %dth edge, a %d length array\n",
++//		   	segStarts_[istart]-1, edgeStarts_[istart-1], edgeNumber-edgeStarts_[istart-1]);
++			
++			// take care of the edge starts jump over segment starts
++			if(startVertex[segStarts_[istart-1]] > segStarts_[istart]-1)
++			{
++#ifdef DEBUG
++				printf("\n***Warning: edge starts jump over segment starts!\n\n");
++#endif
++				edgeStarts_[istart] = segStarts_[istart-1];
++				break;
++			}
++
++			biSearch(posi, &startVertex[edgeStarts_[istart-1]], 
++						segStarts_[istart]-1, edgeNumber-edgeStarts_[istart-1]);
++			
++			swInt findValue = segStarts_[istart]-1;
++			while(posi == -1)
++			{
++#ifdef DEBUG
++				printf("\n***Warning: vertex %d is not start vertex, findValue decreased by 1!\n\n",
++							findValue);
++#endif
++				findValue--;
++				biSearch(posi, &startVertex[edgeStarts_[istart-1]], 
++							findValue, edgeNumber-edgeStarts_[istart-1]);	
++			}
++//printf("*at %d\n", posi);
++			posi += edgeStarts_[istart-1];
++			if( posi < edgeStarts_[istart-1] )
++			{
++				dumpError("Wrong Edge starts found!");
++				exit(-1);
++			}
++			while( posi < edgeNumber-1
++						&& startVertex[posi] == startVertex[posi+1])
++				posi++;
++			edgeStarts_[istart] = posi+1;
++		}
++		else
++			edgeStarts_[istart] = edgeNumber;
+ 	}
++//printArray("%d", edgeStarts_, segNum_*subSegNum_+1);
+ 
+ 	// construct the segment connectivity topology
+ 	edgeNeiSeg_ = new swInt[edgeNumber];
+ 	std::vector<swInt> segEdgeNumTmp;
+ 	std::vector<swInt> startSeg, endSeg;
+ 	swInt connectCount = 0;
+-	for(swInt iseg=0; iseg < segNum_*subSegNum_; iseg++)
++	for(swInt iseg = 0; iseg < segNum_*subSegNum_; iseg++)
+ 	{
+ 		// loop sub-segment to calculate edge number between sub-segments
+ 		std::vector<swInt> localSegEdgeNumTmp(segNum_*subSegNum_, 0);
++//printf("in segrow %d(%d Edge): ", iseg, edgeStarts_[iseg+1]-edgeStarts_[iseg]);
+ 		for(swInt iedge = edgeStarts_[iseg]; iedge < edgeStarts_[iseg+1]; iedge++)
+ 		{
+ 			swInt endV = endVertex[iedge];
+@@ -85,20 +136,25 @@ DirectSegmentIterator::DirectSegmentIterator(Topology &topo,
+ 			}
+ 			edgeNeiSeg_[iedge] = lbound;
+ 			localSegEdgeNumTmp[lbound]++;
++//printf("(%d,%d); ", startVertex[iedge], endV);
+ 		}
+-
++//printf("\n\t segEdges: ");
+ 		// compress sub-segments connection info into coo
+ 		for(swInt jseg=0; jseg < segNum_*subSegNum_; jseg++)
+ 		{
++//if(localSegEdgeNumTmp[jseg] != 0 && jseg == iseg)
++//printf("-(%d, %d); ", jseg, localSegEdgeNumTmp[jseg]);
+ 			if(localSegEdgeNumTmp[jseg] != 0
+ 	  					&& jseg != iseg)
+ 			{
++//printf("(%d, %d); ", jseg, localSegEdgeNumTmp[jseg]);
+ 				segEdgeNumTmp.push_back(localSegEdgeNumTmp[jseg]);
+ 				startSeg.push_back(iseg);
+ 				endSeg.push_back(jseg);
+ 				connectCount++;
+ 			}
+ 		}
++//printf("\n");
+ 	}
+ 
+ 	// store the connectivity	
+@@ -106,18 +162,23 @@ DirectSegmentIterator::DirectSegmentIterator(Topology &topo,
+ 	memcpy(segEdgeNum_, &segEdgeNumTmp[0], sizeof(swInt)*connectCount);
+ 	segConnetion_ = Topology::constructFromEdge(&startSeg[0], &endSeg[0],
+ 				   	connectCount);
++//printArray("%d", segEdgeNum_, connectCount);
+ }
+ 
+ // Copy constructors
+ DirectSegmentIterator::DirectSegmentIterator(const DirectSegmentIterator & iterator)
+ {
+ 	// To do
++	dumpError("To Be Implemented!");
++	exit(-1);
+ }
+ 
+ DirectSegmentIterator& DirectSegmentIterator::operator=(
+ 			const DirectSegmentIterator& )
+ {
+ 	//To do
++	dumpError("To Be Implemented!");
++	exit(-1);
+ }
+ 
+ //******************************** Constructor ********************************/
+@@ -132,16 +193,50 @@ DirectSegmentIterator::~DirectSegmentIterator()
+ }	
+ //******************************* Iteration processor ************************/
+ // Edge to vertex iterator
+-void DirectSegmentIterator::edge2VertexIteration(Arrays* edgeData, 
+-			Arrays* vertexData, HostFunPtr fun_host, SlaveFunPtr fun_slave)
++void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData, 
++			Arrays* frontEdgeData, Arrays* selfConnData,
++			Arrays* vertexData, e2v_hostFunPtr fun_host, e2v_slaveFunPtr fun_slave)
+ {
+-	// segNum 
++	// To do - compute data size and redecompose segments
++	// ... ...
++	
++	// collect data
++	DS_edge2VertexPara para = 
++	{
++		// topology relevent
++		this->getTopology()->getStartVertices(),
++		this->getTopology()->getEndVertices(),
++		this->segNum_;
++		this->subSegNum_;
++		this->segStarts_;
++		this->edgeStarts_;
++
++		this->segConnetion_->getStartVertices();
++		this->segConnetion_->getEndVertices();
++		this->segConnetion_->getEdgeNumber();
++		this->segEdgeNum_;
++		this->edgeNeiSeg;
++	
++		// computing data
++		backEdgeData;
++		frontEdgeData;
++		selfConnData;
++		vertexData;
++	
++		// computing pointers
++		fun_host;
++		fun_slave;
++	};
++
++	// C luncher
++	//directSegmentIterator_e2v(para);
+ }
+ 
+ // Vertex to edge iterator
+ void DirectSegmentIterator::vertex2EdgeIteration(Arrays* neighbourData, 
+-			Arrays* vertexData, HostFunPtr fun_host, SlaveFunPtr fun_slave)
++			Arrays* vertexData, v2e_hostFunPtr fun_host, v2e_slaveFunPtr fun_slave)
+ {
++	//To do
+ 	dumpError("To Be Implemented!");
+ 	exit(-1);
+ }
+@@ -153,10 +248,14 @@ void DirectSegmentIterator::decomposeArray(swInt subSegNum, swInt subSegDataLimi
+ {
+ 	swInt64 weightSum = 0;
+ 	for(swInt ivert; ivert<size; ivert++)
+-		weightSum += dataWeights[ivert];
+-
++		weightSum += (swInt64) dataWeights[ivert];
++//printArray("%d", dataWeights, size);
++//printf("subSegNum is %d, subSegDataLimit is %d, weightSum is %d\n", subSegNum, subSegDataLimit, weightSum);
+ 	// calculate initial segment count with int roundup
+ 	swInt segDataLimite = subSegNum*subSegDataLimit;
++#ifdef DEBUG
++	printf("subSegDataLimit is %d\n", subSegDataLimit);
++#endif
+ 	this->segNum_ = (weightSum + segDataLimite - 1)
+ 		/ segDataLimite;
+ 	if(segNum_ <= 0)
+@@ -183,7 +282,10 @@ void DirectSegmentIterator::decomposeArray(swInt subSegNum, swInt subSegDataLimi
+ 			subSegVol = (swFloat)remainWeight /
+ 				( (swFloat)remainSegNum * (swFloat)(subSegNum) );
+ 			if(subSegVol > subSegDataLimit)
+-				subSegVol = subSegDataLimit; 
++				subSegVol = subSegDataLimit;
++#ifdef DEBUG	
++			printf("subSegVol is %f\n", subSegVol);
++#endif
+ 			// loop the leaf sub-segment in one segment to calculate starts
+ 			for(swInt isub = subSegCount; isub < subSegCount+subSegNum; isub++)
+ 			{
+@@ -208,6 +310,9 @@ void DirectSegmentIterator::decomposeArray(swInt subSegNum, swInt subSegDataLimi
+ 			remainSegNum--;
+ 		}
+ 		// check the completeness of the decomposing
++#ifdef DEBUG
++		printf("segNum_ is %d\n", segNum_);
++#endif
+ 		if(vertexCount < size) segNum_++;
+ 		else
+ 		{
+diff --git a/iterator/directSegmentIterator/directSegmentIterator.H b/iterator/directSegmentIterator/directSegmentIterator.H
+index 791139d..b859902 100644
+--- a/iterator/directSegmentIterator/directSegmentIterator.H
++++ b/iterator/directSegmentIterator/directSegmentIterator.H
+@@ -52,11 +52,12 @@ public:
+ 	virtual ~DirectSegmentIterator();
+ 
+ 	// Iteration processor
+-	virtual void edge2VertexIteration(Arrays* edgeData,
+-				Arrays* vertexData, HostFunPtr, SlaveFunPtr);
++	virtual void edge2VertexIteration(Arrays* backEdgeData,
++				Arrays* frontEdgeData, Arrays* selfConnData, 
++				e2v_hostFunPtr fun_host, e2v_slaveFunPtr fun_slave);
+ 
+ 	virtual void vertex2EdgeIteration(Arrays* neighbourData,
+-				Arrays* vertexData, HostFunPtr, SlaveFunPtr);
++				Arrays* vertexData, v2e_hostFunPtr fun_host, v2e_slaveFunPtr fun_slave);
+ 
+ 
+ 	// Data to describe segmentation
+diff --git a/iterator/iterator.H b/iterator/iterator.H
+index 69c105b..d46c075 100644
+--- a/iterator/iterator.H
++++ b/iterator/iterator.H
+@@ -1,11 +1,11 @@
+ #ifndef ITERATOR_H
+ #define ITERATOR_H
+ 
+-#include "iterator_struct.h"
+ #include <stdlib.h>
+ #include <iostream>
+ #include <map>
+ #include "swMacro.h"
++#include "iterator.h"
+ #include "topology.H"
+ 
+ // ------------------------------------------------------------------------
+@@ -29,7 +29,7 @@ class Iterator
+ 	public:
+ 
+ 		// Constructors
+-		Iterator(){};
++		Iterator(){}
+ 		Iterator(Topology &topo, swInt* vertexWeights, swInt* edgeWeights, bool duplicate = false)
+ 		{
+ 			cout<<"Iterator constructor"<<endl;
+@@ -62,7 +62,7 @@ class Iterator
+ 				delete _vertexWeights;
+ 				delete _edgeWeights;
+ 			}
+-		};
++		}
+ 
+ 		void reformInnerTopology()
+ 		{
+@@ -74,10 +74,10 @@ class Iterator
+ 						this->_topo->getVertexNeighbours(),
+ 						this->_topo->getEdgeNumber(),
+ 						this->_topo->getVertexNumber());
+-		};
++		}
+ 
+-		map<swInt, swInt>& getEdgeMap(){return this->_edgeMap;};
+-		map<swInt, swInt>& getVertexMap(){return this->_vertexMap;};
++		map<swInt, swInt>& getEdgeMap(){return this->_edgeMap;}
++		map<swInt, swInt>& getVertexMap(){return this->_vertexMap;}
+  
+ 		virtual void reorderEdges(swInt* startVertices,
+ 					swInt* endVertices,
+@@ -91,20 +91,21 @@ class Iterator
+ 		}
+ 		virtual void reorderEdgeData(Arrays* edgeData){
+ 			// To do
+-		};
++		}
+ 		virtual void reorderNeighborData(Arrays* edgeData){
+ 			// To do	
+-		};
++		}
+ 		virtual void reorderVertexData(Arrays* edgeData){
+ 			// To do
+-		};
++		}
+ 
+-		virtual void edge2VertexIteration(Arrays* edgeData,
+-					Arrays* vertexData, HostFunPtr, SlaveFunPtr) = 0;
++		virtual void edge2VertexIteration(Arrays* backEdgeData, Arrays* frontEdgeData,
++				   	Arrays* selfConnData, Arrays* vertexData, 
++					e2v_hostFunPtr, e2v_slaveFunPtr) = 0;
+ 		virtual void vertex2EdgeIteration(Arrays* neighbourData,
+-					Arrays* vertexData, HostFunPtr, SlaveFunPtr) = 0;
++					Arrays* vertexData, v2e_hostFunPtr, v2e_slaveFunPtr) = 0;
+ 		
+-		Topology* getTopology(){return this->_topo;};
++		Topology* getTopology(){return this->_topo;}
+ };
+ 
+ } // namespace UNAT
+diff --git a/iterator/iterator_struct.h b/iterator/iterator_struct.h
+deleted file mode 100644
+index 5845207..0000000
+--- a/iterator/iterator_struct.h
++++ /dev/null
+@@ -1,108 +0,0 @@
+-#ifndef ITERATOR_STRUCT_H
+-#define ITERATOR_STRUCT_H
+-
+-#include "swMacro.h"
+-#include <stdlib.h>
+-
+-#ifdef __cplusplus
+-extern "C"{
+-#endif
+-
+-#define COPYIN 0 
+-#define COPYOUT 1 
+-#define COPYINOUT 2 
+-
+-// struct for interation
+-typedef struct
+-{
+-	// float data array holder 
+-	swFloat** floatArrays;
+-	// integer data array holder 
+-	swInt** intArrays;
+-	// float data array dimensions 
+-	swInt*    fArrayDims;
+-	// integer data array dimensions 
+-	swInt*    iArrayDims;
+-	// float data array sizes 
+-	swInt*    fArraySizes;
+-	// integer data array sizes
+-	swInt*    iArraySizes;
+-	// float data array sizes 
+-	swInt*    fArrayInOut;
+-	// integer data array sizes
+-	swInt*    iArrayInOut;
+-	// float data array number 
+-	swInt    fArrayNum;
+-	// integer data array number 
+-	swInt    iArrayNum;
+-}Arrays;
+-
+-// slave sub topology
+-typedef struct
+-{
+-	// owners to send
+-	swInt* sOwner;
+-	// owners reveived
+-	swInt* rOwner;
+-	// neighbor to send
+-	swInt* sNeighbor;
+-	// neighbor reveived
+-	swInt* rNeighbor;
+-	// local owner
+-	swInt* diagOwner;
+-	// local neighbor
+-	swInt* diagNeighbor;
+-}topoArrays;
+-
+-// function point parameters
+-typedef struct
+-{
+-	Arrays*     edgeData;
+-	Arrays*     vertexData;
+-	topoArrays* tArrays;
+-	swInt       count;
+-	swInt       k1;
+-	swInt       k2;
+-	swInt       flag;
+-}FunPtrParameters;
+-
+-// function pointer
+-typedef void (* HostFunPtr) (FunPtrParameters);
+-typedef void (* SlaveFunPtr) (FunPtrParameters);
+-
+-//typedef struct
+-//{
+-//	swInt* blockStarts;
+-//	swInt* blockStartsUnsymm;
+-//	swInt* vertexStarts;
+-//	swInt* owner;
+-//	swInt* neighbor;
+-//	swInt* firstEdgeVertices;
+-//	swInt* vertexNeighbor;
+-//	swInt  cpeBlockNum;
+-//	swInt  mshBlockNum;
+-//	swInt  mtxBlockNum;
+-//	swInt  maxXNum;
+-//	swInt  maxCells;
+-//	swInt  maxEdges;
+-//	void   (*operatorFunPointer_host)(MLBFunParameters *MLBFunParas);
+-//	void   (*operatorFunPointer_slave)(MLBFunParameters *MLBFunParas);
+-//}MLBParameters;
+-
+-//typedef struct
+-//{
+-//	Arrays* edgeData;
+-//	Arrays* vertexData;
+-//	swInt*  owner;
+-//	swInt*  neighbor;
+-//	swInt   count;
+-//	swInt   k1;
+-//	swInt   k2;
+-//	swInt   flag;
+-//}MLBFunParameters;
+-
+-#ifdef __cplusplus
+-}
+-#endif
+-
+-#endif
+diff --git a/test/directSegment/Makefile b/test/directSegment/Makefile
+index 0c34fdd..ca5c618 100644
+--- a/test/directSegment/Makefile
++++ b/test/directSegment/Makefile
+@@ -25,10 +25,10 @@ src= test.cpp
+ ##################################################################
+ # Targets
+ ##################################################################
+-test: test.o
++test: test.o ${LIBPATH}/libUNAT.a
+ 	${CXX} -L${LIBPATH} -lUNAT $< -o $@
+ 
+-test.o: test.cpp
++test.o: test.cpp 
+ 	${CXX} -I${INCLUDE} -c $< 
+ 
+ .PHONY:clean
+diff --git a/test/directSegment/neighbour b/test/directSegment/neighbour
+deleted file mode 100644
+index a0995da..0000000
+--- a/test/directSegment/neighbour
++++ /dev/null
+@@ -1,31 +0,0 @@
+-/*--------------------------------*- C++ -*----------------------------------*\
+-| =========                 |                                                 |
+-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+-|  \\    /   O peration     | Version:  3.0.0                                 |
+-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+-|    \\/     M anipulation  |                                                 |
+-\*---------------------------------------------------------------------------*/
+-FoamFile
+-{
+-    version     2.0;
+-    format      ascii;
+-    class       labelList;
+-    note        "nPoints: 68921 nCells: 64000 nFaces: 196800 nInternalFaces: 187200";
+-    location    "constant/polyMesh";
+-    object      neighbour;
+-}
+-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+-
+-
+-6
+-(
+-1
+-2
+-4
+-2
+-4
+-4
+-)
+-
+-
+-// ************************************************************************* //
+diff --git a/test/directSegment/neighbour b/test/directSegment/neighbour
+new file mode 120000
+index 0000000..c7ab45d
+--- /dev/null
++++ b/test/directSegment/neighbour
+@@ -0,0 +1 @@
++generateData/neighbour_157625V_hybrid_156814BandWidth
+\ No newline at end of file
+diff --git a/test/directSegment/owner b/test/directSegment/owner
+deleted file mode 100644
+index 209fd16..0000000
+--- a/test/directSegment/owner
++++ /dev/null
+@@ -1,31 +0,0 @@
+-/*--------------------------------*- C++ -*----------------------------------*\
+-| =========                 |                                                 |
+-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+-|  \\    /   O peration     | Version:  3.0.0                                 |
+-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+-|    \\/     M anipulation  |                                                 |
+-\*---------------------------------------------------------------------------*/
+-FoamFile
+-{
+-    version     2.0;
+-    format      ascii;
+-    class       labelList;
+-    note        "nPoints: 68921 nCells: 64000 nFaces: 196800 nInternalFaces: 187200";
+-    location    "constant/polyMesh";
+-    object      owner;
+-}
+-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+-
+-
+-6
+-(
+-0
+-0
+-0
+-1
+-1
+-3
+-)
+-
+-
+-// ************************************************************************* //
+diff --git a/test/directSegment/owner b/test/directSegment/owner
+new file mode 120000
+index 0000000..c1d985a
+--- /dev/null
++++ b/test/directSegment/owner
+@@ -0,0 +1 @@
++generateData/owner_157625V_hybrid_156814BandWidth
+\ No newline at end of file
+diff --git a/test/directSegment/test.cpp b/test/directSegment/test.cpp
+index 56ddf48..b85ab98 100644
+--- a/test/directSegment/test.cpp
++++ b/test/directSegment/test.cpp
+@@ -11,7 +11,7 @@
+ 
+ using namespace UNAT;
+ 
+-#define NONZERONUM 64
++#define NONZERONUM 465560
+ 
+ int* readFile(char* name);
+ void debug(Topology topo);
+@@ -20,6 +20,17 @@ void checkDSI(DirectSegmentIterator& iterator);
+ 
+ double time1, time2;
+ 
++extern "C"
++{
++	//define 2 function pointers
++	void hostFun(FunPtrParameters)
++	{
++	}
++	void slaveFun(FunPtrParameters)
++	{
++	}
++}
++
+ int main()
+ {
+ 	char owner[] = "owner";
+@@ -34,10 +45,10 @@ int main()
+ 	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
+ 	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
+ 	swFloat* b_DSI = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
+-	swFloat* data  = (swFloat*)malloc( sizeof(swFloat)
+-									   *( topo->getEdgeNumber()*2 
+-										  + topo->getVertexNumber() )
+-									 );
++	//swFloat* data  = (swFloat*)malloc( sizeof(swFloat)
++	//								   *( topo->getEdgeNumber()*2 
++	//									  + topo->getVertexNumber() )
++	//								 );
+ 
+ 	// weights
+ 	std::vector<swInt> cellWeights(topo->getVertexNumber(), 2);
+@@ -54,13 +65,49 @@ int main()
+ 
+ 	checkDSI(iterator);
+ 
++	// assign value
++	for(int i=0;i<topo.getEdgeNumber();i++)
++	{
++		lower[i] = (swFloat)(rowAddr[i]+1)/(colAddr[i]+1);
++		upper[i] = (swFloat)(colAddr[i]+1)/(rowAddr[i]+1);
++	}
++	for(int i=0;i<topo.getVertexNumber();i++)
++	{
++		diag[i] = i;
++		x[i]    = (double)(i+1)/(i+2);
++		b[i]    = 0;
++		b_mlb[i]= 0;
++	}
++	for(int i=0;i<topo.getEdgeNumber()*2;i++)
++	{
++		data[i] = (double)(i+1)/(i+2);
++	}
++
++	// reference calculation
++	for(int i=0;i<t.getVertexNumber();i++)
++	{
++		b[i] = diag[i]*x[i];
++	}
++	for(int i=0;i<t.getEdgeNumber();i++)
++	{
++     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
++		b[colAddr[i]] += upper[i]*x[rowAddr[i]];
++	}
++
++	// calculate with iterator and function pointers
++	Arrays edgeData
++	iterator.edge2VertexIteration(&edgeData,&vertexData,
++				operatorFunPointer_host, operatorFunPointer_slave);
++
++
++
+ 	free(lower);
+ 	free(upper);
+ 	free(diag);
+ 	free(x);
+ 	free(b);
+ 	free(b_DSI);
+-	free(data);
++	//free(data);
+ 	
+ 	return 0;
+ }
+@@ -186,7 +233,6 @@ void debug(Topology topo)
+ 	cout<<endl;
+ }
+ 
+-
+ void checkDSI(DirectSegmentIterator& iterator)
+ {
+ 	swInt segNum = iterator.getSegNum();
+@@ -201,61 +247,100 @@ void checkDSI(DirectSegmentIterator& iterator)
+ 	swInt totalSeg = segNum*subSegNum;
+ 
+ 	// print segment info
+-	printf("#****************************************#\n");
+-	printf("***Total segment number is %d\n", totalSeg);
+-	printf("***Subsegment number is %d\n", subSegNum);
++	printf("##########################################################\n");
++	printf("######## Total segment number is %d\n", totalSeg);
++	printf("######## Subsegment number is %d\n", subSegNum);
+ 	for(swInt iseg = 0; iseg< segNum; iseg++)
+ 	{
+-		printf("**%dth segmet is:\n", iseg);
++		printf("#### %dth segmet is:\n", iseg);
+ 		printf("vertex starts: ");
++		printArray("%d", &segStarts[iseg*subSegNum], subSegNum+1);
+ 		for(swInt isub=0; isub<subSegNum; isub++)
+ 		{
+ 			swInt pSeg = iseg*subSegNum+isub;
+-			if(segStarts[pSeg]<segStarts[pSeg+1])
+-			  printf("\n*start %d < end %d\n", segStarts[pSeg], segStarts[pSeg+1]);
+-			printf("%d, ", segStarts[iseg*subSegNum+isub]);
++			if(segStarts[pSeg]>segStarts[pSeg+1])
++			  printf("\n****Error: start %d < end %d\n", segStarts[pSeg], segStarts[pSeg+1]);
+ 		}		
+-		printf("\nedge starts: ");
++		printf("edge starts: ");
++		printArray("%d", &edgeStarts[iseg*subSegNum], subSegNum+1);
+ 		for(swInt isub=0; isub<subSegNum; isub++)
+ 		{
+ 			swInt pSeg = iseg*subSegNum+isub;
+-			if(edgeStarts[pSeg]<edgeStarts[pSeg+1])
+-			  printf("\n*start %d < end %d\n", edgeStarts[pSeg], edgeStarts[pSeg+1]);
+-			printf("%d, ", edgeStarts[iseg*subSegNum+isub]);
++			if(edgeStarts[pSeg]>edgeStarts[pSeg+1])
++			  printf("\n****Error: start %d < end %d\n", edgeStarts[pSeg], edgeStarts[pSeg+1]);
+ 		}		
+-		printf("\n");
+ 	}
+-	printf("#****************************************#\n");
+ 
+-	// calculate segEdgeNum from edgeNeiSeg
+-	std::vector<swInt> segEdgeNumTmp(totalSeg, 0);
++	printf("##########################################################\n");
++
++	swInt connetNum = segConnection->getEdgeNumber();
++	printf("######## Total segment connetion is %d\n", connetNum);
++	swInt* startSeg = segConnection->getStartVertices();
++	swInt* endSeg = segConnection->getEndVertices();
++	printArray("%d", startSeg, segConnection->getEdgeNumber());
++	printArray("%d", endSeg, segConnection->getEdgeNumber());
++	printArray("%d", segEdgeNum, segConnection->getEdgeNumber());
++
+ 	Topology* basicTopo = iterator.getTopology();
+ 	swInt edgeNum = basicTopo->getEdgeNumber();
+-	for(swInt iedge = 0; iedge< segNum; iedge++)
++	swInt* startVertex = basicTopo->getStartVertices();
++	swInt* endVertex = basicTopo->getEndVertices();
++	
++
++	// calculate segEdgeNum from edgeNeiSeg
++	std::vector<swInt> segEdgeNumTmp(totalSeg, 0);
++	for(swInt iedge = 0; iedge< edgeNum; iedge++)
+ 	{
+ 		if(edgeNeiSeg[iedge]>=totalSeg || edgeNeiSeg[iedge] < 0)
+-			printf("**wrong edgeNeiSeg at seg %d\n", edgeNeiSeg[iedge]);
+-		segEdgeNumTmp[edgeNeiSeg[iedge]]++;
++			printf("****Error: wrong edgeNeiSeg at seg %d\n", edgeNeiSeg[iedge]);
++		swInt segRow, segCol;
++		for(swInt iseg = 0; iseg<totalSeg; iseg++)
++		{
++			if(startVertex[iedge] >= segStarts[iseg])
++				segRow = iseg;
++			if(endVertex[iedge] >= segStarts[iseg])
++				segCol = iseg;
++		}
++		if(segRow != segCol) 
++			segEdgeNumTmp[edgeNeiSeg[iedge]]++;
++	}
++	// check segEdgeNum with segEdgeNumTmp
++	std::vector<swInt> segEdgeNumTmp2(totalSeg, 0);
++	for(swInt iconn = 0; iconn<connetNum; iconn++)
++		segEdgeNumTmp2[endSeg[iconn]] += segEdgeNum[iconn];
++	for(swInt iseg = 0; iseg<totalSeg; iseg++)
++	{
++		if(segEdgeNumTmp2[iseg] != segEdgeNumTmp[iseg])
++			printf("****Error: different segEdgeNum for segCol %d: %d to %d\n!", 
++						iseg, segEdgeNumTmp2[iseg], segEdgeNumTmp[iseg]);
+ 	}
+-	
+ 	// print segment connectivity
+-	swInt* startSeg = segConnection->getStartVertices();
+-	swInt* endSeg = segConnection->getEndVertices();
+ 	swInt segCount = 0;
+-	printf("#****************************************#\n");
+-	printf("***Total segment number is %d\n", segConnection->getVertexNumber());
++	printf("##########################################################\n");
++	printf("######## Total segment number is %d\n", segConnection->getVertexNumber());
+ 	if(segConnection->getVertexNumber() != totalSeg )
+ 	{
+-		printf("**wrong segment number!\n");
++		printf("****Warning: different segment number!\n");
+ 	}
+ 	for(swInt iseg = 0; iseg< segNum; iseg++)
+ 	{
++		printf("-----------------------------\n");
++		printf("#### the %dth segment:\n", iseg);
+ 		for(swInt isub=0; isub<subSegNum; isub++)
+ 		{
+ 			swInt pSeg = iseg*subSegNum+isub;
+ 			printf("%dth: ", pSeg);
+-			while(segCount != segConnection->getVertexNumber() &&
+-						startSeg[segCount] != startSeg[segCount+1]+1 )
++			while(segCount < segConnection->getEdgeNumber()
++						&& startSeg[segCount] == startSeg[segCount+1])
++			{
++				printf("(%d, %d){%d In%d}, ", 
++							startSeg[segCount], 
++							endSeg[segCount], 
++							segEdgeNum[segCount], 
++							segEdgeNumTmp[endSeg[segCount]] );
++				segCount++;
++			}
++			if(segCount < segConnection->getEdgeNumber())
+ 			{
+ 				printf("(%d, %d){%d In%d}, ", 
+ 							startSeg[segCount], 
+@@ -266,6 +351,6 @@ void checkDSI(DirectSegmentIterator& iterator)
+ 			}
+ 			printf("\n");
+ 		}		
+-		printf("-----------------------------\n");
+ 	}
++	printf("##########################################################\n");
+ }
+diff --git a/tools/swMacro.h b/tools/swMacro.h
+index 543c8a6..a57cadd 100644
+--- a/tools/swMacro.h
++++ b/tools/swMacro.h
+@@ -25,9 +25,9 @@ typedef double swFloat64;
+ // standard error dump to file
+ #define dumpErrorToFile(file, ...) \
+ { \
+-	fprintf(file, "***Error in function \"%s\":\n",__FUNCTION__);\
++	fprintf(file, "\n***Error in function \"%s\":\n",__FUNCTION__);\
+ 	fprintf(file, __VA_ARGS__); \
+-	fprintf(file, "\n at %s+%05d\n", __FILE__, __LINE__); \
++	fprintf(file, "\n***at %s +%05d\n\n", __FILE__, __LINE__); \
+ 	fflush(file); \
+ }
+ 
+@@ -37,6 +37,19 @@ typedef double swFloat64;
+ 	dumpErrorToFile(stderr, __VA_ARGS__) \
+ }
+ 
++// print array
++#define printArray( unitFmt, array, length) \
++{ \
++	printf("%s(%d):{", #array, length); \
++	size_t i; \
++	for(i=0; i<(length); i++) \
++	{ \
++		printf(" ");\
++		printf(unitFmt, (array)[i]); \
++	} \
++	printf("}\n"); \
++}
++
+ #define MAX(x, y) ( ((x) > (y)) ? (x) : (y) )
+ #define MIN(x, y) ( ((x) < (y)) ? (x) : (y) )
+ 
+@@ -45,27 +58,24 @@ typedef double swFloat64;
+ { \
+ 	size_t ubound, lbound, mbound;\
+ 	lbound = 0; \
+-	ubound = (length)-1;\
+-	if((length) == 1) \
++	ubound = (length)-1; \
++	mbound = lbound; \
++	while(lbound < ubound) \
+ 	{ \
+-		dumpError("can not search in one element table!"); \
+-		exit(-1); \
++		if((table)[mbound] < (value)) \
++		  lbound = mbound+1; \
++		else if((table)[mbound] > (value)) \
++		  ubound = mbound-1; \
++		else \
++			break; \
++		mbound = (lbound+ubound)>>1; \
+ 	} \
+-	while(1) \
++	if((value) == (table)[mbound]) \
++		(posi) = mbound; \
++	else \
+ 	{ \
+-		mbound = (lbound+ubound)/2; \
+-		if((table)[mbound] > (value)) \
+-		  ubound = mbound; \
+-		else if((table)[mbound] < (value)) \
+-		  lbound = mbound; \
+-		else break; \
+-		if(ubound == lbound)  \
+-		{ \
+-			dumpError("No value found!"); \
+-			exit(-1); \
+-		} \
++		(posi) = -1; \
+ 	} \
+-	(posi) = mbound; \
+ }
+ 
+ // get precise time on unix
+@@ -77,3 +87,4 @@ typedef double swFloat64;
+ }
+ 
+ #endif
++
+diff --git a/topology/topology.C b/topology/topology.C
+index 79eabce..a9bf3dc 100644
+--- a/topology/topology.C
++++ b/topology/topology.C
+@@ -33,6 +33,9 @@ Topology* Topology::constructFromEdge(swInt *startVertices,
+ 	topo->setStartVertices(startVertices);
+ 	topo->setEndVertices(endVertices);
+ 	topo->setEdgeNumber(edgeNumber);
++//printf("edgeNumber is %d\n", topo->_edgeNumber);
++//printArray("%d", topo->_startVertices, edgeNumber);
++//printArray("%d", topo->_endVertices, edgeNumber);
+ 	cout<<"Constructor based on LDU"<<endl;
+ 	topo->EdgeBasedInit();
+ 	if( ! duplicate )
+@@ -46,6 +49,9 @@ Topology* Topology::constructFromEdge(swInt *startVertices,
+ 		topoCopy->copy(*topo);
+ 		delete topo;
+ 		topoCopy->setDuplicate(1);
++//printf("edgeNumber is %d\n", topoCopy->_edgeNumber);
++//printArray("%d", topoCopy->_startVertices, edgeNumber);
++//printArray("%d", topoCopy->_endVertices, edgeNumber);
+ 		return topoCopy;
+ 	}
+ }
+diff --git a/topology/topology.H b/topology/topology.H
+index 45da55c..c17b5b4 100644
+--- a/topology/topology.H
++++ b/topology/topology.H
+@@ -78,7 +78,7 @@ class Topology{
+ 		{ _vertexNeighbours = vertexNeighbours; }
+ 		void setVertexNumber(swInt vertexNumber)
+ 		{ _vertexNumber = vertexNumber; }
+-		void setDuplicate( bool duplicate)
++		void setDuplicate( swInt duplicate)
+ 		{ duplicate_ = duplicate; }
+ 
+ 		// TODO: 对于未按顺序排列的LDU方式存储拓扑，提供排序接口，

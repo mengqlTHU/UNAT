@@ -1,0 +1,27 @@
+[32mMaking directory /home/export/online1/systest/swrh/lhb/UNAT_Renhu/objects [0m
+[32mMaking directory /home/export/online1/systest/swrh/lhb/UNAT_Renhu/include [0m
+[32mMaking directory /home/export/online1/systest/swrh/lhb/UNAT_Renhu/lib [0m
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT_Renhu/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/tools'
+[32mCopying headers ... [0m: ./RL_MPI/register.H ./swMacro.h ./RL_MPI/rlmpi.h ./RL_MPI/RlmpiShared.h ./RL_MPI/RlmpiSharedType.h ./slaveUtils.h ./RL_MPI/RlmpiInitializer.hxx
+sw5cc -slave -msimd -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c slaveUtils.c -o slaveUtils.o 
+sw5cc -slave -msimd -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c RL_MPI/rlmpi.c -o RL_MPI/rlmpi.o 
+mpiCC -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c RL_MPI/register.C -o RL_MPI/register.o
+mpiCC -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c RL_MPI/register.C -o RL_MPI/RlmpiInitializer.o
+[32mFind host c files [0m:
+[32mFind slave c files [0m: ./slaveUtils.c ./RL_MPI/rlmpi.c
+[32mFind cpp files [0m: ./RL_MPI/register.C ./RL_MPI/RlmpiInitializer.cxx
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT_Renhu/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/topology'
+[32mCopying headers ... [0m: ./topology.H
+mpiCC -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c topology.C -o topology.o
+[32mFind host c files [0m:
+[32mFind slave c files [0m:
+[32mFind cpp files [0m: ./topology.C
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT_Renhu/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/iterator'
+[32mCopying headers ... [0m: ./directSegmentIterator/directSegmentIterator.H ./iterator.H ./directSegmentIterator/directSegmentIterator.h ./iterator.h
+sw5cc -slave -msimd -g -I/home/export/online1/systest/swrh/lhb/UNAT_Renhu/include -c directSegmentIterator/directSegmentIterator_slave.c -o directSegmentIterator/directSegmentIterator_slave.o 
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT_Renhu/iterator'
