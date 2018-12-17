@@ -69,6 +69,6 @@ void initTable(int index){
 
 void destroyTable(int index){
 //	schedule_data[index].destroy = 1;
-	__real_athread_spawn((void*)slave_initRlmpiInfo,&schedule_data[index]);
+	__real_athread_spawn((void*)slave_destroyRlmpiInfo,&schedule_data[index]);
 	athread_join();
 }

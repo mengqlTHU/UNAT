@@ -19,9 +19,10 @@ typedef struct
 	swInt *edgeStarts;
 	swInt *startSeg;
 	swInt *endSeg;
-	swInt  connectNum;
+	swInt *accuConnSeg;
 	swInt* segEdgeNum;
 	swInt* edgeNeiSeg;
+	swInt* accuColNum;
 	swInt  vertexNumber;
 
 	// Run-time data
@@ -32,6 +33,12 @@ typedef struct
 	Arrays* frontEdgeData;
 	Arrays* selfConnData;
 	Arrays* vertexData;
+
+	// sorted data
+	swInt*  rOwner;
+	swInt*  rNeighbor;
+	Arrays* rBackEdgeData;
+	Arrays* rFrontEdgeData;
 
 	// computing pointers
 	e2v_hostFunPtr fun_host;

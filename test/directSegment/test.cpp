@@ -12,7 +12,7 @@
 
 using namespace UNAT;
 
-#define NONZERONUM 19800
+#define NONZERONUM 288000
 
 int* readFile(char* name);
 void debug(Topology topo);
@@ -83,8 +83,8 @@ extern "C"
 
 int main()
 {
-	char owner[] = "owner_10KV";
-	char neighbor[] = "neighbour_10KV";
+	char owner[] = "owner";
+	char neighbor[] = "neighbour";
 	swInt *rowAddr = readFile(owner);
 	swInt *colAddr = readFile(neighbor);
 	Topology* topo = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
@@ -133,14 +133,14 @@ int main()
 
 	for(int i=0;i<topo->getVertexNumber();i++)
 	{
-//if(i==73) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
+if(i==60) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
 		b[i] = diag[i]*x[i];
 	}
 	for(int i=0;i<topo->getEdgeNumber();i++)
 	{
-//if(rowAddr[i]==73) printf("upper:%d,%f,%f,%f\n",i,b[rowAddr[i]],upper[i],x[colAddr[i]]);
+if(rowAddr[i]==60) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]],upper[i],x[colAddr[i]]);
      	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
-//if(colAddr[i]==73) printf("lower:%d,%f,%f,%f\n",i,b[colAddr[i]],lower[i],x[rowAddr[i]]);
+if(colAddr[i]==60) printf("lower:%d,%f,%f,%f\n",rowAddr[i],b[colAddr[i]],lower[i],x[rowAddr[i]]);
 		b[colAddr[i]] += lower[i]*x[rowAddr[i]];
 	}
 	// Timer

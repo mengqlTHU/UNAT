@@ -49,11 +49,13 @@ printf("vertexNumber is %d\n", vertexNumber);
 
 	// add up the data weights on vertex and conneted edges	
 	swInt dataWeights[vertexNumber];
-	memcpy(dataWeights, vertexWeights, vertexNumber*sizeof(swInt));
+	memset(dataWeights, 0, vertexNumber*sizeof(swInt));
 	for(swInt iedge = 0; iedge<edgeNumber; iedge++)
 	{
-		dataWeights[startVertex[iedge]] += edgeWeights[iedge];
-		dataWeights[endVertex[iedge]] += edgeWeights[iedge];
+		dataWeights[startVertex[iedge]] += edgeWeights[iedge]
+			+ vertexWeights[endVertex[iedge]];
+		dataWeights[endVertex[iedge]] += edgeWeights[iedge]
+			+ vertexWeights[startVertex[iedge]];
 	}
 
 	// segmentation
@@ -171,6 +173,68 @@ printArray("%d", segStarts_, segNum_*subSegNum_+1);
 	segConnetion_ = Topology::constructFromEdge(&startSeg[0], &endSeg[0],
 				   	connectCount);
 
+	// get the maximum edges of sparse block  in every segment 
+	int maxRowEdges=0;
+	this->maxRowEdges_ = 0;
+	for(int iseg=0;iseg<this->segNum_*this->subSegNum_;iseg++)
+	{
+		int blockIdx = iseg/this->subSegNum_;
+		for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg+1];icol++)
+		{
+			if(this->segConnetion_->getEndVertices()[icol]>=BLOCKNUM64K*(blockIdx+1))
+			{
+				maxRowEdges += this->segEdgeNum_[icol];
+			}
+		}
+		this->maxRowEdges_ = this->maxRowEdges_ > maxRowEdges?
+			this->maxRowEdges_ : maxRowEdges;
+		printf("iseg: %d,maxRowEdges: %d\n",iseg, maxRowEdges);
+		maxRowEdges = 0;
+	}
+	// Data for computing in master core
+	this->rOwner_ = (swInt*)malloc(this->maxRowEdges_*sizeof(swInt));
+	this->rNeighbor_ = (swInt*)malloc(this->maxRowEdges_*sizeof(swInt));
+
+	this->accuColNum_ = (swInt*)malloc(this->subSegNum_*this->segNum_*(this->subSegNum_+1)*sizeof(swInt));
+	swInt *colNum = (swInt*)malloc(this->subSegNum_*this->segNum_*this->subSegNum_*sizeof(swInt));
+	int segNum = this->segNum_*this->subSegNum_;
+	printf("segNum: %d\n",segNum);
+	for(int iseg=0;iseg<segNum;iseg++)
+	{
+		int blockIdx = iseg/BLOCKNUM64K;
+		int edgeNum = this->edgeStarts_[iseg+1]-this->edgeStarts_[iseg];
+		for(int icol=0;icol<BLOCKNUM64K;icol++)
+		{
+			int idx = iseg*this->subSegNum_+icol;
+			colNum[idx] = 0;
+		}
+		for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg+1];icol++)
+		{
+			int colIdx = this->segConnetion_->getEndVertices()[icol];
+			edgeNum -= this->segEdgeNum_[icol];
+			if(colIdx<(blockIdx+1)*BLOCKNUM64K && colIdx>=blockIdx*BLOCKNUM64K)
+			{
+				int idx = iseg*this->subSegNum_+colIdx-blockIdx*BLOCKNUM64K;
+				colNum[idx] = this->segEdgeNum_[icol];
+//if(iseg==64) printf("%d,%d,%d,%d,%d\n",iseg,icol,colIdx,blockIdx,colNum[idx]);
+			}
+		}
+		int idx = iseg*this->subSegNum_+iseg-blockIdx*BLOCKNUM64K;
+		colNum[idx] = edgeNum;
+	}
+	for(int iseg=0;iseg<this->segNum_*this->subSegNum_;iseg++)
+	{
+		this->accuColNum_[iseg*(this->subSegNum_+1)]=0;
+		for(int icol=0;icol<this->subSegNum_;icol++)
+		{ 
+			int idx = iseg*(this->subSegNum_+1)+icol;
+			this->accuColNum_[idx+1]
+				= this->accuColNum_[idx]+colNum[idx-iseg];
+//			if(iseg==53) printf("%d,%d,%d,%d\n",iseg,icol,this->accuColNum_[idx+1],colNum[idx]);
+		}
+	}
+
+
 	// Init the send/recv topology in register communication
 	initOwnNeiSendList();
 	initSendList(ownNeiSendList, dataList, segNum_);
@@ -212,6 +276,14 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	// To do - compute data size and redecompose segments
 	// ... ...
 	
+	// Data for computing in master core
+	this->rBackEdgeData_  = new Arrays();
+	this->rFrontEdgeData_ = new Arrays();
+	constructFromArrays(backEdgeData,  this->rBackEdgeData_,
+				this->maxRowEdges_);
+	constructFromArrays(frontEdgeData, this->rFrontEdgeData_,
+				this->maxRowEdges_);
+	
 	// collect data
 	DS_edge2VertexPara para = 
 	{
@@ -225,9 +297,10 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 
 		this->segConnetion_->getStartVertices(),
 		this->segConnetion_->getEndVertices(),
-		this->segConnetion_->getEdgeNumber(),
+		this->segConnetion_->getAccuStartVertexNumbers(),
 		this->segEdgeNum_,
 		this->edgeNeiSeg_,
+		this->accuColNum_,
 		this->getTopology()->getVertexNumber(),
 
 		// Run-time data
@@ -238,6 +311,12 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 		frontEdgeData,
 		selfConnData,
 		vertexData,
+
+		// sorted data
+		this->rOwner_,
+		this->rNeighbor_,
+		this->rBackEdgeData_,
+		this->rFrontEdgeData_,
 	
 		// computing pointers
 		fun_host,
@@ -258,23 +337,28 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 
 	getTime(time1);
 	int minCol = this->segStarts_[BLOCKNUM64K];
-//	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
-//	{
-//		for(int iedge=this->segStarts_[iseg];
-//					iedge<this->segStarts_[iseg+1];iedge++)
-//		{
-//			if(neighbor[iedge]>=minCol)
-//			{
-//				b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
-//				b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
-//			}
-//		}
-//	}
 
-	for(int spIndex=0;spIndex<this->segNum_;spIndex++)
+	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
 	{
+		for(int iedge=this->edgeStarts_[iseg];
+					iedge<this->edgeStarts_[iseg+1];iedge++)
+		{
+			if(neighbor[iedge]>=minCol)
+			{
+//				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
+				b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
+//				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
+				b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
+			}
+		}
+	}
+
+	for(int spIndex=this->segNum_;spIndex>=0;spIndex--)
+	{
+		printf("init: %d\n",spIndex);
 		initTable(spIndex);
 		para.spIndex = spIndex;
+		printf("spawn: %d\n",spIndex);
 		__real_athread_spawn((void*)slave_directSegmentIterator_e2v_slave, &para);
 		if(spIndex<this->segNum_-2)
 		{
@@ -283,12 +367,14 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 			for(int iseg=iMaster*BLOCKNUM64K;iseg<(iMaster+1)*BLOCKNUM64K;
 						iseg++)
 			{
-				for(int iedge=this->segStarts_[iseg];
-							iedge<this->segStarts_[iseg+1];iedge++)
+				for(int iedge=this->edgeStarts_[iseg];
+							iedge<this->edgeStarts_[iseg+1];iedge++)
 				{
 					if(neighbor[iedge]>=minCol)
 					{
+//				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
 						b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
+//				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
 						b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
 					}
 				}
@@ -296,6 +382,7 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 		}
 		athread_join();
 		destroyTable(spIndex);
+		printf("destroy: %d\n",spIndex);
 	}
 	getTime(time2);
 	athread_halt();
@@ -439,7 +526,7 @@ void DirectSegmentIterator::initOwnNeiSendList()
 	for(int iseg=0;iseg<segNum*BLOCKNUM64K;iseg++)
 	{
 		int blockIdx = iseg/BLOCKNUM64K;
-		printf("%d,%d,%d\n",iseg,edgeStarts[iseg],edgeStarts[iseg+1]);
+//		printf("%d,%d,%d\n",iseg,edgeStarts[iseg],edgeStarts[iseg+1]);
 		for(int iedge=edgeStarts[iseg];iedge<edgeStarts[iseg+1];iedge++)
 		{
 			for(int col=blockIdx*BLOCKNUM64K;

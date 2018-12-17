@@ -26,7 +26,7 @@ src= test.cpp
 # Targets
 ##################################################################
 test: test.o ${LIBPATH}/libUNAT.a
-	${CXX} -L${LIBPATH} -lUNAT $< -o $@
+	${CXX} -L${LIBPATH} -lUNAT  $< -o $@
 
 test.o: test.cpp 
 	${CXX} -I${INCLUDE} -c $< 

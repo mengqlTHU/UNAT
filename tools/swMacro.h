@@ -5,7 +5,7 @@
 #include "stdlib.h"
 
 #define BLOCKNUM64K 64
-#define SAFELDM 48000
+#define SAFELDM 12000
 #define EPS 1e-6
 #define DEBUG
 
