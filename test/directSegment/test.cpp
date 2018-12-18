@@ -12,7 +12,7 @@
 
 using namespace UNAT;
 
-#define NONZERONUM 288000
+#define NONZERONUM 1516800
 
 int* readFile(char* name);
 void debug(Topology topo);
@@ -108,7 +108,7 @@ int main()
 	DirectSegmentIterator iterator(*topo, &cellWeights[0], &edgeWeights[0]);
 
 
-	checkDSI(iterator);
+//	checkDSI(iterator);
 
 	// assign value
 	printf("%d\n",topo->getEdgeNumber());
@@ -133,14 +133,14 @@ int main()
 
 	for(int i=0;i<topo->getVertexNumber();i++)
 	{
-if(i==60) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
+//if(i==4664) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
 		b[i] = diag[i]*x[i];
 	}
 	for(int i=0;i<topo->getEdgeNumber();i++)
 	{
-if(rowAddr[i]==60) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]],upper[i],x[colAddr[i]]);
+//if(rowAddr[i]==4664) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]],upper[i],x[colAddr[i]]);
      	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
-if(colAddr[i]==60) printf("lower:%d,%f,%f,%f\n",rowAddr[i],b[colAddr[i]],lower[i],x[rowAddr[i]]);
+//if(colAddr[i]==4664) printf("lower:%d,%f,%f,%f\n",rowAddr[i],b[colAddr[i]],lower[i],x[rowAddr[i]]);
 		b[colAddr[i]] += lower[i]*x[rowAddr[i]];
 	}
 	// Timer

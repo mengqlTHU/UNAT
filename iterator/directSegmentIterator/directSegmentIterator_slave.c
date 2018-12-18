@@ -122,7 +122,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	diag   = para->selfConnData;
 	vertex = para->vertexData;
 	rLower = para->rBackEdgeData;
-	rNeighbor = para->rFrontEdgeData;
+	rUpper = para->rFrontEdgeData;
 
 	swInt spIndex,vertexNumber;
 	spIndex = para->spIndex;
@@ -322,6 +322,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		accuColNum_slave[edgeNeiSeg_slave[i]+1]++;
 	}
 
+
 //	quickSort(&edgeGlobalIdx[0],edgeLen);
 
 //	for(i=0;i<edgeLen;i++) {assert(test[i]==sNeighbor_slave[i]);}
@@ -499,6 +500,22 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //if(myId==1) printArray("%d",sNeighbor_slave,edgeLen);
 //if(myId==1) printArray("%f",upVertex_slave.floatArrays[0],edgeLen);
 
+	// Transform the sorted data to master core
+	swInt wrtStart = para->wrtStarts[myId+spIndex*BLOCKNUM64K];
+	swInt wrtEnd   = para->wrtStarts[myId+spIndex*BLOCKNUM64K+1];
+	int length = wrtEnd-wrtStart;
+	// Output owner/neighbor
+	if(length>0)
+	{
+//		if(myId==7) printf("***%d,%d,%d***\n",segStarts_slave[myId],accuColNum_slave[BLOCKNUM64K],owner_slave[accuColNum_slave[BLOCKNUM64K]]);
+		DMA_Put(&rOwner[wrtStart],
+				&owner_slave[accuColNum_slave[BLOCKNUM64K]],
+				length*sizeof(swInt));
+		DMA_Put(&rNeighbor[wrtStart],
+				&sNeighbor_slave[accuColNum_slave[BLOCKNUM64K]],
+				length*sizeof(swInt));
+	}
+
 	for(i=0;i<maxEdges;i++)
 	{
 		owner_slave[i]     -= segStarts_slave[myId];
@@ -600,36 +617,34 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 				lowVertex_slave.floatArrays[i],
 				cellLen*lowVertex_slave.fArrayDims[i]*sizeof(swFloat));
 	}
-//	// Output selfConnData
-//	for(i=0;i<diag_slave.fArrayNum;i++)
-//	{
-//		if(diag_slave.fArrayInOut[i]==COPYIN) continue;
-//		DMA_Put(&(diag->floatArrays[i]
-//				[segStarts_slave[myId]*diag_slave.fArrayDims[i]]),
-//				diag_slave.floatArrays[i],
-//				cellLen*diag_slave.fArrayDims[i]*sizeof(swFloat));
-//	}
-//	// Transform the sorted data to master core
-//	// Output upperData
-//	int length 
-//		= accuColNum_slave[BLOCKNUM64K+1]-accuColNum_slave[BLOCKNUM64K];
-//	rUpper->fArraySizes = length;
-//	for(i=0;i<upper_slave.fArrayNum;i++)
-//	{
-//		DMA_Put(rUpper->floatArrays[i],
-//				&upper_slave.floatArrays[i]
-//				[accuColNum_slave[myId+1]*upper_slave.fArrayDims[i]],
-//				length*upper_slave.fArrayDims[i]*sizeof(swFloat));
-//	}
-//	// Output lowerData
-//	rLower->fArraySizes = length;
-//	for(i=0;i<sLower_slave.fArrayNum;i++)
-//	{
-//		DMA_Put(rLower->floatArrays[i],
-//				&sLower_slave.floatArrays[i]
-//				[accuColNum_slave[myId+1]*sLower_slave.fArrayDims[i]],
-//				length*sLower_slave.fArrayDims[i]*sizeof(swFloat));
-//	}
+	// Output selfConnData
+	for(i=0;i<diag_slave.fArrayNum;i++)
+	{
+		if(diag_slave.fArrayInOut[i]==COPYIN) continue;
+		DMA_Put(&(diag->floatArrays[i]
+				[segStarts_slave[myId]*diag_slave.fArrayDims[i]]),
+				diag_slave.floatArrays[i],
+				cellLen*diag_slave.fArrayDims[i]*sizeof(swFloat));
+	}
+	// Transform the sorted data to master core
+	// Output upperData
+	if(length<=0) return;
+	for(i=0;i<upper_slave.fArrayNum;i++)
+	{
+		DMA_Put(&rUpper->floatArrays[i][wrtStart*upper_slave.fArrayDims[i]],
+				&upper_slave.floatArrays[i]
+				[accuColNum_slave[BLOCKNUM64K]*upper_slave.fArrayDims[i]],
+				length*upper_slave.fArrayDims[i]*sizeof(swFloat));
+	}
+	// Output lowerData
+	for(i=0;i<sLower_slave.fArrayNum;i++)
+	{
+		DMA_Put(&rLower->floatArrays[i]
+				[wrtStart*sLower_slave.fArrayDims[i]],
+				&sLower_slave.floatArrays[i]
+				[accuColNum_slave[BLOCKNUM64K]*sLower_slave.fArrayDims[i]],
+				length*sLower_slave.fArrayDims[i]*sizeof(swFloat));
+	}
 }
 
 

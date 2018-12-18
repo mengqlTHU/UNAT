@@ -20,9 +20,10 @@ typedef struct
 	swInt *startSeg;
 	swInt *endSeg;
 	swInt *accuConnSeg;
-	swInt* segEdgeNum;
-	swInt* edgeNeiSeg;
-	swInt* accuColNum;
+	swInt *segEdgeNum;
+	swInt *edgeNeiSeg;
+	swInt *accuColNum;
+	swInt *wrtStarts;
 	swInt  vertexNumber;
 
 	// Run-time data

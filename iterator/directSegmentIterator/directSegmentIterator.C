@@ -13,6 +13,7 @@ with high cohesion to ensure high efficiency of the Iterator
 
 #include <vector>
 #include <sys/time.h>
+#include <assert.h>
 #include "swMacro.h"
 #include "iterator.h"
 #include "directSegmentIterator.H"
@@ -176,24 +177,37 @@ printArray("%d", segStarts_, segNum_*subSegNum_+1);
 	// get the maximum edges of sparse block  in every segment 
 	int maxRowEdges=0;
 	this->maxRowEdges_ = 0;
-	for(int iseg=0;iseg<this->segNum_*this->subSegNum_;iseg++)
+	this->wrtStarts_
+		= (swInt*)malloc((this->segNum_*this->subSegNum_+1)*sizeof(swInt));
+	this->wrtStarts_[0] = 0;
+	for(int iseg=0;iseg<this->segNum_;iseg++)
 	{
-		int blockIdx = iseg/this->subSegNum_;
-		for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg+1];icol++)
+		for(int isubseg=0;isubseg<this->subSegNum_;isubseg++)
 		{
-			if(this->segConnetion_->getEndVertices()[icol]>=BLOCKNUM64K*(blockIdx+1))
+			int blockIdx = (iseg*BLOCKNUM64K+isubseg)/this->subSegNum_;
+			for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg*BLOCKNUM64K+isubseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg*BLOCKNUM64K+isubseg+1];icol++)
 			{
-				maxRowEdges += this->segEdgeNum_[icol];
+				if(this->segConnetion_->getEndVertices()[icol]>=BLOCKNUM64K*(blockIdx+1))
+				{
+					maxRowEdges += this->segEdgeNum_[icol];
+				}
 			}
+			this->wrtStarts_[iseg*BLOCKNUM64K+isubseg+1]
+				= this->wrtStarts_[iseg*BLOCKNUM64K+isubseg]
+				+ maxRowEdges;
+//printf("iseg: %d, isubseg: %d, maxRowEdges: %d, wrtStarts: %d\n",iseg, isubseg, maxRowEdges, this->wrtStarts_[iseg*BLOCKNUM64K+isubseg+1]);
+			maxRowEdges = 0;
 		}
-		this->maxRowEdges_ = this->maxRowEdges_ > maxRowEdges?
-			this->maxRowEdges_ : maxRowEdges;
-		printf("iseg: %d,maxRowEdges: %d\n",iseg, maxRowEdges);
-		maxRowEdges = 0;
+		int segLen = this->wrtStarts_[(iseg+1)*BLOCKNUM64K]
+			- this->wrtStarts_[iseg*BLOCKNUM64K];
+		this->maxRowEdges_
+			= this->maxRowEdges_ > segLen ? this->maxRowEdges_ : segLen;
+//printf("iseg: %d, maxRowEdges: %d\n",iseg, this->maxRowEdges_);
 	}
 	// Data for computing in master core
-	this->rOwner_ = (swInt*)malloc(this->maxRowEdges_*sizeof(swInt));
-	this->rNeighbor_ = (swInt*)malloc(this->maxRowEdges_*sizeof(swInt));
+	swInt64 sparseEdgeNum = this->wrtStarts_[this->segNum_*BLOCKNUM64K];
+	this->rOwner_ = (swInt*)malloc(sparseEdgeNum*sizeof(swInt));
+	this->rNeighbor_ = (swInt*)malloc(sparseEdgeNum*sizeof(swInt));
 
 	this->accuColNum_ = (swInt*)malloc(this->subSegNum_*this->segNum_*(this->subSegNum_+1)*sizeof(swInt));
 	swInt *colNum = (swInt*)malloc(this->subSegNum_*this->segNum_*this->subSegNum_*sizeof(swInt));
@@ -301,6 +315,7 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 		this->segEdgeNum_,
 		this->edgeNeiSeg_,
 		this->accuColNum_,
+		this->wrtStarts_,
 		this->getTopology()->getVertexNumber(),
 
 		// Run-time data
@@ -336,54 +351,100 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	swInt edgeNumber = getArraySize(frontEdgeData);
 
 	getTime(time1);
-	int minCol = this->segStarts_[BLOCKNUM64K];
-
-	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
+	int minCol;
+	for(int spIndex=this->segNum_-1;spIndex>=0;spIndex--)
 	{
-		for(int iedge=this->edgeStarts_[iseg];
-					iedge<this->edgeStarts_[iseg+1];iedge++)
-		{
-			if(neighbor[iedge]>=minCol)
-			{
-//				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
-				b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
-//				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
-				b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
-			}
-		}
-	}
-
-	for(int spIndex=this->segNum_;spIndex>=0;spIndex--)
-	{
-		printf("init: %d\n",spIndex);
+//		printf("init: %d\n",spIndex);
 		initTable(spIndex);
 		para.spIndex = spIndex;
-		printf("spawn: %d\n",spIndex);
 		__real_athread_spawn((void*)slave_directSegmentIterator_e2v_slave, &para);
 		if(spIndex<this->segNum_-2)
 		{
-			int iMaster = spIndex+1;
-			minCol = this->segStarts_[(iMaster+1)*BLOCKNUM64K];
-			for(int iseg=iMaster*BLOCKNUM64K;iseg<(iMaster+1)*BLOCKNUM64K;
-						iseg++)
+			int index=0;
+			swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
+			swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
+//        	this->rBackEdgeData_->fArraySizes
+//        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
+//				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
+//        	this->rFrontEdgeData_->fArraySizes
+//        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
+//				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
+			int startIdx = this->wrtStarts_[(spIndex+1)*BLOCKNUM64K];
+			int endIdx   = this->wrtStarts_[(spIndex+2)*BLOCKNUM64K];
+//        	edgeNumber = getArraySize(this->rBackEdgeData_);
+//printArray("%d",this->rOwner_,edgeNumber);
+			for(int i=startIdx;i<endIdx;i++)
 			{
-				for(int iedge=this->edgeStarts_[iseg];
-							iedge<this->edgeStarts_[iseg+1];iedge++)
-				{
-					if(neighbor[iedge]>=minCol)
-					{
-//				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
-						b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
-//				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
-						b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
-					}
-				}
+				b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+				b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
 			}
 		}
 		athread_join();
+//			int iMaster = spIndex+1;
+//			minCol = this->segStarts_[(iMaster+1)*BLOCKNUM64K];
+//			for(int iseg=iMaster*BLOCKNUM64K;iseg<(iMaster+1)*BLOCKNUM64K;
+//						iseg++)
+//			{
+//				for(int iedge=this->edgeStarts_[iseg];
+//							iedge<this->edgeStarts_[iseg+1];iedge++)
+//				{
+//					if(neighbor[iedge]>=minCol)
+//					{
+//if(this->rOwner_[index] != owner[iedge]) printf("%d,%d,%d,%d\n",index,iedge,this->rOwner_[index],owner[iedge]);
+////assert(this->rNeighbor_[index] == neighbor[iedge]);
+////assert(rLower[index] == lower[iedge]);
+////assert(rUpper[index] == upper[iedge]);
+//
+//						index++;
+////				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
+//						b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
+////				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
+//						b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
+//					}
+//				}
+//			}
+//		}
 		destroyTable(spIndex);
-		printf("destroy: %d\n",spIndex);
+//		printf("destroy: %d\n",spIndex);
 	}
+	int index = 0;
+//	minCol = this->segStarts_[BLOCKNUM64K];
+	swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
+	swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
+//	this->rBackEdgeData_->fArraySizes
+//		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
+//	this->rFrontEdgeData_->fArraySizes
+//		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
+	int startIdx = this->wrtStarts_[0];
+	int endIdx   = this->wrtStarts_[BLOCKNUM64K];
+//	edgeNumber = getArraySize(this->rBackEdgeData_);
+//printArray("%d",this->rOwner_,edgeNumber);
+	for(int i=startIdx;i<endIdx;i++)
+	{
+		b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+		b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+	}
+//	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
+//	{
+//		for(int iedge=this->edgeStarts_[iseg];
+//					iedge<this->edgeStarts_[iseg+1];iedge++)
+//		{
+//			if(neighbor[iedge]>=minCol)
+//			{
+//				assert(this->rOwner_[index]    == owner[iedge]);
+//				assert(this->rNeighbor_[index] == neighbor[iedge]);
+//				assert(rLower[index] == lower[iedge]);
+//				assert(rUpper[index] == upper[iedge]);
+////				printf("%d,%d, owner: (%d,%d), neighbor: (%d,%d)\n",index,iedge,this->rOwner_[index],owner[iedge],this->rNeighbor_[index],neighbor[iedge]);
+//				index++;
+////				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
+//				b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
+////				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
+//				b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
+//			}
+//		}
+//	}
+
 	getTime(time2);
 	athread_halt();
 	printf("Slave core Time: %f us\n",(time2-time1)*1000000);
