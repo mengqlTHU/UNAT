@@ -10,8 +10,8 @@ OBJPATH=${PROJECT}/objects
 # build tool set setting
 #############################################################
 CC="sw5cc -host -g"
-CXX="mpiCC -g"
-SLAVECC="sw5cc -slave -msimd -g"
+CXX="mpiCC"
+SLAVECC="sw5cc -slave -msimd"
 AR=swar cru
 RANLIB=swranlib
 LD=${CXX}

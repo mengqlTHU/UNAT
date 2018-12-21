@@ -16,14 +16,14 @@ char* ldm_space_end = ldm_space;
 { \
 	ptr = ALIGNED(ldm_space_end); \
 	if((char*)ptr - ldm_space \
-				+ sizeof(type)*length >= ldm_size ) \
+				+ sizeof(type)*(length) >= ldm_size ) \
 	{ \
-		printf("exceed LDM space! \n"); \
+		printf("exceed LDM space!\n"); \
 		exit(-1); \
 	} \
 	else \
 	{ \
-		ldm_space_end = (char*)ptr + sizeof(type)*length; \
+		ldm_space_end = (char*)ptr + sizeof(type)*(length); \
 	} \
 }
 

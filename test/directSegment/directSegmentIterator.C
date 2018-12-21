@@ -65,7 +65,7 @@ printf("vertexNumber is %d\n", vertexNumber);
 //printArray("%d", dataWeights, vertexNumber);
 	decomposeArray(subSegNum_, subSegDataLimit, dataWeights, vertexNumber);
 	
-printArray("%d", segStarts_, segNum_*subSegNum_+1);
+//printArray("%d", segStarts_, segNum_*subSegNum_+1);
 	// decompose edge
 	edgeStarts_ = new swInt[segNum_*subSegNum_+1];
 	edgeStarts_[0] = 0;
@@ -179,17 +179,37 @@ printArray("%d", segStarts_, segNum_*subSegNum_+1);
 	this->maxRowEdges_ = 0;
 	this->wrtStarts_
 		= (swInt*)malloc((this->segNum_*this->subSegNum_+1)*sizeof(swInt));
+	this->recvStarts_
+		= (swInt*)malloc((this->segNum_*this->subSegNum_+1)*sizeof(swInt));
 	this->wrtStarts_[0] = 0;
+	this->recvStarts_[0] = 0;
+	int maxEdges=0;
+	int minEdges=10000;
 	for(int iseg=0;iseg<this->segNum_;iseg++)
 	{
 		for(int isubseg=0;isubseg<this->subSegNum_;isubseg++)
 		{
+			this->recvStarts_[iseg*BLOCKNUM64K+isubseg+1]=0;
+		}
+	}
+	for(int iseg=0;iseg<this->segNum_;iseg++)
+	{
+		for(int isubseg=0;isubseg<this->subSegNum_;isubseg++)
+		{
+			int edgeLen = this->edgeStarts_[iseg*BLOCKNUM64K+isubseg+1]
+				- this->edgeStarts_[iseg*BLOCKNUM64K+isubseg];
+			maxEdges = maxEdges > edgeLen ? maxEdges : edgeLen;
+			minEdges = minEdges < edgeLen ? minEdges : edgeLen;
 			int blockIdx = (iseg*BLOCKNUM64K+isubseg)/this->subSegNum_;
 			for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg*BLOCKNUM64K+isubseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg*BLOCKNUM64K+isubseg+1];icol++)
 			{
-				if(this->segConnetion_->getEndVertices()[icol]>=BLOCKNUM64K*(blockIdx+1))
+				int colIdx = this->segConnetion_->getEndVertices()[icol];
+				if(colIdx >= BLOCKNUM64K*(blockIdx+1))
 				{
 					maxRowEdges += this->segEdgeNum_[icol];
+				} else
+				{
+					this->recvStarts_[colIdx] += this->segEdgeNum_[icol];
 				}
 			}
 			this->wrtStarts_[iseg*BLOCKNUM64K+isubseg+1]
@@ -202,8 +222,15 @@ printArray("%d", segStarts_, segNum_*subSegNum_+1);
 			- this->wrtStarts_[iseg*BLOCKNUM64K];
 		this->maxRowEdges_
 			= this->maxRowEdges_ > segLen ? this->maxRowEdges_ : segLen;
-//printf("iseg: %d, maxRowEdges: %d\n",iseg, this->maxRowEdges_);
 	}
+//	for(int iseg=0;iseg<this->segNum_;iseg++)
+//	{
+//		for(int isubseg=0;isubseg<this->subSegNum_;isubseg++)
+//		{
+//			printf("%d, %d\n",iseg*BLOCKNUM64K+isubseg+1, this->recvStarts_[iseg*BLOCKNUM64K+isubseg+1]);
+//		}
+//	}
+
 	// Data for computing in master core
 	swInt64 sparseEdgeNum = this->wrtStarts_[this->segNum_*BLOCKNUM64K];
 	this->rOwner_ = (swInt*)malloc(sparseEdgeNum*sizeof(swInt));
@@ -316,6 +343,7 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 		this->edgeNeiSeg_,
 		this->accuColNum_,
 		this->wrtStarts_,
+		this->recvStarts_,
 		this->getTopology()->getVertexNumber(),
 
 		// Run-time data
@@ -344,11 +372,13 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	printf("start slave function...\n");
 	swFloat* x       = accessArray(vertexData,0);
 	swFloat* b       = accessArray(vertexData,1);
+	swFloat* diag    = accessArray(selfConnData,0);
 	swFloat* lower   = accessArray(backEdgeData,0);
 	swFloat* upper   = accessArray(frontEdgeData,0);
 	swInt* owner     = this->getTopology()->getStartVertices();
 	swInt* neighbor  = this->getTopology()->getEndVertices();
 	swInt edgeNumber = getArraySize(frontEdgeData);
+
 
 	getTime(time1);
 	int minCol;
@@ -375,10 +405,11 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //printArray("%d",this->rOwner_,edgeNumber);
 			for(int i=startIdx;i<endIdx;i++)
 			{
-				b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-				b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+				diag[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+				diag[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
 			}
 		}
+		
 		athread_join();
 //			int iMaster = spIndex+1;
 //			minCol = this->segStarts_[(iMaster+1)*BLOCKNUM64K];
@@ -407,8 +438,8 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 		destroyTable(spIndex);
 //		printf("destroy: %d\n",spIndex);
 	}
-	int index = 0;
-//	minCol = this->segStarts_[BLOCKNUM64K];
+//	int index = 0;
+////	minCol = this->segStarts_[BLOCKNUM64K];
 	swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
 	swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
 //	this->rBackEdgeData_->fArraySizes
@@ -421,8 +452,8 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //printArray("%d",this->rOwner_,edgeNumber);
 	for(int i=startIdx;i<endIdx;i++)
 	{
-		b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-		b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+		diag[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+		diag[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
 	}
 //	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
 //	{

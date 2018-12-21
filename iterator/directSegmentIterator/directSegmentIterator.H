@@ -24,6 +24,7 @@ typedef struct
 	swInt *edgeNeiSeg;
 	swInt *accuColNum;
 	swInt *wrtStarts;
+	swInt *recvStarts;
 	swInt  vertexNumber;
 
 	// Run-time data
