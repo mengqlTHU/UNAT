@@ -405,8 +405,8 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //printArray("%d",this->rOwner_,edgeNumber);
 			for(int i=startIdx;i<endIdx;i++)
 			{
-				diag[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-				diag[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+				b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+				b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
 			}
 		}
 		
@@ -452,8 +452,8 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //printArray("%d",this->rOwner_,edgeNumber);
 	for(int i=startIdx;i<endIdx;i++)
 	{
-		diag[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-		diag[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+		b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
+		b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
 	}
 //	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
 //	{

@@ -131,11 +131,11 @@ int main()
 	// Timer
 	getTime(time1);
 
-//	for(int i=0;i<topo->getVertexNumber();i++)
-//	{
-////if(i==4664) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
-//		b[i] = diag[i]*x[i];
-//	}
+	for(int i=0;i<topo->getVertexNumber();i++)
+	{
+//if(i==4664) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
+		b[i] = diag[i]*x[i];
+	}
 	for(int i=0;i<topo->getEdgeNumber();i++)
 	{
 //if(rowAddr[i]==315) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]],upper[i],x[colAddr[i]]);
@@ -156,7 +156,7 @@ int main()
 	// single constructor for arrays
     constructSingleArray(backEdgeData, 1, NONZERONUM, COPYIN, lower);
     constructSingleArray(frontEdgeData, 1, NONZERONUM, COPYIN, upper);
-    constructSingleArray(selfConnData, 1, vertexNum, COPYIN, b_DSI);
+    constructSingleArray(selfConnData, 1, vertexNum, COPYIN, diag);
     constructSingleArray(vertexData, 1, vertexNum, COPYIN, x);
     addSingleArray(vertexData, 1, vertexNum, COPYOUT, b_DSI);
 	// compute results with iterator

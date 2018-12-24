@@ -9,7 +9,7 @@ OBJPATH=${PROJECT}/objects
 #############################################################
 # build tool set setting
 #############################################################
-CC="sw5cc -host -g"
+CC="sw5cc -host"
 CXX="mpiCC"
 SLAVECC="sw5cc -slave -msimd"
 AR=swar cru
