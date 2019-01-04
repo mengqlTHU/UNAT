@@ -14,6 +14,7 @@ with high cohesion to ensure high efficiency of the Iterator
 #include <vector>
 #include <sys/time.h>
 #include <assert.h>
+#include <climits>
 #include "swMacro.h"
 #include "iterator.h"
 #include "directSegmentIterator.H"
@@ -125,6 +126,13 @@ printf("vertexNumber is %d\n", vertexNumber);
 	swInt connectCount = 0;
 	for(swInt iseg = 0; iseg < segNum_*subSegNum_; iseg++)
 	{
+		// TODO
+		// Assume the count of sparse segment won't exceed 64;
+//		swInt *sparSegMap = new swInt(subSegNum_);
+//		swInt sparSegIdx;
+//		sparSegIdx = subSegNum_;
+//		memset(sparSegMap,subSegNum_,subSegNum_);
+		bool hasSparseEdge = false;
 		// loop sub-segment to calculate edge number between sub-segments
 		std::vector<swInt> localSegEdgeNumTmp(segNum_*subSegNum_, 0);
 //printf("in segrow %d(%d Edge): ", iseg, edgeStarts_[iseg+1]-edgeStarts_[iseg]);
@@ -145,8 +153,15 @@ printf("vertexNumber is %d\n", vertexNumber);
 				else if(segStarts_[mbound] <= endV)
 				  lbound = mbound;
 			}
-			edgeNeiSeg_[iedge] = lbound;
 			localSegEdgeNumTmp[lbound]++;
+//			assert(lbound>=iseg*subSegNum_);
+			if(lbound < (iseg/subSegNum_+1)*subSegNum_)
+			{
+				edgeNeiSeg_[iedge] = lbound - (iseg/subSegNum_)*subSegNum_;
+			} else
+			{
+				edgeNeiSeg_[iedge] = subSegNum_;
+			}
 //printf("(%d,%d); ", startVertex[iedge], endV);
 		}
 //printf("\n\t segEdges: ");
@@ -167,6 +182,7 @@ printf("vertexNumber is %d\n", vertexNumber);
 		}
 //printf("\n");
 	}
+//	printArray("%d",edgeNeiSeg_,edgeNumber);
 
 	// store the connectivity	
 	segEdgeNum_ = new swInt[connectCount];
@@ -387,32 +403,59 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //		printf("init: %d\n",spIndex);
 		initTable(spIndex);
 		para.spIndex = spIndex;
+//printf("segEdgeNum[0]: %d\n",this->segEdgeNum_[0]);
 		__real_athread_spawn((void*)slave_directSegmentIterator_e2v_slave, &para);
 		if(spIndex<this->segNum_-2)
 		{
 			int index=0;
-			swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
-			swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
-//        	this->rBackEdgeData_->fArraySizes
-//        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
-//				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
-//        	this->rFrontEdgeData_->fArraySizes
-//        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
-//				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
 			int startIdx = this->wrtStarts_[(spIndex+1)*BLOCKNUM64K];
 			int endIdx   = this->wrtStarts_[(spIndex+2)*BLOCKNUM64K];
-//        	edgeNumber = getArraySize(this->rBackEdgeData_);
-//printArray("%d",this->rOwner_,edgeNumber);
-			for(int i=startIdx;i<endIdx;i++)
+			for(int iArray=0;iArray<this->rBackEdgeData_->fArrayNum;iArray++)
 			{
-				b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-				b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+				int dims = getArrayDims(this->rBackEdgeData_,iArray);
+				this->rBackEdgeData_->floatArrays[iArray]
+					+= startIdx*dims;
 			}
+			this->rBackEdgeData_->fArraySizes  = endIdx-startIdx;
+			this->rFrontEdgeData_->fArraySizes = 0;
+			selfConnData->fArraySizes = 0;
+
+			fun_host(this->rBackEdgeData_,this->rFrontEdgeData_,selfConnData,
+						vertexData,&this->rOwner_[startIdx],
+						&this->rNeighbor_[startIdx]);
+
+//			swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
+//			swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
+//			int dims = this->rBackEdgeData_->fArrayDims[0];
+//			int startIdx = this->wrtStarts_[(spIndex+1)*BLOCKNUM64K];
+//			int endIdx   = this->wrtStarts_[(spIndex+2)*BLOCKNUM64K];
+//
+////        	this->rBackEdgeData_->fArraySizes
+////        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
+////				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
+////        	this->rFrontEdgeData_->fArraySizes
+////        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
+////				- this->wrtStarts_[(spIndex)*BLOCKNUM64K];
+////			printf("spIndex: %d, edgeNum: %d\n",spIndex+1,endIdx-startIdx);
+////printArray("%d",this->rOwner_,edgeNumber);
+//			for(int i=0;i<endIdx-startIdx;i++)
+//			{
+//				for(int iDim=0;iDim<dims;iDim++)
+//				{
+////					b[this->rOwner_[i]*dims+iDim]
+////						+= rUpper[i*dims+iDim]
+////						*  x[this->rNeighbor_[i]*dims+iDim];
+//					b[this->rNeighbor_[i+startIdx]*dims+iDim]
+//						+= rLower[i*dims+iDim]
+//						*  x[this->rOwner_[i+startIdx]*dims+iDim];
+//				}
+//			}
 		}
 		
-		athread_join();
+//printf("segEdgeNum[0]: %d\n",this->segEdgeNum_[0]);
 //			int iMaster = spIndex+1;
 //			minCol = this->segStarts_[(iMaster+1)*BLOCKNUM64K];
+//			int dims = backEdgeData->fArrayDims[0];
 //			for(int iseg=iMaster*BLOCKNUM64K;iseg<(iMaster+1)*BLOCKNUM64K;
 //						iseg++)
 //			{
@@ -421,40 +464,66 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //				{
 //					if(neighbor[iedge]>=minCol)
 //					{
-//if(this->rOwner_[index] != owner[iedge]) printf("%d,%d,%d,%d\n",index,iedge,this->rOwner_[index],owner[iedge]);
+//						for(int iDim=0;iDim<dims;iDim++)
+//						{
+////if(this->rOwner_[index] != owner[iedge]) printf("%d,%d,%d,%d\n",index,iedge,this->rOwner_[index],owner[iedge]);
 ////assert(this->rNeighbor_[index] == neighbor[iedge]);
 ////assert(rLower[index] == lower[iedge]);
 ////assert(rUpper[index] == upper[iedge]);
 //
-//						index++;
+////						index++;
 ////				if(owner[iedge]==60) printf("owner: %d,%f,%f,%f\n",iedge,b[owner[iedge]],upper[iedge],x[neighbor[iedge]]);
-//						b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
+////						b[owner[iedge]] += upper[iedge]*x[neighbor[iedge]];
 ////				if(neighbor[iedge]==60) printf("neighbor:%d,%f,%f,%f\n",iedge,b[neighbor[iedge]],lower[iedge],x[owner[iedge]]);
-//						b[neighbor[iedge]] += lower[iedge]*x[owner[iedge]];
+//							b[neighbor[iedge]*dims+iDim] += lower[iedge*dims+iDim]*x[owner[iedge]*dims+iDim];
+//						}
 //					}
 //				}
 //			}
 //		}
+		athread_join();
 		destroyTable(spIndex);
 //		printf("destroy: %d\n",spIndex);
 	}
 //	int index = 0;
 ////	minCol = this->segStarts_[BLOCKNUM64K];
-	swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
-	swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
-//	this->rBackEdgeData_->fArraySizes
-//		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
-//	this->rFrontEdgeData_->fArraySizes
-//		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
 	int startIdx = this->wrtStarts_[0];
 	int endIdx   = this->wrtStarts_[BLOCKNUM64K];
-//	edgeNumber = getArraySize(this->rBackEdgeData_);
-//printArray("%d",this->rOwner_,edgeNumber);
-	for(int i=startIdx;i<endIdx;i++)
+	for(int iArray=0;iArray<this->rBackEdgeData_->fArrayNum;iArray++)
 	{
-		b[this->rOwner_[i]] += rUpper[i]*x[this->rNeighbor_[i]];
-		b[this->rNeighbor_[i]] += rLower[i]*x[this->rOwner_[i]];
+		int dims = getArrayDims(this->rBackEdgeData_,iArray);
+		this->rBackEdgeData_->floatArrays[iArray]
+			+= startIdx*dims;
 	}
+	this->rBackEdgeData_->fArraySizes  = endIdx-startIdx;
+	this->rFrontEdgeData_->fArraySizes = 0;
+	selfConnData->fArraySizes = 0;
+
+	fun_host(this->rBackEdgeData_,this->rFrontEdgeData_,selfConnData,
+				vertexData,&this->rOwner_[startIdx],
+				&this->rNeighbor_[startIdx]);
+
+//	swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
+//	swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
+////	this->rBackEdgeData_->fArraySizes
+////		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
+////	this->rFrontEdgeData_->fArraySizes
+////		= this->wrtStarts_[BLOCKNUM64K]-this->wrtStarts_[0];
+//	int dims = this->rBackEdgeData_->fArrayDims[0];
+//	int startIdx = this->wrtStarts_[0];
+//	int endIdx   = this->wrtStarts_[BLOCKNUM64K];
+////	edgeNumber = getArraySize(this->rBackEdgeData_);
+////printArray("%d",this->rOwner_,edgeNumber);
+//	for(int i=startIdx;i<endIdx;i++)
+//	{
+//		for(int iDim=0;iDim<dims;iDim++)
+//		{
+////			b[this->rOwner_[i]*dims+iDim]
+////				+= rUpper[i*dims+iDim]*x[this->rNeighbor_[i]*dims+iDim];
+//			b[this->rNeighbor_[i]*dims+iDim]
+//				+= rLower[i*dims+iDim]*x[this->rOwner_[i]*dims+iDim];
+//		}
+//	}
 //	for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
 //	{
 //		for(int iedge=this->edgeStarts_[iseg];

@@ -6,6 +6,14 @@
 
 #define ALIGNED(addr) ((((unsigned long)((void*)addr-1)>>5)+1)<<5)
 
+#define updt_addw_test(_n_, _addr_) \
+{           unsigned long  __tmp__;                                                       \
+            asm volatile(                   "sll    %1, 32, %1\n\t"  \
+                                            "ldi    %0, 4(%1)\n\t"                  \
+                                            "updt   %0, 0(%2)\n\t"                  \
+                                            :"=r"(__tmp__):"r"(_n_),"r"(_addr_):"memory");        \
+}
+
 #define INIT_LDM_SPACE(ldm_size_) \
 ; \
 int ldm_size = ldm_size_; \

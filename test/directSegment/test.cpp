@@ -9,10 +9,11 @@
 #include "iterator.H"
 #include "iterator.h"
 #include "directSegmentIterator.H"
+#include "spMV.h"
 
 using namespace UNAT;
 
-#define NONZERONUM 1516800
+#define NONZERONUM 637200
 
 int* readFile(char* name);
 void debug(Topology topo);
@@ -21,88 +22,89 @@ void checkDSI(DirectSegmentIterator& iterator);
 
 double time1, time2;
 
-extern "C"
-{
-	//define 2 function pointers
-	define_e2v_hostFunPtr(spMV_host)
-	{
-		//selfConn computation
-		swFloat* diag	= accessArray(selfConnData, 0);
-		swFloat* x		= accessArray(vertexData, 0);
-		swFloat* b		= accessArray(vertexData, 1);
-		
-		swInt vertexNum = getArraySize(selfConnData);
-		swInt ivertex;
-		for( ivertex = 0; ivertex < vertexNum; ivertex++)
-		{
-			b[ivertex] = diag[ivertex]*x[ivertex];
-		}
-		
-		//frontEdge computation
-		swFloat* upper	= accessArray(frontEdgeData, 0);
-		swInt edgeNumber = getArraySize( frontEdgeData );
-		swInt iedge;
-		for( iedge = 0; iedge < edgeNumber; iedge++)
-			b[startVertices[iedge]] += upper[iedge]*x[endVertices[iedge]];
-
-		//backEdge computation
-		swFloat* lower	= accessArray(backEdgeData, 0);
-		edgeNumber = getArraySize( backEdgeData );
-		for( iedge = 0; iedge < edgeNumber; iedge++)
-			b[endVertices[iedge]] += lower[iedge]*x[startVertices[iedge]];
-	}
-
-	define_e2v_slaveFunPtr(spMV_slave)
-	{
-		//selfConn computation
-		swFloat* diag	= accessArray(selfConnData, 0);
-		swFloat* x		= accessArray(vertexData, 0);
-		swFloat* b		= accessArray(vertexData, 1);
-		
-		swInt vertexNum = getArraySize(selfConnData);
-		swInt ivertex;
-		for( ivertex = 0; ivertex < vertexNum; ivertex++)
-		{
-			b[ivertex] = diag[ivertex]*x[ivertex];
-		}
-		
-		//frontEdge computation
-		swFloat* upper	= accessArray(frontEdgeData, 0);
-		swInt edgeNumber = getArraySize(frontEdgeData);
-		swInt iedge;
-		for( iedge = 0; iedge < edgeNumber; iedge++)
-			b[startVertices[iedge]] += upper[iedge]*x[endVertices[iedge]];
-
-		//backEdge computation
-		swFloat* lower	= accessArray(backEdgeData, 0);
-		edgeNumber = getArraySize( backEdgeData );
-		for( iedge = 0; iedge < edgeNumber; iedge++)
-			b[endVertices[iedge]] += lower[iedge]*x[startVertices[iedge]];
-	}
-}
+//extern "C"
+//{
+//	//define 2 function pointers
+//	define_e2v_hostFunPtr(spMV_host)
+//	{
+//		//selfConn computation
+//		swFloat* diag	= accessArray(selfConnData, 0);
+//		swFloat* x		= accessArray(vertexData, 0);
+//		swFloat* b		= accessArray(vertexData, 1);
+//		
+//		swInt vertexNum = getArraySize(selfConnData);
+//		swInt ivertex;
+//		for( ivertex = 0; ivertex < vertexNum; ivertex++)
+//		{
+//			b[ivertex] = diag[ivertex]*x[ivertex];
+//		}
+//		
+//		//frontEdge computation
+//		swFloat* upper	= accessArray(frontEdgeData, 0);
+//		swInt edgeNumber = getArraySize( frontEdgeData );
+//		swInt iedge;
+//		for( iedge = 0; iedge < edgeNumber; iedge++)
+//			b[startVertices[iedge]] += upper[iedge]*x[endVertices[iedge]];
+//
+//		//backEdge computation
+//		swFloat* lower	= accessArray(backEdgeData, 0);
+//		edgeNumber = getArraySize( backEdgeData );
+//		for( iedge = 0; iedge < edgeNumber; iedge++)
+//			b[endVertices[iedge]] += lower[iedge]*x[startVertices[iedge]];
+//	}
+//
+//	define_e2v_slaveFunPtr(spMV_slave)
+//	{
+//		//selfConn computation
+//		swFloat* diag	= accessArray(selfConnData, 0);
+//		swFloat* x		= accessArray(vertexData, 0);
+//		swFloat* b		= accessArray(vertexData, 1);
+//		
+//		swInt vertexNum = getArraySize(selfConnData);
+//		swInt ivertex;
+//		for( ivertex = 0; ivertex < vertexNum; ivertex++)
+//		{
+//			b[ivertex] = diag[ivertex]*x[ivertex];
+//		}
+//		
+//		//frontEdge computation
+//		swFloat* upper	= accessArray(frontEdgeData, 0);
+//		swInt edgeNumber = getArraySize(frontEdgeData);
+//		swInt iedge;
+//		for( iedge = 0; iedge < edgeNumber; iedge++)
+//			b[startVertices[iedge]] += upper[iedge]*x[endVertices[iedge]];
+//
+//		//backEdge computation
+//		swFloat* lower	= accessArray(backEdgeData, 0);
+//		edgeNumber = getArraySize( backEdgeData );
+//		for( iedge = 0; iedge < edgeNumber; iedge++)
+//			b[endVertices[iedge]] += lower[iedge]*x[startVertices[iedge]];
+//	}
+//}
 
 int main()
 {
-	char owner[] = "owner";
-	char neighbor[] = "neighbour";
+	char owner[] = "owner_216000";
+	char neighbor[] = "neighbour_216000";
 	swInt *rowAddr = readFile(owner);
 	swInt *colAddr = readFile(neighbor);
 	Topology* topo = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
+	int dims = 3;
 
-	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber());
-	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber());
-	swFloat* diag  = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
-	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
-	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
-	swFloat* b_DSI = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber());
+	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* diag  = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* b_DSI = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
 	//swFloat* data  = (swFloat*)malloc( sizeof(swFloat)
 	//								   *( topo->getEdgeNumber()*2 
 	//									  + topo->getVertexNumber() )
 	//								 );
 
 	// weights
-	std::vector<swInt> cellWeights(topo->getVertexNumber(), 2);
-	std::vector<swInt> edgeWeights(topo->getEdgeNumber(), 2);
+	std::vector<swInt> cellWeights(topo->getVertexNumber(), 2*dims);
+	std::vector<swInt> edgeWeights(topo->getEdgeNumber(), 2*dims);
 
 
 	DirectSegmentIterator iterator(*topo, &cellWeights[0], &edgeWeights[0]);
@@ -111,59 +113,81 @@ int main()
 //	checkDSI(iterator);
 
 	// assign value
-	printf("%d\n",topo->getEdgeNumber());
+	printf("edgeNum: %d\n",topo->getEdgeNumber());
 	for(int i=0;i<topo->getEdgeNumber();i++)
 	{
-//		if(colAddr[i]+1<=0) printf("%d,%d\n",i,colAddr[i]);
-		lower[i] = ((swFloat)rowAddr[i]+1)/((swFloat)colAddr[i]+1);
-//		assert(rowAddr[i]+1>0);
-		upper[i] = ((swFloat)colAddr[i]+1)/((swFloat)rowAddr[i]+1);
+		for(int iDim=0;iDim<dims;iDim++)
+		{
+			lower[i*dims+iDim]
+				= ((swFloat)rowAddr[i]+1)/((swFloat)colAddr[i]+1);
+			upper[i*dims+iDim]
+				= ((swFloat)colAddr[i]+1)/((swFloat)rowAddr[i]+1);
+		}
 	}
 	for(int i=0;i<topo->getVertexNumber();i++)
 	{
-		diag[i] = i;
-		x[i]    = (double)(i+1)/(i+2);
-		b[i]    = 0;
-		b_DSI[i]= 0;
+		for(int iDim=0;iDim<dims;iDim++)
+		{
+			diag[i*dims+iDim]  = i;
+			x[i*dims+iDim]     = (double)(i+1)/(i+2);
+			b[i*dims+iDim]     = 0;
+			b_DSI[i*dims+iDim] = 0;
+		}
 	}
+
+
+	printf("Construct array...\n");
+	// calculate with iterator and function pointers
+	Arrays backEdgeData, frontEdgeData, 
+		   selfConnData, vertexData, refVertexData;
+	// get vertex number
+	swInt vertexNum = topo->getVertexNumber();
+	// single constructor for arrays
+    constructSingleArray(backEdgeData, dims, NONZERONUM, COPYIN, lower);
+    constructSingleArray(frontEdgeData, dims, NONZERONUM, COPYIN, upper);
+    constructSingleArray(selfConnData, dims, vertexNum, COPYIN, diag);
+    constructSingleArray(vertexData, dims, vertexNum, COPYIN, x);
+    addSingleArray(vertexData, dims, vertexNum, COPYOUT, b_DSI);
+    constructSingleArray(refVertexData, dims, vertexNum, COPYIN, x);
+    addSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
 
 	// reference calculation
 	// Timer
 	getTime(time1);
 
-	for(int i=0;i<topo->getVertexNumber();i++)
-	{
-//if(i==4664) printf("diag:%f,%f,%f\n",b[i],diag[i],x[i]);
-		b[i] = diag[i]*x[i];
-	}
-	for(int i=0;i<topo->getEdgeNumber();i++)
-	{
-//if(rowAddr[i]==315) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]],upper[i],x[colAddr[i]]);
-     	b[rowAddr[i]] += upper[i]*x[colAddr[i]];
-//if(colAddr[i]==315) printf("lower:%d,%f,%f,%f\n",rowAddr[i],b[colAddr[i]],lower[i],x[rowAddr[i]]);
-		b[colAddr[i]] += lower[i]*x[rowAddr[i]];
-	}
+	spMV_host(&backEdgeData,&frontEdgeData,&selfConnData,&refVertexData,
+				rowAddr,colAddr);
+//	for(int i=0;i<topo->getVertexNumber();i++)
+//	{
+//		for(int iDim=0;iDim<dims;iDim++)
+//		{
+////if(i*dims+iDim==26604) printf("diag:%f,%f,%f\n",b[i*dims+iDim],diag[i*dims+iDim],x[i*dims+iDim]);
+//			b[i*dims+iDim]
+//				= diag[i*dims+iDim]*x[i*dims+iDim];
+//		}
+//	}
+//	for(int i=0;i<topo->getEdgeNumber();i++)
+//	{
+//		for(int iDim=0;iDim<dims;iDim++)
+//		{
+////if(rowAddr[i]*dims+iDim==26604) printf("upper:%d,%f,%f,%f\n",colAddr[i],b[rowAddr[i]*dims+iDim],upper[i*dims+iDim],x[colAddr[i]*dims+iDim]);
+//			b[rowAddr[i]*dims+iDim]
+//				+= upper[i*dims+iDim]*x[colAddr[i]*dims+iDim];
+////if(colAddr[i]*dims+iDim==26604) printf("lower:%d,%f,%f,%f\n",rowAddr[i],b[colAddr[i]*dims+iDim],lower[i*dims+iDim],x[rowAddr[i]*dims+iDim]);
+//			b[colAddr[i]*dims+iDim]
+//				+= lower[i*dims+iDim]*x[rowAddr[i]*dims+iDim];
+//		}
+//	}
 	// Timer
 	getTime(time2);
 	printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); 
 
-	printf("Construct array...\n");
-	// calculate with iterator and function pointers
-	Arrays backEdgeData, frontEdgeData, 
-		   selfConnData, vertexData;
-	// get vertex number
-	swInt vertexNum = topo->getVertexNumber();
-	// single constructor for arrays
-    constructSingleArray(backEdgeData, 1, NONZERONUM, COPYIN, lower);
-    constructSingleArray(frontEdgeData, 1, NONZERONUM, COPYIN, upper);
-    constructSingleArray(selfConnData, 1, vertexNum, COPYIN, diag);
-    constructSingleArray(vertexData, 1, vertexNum, COPYIN, x);
-    addSingleArray(vertexData, 1, vertexNum, COPYOUT, b_DSI);
+
 	// compute results with iterator
 	iterator.edge2VertexIteration( &backEdgeData, &frontEdgeData, 
-				&selfConnData, &vertexData, spMV_host, spMV_slave);
+				&selfConnData, &vertexData, spMV_host, slave_spMV_slave);
 
-	checkResult(b, b_DSI, vertexNum);
+	checkResult(b, b_DSI, vertexNum*dims);
 
 	free(lower);
 	free(upper);
