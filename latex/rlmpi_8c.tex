@@ -1,0 +1,212 @@
+\hypertarget{rlmpi_8c}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/tools/\+R\+L\+\_\+\+M\+P\+I/rlmpi.c File Reference}
+\label{rlmpi_8c}\index{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/rlmpi.c@{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/rlmpi.c}}
+{\ttfamily \#include $<$slave.\+h$>$}\newline
+{\ttfamily \#include $<$dma.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$simd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Rlmpi\+Shared.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rlmpi.\+h\char`\"{}}\newline
+Include dependency graph for rlmpi.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rlmpi_8c_a137869a1060d9043724de194e3c80ed5}{F\+I\+L\+E\+\_\+\+R\+L\+M\+P\+I\+\_\+C}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{rlmpi_8c_a284980254ff9c5412353987744875c1d}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((aligned(32)))
+\item 
+int \mbox{\hyperlink{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}{largerest}} (int a, int b, int c)
+\item 
+int \mbox{\hyperlink{rlmpi_8c_a16fb0107c31692875e7e6a614a40b97d}{Ceil}} (int a, int b)
+\item 
+int \mbox{\hyperlink{rlmpi_8c_a2cafae399ac0045562f1ef979050f5a8}{get\+\_\+aligned\+\_\+length}} (int len)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_a8dbfac247f72ffdc0ea728a0186c7fd4}{load\+\_\+rlmpi\+\_\+data}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_a60189c7b674f63eeb9471a3d3f99c016}{load\+\_\+rlmpi\+\_\+data2}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_aaefd5bd835409949e03af9c3e0cff2c2}{destroy\+Rlmpi\+Info}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_acfbe467d1f994ed35c8f5fa9d42f360f}{init\+Rlmpi\+Info}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_a64e75a49b18fde131c205e5a74240184}{Transform\+Package\+Skew}} (const Pack $\ast$s\+Packs\+\_\+, Pack $\ast$r\+Packs\+\_\+)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}{Transform\+Same\+Row\+Package}} (const Pack $\ast$s\+Packs, Pack $\ast$r\+Packs)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}{Transform\+Same\+Column\+Package}} (const Pack $\ast$s\+Packs, Pack $\ast$r\+Packs)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}{sort\+\_\+recv\+\_\+package}} (Pack $\ast$r\+Packs\+\_\+, int npack)
+\item 
+void \mbox{\hyperlink{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}{transform\+\_\+data}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rlmpi_8c_a137869a1060d9043724de194e3c80ed5}\label{rlmpi_8c_a137869a1060d9043724de194e3c80ed5}} 
+\index{rlmpi.c@{rlmpi.c}!FILE\_RLMPI\_C@{FILE\_RLMPI\_C}}
+\index{FILE\_RLMPI\_C@{FILE\_RLMPI\_C}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{FILE\_RLMPI\_C}{FILE\_RLMPI\_C}}
+{\footnotesize\ttfamily \#define F\+I\+L\+E\+\_\+\+R\+L\+M\+P\+I\+\_\+C}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rlmpi_8c_a284980254ff9c5412353987744875c1d}\label{rlmpi_8c_a284980254ff9c5412353987744875c1d}} 
+\index{rlmpi.c@{rlmpi.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} (\begin{DoxyParamCaption}\item[{(aligned(32))}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{rlmpi_8c_a16fb0107c31692875e7e6a614a40b97d}\label{rlmpi_8c_a16fb0107c31692875e7e6a614a40b97d}} 
+\index{rlmpi.c@{rlmpi.c}!Ceil@{Ceil}}
+\index{Ceil@{Ceil}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{Ceil()}{Ceil()}}
+{\footnotesize\ttfamily int Ceil (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_a16fb0107c31692875e7e6a614a40b97d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_aaefd5bd835409949e03af9c3e0cff2c2}\label{rlmpi_8c_aaefd5bd835409949e03af9c3e0cff2c2}} 
+\index{rlmpi.c@{rlmpi.c}!destroyRlmpiInfo@{destroyRlmpiInfo}}
+\index{destroyRlmpiInfo@{destroyRlmpiInfo}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{destroyRlmpiInfo()}{destroyRlmpiInfo()}}
+{\footnotesize\ttfamily void destroy\+Rlmpi\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{rlmpi_8c_a2cafae399ac0045562f1ef979050f5a8}\label{rlmpi_8c_a2cafae399ac0045562f1ef979050f5a8}} 
+\index{rlmpi.c@{rlmpi.c}!get\_aligned\_length@{get\_aligned\_length}}
+\index{get\_aligned\_length@{get\_aligned\_length}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{get\_aligned\_length()}{get\_aligned\_length()}}
+{\footnotesize\ttfamily int get\+\_\+aligned\+\_\+length (\begin{DoxyParamCaption}\item[{int}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{rlmpi_8c_a2cafae399ac0045562f1ef979050f5a8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_a2cafae399ac0045562f1ef979050f5a8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_acfbe467d1f994ed35c8f5fa9d42f360f}\label{rlmpi_8c_acfbe467d1f994ed35c8f5fa9d42f360f}} 
+\index{rlmpi.c@{rlmpi.c}!initRlmpiInfo@{initRlmpiInfo}}
+\index{initRlmpiInfo@{initRlmpiInfo}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{initRlmpiInfo()}{initRlmpiInfo()}}
+{\footnotesize\ttfamily void init\+Rlmpi\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_acfbe467d1f994ed35c8f5fa9d42f360f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}\label{rlmpi_8c_a37563f9d432c8bc4e9840a1dc2d9d294}} 
+\index{rlmpi.c@{rlmpi.c}!largerest@{largerest}}
+\index{largerest@{largerest}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{largerest()}{largerest()}}
+{\footnotesize\ttfamily int largerest (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{rlmpi_8c_a8dbfac247f72ffdc0ea728a0186c7fd4}\label{rlmpi_8c_a8dbfac247f72ffdc0ea728a0186c7fd4}} 
+\index{rlmpi.c@{rlmpi.c}!load\_rlmpi\_data@{load\_rlmpi\_data}}
+\index{load\_rlmpi\_data@{load\_rlmpi\_data}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{load\_rlmpi\_data()}{load\_rlmpi\_data()}}
+{\footnotesize\ttfamily void load\+\_\+rlmpi\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{rlmpi_8c_a60189c7b674f63eeb9471a3d3f99c016}\label{rlmpi_8c_a60189c7b674f63eeb9471a3d3f99c016}} 
+\index{rlmpi.c@{rlmpi.c}!load\_rlmpi\_data2@{load\_rlmpi\_data2}}
+\index{load\_rlmpi\_data2@{load\_rlmpi\_data2}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{load\_rlmpi\_data2()}{load\_rlmpi\_data2()}}
+{\footnotesize\ttfamily void load\+\_\+rlmpi\+\_\+data2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_a60189c7b674f63eeb9471a3d3f99c016_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{rlmpi_8c_a60189c7b674f63eeb9471a3d3f99c016_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}\label{rlmpi_8c_a2839a0d31161d2024e67dc2e6c13ad8c}} 
+\index{rlmpi.c@{rlmpi.c}!sort\_recv\_package@{sort\_recv\_package}}
+\index{sort\_recv\_package@{sort\_recv\_package}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{sort\_recv\_package()}{sort\_recv\_package()}}
+{\footnotesize\ttfamily void sort\+\_\+recv\+\_\+package (\begin{DoxyParamCaption}\item[{Pack $\ast$}]{r\+Packs\+\_\+,  }\item[{int}]{npack }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}\label{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4}} 
+\index{rlmpi.c@{rlmpi.c}!transform\_data@{transform\_data}}
+\index{transform\_data@{transform\_data}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{transform\_data()}{transform\_data()}}
+{\footnotesize\ttfamily void transform\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{rlmpi_8c_aa78bcd4175a6642b9c9b55388d2e70e4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_a64e75a49b18fde131c205e5a74240184}\label{rlmpi_8c_a64e75a49b18fde131c205e5a74240184}} 
+\index{rlmpi.c@{rlmpi.c}!TransformPackageSkew@{TransformPackageSkew}}
+\index{TransformPackageSkew@{TransformPackageSkew}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{TransformPackageSkew()}{TransformPackageSkew()}}
+{\footnotesize\ttfamily void Transform\+Package\+Skew (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs\+\_\+,  }\item[{Pack $\ast$}]{r\+Packs\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rlmpi_8c_a64e75a49b18fde131c205e5a74240184_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}\label{rlmpi_8c_af6301fe17756b6d8df9963b6bd08fa07}} 
+\index{rlmpi.c@{rlmpi.c}!TransformSameColumnPackage@{TransformSameColumnPackage}}
+\index{TransformSameColumnPackage@{TransformSameColumnPackage}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{TransformSameColumnPackage()}{TransformSameColumnPackage()}}
+{\footnotesize\ttfamily void Transform\+Same\+Column\+Package (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs,  }\item[{Pack $\ast$}]{r\+Packs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}\label{rlmpi_8c_a769393193e5b7cba40dc1855348a7e53}} 
+\index{rlmpi.c@{rlmpi.c}!TransformSameRowPackage@{TransformSameRowPackage}}
+\index{TransformSameRowPackage@{TransformSameRowPackage}!rlmpi.c@{rlmpi.c}}
+\subsubsection{\texorpdfstring{TransformSameRowPackage()}{TransformSameRowPackage()}}
+{\footnotesize\ttfamily void Transform\+Same\+Row\+Package (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs,  }\item[{Pack $\ast$}]{r\+Packs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

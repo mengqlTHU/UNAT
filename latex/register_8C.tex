@@ -1,0 +1,103 @@
+\hypertarget{register_8C}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/tools/\+R\+L\+\_\+\+M\+P\+I/register.C File Reference}
+\label{register_8C}\index{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/register.C@{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/register.C}}
+{\ttfamily \#include \char`\"{}register.\+H\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sw\+Macro.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$athread.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Include dependency graph for register.\+C\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{register_8C__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{register_8C_aeb710bc88af64d82c952623c9082f060}{slave\+\_\+init\+Table}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$data)
+\item 
+void \mbox{\hyperlink{register_8C_a4e113cf30f6198d50fb212074effcc61}{init\+Send\+List}} (int $\ast$data\+Send\+List, int msh\+Block\+Num)
+\item 
+void \mbox{\hyperlink{register_8C_ace23239002b4fdf135d4ad20ae2df6e7}{init\+Send\+List}} (int $\ast$data\+Send\+List, vector$<$ vector$<$ int $>$ $>$ data\+List, int msh\+Block\+Num)
+\item 
+void \mbox{\hyperlink{register_8C_a14fad51cfceca5a582218c98bdb3d769}{init\+Table}} (int index)
+\item 
+void \mbox{\hyperlink{register_8C_a099f07ebad307cc1509766f32cfcba5f}{destroy\+Table}} (int index)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{register_8C_a099f07ebad307cc1509766f32cfcba5f}\label{register_8C_a099f07ebad307cc1509766f32cfcba5f}} 
+\index{register.C@{register.C}!destroyTable@{destroyTable}}
+\index{destroyTable@{destroyTable}!register.C@{register.C}}
+\subsubsection{\texorpdfstring{destroyTable()}{destroyTable()}}
+{\footnotesize\ttfamily void destroy\+Table (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{register_8C_a099f07ebad307cc1509766f32cfcba5f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{register_8C_a4e113cf30f6198d50fb212074effcc61}\label{register_8C_a4e113cf30f6198d50fb212074effcc61}} 
+\index{register.C@{register.C}!initSendList@{initSendList}}
+\index{initSendList@{initSendList}!register.C@{register.C}}
+\subsubsection{\texorpdfstring{initSendList()}{initSendList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void init\+Send\+List (\begin{DoxyParamCaption}\item[{int $\ast$}]{data\+Send\+List,  }\item[{int}]{msh\+Block\+Num }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{register_8C_a4e113cf30f6198d50fb212074effcc61_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{register_8C_ace23239002b4fdf135d4ad20ae2df6e7}\label{register_8C_ace23239002b4fdf135d4ad20ae2df6e7}} 
+\index{register.C@{register.C}!initSendList@{initSendList}}
+\index{initSendList@{initSendList}!register.C@{register.C}}
+\subsubsection{\texorpdfstring{initSendList()}{initSendList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void init\+Send\+List (\begin{DoxyParamCaption}\item[{int $\ast$}]{data\+Send\+List,  }\item[{vector$<$ vector$<$ int $>$ $>$}]{data\+List,  }\item[{int}]{msh\+Block\+Num }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{register_8C_ace23239002b4fdf135d4ad20ae2df6e7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{register_8C_a14fad51cfceca5a582218c98bdb3d769}\label{register_8C_a14fad51cfceca5a582218c98bdb3d769}} 
+\index{register.C@{register.C}!initTable@{initTable}}
+\index{initTable@{initTable}!register.C@{register.C}}
+\subsubsection{\texorpdfstring{initTable()}{initTable()}}
+{\footnotesize\ttfamily void init\+Table (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{register_8C_a14fad51cfceca5a582218c98bdb3d769_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{register_8C_aeb710bc88af64d82c952623c9082f060}\label{register_8C_aeb710bc88af64d82c952623c9082f060}} 
+\index{register.C@{register.C}!slave\_initTable@{slave\_initTable}}
+\index{slave\_initTable@{slave\_initTable}!register.C@{register.C}}
+\subsubsection{\texorpdfstring{slave\_initTable()}{slave\_initTable()}}
+{\footnotesize\ttfamily void slave\+\_\+init\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{register_8C_aeb710bc88af64d82c952623c9082f060_icgraph}
+\end{center}
+\end{figure}

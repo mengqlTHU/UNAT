@@ -1,0 +1,292 @@
+\hypertarget{include_2swMacro_8h}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/sw\+Macro.h File Reference}
+\label{include_2swMacro_8h}\index{C:/Users/lenovo/Documents/Work/UNAT/include/swMacro.h@{C:/Users/lenovo/Documents/Work/UNAT/include/swMacro.h}}
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\newline
+Include dependency graph for sw\+Macro.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{include_2swMacro_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{include_2swMacro_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a40a541681ae6999b7c4d5ced2715e32b}{B\+L\+O\+C\+K\+N\+U\+M64K}}~64
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_ad4708a217a80fc583be127a1c65b66c7}{S\+A\+F\+E\+L\+DM}}~30000
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}{E\+PS}}~1e-\/6
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_ad72dbcf6d0153db1b8d8a58001feed83}{D\+E\+B\+UG}}
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a018a1fe4b078f1a684610657a5848860}{L\+OG}}(format, ...)~printf(\char`\"{}File\+: \char`\"{}\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+\char`\"{},Line\+: \%05d\+: \char`\"{}format\char`\"{}\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \#\#\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a14f6f4b28082bde334c8e1cd0ef6937c}{dump\+Error\+To\+File}}(file, ...)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a0dbf14b9e1f16a4991b20deb9648999f}{dump\+Error}}(...)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_ae9d15db38fad65157da63376063e62fd}{print\+Array}}(unit\+Fmt,  array,  length)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{M\+AX}}(x,  y)~( ((x) $>$ (y)) ? (x) \+: (y) )
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a74e75242132eaabbc1c512488a135926}{M\+IN}}(x,  y)~( ((x) $<$ (y)) ? (x) \+: (y) )
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_af5cef4f0821dc4332443597dc64121ed}{bi\+Search}}(posi,  table,  value,  length)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a58ee78a68d862b3c57d220725dee369a}{get\+Time}}(time)
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{N\+EW}}(type,  num)~( (type$\ast$) malloc((num)$\ast$sizeof(type)) )
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_ad0f11ecdfb43e4fe1da50b9a56f60a45}{D\+E\+L\+E\+TE}}(array)~\{ free(array); \}
+\item 
+\#define \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{R\+E\+S\+I\+ZE}}(type,  array,  num\+Old,  num\+New)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}
+\item 
+typedef int \mbox{\hyperlink{include_2swMacro_8h_aacf680447efb4d624d772dd288b596ed}{sw\+Int32}}
+\item 
+typedef long \mbox{\hyperlink{include_2swMacro_8h_adabe61022098216c5988aa1c68c35d9a}{sw\+Int64}}
+\item 
+typedef double \mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{sw\+Float}}
+\item 
+typedef float \mbox{\hyperlink{include_2swMacro_8h_a210b57799fb853ade318cdb744f1edad}{sw\+Float32}}
+\item 
+typedef double \mbox{\hyperlink{include_2swMacro_8h_af394399e79c654a51f4e3aa481577462}{sw\+Float64}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{include_2swMacro_8h_af5cef4f0821dc4332443597dc64121ed}\label{include_2swMacro_8h_af5cef4f0821dc4332443597dc64121ed}} 
+\index{swMacro.h@{swMacro.h}!biSearch@{biSearch}}
+\index{biSearch@{biSearch}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{biSearch}{biSearch}}
+{\footnotesize\ttfamily \#define bi\+Search(\begin{DoxyParamCaption}\item[{}]{posi,  }\item[{}]{table,  }\item[{}]{value,  }\item[{}]{length }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    size\_t ubound, lbound, mbound;\(\backslash\)}
+\DoxyCodeLine{    lbound = 0; \(\backslash\)}
+\DoxyCodeLine{    ubound = (length)-1; \(\backslash\)}
+\DoxyCodeLine{    mbound = lbound; \(\backslash\)}
+\DoxyCodeLine{    while(lbound < ubound) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        if((table)[mbound] < (value)) \(\backslash\)}
+\DoxyCodeLine{          lbound = mbound+1; \(\backslash\)}
+\DoxyCodeLine{        else \textcolor{keywordflow}{if}((table)[mbound] > (value)) \(\backslash\)}
+\DoxyCodeLine{          ubound = mbound-1; \(\backslash\)}
+\DoxyCodeLine{        else \(\backslash\)}
+\DoxyCodeLine{            break; \(\backslash\)}
+\DoxyCodeLine{        mbound = (lbound+ubound)>>1; \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    if((value) == (table)[mbound]) \(\backslash\)}
+\DoxyCodeLine{        (posi) = mbound; \(\backslash\)}
+\DoxyCodeLine{    else \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        (posi) = -1; \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_a40a541681ae6999b7c4d5ced2715e32b}\label{include_2swMacro_8h_a40a541681ae6999b7c4d5ced2715e32b}} 
+\index{swMacro.h@{swMacro.h}!BLOCKNUM64K@{BLOCKNUM64K}}
+\index{BLOCKNUM64K@{BLOCKNUM64K}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{BLOCKNUM64K}{BLOCKNUM64K}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+N\+U\+M64K~64}
+
+\mbox{\Hypertarget{include_2swMacro_8h_ad72dbcf6d0153db1b8d8a58001feed83}\label{include_2swMacro_8h_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{swMacro.h@{swMacro.h}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define D\+E\+B\+UG}
+
+\mbox{\Hypertarget{include_2swMacro_8h_ad0f11ecdfb43e4fe1da50b9a56f60a45}\label{include_2swMacro_8h_ad0f11ecdfb43e4fe1da50b9a56f60a45}} 
+\index{swMacro.h@{swMacro.h}!DELETE@{DELETE}}
+\index{DELETE@{DELETE}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{DELETE}{DELETE}}
+{\footnotesize\ttfamily \#define D\+E\+L\+E\+TE(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~\{ free(array); \}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a0dbf14b9e1f16a4991b20deb9648999f}\label{include_2swMacro_8h_a0dbf14b9e1f16a4991b20deb9648999f}} 
+\index{swMacro.h@{swMacro.h}!dumpError@{dumpError}}
+\index{dumpError@{dumpError}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{dumpError}{dumpError}}
+{\footnotesize\ttfamily \#define dump\+Error(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    dumpErrorToFile(stderr, \_\_VA\_ARGS\_\_) \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_a14f6f4b28082bde334c8e1cd0ef6937c}\label{include_2swMacro_8h_a14f6f4b28082bde334c8e1cd0ef6937c}} 
+\index{swMacro.h@{swMacro.h}!dumpErrorToFile@{dumpErrorToFile}}
+\index{dumpErrorToFile@{dumpErrorToFile}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{dumpErrorToFile}{dumpErrorToFile}}
+{\footnotesize\ttfamily \#define dump\+Error\+To\+File(\begin{DoxyParamCaption}\item[{}]{file,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    fprintf(file, \textcolor{stringliteral}{"\(\backslash\)n***Error in function \(\backslash\)"\%s\(\backslash\)":\(\backslash\)n"},\_\_FUNCTION\_\_);\(\backslash\)}
+\DoxyCodeLine{    fprintf(file, \_\_VA\_ARGS\_\_); \(\backslash\)}
+\DoxyCodeLine{    fprintf(file, \textcolor{stringliteral}{"\(\backslash\)n***at \%s +\%05d\(\backslash\)n\(\backslash\)n"}, \_\_FILE\_\_, \_\_LINE\_\_); \(\backslash\)}
+\DoxyCodeLine{    fflush(file); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}\label{include_2swMacro_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}} 
+\index{swMacro.h@{swMacro.h}!EPS@{EPS}}
+\index{EPS@{EPS}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{EPS}{EPS}}
+{\footnotesize\ttfamily \#define E\+PS~1e-\/6}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a58ee78a68d862b3c57d220725dee369a}\label{include_2swMacro_8h_a58ee78a68d862b3c57d220725dee369a}} 
+\index{swMacro.h@{swMacro.h}!getTime@{getTime}}
+\index{getTime@{getTime}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{getTime}{getTime}}
+{\footnotesize\ttfamily \#define get\+Time(\begin{DoxyParamCaption}\item[{}]{time }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    struct timeval timer; \(\backslash\)}
+\DoxyCodeLine{    gettimeofday(\&timer, 0); \(\backslash\)}
+\DoxyCodeLine{    time = ((double)(timer.tv\_sec) + (double)(timer.tv\_usec)*1.0e-6); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_a018a1fe4b078f1a684610657a5848860}\label{include_2swMacro_8h_a018a1fe4b078f1a684610657a5848860}} 
+\index{swMacro.h@{swMacro.h}!LOG@{LOG}}
+\index{LOG@{LOG}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{LOG}{LOG}}
+{\footnotesize\ttfamily \#define L\+OG(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})~printf(\char`\"{}File\+: \char`\"{}\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+\char`\"{},Line\+: \%05d\+: \char`\"{}format\char`\"{}\textbackslash{}n\char`\"{}, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \#\#\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)}
+
+\mbox{\Hypertarget{include_2swMacro_8h_aacc3ee1a7f283f8ef65cea31f4436a95}\label{include_2swMacro_8h_aacc3ee1a7f283f8ef65cea31f4436a95}} 
+\index{swMacro.h@{swMacro.h}!MAX@{MAX}}
+\index{MAX@{MAX}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define M\+AX(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((x) $>$ (y)) ? (x) \+: (y) )}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a74e75242132eaabbc1c512488a135926}\label{include_2swMacro_8h_a74e75242132eaabbc1c512488a135926}} 
+\index{swMacro.h@{swMacro.h}!MIN@{MIN}}
+\index{MIN@{MIN}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define M\+IN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((x) $<$ (y)) ? (x) \+: (y) )}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}\label{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}} 
+\index{swMacro.h@{swMacro.h}!NEW@{NEW}}
+\index{NEW@{NEW}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{NEW}{NEW}}
+{\footnotesize\ttfamily \#define N\+EW(\begin{DoxyParamCaption}\item[{}]{type,  }\item[{}]{num }\end{DoxyParamCaption})~( (type$\ast$) malloc((num)$\ast$sizeof(type)) )}
+
+\mbox{\Hypertarget{include_2swMacro_8h_ae9d15db38fad65157da63376063e62fd}\label{include_2swMacro_8h_ae9d15db38fad65157da63376063e62fd}} 
+\index{swMacro.h@{swMacro.h}!printArray@{printArray}}
+\index{printArray@{printArray}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{printArray}{printArray}}
+{\footnotesize\ttfamily \#define print\+Array(\begin{DoxyParamCaption}\item[{}]{unit\+Fmt,  }\item[{}]{array,  }\item[{}]{length }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"\%s(\%d):\{"}, \#array, length); \(\backslash\)}
+\DoxyCodeLine{    size\_t i; \(\backslash\)}
+\DoxyCodeLine{    for(i=0; i<(length); i++) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{" "});\(\backslash\)}
+\DoxyCodeLine{        printf(unitFmt, (array)[i]); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"\}\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}\label{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}} 
+\index{swMacro.h@{swMacro.h}!RESIZE@{RESIZE}}
+\index{RESIZE@{RESIZE}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{RESIZE}{RESIZE}}
+{\footnotesize\ttfamily \#define R\+E\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{type,  }\item[{}]{array,  }\item[{}]{num\+Old,  }\item[{}]{num\+New }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( numOld == 0 ) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        if(array != NULL) \(\backslash\)}
+\DoxyCodeLine{        \{ \(\backslash\)}
+\DoxyCodeLine{            printf(\textcolor{stringliteral}{"***Warning: declare an un-null array with zero size!"}); \(\backslash\)}
+\DoxyCodeLine{            DELETE( array );\(\backslash\)}
+\DoxyCodeLine{        \} \(\backslash\)}
+\DoxyCodeLine{        (array) = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(type, numNew); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    else \textcolor{keywordflow}{if}( numOld != 0 ) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        type* arrayTmp = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(type, numOld); \(\backslash\)}
+\DoxyCodeLine{        size\_t i = numOld; \(\backslash\)}
+\DoxyCodeLine{        while(i--)\{ arrayTmp[i] = array[i]; \} \(\backslash\)}
+\DoxyCodeLine{        DELETE( array ); \(\backslash\)}
+\DoxyCodeLine{        (array) = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(type, numNew); \(\backslash\)}
+\DoxyCodeLine{        i = numOld; \(\backslash\)}
+\DoxyCodeLine{        while(i--)\{ array[i] = arrayTmp[i]; \} \(\backslash\)}
+\DoxyCodeLine{        DELETE( arrayTmp ); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2swMacro_8h_ad4708a217a80fc583be127a1c65b66c7}\label{include_2swMacro_8h_ad4708a217a80fc583be127a1c65b66c7}} 
+\index{swMacro.h@{swMacro.h}!SAFELDM@{SAFELDM}}
+\index{SAFELDM@{SAFELDM}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{SAFELDM}{SAFELDM}}
+{\footnotesize\ttfamily \#define S\+A\+F\+E\+L\+DM~30000}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}\label{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}} 
+\index{swMacro.h@{swMacro.h}!swFloat@{swFloat}}
+\index{swFloat@{swFloat}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swFloat}{swFloat}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{sw\+Float}}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a210b57799fb853ade318cdb744f1edad}\label{include_2swMacro_8h_a210b57799fb853ade318cdb744f1edad}} 
+\index{swMacro.h@{swMacro.h}!swFloat32@{swFloat32}}
+\index{swFloat32@{swFloat32}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swFloat32}{swFloat32}}
+{\footnotesize\ttfamily typedef float \mbox{\hyperlink{include_2swMacro_8h_a210b57799fb853ade318cdb744f1edad}{sw\+Float32}}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_af394399e79c654a51f4e3aa481577462}\label{include_2swMacro_8h_af394399e79c654a51f4e3aa481577462}} 
+\index{swMacro.h@{swMacro.h}!swFloat64@{swFloat64}}
+\index{swFloat64@{swFloat64}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swFloat64}{swFloat64}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{include_2swMacro_8h_af394399e79c654a51f4e3aa481577462}{sw\+Float64}}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}\label{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}} 
+\index{swMacro.h@{swMacro.h}!swInt@{swInt}}
+\index{swInt@{swInt}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swInt}{swInt}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_aacf680447efb4d624d772dd288b596ed}\label{include_2swMacro_8h_aacf680447efb4d624d772dd288b596ed}} 
+\index{swMacro.h@{swMacro.h}!swInt32@{swInt32}}
+\index{swInt32@{swInt32}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swInt32}{swInt32}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{include_2swMacro_8h_aacf680447efb4d624d772dd288b596ed}{sw\+Int32}}}
+
+\mbox{\Hypertarget{include_2swMacro_8h_adabe61022098216c5988aa1c68c35d9a}\label{include_2swMacro_8h_adabe61022098216c5988aa1c68c35d9a}} 
+\index{swMacro.h@{swMacro.h}!swInt64@{swInt64}}
+\index{swInt64@{swInt64}!swMacro.h@{swMacro.h}}
+\subsubsection{\texorpdfstring{swInt64}{swInt64}}
+{\footnotesize\ttfamily typedef long \mbox{\hyperlink{include_2swMacro_8h_adabe61022098216c5988aa1c68c35d9a}{sw\+Int64}}}
+

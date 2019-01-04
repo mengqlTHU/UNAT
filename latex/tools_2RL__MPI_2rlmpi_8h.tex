@@ -1,0 +1,294 @@
+\hypertarget{tools_2RL__MPI_2rlmpi_8h}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/tools/\+R\+L\+\_\+\+M\+P\+I/rlmpi.h File Reference}
+\label{tools_2RL__MPI_2rlmpi_8h}\index{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/rlmpi.h@{C:/Users/lenovo/Documents/Work/UNAT/tools/RL\_MPI/rlmpi.h}}
+{\ttfamily \#include $<$slave.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Rlmpi\+Shared.\+h\char`\"{}}\newline
+Include dependency graph for rlmpi.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{tools_2RL__MPI_2rlmpi_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_2RL__MPI_2rlmpi_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a005b28da29b25c5a55ed78e4b734bee6}{C\+OL}}(x)~(x \& 0x07)
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a24630bb1cd43b553e14df6af1beba35c}{R\+OW}}(x)~((x \& 0x38) $>$$>$ 3)
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_ab64860068dc86584eda905e83ed6c960}{R\+E\+G\+\_\+\+P\+U\+TR}}(var,  dst)~asm volatile (\char`\"{}putr \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a146c2d765e771d3fefd08c5598044d63}{R\+E\+G\+\_\+\+P\+U\+TC}}(var,  dst)~asm volatile (\char`\"{}putc \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_abf0ab377d13927e4a0d3561fe7303225}{R\+E\+G\+\_\+\+G\+E\+TR}}(var)~asm volatile (\char`\"{}getr \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a322b72e0fd0822f674c04690f0701f03}{R\+E\+G\+\_\+\+G\+E\+TC}}(var)~asm volatile (\char`\"{}getc \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_ac037a5aa71fbb49e8a31955ef25d1657}{R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+P\+U\+TR}}(var,  dst)~asm volatile (\char`\"{}putr \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_ae338ed428d7ceaf9e639e68049eb040b}{R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+P\+U\+TC}}(var,  dst)~asm volatile (\char`\"{}putc \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a4869a4bef56a19c0ec139363da0bbedc}{R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+TR}}(var)~asm volatile (\char`\"{}getr \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_adc6e2805f8e23324f95f6c2e853fdc56}{R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+TC}}(var)~asm volatile (\char`\"{}getc \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a836954365267363366cfc2ead0190bf2}{R\+O\+W\+S\+YN}}~athread\+\_\+syn(R\+O\+W\+\_\+\+S\+C\+O\+PE,0xff)
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_abc486310daaebe2e7c69775b43c1a14a}{C\+O\+L\+S\+YN}}~athread\+\_\+syn(C\+O\+L\+\_\+\+S\+C\+O\+PE,0xff)
+\item 
+\#define \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a9ce21ca82ef32711a9edf81360a796ef}{A\+L\+L\+S\+YN}}~athread\+\_\+syn(A\+R\+R\+A\+Y\+\_\+\+S\+C\+O\+PE,0xffff)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_aa6074b81304c5697a8f1961d625d8925}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((aligned(32))) Pack $\ast$\+\_\+s\+Packs
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a1c95edae8bb10e531ae15be536b385d8}{Transform\+Package\+Skew}} (const Pack $\ast$s\+Packs, Pack $\ast$r\+Packs)
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_af6301fe17756b6d8df9963b6bd08fa07}{Transform\+Same\+Column\+Package}} (const Pack $\ast$s\+Packs, Pack $\ast$r\+Packs)
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a769393193e5b7cba40dc1855348a7e53}{Transform\+Same\+Row\+Package}} (const Pack $\ast$s\+Packs, Pack $\ast$r\+Packs)
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a8dbfac247f72ffdc0ea728a0186c7fd4}{load\+\_\+rlmpi\+\_\+data}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a29c1a70b4be837c1771603fe8463bff3}{R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+T\+R\+\_\+\+P\+U\+TC}} ()
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_aaefd5bd835409949e03af9c3e0cff2c2}{destroy\+Rlmpi\+Info}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\item 
+void \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_acfbe467d1f994ed35c8f5fa9d42f360f}{init\+Rlmpi\+Info}} (\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$rlmpi\+\_\+info)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix Pack $\ast$ \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a76928eeb9bbd93ccb4d1682181d5c7a7}{\+\_\+s\+Packs\+\_\+same\+\_\+col}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix Pack $\ast$ \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a8e8861831dec614d8a20ad93aae3c3c4}{\+\_\+s\+Packs\+\_\+same\+\_\+row}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{structTable}{Table}} \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_af29a1368a7c478624ec26c60f22b9185}{\+\_\+table\+\_\+ldm}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a29b9f988cabc5af3c11611e8d2902733}{\+\_\+total\+\_\+send\+\_\+pcg}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_aa4d7bc5a2f4130fe138bb39172901372}{\+\_\+total\+\_\+recv\+\_\+pcg}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_ac08e745da4ca010b650a631cd7733260}{\+\_\+n\+Cycle\+Skew}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_af222dfff432ce24c662f1ac54e6ea298}{\+\_\+n\+Cycle\+Same\+Col}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_a4cf5e17b4998248b723ad313965af27d}{\+\_\+n\+Cycle\+Same\+Row}}
+\item 
+\+\_\+\+\_\+thread\+\_\+local int \mbox{\hyperlink{tools_2RL__MPI_2rlmpi_8h_afcf1a06a5cf9e3464cadd07fd7f8a93e}{\+\_\+get\+\_\+reply}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a9ce21ca82ef32711a9edf81360a796ef}\label{tools_2RL__MPI_2rlmpi_8h_a9ce21ca82ef32711a9edf81360a796ef}} 
+\index{rlmpi.h@{rlmpi.h}!ALLSYN@{ALLSYN}}
+\index{ALLSYN@{ALLSYN}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{ALLSYN}{ALLSYN}}
+{\footnotesize\ttfamily \#define A\+L\+L\+S\+YN~athread\+\_\+syn(A\+R\+R\+A\+Y\+\_\+\+S\+C\+O\+PE,0xffff)}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a005b28da29b25c5a55ed78e4b734bee6}\label{tools_2RL__MPI_2rlmpi_8h_a005b28da29b25c5a55ed78e4b734bee6}} 
+\index{rlmpi.h@{rlmpi.h}!COL@{COL}}
+\index{COL@{COL}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{COL}{COL}}
+{\footnotesize\ttfamily \#define C\+OL(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x \& 0x07)}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_abc486310daaebe2e7c69775b43c1a14a}\label{tools_2RL__MPI_2rlmpi_8h_abc486310daaebe2e7c69775b43c1a14a}} 
+\index{rlmpi.h@{rlmpi.h}!COLSYN@{COLSYN}}
+\index{COLSYN@{COLSYN}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{COLSYN}{COLSYN}}
+{\footnotesize\ttfamily \#define C\+O\+L\+S\+YN~athread\+\_\+syn(C\+O\+L\+\_\+\+S\+C\+O\+PE,0xff)}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a322b72e0fd0822f674c04690f0701f03}\label{tools_2RL__MPI_2rlmpi_8h_a322b72e0fd0822f674c04690f0701f03}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_GETC@{REG\_GETC}}
+\index{REG\_GETC@{REG\_GETC}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_GETC}{REG\_GETC}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+G\+E\+TC(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~asm volatile (\char`\"{}getc \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_abf0ab377d13927e4a0d3561fe7303225}\label{tools_2RL__MPI_2rlmpi_8h_abf0ab377d13927e4a0d3561fe7303225}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_GETR@{REG\_GETR}}
+\index{REG\_GETR@{REG\_GETR}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_GETR}{REG\_GETR}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+G\+E\+TR(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~asm volatile (\char`\"{}getr \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a146c2d765e771d3fefd08c5598044d63}\label{tools_2RL__MPI_2rlmpi_8h_a146c2d765e771d3fefd08c5598044d63}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_PUTC@{REG\_PUTC}}
+\index{REG\_PUTC@{REG\_PUTC}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_PUTC}{REG\_PUTC}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+P\+U\+TC(\begin{DoxyParamCaption}\item[{}]{var,  }\item[{}]{dst }\end{DoxyParamCaption})~asm volatile (\char`\"{}putc \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_ab64860068dc86584eda905e83ed6c960}\label{tools_2RL__MPI_2rlmpi_8h_ab64860068dc86584eda905e83ed6c960}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_PUTR@{REG\_PUTR}}
+\index{REG\_PUTR@{REG\_PUTR}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_PUTR}{REG\_PUTR}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+P\+U\+TR(\begin{DoxyParamCaption}\item[{}]{var,  }\item[{}]{dst }\end{DoxyParamCaption})~asm volatile (\char`\"{}putr \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_adc6e2805f8e23324f95f6c2e853fdc56}\label{tools_2RL__MPI_2rlmpi_8h_adc6e2805f8e23324f95f6c2e853fdc56}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_SIMD\_GETC@{REG\_SIMD\_GETC}}
+\index{REG\_SIMD\_GETC@{REG\_SIMD\_GETC}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_SIMD\_GETC}{REG\_SIMD\_GETC}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+TC(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~asm volatile (\char`\"{}getc \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a4869a4bef56a19c0ec139363da0bbedc}\label{tools_2RL__MPI_2rlmpi_8h_a4869a4bef56a19c0ec139363da0bbedc}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_SIMD\_GETR@{REG\_SIMD\_GETR}}
+\index{REG\_SIMD\_GETR@{REG\_SIMD\_GETR}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_SIMD\_GETR}{REG\_SIMD\_GETR}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+TR(\begin{DoxyParamCaption}\item[{}]{var }\end{DoxyParamCaption})~asm volatile (\char`\"{}getr \%0\textbackslash{}n\char`\"{}\+:\char`\"{}=r\char`\"{}(var)\+::\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_ae338ed428d7ceaf9e639e68049eb040b}\label{tools_2RL__MPI_2rlmpi_8h_ae338ed428d7ceaf9e639e68049eb040b}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_SIMD\_PUTC@{REG\_SIMD\_PUTC}}
+\index{REG\_SIMD\_PUTC@{REG\_SIMD\_PUTC}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_SIMD\_PUTC}{REG\_SIMD\_PUTC}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+P\+U\+TC(\begin{DoxyParamCaption}\item[{}]{var,  }\item[{}]{dst }\end{DoxyParamCaption})~asm volatile (\char`\"{}putc \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_ac037a5aa71fbb49e8a31955ef25d1657}\label{tools_2RL__MPI_2rlmpi_8h_ac037a5aa71fbb49e8a31955ef25d1657}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_SIMD\_PUTR@{REG\_SIMD\_PUTR}}
+\index{REG\_SIMD\_PUTR@{REG\_SIMD\_PUTR}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_SIMD\_PUTR}{REG\_SIMD\_PUTR}}
+{\footnotesize\ttfamily \#define R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+P\+U\+TR(\begin{DoxyParamCaption}\item[{}]{var,  }\item[{}]{dst }\end{DoxyParamCaption})~asm volatile (\char`\"{}putr \%0,\%1\textbackslash{}n\char`\"{}\+::\char`\"{}r\char`\"{}(var),\char`\"{}r\char`\"{}(dst)\+:\char`\"{}memory\char`\"{})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a24630bb1cd43b553e14df6af1beba35c}\label{tools_2RL__MPI_2rlmpi_8h_a24630bb1cd43b553e14df6af1beba35c}} 
+\index{rlmpi.h@{rlmpi.h}!ROW@{ROW}}
+\index{ROW@{ROW}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{ROW}{ROW}}
+{\footnotesize\ttfamily \#define R\+OW(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x \& 0x38) $>$$>$ 3)}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a836954365267363366cfc2ead0190bf2}\label{tools_2RL__MPI_2rlmpi_8h_a836954365267363366cfc2ead0190bf2}} 
+\index{rlmpi.h@{rlmpi.h}!ROWSYN@{ROWSYN}}
+\index{ROWSYN@{ROWSYN}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{ROWSYN}{ROWSYN}}
+{\footnotesize\ttfamily \#define R\+O\+W\+S\+YN~athread\+\_\+syn(R\+O\+W\+\_\+\+S\+C\+O\+PE,0xff)}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_aa6074b81304c5697a8f1961d625d8925}\label{tools_2RL__MPI_2rlmpi_8h_aa6074b81304c5697a8f1961d625d8925}} 
+\index{rlmpi.h@{rlmpi.h}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} (\begin{DoxyParamCaption}\item[{(aligned(32))}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_aaefd5bd835409949e03af9c3e0cff2c2}\label{tools_2RL__MPI_2rlmpi_8h_aaefd5bd835409949e03af9c3e0cff2c2}} 
+\index{rlmpi.h@{rlmpi.h}!destroyRlmpiInfo@{destroyRlmpiInfo}}
+\index{destroyRlmpiInfo@{destroyRlmpiInfo}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{destroyRlmpiInfo()}{destroyRlmpiInfo()}}
+{\footnotesize\ttfamily void destroy\+Rlmpi\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_acfbe467d1f994ed35c8f5fa9d42f360f}\label{tools_2RL__MPI_2rlmpi_8h_acfbe467d1f994ed35c8f5fa9d42f360f}} 
+\index{rlmpi.h@{rlmpi.h}!initRlmpiInfo@{initRlmpiInfo}}
+\index{initRlmpiInfo@{initRlmpiInfo}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{initRlmpiInfo()}{initRlmpiInfo()}}
+{\footnotesize\ttfamily void init\+Rlmpi\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_2RL__MPI_2rlmpi_8h_acfbe467d1f994ed35c8f5fa9d42f360f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a8dbfac247f72ffdc0ea728a0186c7fd4}\label{tools_2RL__MPI_2rlmpi_8h_a8dbfac247f72ffdc0ea728a0186c7fd4}} 
+\index{rlmpi.h@{rlmpi.h}!load\_rlmpi\_data@{load\_rlmpi\_data}}
+\index{load\_rlmpi\_data@{load\_rlmpi\_data}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{load\_rlmpi\_data()}{load\_rlmpi\_data()}}
+{\footnotesize\ttfamily void load\+\_\+rlmpi\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRlmpiInfo}{Rlmpi\+Info}} $\ast$}]{rlmpi\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a29c1a70b4be837c1771603fe8463bff3}\label{tools_2RL__MPI_2rlmpi_8h_a29c1a70b4be837c1771603fe8463bff3}} 
+\index{rlmpi.h@{rlmpi.h}!REG\_SIMD\_GETR\_PUTC@{REG\_SIMD\_GETR\_PUTC}}
+\index{REG\_SIMD\_GETR\_PUTC@{REG\_SIMD\_GETR\_PUTC}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{REG\_SIMD\_GETR\_PUTC()}{REG\_SIMD\_GETR\_PUTC()}}
+{\footnotesize\ttfamily void R\+E\+G\+\_\+\+S\+I\+M\+D\+\_\+\+G\+E\+T\+R\+\_\+\+P\+U\+TC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a1c95edae8bb10e531ae15be536b385d8}\label{tools_2RL__MPI_2rlmpi_8h_a1c95edae8bb10e531ae15be536b385d8}} 
+\index{rlmpi.h@{rlmpi.h}!TransformPackageSkew@{TransformPackageSkew}}
+\index{TransformPackageSkew@{TransformPackageSkew}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{TransformPackageSkew()}{TransformPackageSkew()}}
+{\footnotesize\ttfamily void Transform\+Package\+Skew (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs,  }\item[{Pack $\ast$}]{r\+Packs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tools_2RL__MPI_2rlmpi_8h_a1c95edae8bb10e531ae15be536b385d8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_af6301fe17756b6d8df9963b6bd08fa07}\label{tools_2RL__MPI_2rlmpi_8h_af6301fe17756b6d8df9963b6bd08fa07}} 
+\index{rlmpi.h@{rlmpi.h}!TransformSameColumnPackage@{TransformSameColumnPackage}}
+\index{TransformSameColumnPackage@{TransformSameColumnPackage}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{TransformSameColumnPackage()}{TransformSameColumnPackage()}}
+{\footnotesize\ttfamily void Transform\+Same\+Column\+Package (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs,  }\item[{Pack $\ast$}]{r\+Packs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a769393193e5b7cba40dc1855348a7e53}\label{tools_2RL__MPI_2rlmpi_8h_a769393193e5b7cba40dc1855348a7e53}} 
+\index{rlmpi.h@{rlmpi.h}!TransformSameRowPackage@{TransformSameRowPackage}}
+\index{TransformSameRowPackage@{TransformSameRowPackage}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{TransformSameRowPackage()}{TransformSameRowPackage()}}
+{\footnotesize\ttfamily void Transform\+Same\+Row\+Package (\begin{DoxyParamCaption}\item[{const Pack $\ast$}]{s\+Packs,  }\item[{Pack $\ast$}]{r\+Packs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_afcf1a06a5cf9e3464cadd07fd7f8a93e}\label{tools_2RL__MPI_2rlmpi_8h_afcf1a06a5cf9e3464cadd07fd7f8a93e}} 
+\index{rlmpi.h@{rlmpi.h}!\_get\_reply@{\_get\_reply}}
+\index{\_get\_reply@{\_get\_reply}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_get\_reply}{\_get\_reply}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local int \+\_\+get\+\_\+reply}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_af222dfff432ce24c662f1ac54e6ea298}\label{tools_2RL__MPI_2rlmpi_8h_af222dfff432ce24c662f1ac54e6ea298}} 
+\index{rlmpi.h@{rlmpi.h}!\_nCycleSameCol@{\_nCycleSameCol}}
+\index{\_nCycleSameCol@{\_nCycleSameCol}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_nCycleSameCol}{\_nCycleSameCol}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \+\_\+n\+Cycle\+Same\+Col}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a4cf5e17b4998248b723ad313965af27d}\label{tools_2RL__MPI_2rlmpi_8h_a4cf5e17b4998248b723ad313965af27d}} 
+\index{rlmpi.h@{rlmpi.h}!\_nCycleSameRow@{\_nCycleSameRow}}
+\index{\_nCycleSameRow@{\_nCycleSameRow}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_nCycleSameRow}{\_nCycleSameRow}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile int \+\_\+n\+Cycle\+Same\+Row}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_ac08e745da4ca010b650a631cd7733260}\label{tools_2RL__MPI_2rlmpi_8h_ac08e745da4ca010b650a631cd7733260}} 
+\index{rlmpi.h@{rlmpi.h}!\_nCycleSkew@{\_nCycleSkew}}
+\index{\_nCycleSkew@{\_nCycleSkew}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_nCycleSkew}{\_nCycleSkew}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \+\_\+n\+Cycle\+Skew}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a76928eeb9bbd93ccb4d1682181d5c7a7}\label{tools_2RL__MPI_2rlmpi_8h_a76928eeb9bbd93ccb4d1682181d5c7a7}} 
+\index{rlmpi.h@{rlmpi.h}!\_sPacks\_same\_col@{\_sPacks\_same\_col}}
+\index{\_sPacks\_same\_col@{\_sPacks\_same\_col}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_sPacks\_same\_col}{\_sPacks\_same\_col}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix Pack$\ast$ \+\_\+s\+Packs\+\_\+same\+\_\+col}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a8e8861831dec614d8a20ad93aae3c3c4}\label{tools_2RL__MPI_2rlmpi_8h_a8e8861831dec614d8a20ad93aae3c3c4}} 
+\index{rlmpi.h@{rlmpi.h}!\_sPacks\_same\_row@{\_sPacks\_same\_row}}
+\index{\_sPacks\_same\_row@{\_sPacks\_same\_row}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_sPacks\_same\_row}{\_sPacks\_same\_row}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix Pack$\ast$ \+\_\+s\+Packs\+\_\+same\+\_\+row}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_af29a1368a7c478624ec26c60f22b9185}\label{tools_2RL__MPI_2rlmpi_8h_af29a1368a7c478624ec26c60f22b9185}} 
+\index{rlmpi.h@{rlmpi.h}!\_table\_ldm@{\_table\_ldm}}
+\index{\_table\_ldm@{\_table\_ldm}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_table\_ldm}{\_table\_ldm}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix volatile \mbox{\hyperlink{structTable}{Table}} \+\_\+table\+\_\+ldm}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_aa4d7bc5a2f4130fe138bb39172901372}\label{tools_2RL__MPI_2rlmpi_8h_aa4d7bc5a2f4130fe138bb39172901372}} 
+\index{rlmpi.h@{rlmpi.h}!\_total\_recv\_pcg@{\_total\_recv\_pcg}}
+\index{\_total\_recv\_pcg@{\_total\_recv\_pcg}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_total\_recv\_pcg}{\_total\_recv\_pcg}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \+\_\+total\+\_\+recv\+\_\+pcg}
+
+\mbox{\Hypertarget{tools_2RL__MPI_2rlmpi_8h_a29b9f988cabc5af3c11611e8d2902733}\label{tools_2RL__MPI_2rlmpi_8h_a29b9f988cabc5af3c11611e8d2902733}} 
+\index{rlmpi.h@{rlmpi.h}!\_total\_send\_pcg@{\_total\_send\_pcg}}
+\index{\_total\_send\_pcg@{\_total\_send\_pcg}!rlmpi.h@{rlmpi.h}}
+\subsubsection{\texorpdfstring{\_total\_send\_pcg}{\_total\_send\_pcg}}
+{\footnotesize\ttfamily \+\_\+\+\_\+thread\+\_\+local\+\_\+fix int \+\_\+total\+\_\+send\+\_\+pcg}
+

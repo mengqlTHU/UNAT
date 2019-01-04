@@ -1,0 +1,65 @@
+\hypertarget{slaveUtils_8c}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/tools/slave\+Utils.c File Reference}
+\label{slaveUtils_8c}\index{C:/Users/lenovo/Documents/Work/UNAT/tools/slaveUtils.c@{C:/Users/lenovo/Documents/Work/UNAT/tools/slaveUtils.c}}
+{\ttfamily \#include \char`\"{}slave\+Utils.\+h\char`\"{}}\newline
+Include dependency graph for slave\+Utils.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{slaveUtils_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_ab02972681d5cec2b0403c1828f52982e}{D\+M\+A\+\_\+\+Get}} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_afe2045c1aed05f4fed6c6e8ae7ab6730}{D\+M\+A\+\_\+\+I\+Get}} (void $\ast$dest, const void $\ast$source, const int size, \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status)
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_aa7a274f4e4e4acf49aa9403b9926515f}{D\+M\+A\+\_\+\+Put}} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_a02309ffc2f65c23989a5d4d32a6d5e57}{D\+M\+A\+\_\+\+I\+Put}} (void $\ast$dest, const void $\ast$source, const int size, \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status)
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_ae4f03656413075b14e16715e68d4901d}{D\+M\+A\+\_\+\+Wait}} (\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status, const int num)
+\item 
+void \mbox{\hyperlink{slaveUtils_8c_a716604baf7595f0cd1ab74319e64f8fc}{athread\+\_\+wait}} (int $\ast$reply, int count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{slaveUtils_8c_a716604baf7595f0cd1ab74319e64f8fc}\label{slaveUtils_8c_a716604baf7595f0cd1ab74319e64f8fc}} 
+\index{slaveUtils.c@{slaveUtils.c}!athread\_wait@{athread\_wait}}
+\index{athread\_wait@{athread\_wait}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{athread\_wait()}{athread\_wait()}}
+{\footnotesize\ttfamily void athread\+\_\+wait (\begin{DoxyParamCaption}\item[{int $\ast$}]{reply,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{slaveUtils_8c_ab02972681d5cec2b0403c1828f52982e}\label{slaveUtils_8c_ab02972681d5cec2b0403c1828f52982e}} 
+\index{slaveUtils.c@{slaveUtils.c}!DMA\_Get@{DMA\_Get}}
+\index{DMA\_Get@{DMA\_Get}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{DMA\_Get()}{DMA\_Get()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{slaveUtils_8c_afe2045c1aed05f4fed6c6e8ae7ab6730}\label{slaveUtils_8c_afe2045c1aed05f4fed6c6e8ae7ab6730}} 
+\index{slaveUtils.c@{slaveUtils.c}!DMA\_IGet@{DMA\_IGet}}
+\index{DMA\_IGet@{DMA\_IGet}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{DMA\_IGet()}{DMA\_IGet()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+I\+Get (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size,  }\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{slaveUtils_8c_a02309ffc2f65c23989a5d4d32a6d5e57}\label{slaveUtils_8c_a02309ffc2f65c23989a5d4d32a6d5e57}} 
+\index{slaveUtils.c@{slaveUtils.c}!DMA\_IPut@{DMA\_IPut}}
+\index{DMA\_IPut@{DMA\_IPut}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{DMA\_IPut()}{DMA\_IPut()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+I\+Put (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size,  }\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{slaveUtils_8c_aa7a274f4e4e4acf49aa9403b9926515f}\label{slaveUtils_8c_aa7a274f4e4e4acf49aa9403b9926515f}} 
+\index{slaveUtils.c@{slaveUtils.c}!DMA\_Put@{DMA\_Put}}
+\index{DMA\_Put@{DMA\_Put}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{DMA\_Put()}{DMA\_Put()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Put (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{slaveUtils_8c_ae4f03656413075b14e16715e68d4901d}\label{slaveUtils_8c_ae4f03656413075b14e16715e68d4901d}} 
+\index{slaveUtils.c@{slaveUtils.c}!DMA\_Wait@{DMA\_Wait}}
+\index{DMA\_Wait@{DMA\_Wait}!slaveUtils.c@{slaveUtils.c}}
+\subsubsection{\texorpdfstring{DMA\_Wait()}{DMA\_Wait()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status,  }\item[{const int}]{num }\end{DoxyParamCaption})}
+

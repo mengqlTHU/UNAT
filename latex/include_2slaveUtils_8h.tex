@@ -1,0 +1,219 @@
+\hypertarget{include_2slaveUtils_8h}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/slave\+Utils.h File Reference}
+\label{include_2slaveUtils_8h}\index{C:/Users/lenovo/Documents/Work/UNAT/include/slaveUtils.h@{C:/Users/lenovo/Documents/Work/UNAT/include/slaveUtils.h}}
+{\ttfamily \#include $<$slave.\+h$>$}\newline
+{\ttfamily \#include $<$dma.\+h$>$}\newline
+Include dependency graph for slave\+Utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{include_2slaveUtils_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}{A\+L\+I\+G\+N\+ED}}(addr)~((((unsigned long)((void$\ast$)addr-\/1)$>$$>$5)+1)$<$$<$5)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a699a3cd09f40dd789316e51369df7f66}{updt\+\_\+addw\+\_\+test}}(\+\_\+n\+\_\+,  \+\_\+addr\+\_\+)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a3405087ea12440bf4b52d0a9cd71ff61}{I\+N\+I\+T\+\_\+\+L\+D\+M\+\_\+\+S\+P\+A\+CE}}(ldm\+\_\+size\+\_\+)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a61898e6f4a01040e16dd61dfd755f660}{L\+D\+M\+\_\+\+N\+EW}}(ptr,  type,  length)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_accc713afec869f97a0972b745dca28cd}{A\+\_\+\+D\+M\+A\+\_\+\+G\+E\+T\+\_\+\+S\+ET}}(da,  mode,  len,  re\+\_\+addr)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}{A\+\_\+\+D\+M\+A\+\_\+\+G\+E\+T\+\_\+\+R\+UN}}(da,  src,  dest)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}{A\+\_\+\+D\+M\+A\+\_\+\+P\+U\+T\+\_\+\+S\+ET}}(da,  mode,  len,  re\+\_\+addr)
+\item 
+\#define \mbox{\hyperlink{include_2slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}{A\+\_\+\+D\+M\+A\+\_\+\+P\+U\+T\+\_\+\+R\+UN}}(da,  src,  dest)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}{D\+M\+A\+\_\+\+Get}} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}{D\+M\+A\+\_\+\+I\+Get}} (void $\ast$dest, const void $\ast$source, const int size, \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status)
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}{D\+M\+A\+\_\+\+Put}} (void $\ast$dest, const void $\ast$source, const int size)
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}{D\+M\+A\+\_\+\+I\+Put}} (void $\ast$dest, const void $\ast$source, const int size, \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status)
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}{D\+M\+A\+\_\+\+Wait}} (\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$status, const int num)
+\item 
+void \mbox{\hyperlink{include_2slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}{athread\+\_\+wait}} (int $\ast$reply, int count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}\label{include_2slaveUtils_8h_a95c52a6f7ea11a812aa4c8acf45a57ce}} 
+\index{slaveUtils.h@{slaveUtils.h}!A\_DMA\_GET\_RUN@{A\_DMA\_GET\_RUN}}
+\index{A\_DMA\_GET\_RUN@{A\_DMA\_GET\_RUN}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{A\_DMA\_GET\_RUN}{A\_DMA\_GET\_RUN}}
+{\footnotesize\ttfamily \#define A\+\_\+\+D\+M\+A\+\_\+\+G\+E\+T\+\_\+\+R\+UN(\begin{DoxyParamCaption}\item[{}]{da,  }\item[{}]{src,  }\item[{}]{dest }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    dma(da,src,dest); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_accc713afec869f97a0972b745dca28cd}\label{include_2slaveUtils_8h_accc713afec869f97a0972b745dca28cd}} 
+\index{slaveUtils.h@{slaveUtils.h}!A\_DMA\_GET\_SET@{A\_DMA\_GET\_SET}}
+\index{A\_DMA\_GET\_SET@{A\_DMA\_GET\_SET}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{A\_DMA\_GET\_SET}{A\_DMA\_GET\_SET}}
+{\footnotesize\ttfamily \#define A\+\_\+\+D\+M\+A\+\_\+\+G\+E\+T\+\_\+\+S\+ET(\begin{DoxyParamCaption}\item[{}]{da,  }\item[{}]{mode,  }\item[{}]{len,  }\item[{}]{re\+\_\+addr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_op(\&da,DMA\_GET); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_mode(\&da,mode); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_size(\&da,len); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_reply(\&da,re\_addr); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}\label{include_2slaveUtils_8h_abf28b573e7e9c9588141d8e794dd0374}} 
+\index{slaveUtils.h@{slaveUtils.h}!A\_DMA\_PUT\_RUN@{A\_DMA\_PUT\_RUN}}
+\index{A\_DMA\_PUT\_RUN@{A\_DMA\_PUT\_RUN}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{A\_DMA\_PUT\_RUN}{A\_DMA\_PUT\_RUN}}
+{\footnotesize\ttfamily \#define A\+\_\+\+D\+M\+A\+\_\+\+P\+U\+T\+\_\+\+R\+UN(\begin{DoxyParamCaption}\item[{}]{da,  }\item[{}]{src,  }\item[{}]{dest }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    dma(da,dest,src); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}\label{include_2slaveUtils_8h_a06fc5c9ed536f0df4c58e27664b8fd2c}} 
+\index{slaveUtils.h@{slaveUtils.h}!A\_DMA\_PUT\_SET@{A\_DMA\_PUT\_SET}}
+\index{A\_DMA\_PUT\_SET@{A\_DMA\_PUT\_SET}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{A\_DMA\_PUT\_SET}{A\_DMA\_PUT\_SET}}
+{\footnotesize\ttfamily \#define A\+\_\+\+D\+M\+A\+\_\+\+P\+U\+T\+\_\+\+S\+ET(\begin{DoxyParamCaption}\item[{}]{da,  }\item[{}]{mode,  }\item[{}]{len,  }\item[{}]{re\+\_\+addr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_op(\&da,DMA\_PUT); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_mode(\&da,mode); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_size(\&da,len); \(\backslash\)}
+\DoxyCodeLine{    dma\_set\_reply(\&da,re\_addr); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}\label{include_2slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}} 
+\index{slaveUtils.h@{slaveUtils.h}!ALIGNED@{ALIGNED}}
+\index{ALIGNED@{ALIGNED}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{ALIGNED}{ALIGNED}}
+{\footnotesize\ttfamily \#define A\+L\+I\+G\+N\+ED(\begin{DoxyParamCaption}\item[{}]{addr }\end{DoxyParamCaption})~((((unsigned long)((void$\ast$)addr-\/1)$>$$>$5)+1)$<$$<$5)}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_a3405087ea12440bf4b52d0a9cd71ff61}\label{include_2slaveUtils_8h_a3405087ea12440bf4b52d0a9cd71ff61}} 
+\index{slaveUtils.h@{slaveUtils.h}!INIT\_LDM\_SPACE@{INIT\_LDM\_SPACE}}
+\index{INIT\_LDM\_SPACE@{INIT\_LDM\_SPACE}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{INIT\_LDM\_SPACE}{INIT\_LDM\_SPACE}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+L\+D\+M\+\_\+\+S\+P\+A\+CE(\begin{DoxyParamCaption}\item[{}]{ldm\+\_\+size\+\_\+ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{; \(\backslash\)}
+\DoxyCodeLine{int ldm\_size = ldm\_size\_; \(\backslash\)}
+\DoxyCodeLine{char ldm\_space[ldm\_size]; \(\backslash\)}
+\DoxyCodeLine{char* ldm\_space\_end = ldm\_space;}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a61898e6f4a01040e16dd61dfd755f660}\label{include_2slaveUtils_8h_a61898e6f4a01040e16dd61dfd755f660}} 
+\index{slaveUtils.h@{slaveUtils.h}!LDM\_NEW@{LDM\_NEW}}
+\index{LDM\_NEW@{LDM\_NEW}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{LDM\_NEW}{LDM\_NEW}}
+{\footnotesize\ttfamily \#define L\+D\+M\+\_\+\+N\+EW(\begin{DoxyParamCaption}\item[{}]{ptr,  }\item[{}]{type,  }\item[{}]{length }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    ptr = \mbox{\hyperlink{include_2slaveUtils_8h_a1a7f6ce6bec199a5489be9627e757458}{ALIGNED}}(ldm\_space\_end); \(\backslash\)}
+\DoxyCodeLine{    if((\textcolor{keywordtype}{char}*)ptr - ldm\_space \(\backslash\)}
+\DoxyCodeLine{                + \textcolor{keyword}{sizeof}(type)*(length) >= ldm\_size ) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"exceed LDM space!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    else \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        ldm\_space\_end = (\textcolor{keywordtype}{char}*)ptr + \textcolor{keyword}{sizeof}(type)*(length); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a699a3cd09f40dd789316e51369df7f66}\label{include_2slaveUtils_8h_a699a3cd09f40dd789316e51369df7f66}} 
+\index{slaveUtils.h@{slaveUtils.h}!updt\_addw\_test@{updt\_addw\_test}}
+\index{updt\_addw\_test@{updt\_addw\_test}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{updt\_addw\_test}{updt\_addw\_test}}
+{\footnotesize\ttfamily \#define updt\+\_\+addw\+\_\+test(\begin{DoxyParamCaption}\item[{}]{\+\_\+n\+\_\+,  }\item[{}]{\+\_\+addr\+\_\+ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  \_\_tmp\_\_;                                                       \(\backslash\)}
+\DoxyCodeLine{            asm \textcolor{keyword}{volatile}(                   \textcolor{stringliteral}{"sll    \%1, 32, \%1\(\backslash\)n\(\backslash\)t"}  \(\backslash\)}
+\DoxyCodeLine{                                            \textcolor{stringliteral}{"ldi    \%0, 4(\%1)\(\backslash\)n\(\backslash\)t"}                  \(\backslash\)}
+\DoxyCodeLine{                                            \textcolor{stringliteral}{"updt   \%0, 0(\%2)\(\backslash\)n\(\backslash\)t"}                  \(\backslash\)}
+\DoxyCodeLine{                                            :\textcolor{stringliteral}{"=r"}(\_\_tmp\_\_):\textcolor{stringliteral}{"r"}(\_n\_),\textcolor{stringliteral}{"r"}(\_addr\_):\textcolor{stringliteral}{"memory"});        \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}\label{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_Status@{DMA\_Status}}
+\index{DMA\_Status@{DMA\_Status}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_Status}{DMA\_Status}}
+{\footnotesize\ttfamily typedef unsigned long \mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{include_2slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}\label{include_2slaveUtils_8h_a716604baf7595f0cd1ab74319e64f8fc}} 
+\index{slaveUtils.h@{slaveUtils.h}!athread\_wait@{athread\_wait}}
+\index{athread\_wait@{athread\_wait}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{athread\_wait()}{athread\_wait()}}
+{\footnotesize\ttfamily void athread\+\_\+wait (\begin{DoxyParamCaption}\item[{int $\ast$}]{reply,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}\label{include_2slaveUtils_8h_ab02972681d5cec2b0403c1828f52982e}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_Get@{DMA\_Get}}
+\index{DMA\_Get@{DMA\_Get}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_Get()}{DMA\_Get()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}\label{include_2slaveUtils_8h_afe2045c1aed05f4fed6c6e8ae7ab6730}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_IGet@{DMA\_IGet}}
+\index{DMA\_IGet@{DMA\_IGet}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_IGet()}{DMA\_IGet()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+I\+Get (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size,  }\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}\label{include_2slaveUtils_8h_a02309ffc2f65c23989a5d4d32a6d5e57}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_IPut@{DMA\_IPut}}
+\index{DMA\_IPut@{DMA\_IPut}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_IPut()}{DMA\_IPut()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+I\+Put (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size,  }\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}\label{include_2slaveUtils_8h_aa7a274f4e4e4acf49aa9403b9926515f}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_Put@{DMA\_Put}}
+\index{DMA\_Put@{DMA\_Put}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_Put()}{DMA\_Put()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Put (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{source,  }\item[{const int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{include_2slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}\label{include_2slaveUtils_8h_ae4f03656413075b14e16715e68d4901d}} 
+\index{slaveUtils.h@{slaveUtils.h}!DMA\_Wait@{DMA\_Wait}}
+\index{DMA\_Wait@{DMA\_Wait}!slaveUtils.h@{slaveUtils.h}}
+\subsubsection{\texorpdfstring{DMA\_Wait()}{DMA\_Wait()}}
+{\footnotesize\ttfamily void D\+M\+A\+\_\+\+Wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2slaveUtils_8h_a746ca4ea6712a1d81a846de4665ec80b}{D\+M\+A\+\_\+\+Status}} $\ast$}]{status,  }\item[{const int}]{num }\end{DoxyParamCaption})}
+

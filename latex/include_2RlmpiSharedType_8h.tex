@@ -1,0 +1,143 @@
+\hypertarget{include_2RlmpiSharedType_8h}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/\+Rlmpi\+Shared\+Type.h File Reference}
+\label{include_2RlmpiSharedType_8h}\index{C:/Users/lenovo/Documents/Work/UNAT/include/RlmpiSharedType.h@{C:/Users/lenovo/Documents/Work/UNAT/include/RlmpiSharedType.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for Rlmpi\+Shared\+Type.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{include_2RlmpiSharedType_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\item 
+struct \mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structSchedule}{Schedule}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a18b2cf50ed9e8c98eb18ce8278ab3ea8}{U\+S\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+E\+M\+\_\+\+I\+N\+D\+I\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a966c84b9662ca5af8a2bffacc8345acc}{U\+S\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+EM}}~1
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a745a07191e6ec137237667d0cd337e91}{Max\+N\+Packages}}~450
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a77c1dce4fdc3220f82f422eaef22fe6f}{Max\+N\+Cycle}}~200
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_aa3c66c548e5929072bcf5178486bbb56}{Max\+N\+Elm}}~35
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a112b457451e86f100361da13702a419b}{Fatal\+Error}}(s)
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a414dd99e3ccc392ab3eafe06899a46a1}{thread\+\_\+mask}}~10000
+\item 
+\#define \mbox{\hyperlink{include_2RlmpiSharedType_8h_a8887e42f67a516b402e1e8ddbaa2bba4}{mpi\+\_\+mask}}~20000
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \mbox{\hyperlink{include_2RlmpiSharedType_8h_a45297931a529ea634a1b24337a17373f}{Thread\+ID}}
+\item 
+typedef unsigned char \mbox{\hyperlink{include_2RlmpiSharedType_8h_a69782ffde89d45e86308f10afedf08a6}{int8\+L\+DM}}
+\item 
+typedef float \mbox{\hyperlink{include_2RlmpiSharedType_8h_af4148c3e44f31072c9b97e63e56bbde3}{s\+Real}}
+\item 
+typedef double \mbox{\hyperlink{include_2RlmpiSharedType_8h_a973ec569e405922437be98473d2aa6f8}{d\+Real}}
+\item 
+typedef short \mbox{\hyperlink{include_2RlmpiSharedType_8h_a692aa037341791e306174d4669707b03}{int16\+L\+DM}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a112b457451e86f100361da13702a419b}\label{include_2RlmpiSharedType_8h_a112b457451e86f100361da13702a419b}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!FatalError@{FatalError}}
+\index{FatalError@{FatalError}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{FatalError}{FatalError}}
+{\footnotesize\ttfamily \#define Fatal\+Error(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                             \(\backslash\)}
+\DoxyCodeLine{  printf(\textcolor{stringliteral}{"Fatal error '\%s' at \%s:\%d\(\backslash\)n"},s,\_\_FILE\_\_,\_\_LINE\_\_);        \(\backslash\)}
+\DoxyCodeLine{  abort(); \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a77c1dce4fdc3220f82f422eaef22fe6f}\label{include_2RlmpiSharedType_8h_a77c1dce4fdc3220f82f422eaef22fe6f}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!MaxNCycle@{MaxNCycle}}
+\index{MaxNCycle@{MaxNCycle}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{MaxNCycle}{MaxNCycle}}
+{\footnotesize\ttfamily \#define Max\+N\+Cycle~200}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_aa3c66c548e5929072bcf5178486bbb56}\label{include_2RlmpiSharedType_8h_aa3c66c548e5929072bcf5178486bbb56}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!MaxNElm@{MaxNElm}}
+\index{MaxNElm@{MaxNElm}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{MaxNElm}{MaxNElm}}
+{\footnotesize\ttfamily \#define Max\+N\+Elm~35}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a745a07191e6ec137237667d0cd337e91}\label{include_2RlmpiSharedType_8h_a745a07191e6ec137237667d0cd337e91}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!MaxNPackages@{MaxNPackages}}
+\index{MaxNPackages@{MaxNPackages}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{MaxNPackages}{MaxNPackages}}
+{\footnotesize\ttfamily \#define Max\+N\+Packages~450}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a8887e42f67a516b402e1e8ddbaa2bba4}\label{include_2RlmpiSharedType_8h_a8887e42f67a516b402e1e8ddbaa2bba4}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!mpi\_mask@{mpi\_mask}}
+\index{mpi\_mask@{mpi\_mask}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{mpi\_mask}{mpi\_mask}}
+{\footnotesize\ttfamily \#define mpi\+\_\+mask~20000}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a414dd99e3ccc392ab3eafe06899a46a1}\label{include_2RlmpiSharedType_8h_a414dd99e3ccc392ab3eafe06899a46a1}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!thread\_mask@{thread\_mask}}
+\index{thread\_mask@{thread\_mask}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{thread\_mask}{thread\_mask}}
+{\footnotesize\ttfamily \#define thread\+\_\+mask~10000}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a966c84b9662ca5af8a2bffacc8345acc}\label{include_2RlmpiSharedType_8h_a966c84b9662ca5af8a2bffacc8345acc}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!USE\_DYNAMIC\_MEM@{USE\_DYNAMIC\_MEM}}
+\index{USE\_DYNAMIC\_MEM@{USE\_DYNAMIC\_MEM}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{USE\_DYNAMIC\_MEM}{USE\_DYNAMIC\_MEM}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+EM~1}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a18b2cf50ed9e8c98eb18ce8278ab3ea8}\label{include_2RlmpiSharedType_8h_a18b2cf50ed9e8c98eb18ce8278ab3ea8}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!USE\_DYNAMIC\_MEM\_INDICE@{USE\_DYNAMIC\_MEM\_INDICE}}
+\index{USE\_DYNAMIC\_MEM\_INDICE@{USE\_DYNAMIC\_MEM\_INDICE}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{USE\_DYNAMIC\_MEM\_INDICE}{USE\_DYNAMIC\_MEM\_INDICE}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+E\+M\+\_\+\+I\+N\+D\+I\+CE~1}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a973ec569e405922437be98473d2aa6f8}\label{include_2RlmpiSharedType_8h_a973ec569e405922437be98473d2aa6f8}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!dReal@{dReal}}
+\index{dReal@{dReal}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{dReal}{dReal}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{include_2RlmpiShared_8h_a973ec569e405922437be98473d2aa6f8}{d\+Real}}}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a692aa037341791e306174d4669707b03}\label{include_2RlmpiSharedType_8h_a692aa037341791e306174d4669707b03}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!int16LDM@{int16LDM}}
+\index{int16LDM@{int16LDM}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{int16LDM}{int16LDM}}
+{\footnotesize\ttfamily typedef short \mbox{\hyperlink{include_2RlmpiShared_8h_a692aa037341791e306174d4669707b03}{int16\+L\+DM}}}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a69782ffde89d45e86308f10afedf08a6}\label{include_2RlmpiSharedType_8h_a69782ffde89d45e86308f10afedf08a6}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!int8LDM@{int8LDM}}
+\index{int8LDM@{int8LDM}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{int8LDM}{int8LDM}}
+{\footnotesize\ttfamily typedef unsigned char \mbox{\hyperlink{include_2RlmpiShared_8h_a69782ffde89d45e86308f10afedf08a6}{int8\+L\+DM}}}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_af4148c3e44f31072c9b97e63e56bbde3}\label{include_2RlmpiSharedType_8h_af4148c3e44f31072c9b97e63e56bbde3}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!sReal@{sReal}}
+\index{sReal@{sReal}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{sReal}{sReal}}
+{\footnotesize\ttfamily typedef float \mbox{\hyperlink{include_2RlmpiShared_8h_af4148c3e44f31072c9b97e63e56bbde3}{s\+Real}}}
+
+\mbox{\Hypertarget{include_2RlmpiSharedType_8h_a45297931a529ea634a1b24337a17373f}\label{include_2RlmpiSharedType_8h_a45297931a529ea634a1b24337a17373f}} 
+\index{RlmpiSharedType.h@{RlmpiSharedType.h}!ThreadID@{ThreadID}}
+\index{ThreadID@{ThreadID}!RlmpiSharedType.h@{RlmpiSharedType.h}}
+\subsubsection{\texorpdfstring{ThreadID}{ThreadID}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{include_2RlmpiSharedType_8h_a45297931a529ea634a1b24337a17373f}{Thread\+ID}}}
+

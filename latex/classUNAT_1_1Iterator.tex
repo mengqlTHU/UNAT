@@ -1,0 +1,390 @@
+\hypertarget{classUNAT_1_1Iterator}{}\section{U\+N\+AT\+::Iterator Class Reference}
+\label{classUNAT_1_1Iterator}\index{UNAT::Iterator@{UNAT::Iterator}}
+
+
+{\ttfamily \#include $<$iterator.\+hpp$>$}
+
+
+
+Inheritance diagram for U\+N\+AT\+::Iterator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classUNAT_1_1Iterator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for U\+N\+AT\+::Iterator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classUNAT_1_1Iterator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}{Iterator}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}{Iterator}} (\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Weights, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$edge\+Weights, bool duplicate=false)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}{$\sim$\+Iterator}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}{reform\+Inner\+Topology}} ()
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \& \mbox{\hyperlink{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}{get\+Edge\+Map}} ()
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \& \mbox{\hyperlink{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}{get\+Vertex\+Map}} ()
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}{reorder\+Edges}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}{reorder\+Neighbor}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$first\+Edge\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}{reorder\+Edge\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}{reorder\+Neighbor\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}{reorder\+Vertex\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}{edge2\+Vertex\+Iteration}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{test_2directSegment_2iterator_8h_ae588e578b6781906a44208130df0ab29}{e2v\+\_\+host\+Fun\+Ptr}}, \mbox{\hyperlink{test_2directSegment_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}{e2v\+\_\+slave\+Fun\+Ptr}})=0
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}{vertex2\+Edge\+Iteration}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{test_2directSegment_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}{v2e\+\_\+host\+Fun\+Ptr}}, \mbox{\hyperlink{test_2directSegment_2iterator_8h_acd8809485e3b16adfce1d459f3372671}{v2e\+\_\+slave\+Fun\+Ptr}})=0
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}{get\+Topology}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}{Iterator}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}{Iterator}} (\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Weights, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$edge\+Weights, bool duplicate=false)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}{$\sim$\+Iterator}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}{reform\+Inner\+Topology}} ()
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \& \mbox{\hyperlink{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}{get\+Edge\+Map}} ()
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \& \mbox{\hyperlink{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}{get\+Vertex\+Map}} ()
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}{reorder\+Edges}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}{reorder\+Neighbor}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$first\+Edge\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}{reorder\+Edge\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}{reorder\+Neighbor\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}{reorder\+Vertex\+Data}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$edge\+Data)
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}{edge2\+Vertex\+Iteration}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{test_2directSegment_2iterator_8h_ae588e578b6781906a44208130df0ab29}{e2v\+\_\+host\+Fun\+Ptr}}, \mbox{\hyperlink{test_2directSegment_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}{e2v\+\_\+slave\+Fun\+Ptr}})=0
+\item 
+virtual void \mbox{\hyperlink{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}{vertex2\+Edge\+Iteration}} (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{test_2directSegment_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}{v2e\+\_\+host\+Fun\+Ptr}}, \mbox{\hyperlink{test_2directSegment_2iterator_8h_acd8809485e3b16adfce1d459f3372671}{v2e\+\_\+slave\+Fun\+Ptr}})=0
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}{get\+Topology}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Iterator_a609edbe5270c133e5883453d3d1a5e56}{\+\_\+topo}}
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \mbox{\hyperlink{classUNAT_1_1Iterator_ac047c3fcc34d74653bf8c9b84259362a}{\+\_\+edge\+Map}}
+\item 
+map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ \mbox{\hyperlink{classUNAT_1_1Iterator_a8765de7f8e6473c0868bfc25fa40fa7a}{\+\_\+vertex\+Map}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Iterator_a9da915e0a553c64ec43c299d70398f22}{\+\_\+vertex\+Weights}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Iterator_a4dc20c3b10cf1acbf4d7ab9ce1d7fec2}{\+\_\+edge\+Weights}}
+\item 
+bool \mbox{\hyperlink{classUNAT_1_1Iterator_a3edaf3538d36c649321535de2ae0ec0d}{duplicate\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}\label{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}\label{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Weights,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{edge\+Weights,  }\item[{bool}]{duplicate = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}\label{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!````~Iterator@{$\sim$Iterator}}
+\index{````~Iterator@{$\sim$Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{$\sim$Iterator()}{~Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::$\sim$\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}\label{classUNAT_1_1Iterator_a3a341a86404dce424bc82e4a991ef29b}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}\label{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Weights,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{edge\+Weights,  }\item[{bool}]{duplicate = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_acc1365ff1a2078c14424624b75fe2c7e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}\label{classUNAT_1_1Iterator_a5fe65bc2a92032f20c20adf525e0aa26}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!````~Iterator@{$\sim$Iterator}}
+\index{````~Iterator@{$\sim$Iterator}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{$\sim$Iterator()}{~Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Iterator\+::$\sim$\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}\label{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!edge2VertexIteration@{edge2VertexIteration}}
+\index{edge2VertexIteration@{edge2VertexIteration}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{edge2VertexIteration()}{edge2VertexIteration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::edge2\+Vertex\+Iteration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{back\+Edge\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{front\+Edge\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{self\+Conn\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{vertex\+Data,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_ae588e578b6781906a44208130df0ab29}{e2v\+\_\+host\+Fun\+Ptr}}}]{,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}{e2v\+\_\+slave\+Fun\+Ptr}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_a4b4de063d998f54f092a3ca779fd818f}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}, and \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_af7c69ced9c4c68aab3f8be3bdbbb39c4}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}.
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}\label{classUNAT_1_1Iterator_a59fb9d4c251dd0456078decabf332399}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!edge2VertexIteration@{edge2VertexIteration}}
+\index{edge2VertexIteration@{edge2VertexIteration}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{edge2VertexIteration()}{edge2VertexIteration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::edge2\+Vertex\+Iteration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{back\+Edge\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{front\+Edge\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{self\+Conn\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{vertex\+Data,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_ae588e578b6781906a44208130df0ab29}{e2v\+\_\+host\+Fun\+Ptr}}}]{,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}{e2v\+\_\+slave\+Fun\+Ptr}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_a4b4de063d998f54f092a3ca779fd818f}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}, and \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_af7c69ced9c4c68aab3f8be3bdbbb39c4}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}.
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}\label{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getEdgeMap@{getEdgeMap}}
+\index{getEdgeMap@{getEdgeMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getEdgeMap()}{getEdgeMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily map$<$\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$>$\& U\+N\+A\+T\+::\+Iterator\+::get\+Edge\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}\label{classUNAT_1_1Iterator_ac5ce1cbee8e78efc52ba25d3da9eb9c8}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getEdgeMap@{getEdgeMap}}
+\index{getEdgeMap@{getEdgeMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getEdgeMap()}{getEdgeMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily map$<$\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$>$\& U\+N\+A\+T\+::\+Iterator\+::get\+Edge\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}\label{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getTopology@{getTopology}}
+\index{getTopology@{getTopology}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getTopology()}{getTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Iterator\+::get\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}\label{classUNAT_1_1Iterator_a22ec6ca24e5c28053cbda5a1970fe86c}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getTopology@{getTopology}}
+\index{getTopology@{getTopology}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getTopology()}{getTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Iterator\+::get\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}\label{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getVertexMap@{getVertexMap}}
+\index{getVertexMap@{getVertexMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getVertexMap()}{getVertexMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily map$<$\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$>$\& U\+N\+A\+T\+::\+Iterator\+::get\+Vertex\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}\label{classUNAT_1_1Iterator_ac05240478478b3d1aba6af28e364cf50}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!getVertexMap@{getVertexMap}}
+\index{getVertexMap@{getVertexMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{getVertexMap()}{getVertexMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily map$<$\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$>$\& U\+N\+A\+T\+::\+Iterator\+::get\+Vertex\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}\label{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reformInnerTopology@{reformInnerTopology}}
+\index{reformInnerTopology@{reformInnerTopology}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reformInnerTopology()}{reformInnerTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Iterator\+::reform\+Inner\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}\label{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reformInnerTopology@{reformInnerTopology}}
+\index{reformInnerTopology@{reformInnerTopology}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reformInnerTopology()}{reformInnerTopology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Iterator\+::reform\+Inner\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_ad25934bd952c01d0a82d3db33e46604a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}\label{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderEdgeData@{reorderEdgeData}}
+\index{reorderEdgeData@{reorderEdgeData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderEdgeData()}{reorderEdgeData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Edge\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}\label{classUNAT_1_1Iterator_a9272c47e4e6c7636366c720de203edb6}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderEdgeData@{reorderEdgeData}}
+\index{reorderEdgeData@{reorderEdgeData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderEdgeData()}{reorderEdgeData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Edge\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}\label{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderEdges@{reorderEdges}}
+\index{reorderEdges@{reorderEdges}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderEdges()}{reorderEdges()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Edges (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}\label{classUNAT_1_1Iterator_a12e23a0188bf8c4a7d3de798ee9aa85f}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderEdges@{reorderEdges}}
+\index{reorderEdges@{reorderEdges}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderEdges()}{reorderEdges()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Edges (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}\label{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderNeighbor@{reorderNeighbor}}
+\index{reorderNeighbor@{reorderNeighbor}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderNeighbor()}{reorderNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{first\+Edge\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}\label{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderNeighbor@{reorderNeighbor}}
+\index{reorderNeighbor@{reorderNeighbor}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderNeighbor()}{reorderNeighbor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Neighbor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{first\+Edge\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Iterator_ac54a79d677f7452d03a02fea6fb435f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}\label{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderNeighborData@{reorderNeighborData}}
+\index{reorderNeighborData@{reorderNeighborData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderNeighborData()}{reorderNeighborData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Neighbor\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}\label{classUNAT_1_1Iterator_a45d6064d872b297ff6b69f86bc7c54df}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderNeighborData@{reorderNeighborData}}
+\index{reorderNeighborData@{reorderNeighborData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderNeighborData()}{reorderNeighborData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Neighbor\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}\label{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderVertexData@{reorderVertexData}}
+\index{reorderVertexData@{reorderVertexData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderVertexData()}{reorderVertexData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Vertex\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}\label{classUNAT_1_1Iterator_a14c39cea873162b0232f55d73b0519ae}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!reorderVertexData@{reorderVertexData}}
+\index{reorderVertexData@{reorderVertexData}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{reorderVertexData()}{reorderVertexData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::reorder\+Vertex\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{edge\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}\label{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!vertex2EdgeIteration@{vertex2EdgeIteration}}
+\index{vertex2EdgeIteration@{vertex2EdgeIteration}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{vertex2EdgeIteration()}{vertex2EdgeIteration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::vertex2\+Edge\+Iteration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{neighbour\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{vertex\+Data,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}{v2e\+\_\+host\+Fun\+Ptr}}}]{,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_acd8809485e3b16adfce1d459f3372671}{v2e\+\_\+slave\+Fun\+Ptr}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_a6f53d346ec280ecfc3acf82691f6eaea}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}, and \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_ac802bc1237356604a14c3349d6bf8d29}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}.
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}\label{classUNAT_1_1Iterator_a0bb9f9c408c19b3c6bb342d37b333a1c}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!vertex2EdgeIteration@{vertex2EdgeIteration}}
+\index{vertex2EdgeIteration@{vertex2EdgeIteration}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{vertex2EdgeIteration()}{vertex2EdgeIteration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void U\+N\+A\+T\+::\+Iterator\+::vertex2\+Edge\+Iteration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{neighbour\+Data,  }\item[{\mbox{\hyperlink{structArrays}{Arrays}} $\ast$}]{vertex\+Data,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}{v2e\+\_\+host\+Fun\+Ptr}}}]{,  }\item[{\mbox{\hyperlink{test_2directSegment_2iterator_8h_acd8809485e3b16adfce1d459f3372671}{v2e\+\_\+slave\+Fun\+Ptr}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_a6f53d346ec280ecfc3acf82691f6eaea}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}, and \mbox{\hyperlink{classUNAT_1_1DirectSegmentIterator_ac802bc1237356604a14c3349d6bf8d29}{U\+N\+A\+T\+::\+Direct\+Segment\+Iterator}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Iterator_ac047c3fcc34d74653bf8c9b84259362a}\label{classUNAT_1_1Iterator_ac047c3fcc34d74653bf8c9b84259362a}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!\_edgeMap@{\_edgeMap}}
+\index{\_edgeMap@{\_edgeMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{\_edgeMap}{\_edgeMap}}
+{\footnotesize\ttfamily map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ U\+N\+A\+T\+::\+Iterator\+::\+\_\+edge\+Map\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a4dc20c3b10cf1acbf4d7ab9ce1d7fec2}\label{classUNAT_1_1Iterator_a4dc20c3b10cf1acbf4d7ab9ce1d7fec2}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!\_edgeWeights@{\_edgeWeights}}
+\index{\_edgeWeights@{\_edgeWeights}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{\_edgeWeights}{\_edgeWeights}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Iterator\+::\+\_\+edge\+Weights\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a609edbe5270c133e5883453d3d1a5e56}\label{classUNAT_1_1Iterator_a609edbe5270c133e5883453d3d1a5e56}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!\_topo@{\_topo}}
+\index{\_topo@{\_topo}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{\_topo}{\_topo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ U\+N\+A\+T\+::\+Iterator\+::\+\_\+topo\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a8765de7f8e6473c0868bfc25fa40fa7a}\label{classUNAT_1_1Iterator_a8765de7f8e6473c0868bfc25fa40fa7a}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!\_vertexMap@{\_vertexMap}}
+\index{\_vertexMap@{\_vertexMap}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{\_vertexMap}{\_vertexMap}}
+{\footnotesize\ttfamily map$<$ \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $>$ U\+N\+A\+T\+::\+Iterator\+::\+\_\+vertex\+Map\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a9da915e0a553c64ec43c299d70398f22}\label{classUNAT_1_1Iterator_a9da915e0a553c64ec43c299d70398f22}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!\_vertexWeights@{\_vertexWeights}}
+\index{\_vertexWeights@{\_vertexWeights}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{\_vertexWeights}{\_vertexWeights}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Iterator\+::\+\_\+vertex\+Weights\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Iterator_a3edaf3538d36c649321535de2ae0ec0d}\label{classUNAT_1_1Iterator_a3edaf3538d36c649321535de2ae0ec0d}} 
+\index{UNAT::Iterator@{UNAT::Iterator}!duplicate\_@{duplicate\_}}
+\index{duplicate\_@{duplicate\_}!UNAT::Iterator@{UNAT::Iterator}}
+\subsubsection{\texorpdfstring{duplicate\_}{duplicate\_}}
+{\footnotesize\ttfamily bool U\+N\+A\+T\+::\+Iterator\+::duplicate\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/\mbox{\hyperlink{include_2iterator_8hpp}{iterator.\+hpp}}\end{DoxyCompactItemize}

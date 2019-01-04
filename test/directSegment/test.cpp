@@ -6,9 +6,9 @@
 #include <assert.h>
 #include "swMacro.h"
 #include "topology.H"
-#include "iterator.H"
+#include "iterator.hpp"
 #include "iterator.h"
-#include "directSegmentIterator.H"
+#include "directSegmentIterator.hpp"
 #include "spMV.h"
 
 using namespace UNAT;

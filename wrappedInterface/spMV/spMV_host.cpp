@@ -7,9 +7,9 @@
 #include <assert.h>
 #include "swMacro.h"
 #include "topology.H"
-#include "iterator.H"
+#include "iterator.hpp"
 #include "iterator.h"
-#include "directSegmentIterator.H"
+#include "directSegmentIterator.hpp"
 
 //define 2 function pointers
 define_e2v_hostFunPtr(spMV_host)

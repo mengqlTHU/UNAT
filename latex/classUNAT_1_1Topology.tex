@@ -1,0 +1,1153 @@
+\hypertarget{classUNAT_1_1Topology}{}\section{U\+N\+AT\+::Topology Class Reference}
+\label{classUNAT_1_1Topology}\index{UNAT::Topology@{UNAT::Topology}}
+
+
+{\ttfamily \#include $<$topology.\+H$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}{Topology}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}{Topology}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \& \mbox{\hyperlink{classUNAT_1_1Topology_a3ffa6caa5e5543f555e6d1bc92e7992d}{operator=}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}{clone}} () const
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}{$\sim$\+Topology}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}{get\+Vertex\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}{get\+Edge\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ade1737d852cde9f4d691b325dfd20c36}{get\+Start\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ac43549991442cb8fa3494b523c9ec1a5}{get\+End\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a331046e1e8c64d3e579ff940855e6908}{get\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a8512917aff938c0354abc0614e7a891a}{get\+Accu\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a5ad1f147650d0c68c181230f88e3af18}{get\+First\+Edge\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ae41f724783379d204fa64cba52b22395}{get\+Vertex\+Neighbours}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a5b25e62c756c7c70658e92f8ef87d133}{get\+Vertex\+Edge\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_afdbb3f6bfe406e567fd1d88e5df6fb91}{get\+Accu\+Vertex\+Edge\+Numbers}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}{set\+Start\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}{set\+End\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}{set\+Edge\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}{set\+Accu\+Vertex\+Edge\+Numbers}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}{set\+Vertex\+Neighbours}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}{set\+Vertex\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}{set\+Duplicate}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} duplicate)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}{add\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}{add\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}{remove\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}{remove\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}{transpose}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}{sort\+And\+Compress}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}{edge\+Based\+To\+Vertex\+Based}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}{vertex\+Based\+To\+Edge\+Based}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}{Topology}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}{Topology}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \& \mbox{\hyperlink{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}{operator=}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}{clone}} () const
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}{$\sim$\+Topology}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}{get\+Vertex\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}{get\+Edge\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}{get\+Start\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}{get\+End\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}{get\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}{get\+Accu\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}{get\+First\+Edge\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}{get\+Vertex\+Neighbours}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}{get\+Vertex\+Edge\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}{get\+Accu\+Vertex\+Edge\+Numbers}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}{set\+Start\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}{set\+End\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}{set\+Edge\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}{set\+Accu\+Vertex\+Edge\+Numbers}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}{set\+Vertex\+Neighbours}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}{set\+Vertex\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}{set\+Duplicate}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} duplicate)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}{add\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}{add\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}{remove\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}{remove\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}{transpose}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}{sort\+And\+Compress}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}{edge\+Based\+To\+Vertex\+Based}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}{vertex\+Based\+To\+Edge\+Based}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}{Topology}} ()
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}{Topology}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \& \mbox{\hyperlink{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}{operator=}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}{clone}} () const
+\item 
+\mbox{\hyperlink{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}{$\sim$\+Topology}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}{get\+Vertex\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}{get\+Edge\+Number}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}{get\+Start\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}{get\+End\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}{get\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}{get\+Accu\+Start\+Vertex\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}{get\+First\+Edge\+Vertices}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}{get\+Vertex\+Neighbours}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}{get\+Vertex\+Edge\+Numbers}} ()
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}{get\+Accu\+Vertex\+Edge\+Numbers}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}{set\+Start\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}{set\+End\+Vertices}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}{set\+Edge\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}{set\+Accu\+Vertex\+Edge\+Numbers}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}{set\+Vertex\+Neighbours}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}{set\+Vertex\+Number}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}{set\+Duplicate}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} duplicate)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}{add\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}{add\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}{remove\+Edge}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}{remove\+Vertex}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}{transpose}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}{sort\+And\+Compress}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}{edge\+Based\+To\+Vertex\+Based}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}{vertex\+Based\+To\+Edge\+Based}} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a9765061db14035b0f624872d6855c470}{construct\+From\+Edge}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, bool duplicate=true)
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_aebafdfdace5d76dbfc354183a3cddee5}{construct\+From\+Vertex}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number, bool duplicate=true)
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}{construct\+From\+Edge}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, bool duplicate=true)
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}{construct\+From\+Vertex}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number, bool duplicate=true)
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}{construct\+From\+Edge}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} edge\+Number, bool duplicate=true)
+\item 
+static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}{construct\+From\+Vertex}} (\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Vertex\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$vertex\+Neighbours, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} vertex\+Number, bool duplicate=true)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}{Edge\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}{Vertex\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}{copy}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}{Edge\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}{Vertex\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}{copy}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}{Edge\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}{Vertex\+Based\+Init}} ()
+\item 
+void \mbox{\hyperlink{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}{copy}} (const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&topo)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a48015f5827d8afbf07631314c7b4c961}{\+\_\+vertex\+Number}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a03ef018398f6a35059aa99011d6c6904}{\+\_\+edge\+Number}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ab42799235c4ac414659de53e907e0896}{\+\_\+start\+Vertices}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a9fd1575c97246020905a54c0ce9cf231}{\+\_\+end\+Vertices}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ad3c854862ea03e7f4137d739eec731ab}{\+\_\+start\+Vertex\+Numbers}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a8a501ae342b94da5286bd1a71ad4a2c6}{\+\_\+accu\+Start\+Vertex\+Numbers}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_ac48b29a6e88be3d44073ef1ebc72f2bc}{\+\_\+first\+Edge\+Vertices}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a3636340e79a3141d1f63c069cafce816}{\+\_\+vertex\+Neighbours}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_abe64506d6d8cde328f20550f26ed6dd4}{\+\_\+vertex\+Edge\+Numbers}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ \mbox{\hyperlink{classUNAT_1_1Topology_a6a061078b642a43be3c5ba21f8001691}{\+\_\+accu\+Vertex\+Edge\+Numbers}}
+\item 
+\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} \mbox{\hyperlink{classUNAT_1_1Topology_a03127a5903fda91acde275524b2bf6c7}{duplicate\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}\label{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}\label{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}\label{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}} 
+\index{UNAT::Topology@{UNAT::Topology}!````~Topology@{$\sim$Topology}}
+\index{````~Topology@{$\sim$Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{$\sim$Topology()}{~Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::$\sim$\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}\label{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}\label{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}\label{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}} 
+\index{UNAT::Topology@{UNAT::Topology}!````~Topology@{$\sim$Topology}}
+\index{````~Topology@{$\sim$Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{$\sim$Topology()}{~Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::$\sim$\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}\label{classUNAT_1_1Topology_abca137a381a1bdd9c44afa3056f1d45b}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}\label{classUNAT_1_1Topology_ae1c53ba557ce7d0c587dd46d1eb2b018}} 
+\index{UNAT::Topology@{UNAT::Topology}!Topology@{Topology}}
+\index{Topology@{Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{Topology()}{Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::\+Topology (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}\label{classUNAT_1_1Topology_a136b0445c89509d4d087a958b58e0d62}} 
+\index{UNAT::Topology@{UNAT::Topology}!````~Topology@{$\sim$Topology}}
+\index{````~Topology@{$\sim$Topology}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{$\sim$Topology()}{~Topology()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily U\+N\+A\+T\+::\+Topology\+::$\sim$\+Topology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}\label{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}} 
+\index{UNAT::Topology@{UNAT::Topology}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addEdge()}{addEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}\label{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}} 
+\index{UNAT::Topology@{UNAT::Topology}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addEdge()}{addEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}\label{classUNAT_1_1Topology_a6f341852613126c689a10a2785a08c55}} 
+\index{UNAT::Topology@{UNAT::Topology}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addEdge()}{addEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}\label{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}} 
+\index{UNAT::Topology@{UNAT::Topology}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addVertex()}{addVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}\label{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}} 
+\index{UNAT::Topology@{UNAT::Topology}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addVertex()}{addVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}\label{classUNAT_1_1Topology_adfc7a4148d5430ae7af6ed1d499875f7}} 
+\index{UNAT::Topology@{UNAT::Topology}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{addVertex()}{addVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::add\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}\label{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}} 
+\index{UNAT::Topology@{UNAT::Topology}!clone@{clone}}
+\index{clone@{clone}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{clone()}{clone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}\label{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}} 
+\index{UNAT::Topology@{UNAT::Topology}!clone@{clone}}
+\index{clone@{clone}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{clone()}{clone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}\label{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a}} 
+\index{UNAT::Topology@{UNAT::Topology}!clone@{clone}}
+\index{clone@{clone}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{clone()}{clone()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classUNAT_1_1Topology_acb0a82ccbd9db10c8e9ddfc73017587a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}\label{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromEdge@{constructFromEdge}}
+\index{constructFromEdge@{constructFromEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromEdge()}{constructFromEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}\label{classUNAT_1_1Topology_abe162cf4b45297f8f022db63c11140d1}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromEdge@{constructFromEdge}}
+\index{constructFromEdge@{constructFromEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromEdge()}{constructFromEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a9765061db14035b0f624872d6855c470}\label{classUNAT_1_1Topology_a9765061db14035b0f624872d6855c470}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromEdge@{constructFromEdge}}
+\index{constructFromEdge@{constructFromEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromEdge()}{constructFromEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a9765061db14035b0f624872d6855c470_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a9765061db14035b0f624872d6855c470_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}\label{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromVertex@{constructFromVertex}}
+\index{constructFromVertex@{constructFromVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromVertex()}{constructFromVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aebafdfdace5d76dbfc354183a3cddee5}\label{classUNAT_1_1Topology_aebafdfdace5d76dbfc354183a3cddee5}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromVertex@{constructFromVertex}}
+\index{constructFromVertex@{constructFromVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromVertex()}{constructFromVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} $\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_aebafdfdace5d76dbfc354183a3cddee5_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}\label{classUNAT_1_1Topology_a01e9873d9c9d7b585632a4fcef1bbd57}} 
+\index{UNAT::Topology@{UNAT::Topology}!constructFromVertex@{constructFromVertex}}
+\index{constructFromVertex@{constructFromVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{constructFromVertex()}{constructFromVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}$\ast$ U\+N\+A\+T\+::\+Topology\+::construct\+From\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours,  }\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number,  }\item[{bool}]{duplicate = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}\label{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}} 
+\index{UNAT::Topology@{UNAT::Topology}!copy@{copy}}
+\index{copy@{copy}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{copy()}{copy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}\label{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}} 
+\index{UNAT::Topology@{UNAT::Topology}!copy@{copy}}
+\index{copy@{copy}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{copy()}{copy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}\label{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d}} 
+\index{UNAT::Topology@{UNAT::Topology}!copy@{copy}}
+\index{copy@{copy}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{copy()}{copy()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::copy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a7c875a40bf0676622b5cb4915747417d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}\label{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}} 
+\index{UNAT::Topology@{UNAT::Topology}!EdgeBasedInit@{EdgeBasedInit}}
+\index{EdgeBasedInit@{EdgeBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{EdgeBasedInit()}{EdgeBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Edge\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}\label{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}} 
+\index{UNAT::Topology@{UNAT::Topology}!EdgeBasedInit@{EdgeBasedInit}}
+\index{EdgeBasedInit@{EdgeBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{EdgeBasedInit()}{EdgeBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Edge\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}\label{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d}} 
+\index{UNAT::Topology@{UNAT::Topology}!EdgeBasedInit@{EdgeBasedInit}}
+\index{EdgeBasedInit@{EdgeBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{EdgeBasedInit()}{EdgeBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Edge\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a7d880e2443af9721908ec8607baf968d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}\label{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}} 
+\index{UNAT::Topology@{UNAT::Topology}!edgeBasedToVertexBased@{edgeBasedToVertexBased}}
+\index{edgeBasedToVertexBased@{edgeBasedToVertexBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{edgeBasedToVertexBased()}{edgeBasedToVertexBased()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::edge\+Based\+To\+Vertex\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}\label{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}} 
+\index{UNAT::Topology@{UNAT::Topology}!edgeBasedToVertexBased@{edgeBasedToVertexBased}}
+\index{edgeBasedToVertexBased@{edgeBasedToVertexBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{edgeBasedToVertexBased()}{edgeBasedToVertexBased()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::edge\+Based\+To\+Vertex\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}\label{classUNAT_1_1Topology_aeac30ca87544104afb11344fdd5ac3a9}} 
+\index{UNAT::Topology@{UNAT::Topology}!edgeBasedToVertexBased@{edgeBasedToVertexBased}}
+\index{edgeBasedToVertexBased@{edgeBasedToVertexBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{edgeBasedToVertexBased()}{edgeBasedToVertexBased()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::edge\+Based\+To\+Vertex\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}\label{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuStartVertexNumbers@{getAccuStartVertexNumbers}}
+\index{getAccuStartVertexNumbers@{getAccuStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuStartVertexNumbers()}{getAccuStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}\label{classUNAT_1_1Topology_a4d4414052edb9c3fff86ecded9f23a86}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuStartVertexNumbers@{getAccuStartVertexNumbers}}
+\index{getAccuStartVertexNumbers@{getAccuStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuStartVertexNumbers()}{getAccuStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a8512917aff938c0354abc0614e7a891a}\label{classUNAT_1_1Topology_a8512917aff938c0354abc0614e7a891a}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuStartVertexNumbers@{getAccuStartVertexNumbers}}
+\index{getAccuStartVertexNumbers@{getAccuStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuStartVertexNumbers()}{getAccuStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a8512917aff938c0354abc0614e7a891a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_afdbb3f6bfe406e567fd1d88e5df6fb91}\label{classUNAT_1_1Topology_afdbb3f6bfe406e567fd1d88e5df6fb91}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}}
+\index{getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuVertexEdgeNumbers()}{getAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{classUNAT_1_1Topology_afdbb3f6bfe406e567fd1d88e5df6fb91_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}\label{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}}
+\index{getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuVertexEdgeNumbers()}{getAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}\label{classUNAT_1_1Topology_a3d3981abcf81d997aa4631014eb4643e}} 
+\index{UNAT::Topology@{UNAT::Topology}!getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}}
+\index{getAccuVertexEdgeNumbers@{getAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getAccuVertexEdgeNumbers()}{getAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}\label{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEdgeNumber@{getEdgeNumber}}
+\index{getEdgeNumber@{getEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEdgeNumber()}{getEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Edge\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}\label{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEdgeNumber@{getEdgeNumber}}
+\index{getEdgeNumber@{getEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEdgeNumber()}{getEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Edge\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}\label{classUNAT_1_1Topology_ace06d8f272b20bdf46d3327f9e0fddf2}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEdgeNumber@{getEdgeNumber}}
+\index{getEdgeNumber@{getEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEdgeNumber()}{getEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Edge\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}\label{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEndVertices@{getEndVertices}}
+\index{getEndVertices@{getEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEndVertices()}{getEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+End\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}\label{classUNAT_1_1Topology_a656c287d7a5971a6176c6f379825f3db}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEndVertices@{getEndVertices}}
+\index{getEndVertices@{getEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEndVertices()}{getEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+End\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ac43549991442cb8fa3494b523c9ec1a5}\label{classUNAT_1_1Topology_ac43549991442cb8fa3494b523c9ec1a5}} 
+\index{UNAT::Topology@{UNAT::Topology}!getEndVertices@{getEndVertices}}
+\index{getEndVertices@{getEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getEndVertices()}{getEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+End\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_ac43549991442cb8fa3494b523c9ec1a5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}\label{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}} 
+\index{UNAT::Topology@{UNAT::Topology}!getFirstEdgeVertices@{getFirstEdgeVertices}}
+\index{getFirstEdgeVertices@{getFirstEdgeVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getFirstEdgeVertices()}{getFirstEdgeVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+First\+Edge\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}\label{classUNAT_1_1Topology_a3df6e0098b30c960b01989b7e8044431}} 
+\index{UNAT::Topology@{UNAT::Topology}!getFirstEdgeVertices@{getFirstEdgeVertices}}
+\index{getFirstEdgeVertices@{getFirstEdgeVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getFirstEdgeVertices()}{getFirstEdgeVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+First\+Edge\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a5ad1f147650d0c68c181230f88e3af18}\label{classUNAT_1_1Topology_a5ad1f147650d0c68c181230f88e3af18}} 
+\index{UNAT::Topology@{UNAT::Topology}!getFirstEdgeVertices@{getFirstEdgeVertices}}
+\index{getFirstEdgeVertices@{getFirstEdgeVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getFirstEdgeVertices()}{getFirstEdgeVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+First\+Edge\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a5ad1f147650d0c68c181230f88e3af18_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}\label{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertexNumbers@{getStartVertexNumbers}}
+\index{getStartVertexNumbers@{getStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertexNumbers()}{getStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}\label{classUNAT_1_1Topology_aef52b7de5eb5124aaa4fa05ddbd6e736}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertexNumbers@{getStartVertexNumbers}}
+\index{getStartVertexNumbers@{getStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertexNumbers()}{getStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a331046e1e8c64d3e579ff940855e6908}\label{classUNAT_1_1Topology_a331046e1e8c64d3e579ff940855e6908}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertexNumbers@{getStartVertexNumbers}}
+\index{getStartVertexNumbers@{getStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertexNumbers()}{getStartVertexNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertex\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{classUNAT_1_1Topology_a331046e1e8c64d3e579ff940855e6908_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}\label{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertices@{getStartVertices}}
+\index{getStartVertices@{getStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertices()}{getStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ade1737d852cde9f4d691b325dfd20c36}\label{classUNAT_1_1Topology_ade1737d852cde9f4d691b325dfd20c36}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertices@{getStartVertices}}
+\index{getStartVertices@{getStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertices()}{getStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_ade1737d852cde9f4d691b325dfd20c36_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}\label{classUNAT_1_1Topology_aa1de517c63444c3fd56d97fc99df2294}} 
+\index{UNAT::Topology@{UNAT::Topology}!getStartVertices@{getStartVertices}}
+\index{getStartVertices@{getStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getStartVertices()}{getStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Start\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a5b25e62c756c7c70658e92f8ef87d133}\label{classUNAT_1_1Topology_a5b25e62c756c7c70658e92f8ef87d133}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexEdgeNumbers@{getVertexEdgeNumbers}}
+\index{getVertexEdgeNumbers@{getVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexEdgeNumbers()}{getVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{classUNAT_1_1Topology_a5b25e62c756c7c70658e92f8ef87d133_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}\label{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexEdgeNumbers@{getVertexEdgeNumbers}}
+\index{getVertexEdgeNumbers@{getVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexEdgeNumbers()}{getVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}\label{classUNAT_1_1Topology_a6838e39b330fa60923fb44e7f47a468d}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexEdgeNumbers@{getVertexEdgeNumbers}}
+\index{getVertexEdgeNumbers@{getVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexEdgeNumbers()}{getVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}\label{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNeighbours@{getVertexNeighbours}}
+\index{getVertexNeighbours@{getVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNeighbours()}{getVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}\label{classUNAT_1_1Topology_af12c10ecd41c8458daf3d8d621f8e42f}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNeighbours@{getVertexNeighbours}}
+\index{getVertexNeighbours@{getVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNeighbours()}{getVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}$\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ae41f724783379d204fa64cba52b22395}\label{classUNAT_1_1Topology_ae41f724783379d204fa64cba52b22395}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNeighbours@{getVertexNeighbours}}
+\index{getVertexNeighbours@{getVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNeighbours()}{getVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_ae41f724783379d204fa64cba52b22395_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}\label{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNumber@{getVertexNumber}}
+\index{getVertexNumber@{getVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNumber()}{getVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}\label{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNumber@{getVertexNumber}}
+\index{getVertexNumber@{getVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNumber()}{getVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}\label{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5}} 
+\index{UNAT::Topology@{UNAT::Topology}!getVertexNumber@{getVertexNumber}}
+\index{getVertexNumber@{getVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{getVertexNumber()}{getVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::get\+Vertex\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a7d1d4d508b6e0a44fb0b5f6e6f26a8a5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}\label{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}} 
+\index{UNAT::Topology@{UNAT::Topology}!operator=@{operator=}}
+\index{operator=@{operator=}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}\& U\+N\+A\+T\+::\+Topology\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}\label{classUNAT_1_1Topology_a75f1187f0c29f844efb53a30e5ddf737}} 
+\index{UNAT::Topology@{UNAT::Topology}!operator=@{operator=}}
+\index{operator=@{operator=}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}}\& U\+N\+A\+T\+::\+Topology\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3ffa6caa5e5543f555e6d1bc92e7992d}\label{classUNAT_1_1Topology_a3ffa6caa5e5543f555e6d1bc92e7992d}} 
+\index{UNAT::Topology@{UNAT::Topology}!operator=@{operator=}}
+\index{operator=@{operator=}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \& U\+N\+A\+T\+::\+Topology\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classUNAT_1_1Topology}{Topology}} \&}]{topo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}\label{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeEdge()}{removeEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}\label{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeEdge()}{removeEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}\label{classUNAT_1_1Topology_a359fdcc98879b6de79d9a9ea8221bc68}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeEdge()}{removeEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}\label{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeVertex()}{removeVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}\label{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeVertex()}{removeVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}\label{classUNAT_1_1Topology_a3116756821bb4fdedfe16f2f0256552c}} 
+\index{UNAT::Topology@{UNAT::Topology}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{removeVertex()}{removeVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::remove\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}\label{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}} 
+\index{UNAT::Topology@{UNAT::Topology}!setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}}
+\index{setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setAccuVertexEdgeNumbers()}{setAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}\label{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}} 
+\index{UNAT::Topology@{UNAT::Topology}!setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}}
+\index{setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setAccuVertexEdgeNumbers()}{setAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}\label{classUNAT_1_1Topology_a06ea506a220c6eb45a6beb4106aa0dbc}} 
+\index{UNAT::Topology@{UNAT::Topology}!setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}}
+\index{setAccuVertexEdgeNumbers@{setAccuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setAccuVertexEdgeNumbers()}{setAccuVertexEdgeNumbers()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Accu\+Vertex\+Edge\+Numbers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{accu\+Vertex\+Edge\+Numbers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}\label{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}} 
+\index{UNAT::Topology@{UNAT::Topology}!setDuplicate@{setDuplicate}}
+\index{setDuplicate@{setDuplicate}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setDuplicate()}{setDuplicate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Duplicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{duplicate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}\label{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}} 
+\index{UNAT::Topology@{UNAT::Topology}!setDuplicate@{setDuplicate}}
+\index{setDuplicate@{setDuplicate}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setDuplicate()}{setDuplicate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Duplicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{duplicate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}\label{classUNAT_1_1Topology_a786790063b5399bb3bb8b6fc6761ca5a}} 
+\index{UNAT::Topology@{UNAT::Topology}!setDuplicate@{setDuplicate}}
+\index{setDuplicate@{setDuplicate}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setDuplicate()}{setDuplicate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Duplicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{duplicate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}\label{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEdgeNumber@{setEdgeNumber}}
+\index{setEdgeNumber@{setEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEdgeNumber()}{setEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Edge\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}\label{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEdgeNumber@{setEdgeNumber}}
+\index{setEdgeNumber@{setEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEdgeNumber()}{setEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Edge\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}\label{classUNAT_1_1Topology_aaf9838827f3d81110b6911a23fc28864}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEdgeNumber@{setEdgeNumber}}
+\index{setEdgeNumber@{setEdgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEdgeNumber()}{setEdgeNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Edge\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{edge\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}\label{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEndVertices@{setEndVertices}}
+\index{setEndVertices@{setEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEndVertices()}{setEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+End\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}\label{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEndVertices@{setEndVertices}}
+\index{setEndVertices@{setEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEndVertices()}{setEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+End\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}\label{classUNAT_1_1Topology_a238cee750b0467fe8d479b88f4cd2399}} 
+\index{UNAT::Topology@{UNAT::Topology}!setEndVertices@{setEndVertices}}
+\index{setEndVertices@{setEndVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setEndVertices()}{setEndVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+End\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{end\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}\label{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}} 
+\index{UNAT::Topology@{UNAT::Topology}!setStartVertices@{setStartVertices}}
+\index{setStartVertices@{setStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setStartVertices()}{setStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Start\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}\label{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}} 
+\index{UNAT::Topology@{UNAT::Topology}!setStartVertices@{setStartVertices}}
+\index{setStartVertices@{setStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setStartVertices()}{setStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Start\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}\label{classUNAT_1_1Topology_a59740da48119b1fe9cbc08ec61edd1c2}} 
+\index{UNAT::Topology@{UNAT::Topology}!setStartVertices@{setStartVertices}}
+\index{setStartVertices@{setStartVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setStartVertices()}{setStartVertices()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Start\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{start\+Vertices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}\label{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNeighbours@{setVertexNeighbours}}
+\index{setVertexNeighbours@{setVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNeighbours()}{setVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Neighbours (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}\label{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNeighbours@{setVertexNeighbours}}
+\index{setVertexNeighbours@{setVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNeighbours()}{setVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Neighbours (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}\label{classUNAT_1_1Topology_aa82494c4b097ebb30f323947c9f3161e}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNeighbours@{setVertexNeighbours}}
+\index{setVertexNeighbours@{setVertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNeighbours()}{setVertexNeighbours()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Neighbours (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$}]{vertex\+Neighbours }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}\label{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNumber@{setVertexNumber}}
+\index{setVertexNumber@{setVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNumber()}{setVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}\label{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNumber@{setVertexNumber}}
+\index{setVertexNumber@{setVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNumber()}{setVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}\label{classUNAT_1_1Topology_aeddafa74ad2dc0769cf5e0a3384a20ce}} 
+\index{UNAT::Topology@{UNAT::Topology}!setVertexNumber@{setVertexNumber}}
+\index{setVertexNumber@{setVertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{setVertexNumber()}{setVertexNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::set\+Vertex\+Number (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}}}]{vertex\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}\label{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}} 
+\index{UNAT::Topology@{UNAT::Topology}!sortAndCompress@{sortAndCompress}}
+\index{sortAndCompress@{sortAndCompress}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{sortAndCompress()}{sortAndCompress()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::sort\+And\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}\label{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}} 
+\index{UNAT::Topology@{UNAT::Topology}!sortAndCompress@{sortAndCompress}}
+\index{sortAndCompress@{sortAndCompress}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{sortAndCompress()}{sortAndCompress()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::sort\+And\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}\label{classUNAT_1_1Topology_a2293a4becd4f59f38364701e7ea7bf1d}} 
+\index{UNAT::Topology@{UNAT::Topology}!sortAndCompress@{sortAndCompress}}
+\index{sortAndCompress@{sortAndCompress}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{sortAndCompress()}{sortAndCompress()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::sort\+And\+Compress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}\label{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}} 
+\index{UNAT::Topology@{UNAT::Topology}!transpose@{transpose}}
+\index{transpose@{transpose}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{transpose()}{transpose()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}\label{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}} 
+\index{UNAT::Topology@{UNAT::Topology}!transpose@{transpose}}
+\index{transpose@{transpose}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{transpose()}{transpose()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}\label{classUNAT_1_1Topology_aee69e4993644c249fdaaf55627309309}} 
+\index{UNAT::Topology@{UNAT::Topology}!transpose@{transpose}}
+\index{transpose@{transpose}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{transpose()}{transpose()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}\label{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}} 
+\index{UNAT::Topology@{UNAT::Topology}!VertexBasedInit@{VertexBasedInit}}
+\index{VertexBasedInit@{VertexBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{VertexBasedInit()}{VertexBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Vertex\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}\label{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}} 
+\index{UNAT::Topology@{UNAT::Topology}!VertexBasedInit@{VertexBasedInit}}
+\index{VertexBasedInit@{VertexBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{VertexBasedInit()}{VertexBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Vertex\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}\label{classUNAT_1_1Topology_ad9846b484f49c6b4c55c5f9dbe6c6e77}} 
+\index{UNAT::Topology@{UNAT::Topology}!VertexBasedInit@{VertexBasedInit}}
+\index{VertexBasedInit@{VertexBasedInit}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{VertexBasedInit()}{VertexBasedInit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::\+Vertex\+Based\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}\label{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}} 
+\index{UNAT::Topology@{UNAT::Topology}!vertexBasedToEdgeBased@{vertexBasedToEdgeBased}}
+\index{vertexBasedToEdgeBased@{vertexBasedToEdgeBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{vertexBasedToEdgeBased()}{vertexBasedToEdgeBased()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::vertex\+Based\+To\+Edge\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}\label{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}} 
+\index{UNAT::Topology@{UNAT::Topology}!vertexBasedToEdgeBased@{vertexBasedToEdgeBased}}
+\index{vertexBasedToEdgeBased@{vertexBasedToEdgeBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{vertexBasedToEdgeBased()}{vertexBasedToEdgeBased()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::vertex\+Based\+To\+Edge\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}\label{classUNAT_1_1Topology_a406ac8df118240b4245dac4e3d9ed634}} 
+\index{UNAT::Topology@{UNAT::Topology}!vertexBasedToEdgeBased@{vertexBasedToEdgeBased}}
+\index{vertexBasedToEdgeBased@{vertexBasedToEdgeBased}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{vertexBasedToEdgeBased()}{vertexBasedToEdgeBased()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void U\+N\+A\+T\+::\+Topology\+::vertex\+Based\+To\+Edge\+Based (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classUNAT_1_1Topology_a8a501ae342b94da5286bd1a71ad4a2c6}\label{classUNAT_1_1Topology_a8a501ae342b94da5286bd1a71ad4a2c6}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_accuStartVertexNumbers@{\_accuStartVertexNumbers}}
+\index{\_accuStartVertexNumbers@{\_accuStartVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_accuStartVertexNumbers}{\_accuStartVertexNumbers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+accu\+Start\+Vertex\+Numbers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a6a061078b642a43be3c5ba21f8001691}\label{classUNAT_1_1Topology_a6a061078b642a43be3c5ba21f8001691}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_accuVertexEdgeNumbers@{\_accuVertexEdgeNumbers}}
+\index{\_accuVertexEdgeNumbers@{\_accuVertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_accuVertexEdgeNumbers}{\_accuVertexEdgeNumbers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+accu\+Vertex\+Edge\+Numbers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a03ef018398f6a35059aa99011d6c6904}\label{classUNAT_1_1Topology_a03ef018398f6a35059aa99011d6c6904}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_edgeNumber@{\_edgeNumber}}
+\index{\_edgeNumber@{\_edgeNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_edgeNumber}{\_edgeNumber}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::\+\_\+edge\+Number\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a9fd1575c97246020905a54c0ce9cf231}\label{classUNAT_1_1Topology_a9fd1575c97246020905a54c0ce9cf231}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_endVertices@{\_endVertices}}
+\index{\_endVertices@{\_endVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_endVertices}{\_endVertices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+end\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ac48b29a6e88be3d44073ef1ebc72f2bc}\label{classUNAT_1_1Topology_ac48b29a6e88be3d44073ef1ebc72f2bc}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_firstEdgeVertices@{\_firstEdgeVertices}}
+\index{\_firstEdgeVertices@{\_firstEdgeVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_firstEdgeVertices}{\_firstEdgeVertices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+first\+Edge\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ad3c854862ea03e7f4137d739eec731ab}\label{classUNAT_1_1Topology_ad3c854862ea03e7f4137d739eec731ab}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_startVertexNumbers@{\_startVertexNumbers}}
+\index{\_startVertexNumbers@{\_startVertexNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_startVertexNumbers}{\_startVertexNumbers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+start\+Vertex\+Numbers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_ab42799235c4ac414659de53e907e0896}\label{classUNAT_1_1Topology_ab42799235c4ac414659de53e907e0896}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_startVertices@{\_startVertices}}
+\index{\_startVertices@{\_startVertices}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_startVertices}{\_startVertices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+start\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_abe64506d6d8cde328f20550f26ed6dd4}\label{classUNAT_1_1Topology_abe64506d6d8cde328f20550f26ed6dd4}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_vertexEdgeNumbers@{\_vertexEdgeNumbers}}
+\index{\_vertexEdgeNumbers@{\_vertexEdgeNumbers}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_vertexEdgeNumbers}{\_vertexEdgeNumbers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+vertex\+Edge\+Numbers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a3636340e79a3141d1f63c069cafce816}\label{classUNAT_1_1Topology_a3636340e79a3141d1f63c069cafce816}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_vertexNeighbours@{\_vertexNeighbours}}
+\index{\_vertexNeighbours@{\_vertexNeighbours}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_vertexNeighbours}{\_vertexNeighbours}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$ U\+N\+A\+T\+::\+Topology\+::\+\_\+vertex\+Neighbours\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a48015f5827d8afbf07631314c7b4c961}\label{classUNAT_1_1Topology_a48015f5827d8afbf07631314c7b4c961}} 
+\index{UNAT::Topology@{UNAT::Topology}!\_vertexNumber@{\_vertexNumber}}
+\index{\_vertexNumber@{\_vertexNumber}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{\_vertexNumber}{\_vertexNumber}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::\+\_\+vertex\+Number\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUNAT_1_1Topology_a03127a5903fda91acde275524b2bf6c7}\label{classUNAT_1_1Topology_a03127a5903fda91acde275524b2bf6c7}} 
+\index{UNAT::Topology@{UNAT::Topology}!duplicate\_@{duplicate\_}}
+\index{duplicate\_@{duplicate\_}!UNAT::Topology@{UNAT::Topology}}
+\subsubsection{\texorpdfstring{duplicate\_}{duplicate\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} U\+N\+A\+T\+::\+Topology\+::duplicate\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/\mbox{\hyperlink{include_2topology_8H}{topology.\+H}}\item 
+C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/test/direct\+Segment/\mbox{\hyperlink{test_2directSegment_2topology_8C}{topology.\+C}}\end{DoxyCompactItemize}

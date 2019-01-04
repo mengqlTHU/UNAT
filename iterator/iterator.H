@@ -1,113 +1,373 @@
-#ifndef ITERATOR_HPP
-#define ITERATOR_HPP
+#ifndef ITERATOR_H
+#define ITERATOR_H
 
-#include <stdlib.h>
-#include <iostream>
-#include <map>
 #include "swMacro.h"
-#include "topology.H"
-#include "iterator.h"
+#include <stdlib.h>
 
-// ------------------------------------------------------------------------
-//                             class iterator
-// ------------------------------------------------------------------------
-namespace UNAT
-{
-
-class Iterator
-{
-	private:
-		Topology* _topo;
-		map<swInt, swInt> _edgeMap;
-		map<swInt, swInt> _vertexMap;
-		swInt* _vertexWeights;
-		swInt* _edgeWeights;
-
-		// duplicate indicator
-		bool duplicate_;
-
-	public:
-
-		// Constructors
-		Iterator(){}
-		Iterator(Topology &topo, swInt* vertexWeights, swInt* edgeWeights, bool duplicate = false)
-		{
-			cout<<"Iterator constructor"<<endl;
-			if(duplicate)
-			{
-				this->_topo = topo.clone();
-				swInt vertexNum = _topo->getVertexNumber();
-				swInt edgeNum = _topo->getEdgeNumber();
-				_vertexWeights = new swInt[vertexNum];
-				memcpy(_vertexWeights, vertexWeights, sizeof(swInt)*vertexNum);
-				_edgeWeights = new swInt[edgeNum];
-				memcpy(_edgeWeights, edgeWeights, sizeof(swInt)*edgeNum);
-				duplicate_ = true;
-			}
-			else
-			{
-				_topo = &topo;
-				_vertexWeights = vertexWeights;
-				_edgeWeights = edgeWeights;
-				duplicate_ = false;
-			}
-		}
-
-		// Deconstructors
-		~Iterator()
-		{
-			if(duplicate_)
-			{
-				delete _topo;
-				delete _vertexWeights;
-				delete _edgeWeights;
-			}
-		}
-
-		void reformInnerTopology()
-		{
-			reorderEdges(this->_topo->getStartVertices(),
-						this->_topo->getEndVertices(),
-						this->_topo->getEdgeNumber(),
-						this->_topo->getVertexNumber());
-			reorderNeighbor(this->_topo->getFirstEdgeVertices(),
-						this->_topo->getVertexNeighbours(),
-						this->_topo->getEdgeNumber(),
-						this->_topo->getVertexNumber());
-		}
-
-		map<swInt, swInt>& getEdgeMap(){return this->_edgeMap;}
-		map<swInt, swInt>& getVertexMap(){return this->_vertexMap;}
- 
-		virtual void reorderEdges(swInt* startVertices,
-					swInt* endVertices,
-					swInt edgeNumber, swInt vertexNumber){
-			// To do
-		}
-		virtual void reorderNeighbor(swInt* firstEdgeVertices,
-					swInt* vertexNeighbours,
-					swInt edgeNumber, swInt vertexNumber){
-			// To do
-		}
-		virtual void reorderEdgeData(Arrays* edgeData){
-			// To do
-		}
-		virtual void reorderNeighborData(Arrays* edgeData){
-			// To do	
-		}
-		virtual void reorderVertexData(Arrays* edgeData){
-			// To do
-		}
-
-		virtual void edge2VertexIteration(Arrays* backEdgeData, Arrays* frontEdgeData,
-				   	Arrays* selfConnData, Arrays* vertexData, 
-					e2v_hostFunPtr, e2v_slaveFunPtr) = 0;
-		virtual void vertex2EdgeIteration(Arrays* neighbourData,
-					Arrays* vertexData, v2e_hostFunPtr, v2e_slaveFunPtr) = 0;
-		
-		Topology* getTopology(){return this->_topo;}
-};
-
-} // namespace UNAT
-
+#ifdef __cplusplus
+extern "C"{
 #endif
+
+//macros to define core function pointer
+//	use as:
+//		define_e2v_hostFunPtr( spMV )
+//		{
+//			Here do the core computing;
+//			Parameters is similiar as edge2VertexIteration.
+//		}
+#define define_e2v_hostFunPtr( funname ) \
+void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
+			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
+			swInt* endVertices)
+
+#define define_e2v_slaveFunPtr( funname ) \
+void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
+			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
+			swInt* endVertices)
+
+#define define_v2e_hostFunPtr( funname ) \
+void funname (Arrays* neighbourData, Arrays* vertexData, \
+			swInt* accuEdgeNumbers, swInt* neighbourVetices)
+
+#define define_v2e_slaveFunPtr( funname ) \
+void funname (Arrays* neighbourData, Arrays* vertexData, \
+			swInt* accuEdgeNumbers, swInt* neighbourVetices)
+
+// the indicator to determine data copy action
+#define COPYIN 0 
+#define COPYOUT 1 
+#define COPYINOUT 2
+
+
+// parameter struct for interation
+typedef struct
+{
+	// float data array holder 
+	swFloat** floatArrays;
+	// integer data array holder 
+	swInt** intArrays;
+	// float data array dimensions 
+	swInt*    fArrayDims;
+	// integer data array dimensions 
+	swInt*    iArrayDims;
+	// float data array action 
+	swInt*    fArrayInOut;
+	// integer data array action
+	swInt*    iArrayInOut;
+	// float data array number 
+	swInt    fArrayNum;
+	// integer data array number 
+	swInt    iArrayNum;
+	// float data array sizes 
+	swInt    fArraySizes;
+	// integer data array sizes
+	swInt    iArraySizes;
+} Arrays;
+
+//function pointer
+typedef void (* e2v_hostFunPtr) (Arrays* backEdgeData, Arrays* frontEdgeData,
+			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,
+			swInt* endVertices);
+typedef void (* e2v_slaveFunPtr) (Arrays* backEdgeData, Arrays* frontEdgeData,
+			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,
+			swInt* endVertices);
+typedef void (* v2e_hostFunPtr) (Arrays* neighbourData, Arrays* vertexData,
+			swInt* accuEdgeNumbers, swInt* neighbourVetices);
+typedef void (* v2e_slaveFunPtr) (Arrays* neighbourData, Arrays* vertexData,
+			swInt* accuEdgeNumbers, swInt* neighbourVetices);
+
+
+/*************** Macro to construct empty arrays ***************/
+#define constructEmptyArray( arrays ) \
+{ \
+	(arrays).iArraySizes = 0; \
+	(arrays).iArrayNum = 0; \
+	(arrays).iArrayInOut = NULL; \
+	(arrays).iArrayDims = NULL; \
+	(arrays).intArrays = NULL;\
+	\
+	\
+	(arrays).fArraySizes = 0; \
+	(arrays).fArrayNum = 0; \
+	(arrays).fArrayInOut = NULL; \
+	(arrays).fArrayDims = NULL; \
+	(arrays).floatArrays = NULL;\
+}
+
+// Construct Arrays from source arrays but different size
+#define constructFromArrays(srcArrays,dstArrays, size) \
+{\
+	int i; \
+	(dstArrays)->fArraySizes = (srcArrays)->fArraySizes; \
+	(dstArrays)->fArrayNum   = (srcArrays)->fArrayNum; \
+	(dstArrays)->fArrayInOut = NEW(swInt,    (dstArrays->fArrayNum)); \
+	(dstArrays)->fArrayDims  = NEW(swInt,    (dstArrays->fArrayNum)); \
+	(dstArrays)->floatArrays = NEW(swFloat*, (dstArrays->fArrayNum)); \
+	for(i=0;i<(dstArrays)->fArrayNum;i++) \
+	{ \
+		(dstArrays)->fArrayInOut[i] = (srcArrays)->fArrayInOut[i]; \
+		(dstArrays)->fArrayDims[i]  = (srcArrays)->fArrayDims[i]; \
+		(dstArrays)->floatArrays[i] \
+		= NEW(swFloat,srcArrays->fArraySizes*srcArrays->fArrayDims[i]); \
+	} \
+	\
+	\
+	(dstArrays)->iArraySizes = (srcArrays)->iArraySizes; \
+	(dstArrays)->iArrayNum   = (srcArrays)->iArrayNum; \
+	(dstArrays)->iArrayInOut = NEW(swInt, (dstArrays->iArrayNum)); \
+	(dstArrays)->iArrayDims  = NEW(swInt, (dstArrays->iArrayNum)); \
+	(dstArrays)->intArrays   = NEW(swInt*, (dstArrays->iArrayNum)); \
+	for(i=0;i<(dstArrays)->iArrayNum;i++) \
+	{ \
+		(dstArrays)->iArrayInOut[i] = (srcArrays)->iArrayInOut[i]; \
+		(dstArrays)->iArrayDims[i]  = (srcArrays)->iArrayDims[i]; \
+		(dstArrays)->intArrays[i] \
+		= NEW(swInt,srcArrays->iArraySizes*srcArrays->iArrayDims[i]); \
+	} \
+}
+
+/****************** Macros handle float arrays ******************/
+// address copy
+#define constructSingleArray( arrays, dim, size, io, pointer) \
+{ \
+	(arrays).iArraySizes = 0; \
+	(arrays).iArrayNum = 0; \
+	(arrays).iArrayInOut = NULL; \
+	(arrays).iArrayDims = NULL; \
+	(arrays).intArrays = NULL;\
+	\
+	\
+	(arrays).fArraySizes = size; \
+	(arrays).fArrayNum = 1; \
+	\
+	(arrays).fArrayInOut = NEW(swInt, 1); \
+	*((arrays).fArrayInOut) = io; \
+	\
+	(arrays).fArrayDims = NEW(swInt, 1); \
+	*((arrays).fArrayDims) = dim; \
+	\
+	(arrays).floatArrays = NEW(swFloat*, 1);\
+	*(arrays).floatArrays = pointer; \
+}
+
+// address copy
+#define addSingleArray( arrays, dim, size, io, pointer) \
+{ \
+	if( (arrays).fArraySizes != size) \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).fArrayNum++; \
+	swInt fArrayNum = (arrays).fArrayNum; \
+	\
+	RESIZE(swInt, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayInOut)[fArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayDims)[fArrayNum-1] = dim; \
+	\
+	RESIZE(swFloat*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\
+	(arrays).floatArrays[fArrayNum-1] = pointer;\
+}
+
+// deep copy
+#define copySingleArray( arrays, dim, size, io, pointer) \
+{ \
+	if( (arrays).fArraySizes != (size) ); \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).fArrayNum++; \
+	\
+	RESIZE(swInt, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayInOut)[fArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayDims)[fArrayNum-1] = dim; \
+	\
+	RESIZE(swFloat*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\
+	(arrays).floatArrays[fArrayNum-1] = NEW( swFloat; size); \
+	memcpy( (arrays).floatArrays[fArrayNum-1], pointer, \
+				sizeof(swFloat)*(size) ); \
+}
+
+// add blank array
+#define addBlankArray( arrays, dim, size, io) \
+{ \
+	if( (arrays).fArraySizes != (size) ); \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).fArrayNum++; \
+	\
+	RESIZE(swInt, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayInOut)[fArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \
+	((arrays).fArrayDims)[fArrayNum-1] = dim; \
+	\
+	RESIZE(swFloat*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\
+	(arrays).floatArrays[fArrayNum-1] = NEW( swFloat; size); \
+}
+
+
+/****************** Macros handle int arrays ******************/
+// address copy
+#define constructSingleIArray( arrays, dim, size, io, pointer) \
+{ \
+	(arrays).fArraySizes = 0; \
+	(arrays).fArrayNum = 0; \
+	(arrays).fArrayInOut = NULL; \
+	(arrays).fArrayDims = NULL; \
+	(arrays).floatArrays = NULL;\
+	\
+	\
+	(arrays).iArraySizes = size; \
+	(arrays).iArrayNum = 1; \
+	\
+	(arrays).iArrayInOut = NEW(swInt, 1); \
+	*((arrays).iArrayInOut) = io; \
+	\
+	(arrays).iArrayDims = NEW(swInt, 1); \
+	*((arrays).iArrayDims) = dim; \
+	\
+	(arrays).intArrays = NEW(swInt*, 1);\
+	*(arrays).intArrays = pointer;\
+}
+
+// address copy
+#define addSingleIArray( arrays, dim, size, io, pointer) \
+{ \
+	if( (arrays).iArraySizes != size); \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).iArrayNum++; \
+	\
+	RESIZE(swInt, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayInOut)[iArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayDims)[iArrayNum-1] = dim; \
+	\
+	RESIZE(swInt*, (arrays).intArrays, iArrayNum-1, iArrayNum);\
+	(arrays).intArrays[iArrayNum-1] = pointer;\
+}
+
+// deep copy
+#define copySingleIArray( arrays, dim, size, io, pointer) \
+{ \
+	if( (arrays).iArraySizes != (size) ); \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).iArrayNum++; \
+	\
+	RESIZE(swInt, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayInOut)[iArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayDims)[iArrayNum-1] = dim; \
+	\
+	RESIZE(swFloat*, (arrays).intArrays, iArrayNum-1, iArrayNum);\
+	(arrays).intArrays[iArrayNum-1] = NEW( swInt; size); \
+	memcpy( (arrays).iArrays[iArrayNum-1], pointer, \
+				sizeof(swInt)*(size) ); \
+}
+
+// add blank array
+#define addBlankIArray( arrays, dim, size, io) \
+{ \
+	if( (arrays).iArraySizes != (size) ); \
+	{ \
+		dumpError("can not add array with different length!\n"); \
+		exit(-1); \
+	} \
+	\
+	(arrays).iArrayNum++; \
+	\
+	RESIZE(swInt, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayInOut)[iArrayNum-1] = io; \
+	\
+	RESIZE(swInt, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \
+	((arrays).iArrayDims)[iArrayNum-1] = dim; \
+	\
+	RESIZE(swFloat*, (arrays).intArrays, iArrayNum-1, iArrayNum);\
+	(arrays).intArrays[iArrayNum-1] = NEW( swInt; size); \
+}
+
+
+/****************** Macros to destroy arrays ******************/
+// shalow free
+#define destroyArray( arrays ) \
+{ \
+	DELETE( (arrays).fArrayInOut ); \
+	DELETE( (arrays).fArrayDims  ); \
+	DELETE( (arrays).floatArrays ); \
+	DELETE( (arrays).iArrayInOut ); \
+	DELETE( (arrays).iArrayDims  ); \
+	DELETE( (arrays).intArrays ); \
+}
+
+// deep memory free
+#define deleteSingleArray( arrays ) \
+{ \
+	size_t i = (array)->fArrayNum;\
+	while(i--){ DELETE((array)->floatArrays[i])}; \
+	DELETE(floatArrays); \
+	DELETE(fArrayDims); \
+	DELETE(fArrayInOut); \
+	\
+	i = (array)->iArrayNum; \
+	while(i--){ DELETE((array)->intArrays[i])}; \
+	DELETE(intArrays); \
+	DELETE(iArrayDims); \
+	DELETE(iArrayInOut); \
+}
+
+// array data accessor
+#define accessArray( array, id ) \
+( (array)->floatArrays[id] )
+
+#define getArraySize( array ) \
+( (array)->fArraySizes )
+
+#define getArrayNumber( array ) \
+( (array)->fArrayNum )
+
+#define getArrayDims( array, id) \
+( (array)->fArrayDims[id] )
+
+#define getArrayInOut( array, id ) \
+( (array)->fArrayInOut[id] )
+
+#define accessIArray( array, id ) \
+( (array)->intArrays[id] )
+
+#define getIArraySize( array ) \
+( (array)->iArraySizes )
+
+#define getIArrayNumber( array ) \
+( (array)->iArrayNum )
+
+#define getIArrayDims( array ) \
+( (array)->iArrayDims )
+
+#define getIArrayInOut( array ) \
+( (array)->iArrayInOut )
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // ITERATOR_H

@@ -17,7 +17,7 @@ with high cohesion to ensure high efficiency of the Iterator
 #include <climits>
 #include "swMacro.h"
 #include "iterator.h"
-#include "directSegmentIterator.H"
+#include "directSegmentIterator.hpp"
 #include "directSegmentIterator.h"
 #include "register.H"
 

@@ -1,0 +1,592 @@
+\hypertarget{include_2iterator_8h}{}\section{C\+:/\+Users/lenovo/\+Documents/\+Work/\+U\+N\+A\+T/include/iterator.h File Reference}
+\label{include_2iterator_8h}\index{C:/Users/lenovo/Documents/Work/UNAT/include/iterator.h@{C:/Users/lenovo/Documents/Work/UNAT/include/iterator.h}}
+{\ttfamily \#include \char`\"{}sw\+Macro.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for iterator.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{include_2iterator_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{include_2iterator_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structArrays}{Arrays}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_aa68e0df3574d7f00fd829c7dcf209a19}{define\+\_\+e2v\+\_\+host\+Fun\+Ptr}}(funname)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_afcb08cca6db018442ad437d31bcb2eed}{define\+\_\+e2v\+\_\+slave\+Fun\+Ptr}}(funname)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a7a53869971a09329f55c307a384fc660}{define\+\_\+v2e\+\_\+host\+Fun\+Ptr}}(funname)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a1cafff3a3d9658885d28d09849ffc745}{define\+\_\+v2e\+\_\+slave\+Fun\+Ptr}}(funname)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a0a351918ac893903f33f6caa0405495c}{C\+O\+P\+Y\+IN}}~0
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a3e49f69dc43333fe2b355ec243cb4016}{C\+O\+P\+Y\+O\+UT}}~1
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ad8ea0a656de5e36e88b0db12d9ce7ffd}{C\+O\+P\+Y\+I\+N\+O\+UT}}~2
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_acff342247d38cf111954dc29d6dc0ec1}{construct\+Empty\+Array}}(arrays)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a8373a37d0196e0f3f6bb5ccdf2812df5}{construct\+From\+Arrays}}(src\+Arrays,  dst\+Arrays,  size)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_afb7bdb10602f63ba7d40b857f7404531}{construct\+Single\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_aeadc556d46dd2fa81873ea077bfdf86e}{add\+Single\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ae4b3a2b997fa25d352f8ef1fac466345}{copy\+Single\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ad5e96de3938104b4b8cf800496f66831}{add\+Blank\+Array}}(arrays,  dim,  size,  io)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a793ff6e423275581eeb181ea367fdef6}{construct\+Single\+I\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_aeb2b25f35b6bdb9d31adb6bec17a5971}{add\+Single\+I\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a47cace97181e1f82b247633e84c8a6ae}{copy\+Single\+I\+Array}}(arrays,  dim,  size,  io,  pointer)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a736a416f8a4309e942a6893437de15d6}{add\+Blank\+I\+Array}}(arrays,  dim,  size,  io)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ab90ec061895023a9775206291f829111}{destroy\+Array}}(arrays)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a16c82bbba09ac33c05e83b8daf27aa04}{delete\+Single\+Array}}(arrays)
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a51a20aaee867e9d935f5777cfcdff22a}{access\+Array}}(array,  id)~( (array)-\/$>$float\+Arrays\mbox{[}id\mbox{]} )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ae816509117d60811ef6b8d11ea3c012a}{get\+Array\+Size}}(array)~( (array)-\/$>$f\+Array\+Sizes )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ab071d95098bdeee6c3430dafb666cc99}{get\+Array\+Number}}(array)~( (array)-\/$>$f\+Array\+Num )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a26c6ecebee8a93c649b91bff2336d5f6}{get\+Array\+Dims}}(array,  id)~( (array)-\/$>$f\+Array\+Dims\mbox{[}id\mbox{]} )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_add96be7eadefc8f8a7af7483d3323258}{get\+Array\+In\+Out}}(array,  id)~( (array)-\/$>$f\+Array\+In\+Out\mbox{[}id\mbox{]} )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a1e1c44a5d8a41999b3f251eacd50f5a9}{access\+I\+Array}}(array,  id)~( (array)-\/$>$int\+Arrays\mbox{[}id\mbox{]} )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_af235d7155375b482f9f2014ea63d062b}{get\+I\+Array\+Size}}(array)~( (array)-\/$>$i\+Array\+Sizes )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ab1a9f4b1f5f34a81afc8bdd5922ea5d2}{get\+I\+Array\+Number}}(array)~( (array)-\/$>$i\+Array\+Num )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_a792a85d6b00d10eedcd84b1de2c4b0f5}{get\+I\+Array\+Dims}}(array)~( (array)-\/$>$i\+Array\+Dims )
+\item 
+\#define \mbox{\hyperlink{include_2iterator_8h_ab767330d10e2321c468ff034eee3e1c8}{get\+I\+Array\+In\+Out}}(array)~( (array)-\/$>$i\+Array\+In\+Out )
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{include_2iterator_8h_ae588e578b6781906a44208130df0ab29}{e2v\+\_\+host\+Fun\+Ptr}}) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{include_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}{e2v\+\_\+slave\+Fun\+Ptr}}) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{include_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}{v2e\+\_\+host\+Fun\+Ptr}}) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$neighbour\+Vetices)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{include_2iterator_8h_acd8809485e3b16adfce1d459f3372671}{v2e\+\_\+slave\+Fun\+Ptr}}) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$neighbour\+Vetices)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{include_2iterator_8h_a51a20aaee867e9d935f5777cfcdff22a}\label{include_2iterator_8h_a51a20aaee867e9d935f5777cfcdff22a}} 
+\index{iterator.h@{iterator.h}!accessArray@{accessArray}}
+\index{accessArray@{accessArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{accessArray}{accessArray}}
+{\footnotesize\ttfamily \#define access\+Array(\begin{DoxyParamCaption}\item[{}]{array,  }\item[{}]{id }\end{DoxyParamCaption})~( (array)-\/$>$float\+Arrays\mbox{[}id\mbox{]} )}
+
+\mbox{\Hypertarget{include_2iterator_8h_a1e1c44a5d8a41999b3f251eacd50f5a9}\label{include_2iterator_8h_a1e1c44a5d8a41999b3f251eacd50f5a9}} 
+\index{iterator.h@{iterator.h}!accessIArray@{accessIArray}}
+\index{accessIArray@{accessIArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{accessIArray}{accessIArray}}
+{\footnotesize\ttfamily \#define access\+I\+Array(\begin{DoxyParamCaption}\item[{}]{array,  }\item[{}]{id }\end{DoxyParamCaption})~( (array)-\/$>$int\+Arrays\mbox{[}id\mbox{]} )}
+
+\mbox{\Hypertarget{include_2iterator_8h_ad5e96de3938104b4b8cf800496f66831}\label{include_2iterator_8h_ad5e96de3938104b4b8cf800496f66831}} 
+\index{iterator.h@{iterator.h}!addBlankArray@{addBlankArray}}
+\index{addBlankArray@{addBlankArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{addBlankArray}{addBlankArray}}
+{\footnotesize\ttfamily \#define add\+Blank\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).fArraySizes != (size) ); \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum++; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayInOut)[fArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayDims)[fArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays[fArrayNum-1] = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}( \mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}; size); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a736a416f8a4309e942a6893437de15d6}\label{include_2iterator_8h_a736a416f8a4309e942a6893437de15d6}} 
+\index{iterator.h@{iterator.h}!addBlankIArray@{addBlankIArray}}
+\index{addBlankIArray@{addBlankIArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{addBlankIArray}{addBlankIArray}}
+{\footnotesize\ttfamily \#define add\+Blank\+I\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).iArraySizes != (size) ); \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum++; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayInOut)[iArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayDims)[iArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (arrays).intArrays, iArrayNum-1, iArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays[iArrayNum-1] = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}( \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}; size); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_aeadc556d46dd2fa81873ea077bfdf86e}\label{include_2iterator_8h_aeadc556d46dd2fa81873ea077bfdf86e}} 
+\index{iterator.h@{iterator.h}!addSingleArray@{addSingleArray}}
+\index{addSingleArray@{addSingleArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{addSingleArray}{addSingleArray}}
+{\footnotesize\ttfamily \#define add\+Single\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).fArraySizes != size) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum++; \(\backslash\)}
+\DoxyCodeLine{    swInt fArrayNum = (arrays).fArrayNum; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayInOut)[fArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayDims)[fArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays[fArrayNum-1] = pointer;\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_aeb2b25f35b6bdb9d31adb6bec17a5971}\label{include_2iterator_8h_aeb2b25f35b6bdb9d31adb6bec17a5971}} 
+\index{iterator.h@{iterator.h}!addSingleIArray@{addSingleIArray}}
+\index{addSingleIArray@{addSingleIArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{addSingleIArray}{addSingleIArray}}
+{\footnotesize\ttfamily \#define add\+Single\+I\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).iArraySizes != size); \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum++; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayInOut)[iArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayDims)[iArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}*, (arrays).intArrays, iArrayNum-1, iArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays[iArrayNum-1] = pointer;\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_acff342247d38cf111954dc29d6dc0ec1}\label{include_2iterator_8h_acff342247d38cf111954dc29d6dc0ec1}} 
+\index{iterator.h@{iterator.h}!constructEmptyArray@{constructEmptyArray}}
+\index{constructEmptyArray@{constructEmptyArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{constructEmptyArray}{constructEmptyArray}}
+{\footnotesize\ttfamily \#define construct\+Empty\+Array(\begin{DoxyParamCaption}\item[{}]{arrays }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArraySizes = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayInOut = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayDims = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays = NULL;\(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArraySizes = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayInOut = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayDims = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays = NULL;\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a8373a37d0196e0f3f6bb5ccdf2812df5}\label{include_2iterator_8h_a8373a37d0196e0f3f6bb5ccdf2812df5}} 
+\index{iterator.h@{iterator.h}!constructFromArrays@{constructFromArrays}}
+\index{constructFromArrays@{constructFromArrays}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{constructFromArrays}{constructFromArrays}}
+{\footnotesize\ttfamily \#define construct\+From\+Arrays(\begin{DoxyParamCaption}\item[{}]{src\+Arrays,  }\item[{}]{dst\+Arrays,  }\item[{}]{size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\(\backslash\)}
+\DoxyCodeLine{    int i; \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->fArraySizes = (srcArrays)->fArraySizes; \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->fArrayNum   = (srcArrays)->fArrayNum; \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->fArrayInOut = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}},    (dstArrays->fArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->fArrayDims  = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}},    (dstArrays->fArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->floatArrays = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (dstArrays->fArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    for(i=0;i<(dstArrays)->fArrayNum;i++) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->fArrayInOut[i] = (srcArrays)->fArrayInOut[i]; \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->fArrayDims[i]  = (srcArrays)->fArrayDims[i]; \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->floatArrays[i] \(\backslash\)}
+\DoxyCodeLine{        = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}},srcArrays->fArraySizes*srcArrays->fArrayDims[i]); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->iArraySizes = (srcArrays)->iArraySizes; \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->iArrayNum   = (srcArrays)->iArrayNum; \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->iArrayInOut = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (dstArrays->iArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->iArrayDims  = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (dstArrays->iArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    (dstArrays)->intArrays   = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}*, (dstArrays->iArrayNum)); \(\backslash\)}
+\DoxyCodeLine{    for(i=0;i<(dstArrays)->iArrayNum;i++) \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->iArrayInOut[i] = (srcArrays)->iArrayInOut[i]; \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->iArrayDims[i]  = (srcArrays)->iArrayDims[i]; \(\backslash\)}
+\DoxyCodeLine{        (dstArrays)->intArrays[i] \(\backslash\)}
+\DoxyCodeLine{        = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}},srcArrays->iArraySizes*srcArrays->iArrayDims[i]); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_afb7bdb10602f63ba7d40b857f7404531}\label{include_2iterator_8h_afb7bdb10602f63ba7d40b857f7404531}} 
+\index{iterator.h@{iterator.h}!constructSingleArray@{constructSingleArray}}
+\index{constructSingleArray@{constructSingleArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{constructSingleArray}{constructSingleArray}}
+{\footnotesize\ttfamily \#define construct\+Single\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArraySizes = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayInOut = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayDims = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays = NULL;\(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArraySizes = size; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum = 1; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayInOut = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, 1); \(\backslash\)}
+\DoxyCodeLine{    *((arrays).fArrayInOut) = io; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayDims = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, 1); \(\backslash\)}
+\DoxyCodeLine{    *((arrays).fArrayDims) = dim; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, 1);\(\backslash\)}
+\DoxyCodeLine{    *(arrays).floatArrays = pointer; \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a793ff6e423275581eeb181ea367fdef6}\label{include_2iterator_8h_a793ff6e423275581eeb181ea367fdef6}} 
+\index{iterator.h@{iterator.h}!constructSingleIArray@{constructSingleIArray}}
+\index{constructSingleIArray@{constructSingleIArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{constructSingleIArray}{constructSingleIArray}}
+{\footnotesize\ttfamily \#define construct\+Single\+I\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArraySizes = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum = 0; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayInOut = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayDims = NULL; \(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays = NULL;\(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArraySizes = size; \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum = 1; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayInOut = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, 1); \(\backslash\)}
+\DoxyCodeLine{    *((arrays).iArrayInOut) = io; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayDims = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, 1); \(\backslash\)}
+\DoxyCodeLine{    *((arrays).iArrayDims) = dim; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}*, 1);\(\backslash\)}
+\DoxyCodeLine{    *(arrays).intArrays = pointer;\(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a0a351918ac893903f33f6caa0405495c}\label{include_2iterator_8h_a0a351918ac893903f33f6caa0405495c}} 
+\index{iterator.h@{iterator.h}!COPYIN@{COPYIN}}
+\index{COPYIN@{COPYIN}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{COPYIN}{COPYIN}}
+{\footnotesize\ttfamily \#define C\+O\+P\+Y\+IN~0}
+
+\mbox{\Hypertarget{include_2iterator_8h_ad8ea0a656de5e36e88b0db12d9ce7ffd}\label{include_2iterator_8h_ad8ea0a656de5e36e88b0db12d9ce7ffd}} 
+\index{iterator.h@{iterator.h}!COPYINOUT@{COPYINOUT}}
+\index{COPYINOUT@{COPYINOUT}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{COPYINOUT}{COPYINOUT}}
+{\footnotesize\ttfamily \#define C\+O\+P\+Y\+I\+N\+O\+UT~2}
+
+\mbox{\Hypertarget{include_2iterator_8h_a3e49f69dc43333fe2b355ec243cb4016}\label{include_2iterator_8h_a3e49f69dc43333fe2b355ec243cb4016}} 
+\index{iterator.h@{iterator.h}!COPYOUT@{COPYOUT}}
+\index{COPYOUT@{COPYOUT}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{COPYOUT}{COPYOUT}}
+{\footnotesize\ttfamily \#define C\+O\+P\+Y\+O\+UT~1}
+
+\mbox{\Hypertarget{include_2iterator_8h_ae4b3a2b997fa25d352f8ef1fac466345}\label{include_2iterator_8h_ae4b3a2b997fa25d352f8ef1fac466345}} 
+\index{iterator.h@{iterator.h}!copySingleArray@{copySingleArray}}
+\index{copySingleArray@{copySingleArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{copySingleArray}{copySingleArray}}
+{\footnotesize\ttfamily \#define copy\+Single\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).fArraySizes != (size) ); \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).fArrayNum++; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayInOut, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayInOut)[fArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).fArrayDims, fArrayNum-1, fArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).fArrayDims)[fArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (arrays).floatArrays, fArrayNum-1, fArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).floatArrays[fArrayNum-1] = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}( \mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}; size); \(\backslash\)}
+\DoxyCodeLine{    memcpy( (arrays).floatArrays[fArrayNum-1], pointer, \(\backslash\)}
+\DoxyCodeLine{                \textcolor{keyword}{sizeof}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}})*(size) ); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a47cace97181e1f82b247633e84c8a6ae}\label{include_2iterator_8h_a47cace97181e1f82b247633e84c8a6ae}} 
+\index{iterator.h@{iterator.h}!copySingleIArray@{copySingleIArray}}
+\index{copySingleIArray@{copySingleIArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{copySingleIArray}{copySingleIArray}}
+{\footnotesize\ttfamily \#define copy\+Single\+I\+Array(\begin{DoxyParamCaption}\item[{}]{arrays,  }\item[{}]{dim,  }\item[{}]{size,  }\item[{}]{io,  }\item[{}]{pointer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    if( (arrays).iArraySizes != (size) ); \(\backslash\)}
+\DoxyCodeLine{    \{ \(\backslash\)}
+\DoxyCodeLine{        dumpError(\textcolor{stringliteral}{"can not add array with different length!\(\backslash\)n"}); \(\backslash\)}
+\DoxyCodeLine{        exit(-1); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    (arrays).iArrayNum++; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayInOut, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayInOut)[iArrayNum-1] = io; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}, (arrays).iArrayDims, iArrayNum-1, iArrayNum); \(\backslash\)}
+\DoxyCodeLine{    ((arrays).iArrayDims)[iArrayNum-1] = dim; \mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{include_2swMacro_8h_a475d97a66ebfab206ad9d984d86015cc}{    RESIZE}}(\mbox{\hyperlink{include_2swMacro_8h_a4ce60b1aa82e56b7372553a6a5bf2c0b}{swFloat}}*, (arrays).intArrays, iArrayNum-1, iArrayNum);\(\backslash\)}
+\DoxyCodeLine{    (arrays).intArrays[iArrayNum-1] = \mbox{\hyperlink{include_2swMacro_8h_a7d0ceb2803c617157e3d6e830c58a9bb}{NEW}}( \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}; size); \(\backslash\)}
+\DoxyCodeLine{    memcpy( (arrays).iArrays[iArrayNum-1], pointer, \(\backslash\)}
+\DoxyCodeLine{                \textcolor{keyword}{sizeof}(\mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}})*(size) ); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_aa68e0df3574d7f00fd829c7dcf209a19}\label{include_2iterator_8h_aa68e0df3574d7f00fd829c7dcf209a19}} 
+\index{iterator.h@{iterator.h}!define\_e2v\_hostFunPtr@{define\_e2v\_hostFunPtr}}
+\index{define\_e2v\_hostFunPtr@{define\_e2v\_hostFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{define\_e2v\_hostFunPtr}{define\_e2v\_hostFunPtr}}
+{\footnotesize\ttfamily \#define define\+\_\+e2v\+\_\+host\+Fun\+Ptr(\begin{DoxyParamCaption}\item[{}]{funname }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} funname (\mbox{\hyperlink{structArrays}{Arrays}}* backEdgeData, \mbox{\hyperlink{structArrays}{Arrays}}* frontEdgeData, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{structArrays}{Arrays}}* selfConnData, \mbox{\hyperlink{structArrays}{Arrays}}* vertexData, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* startVertices, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* endVertices)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_afcb08cca6db018442ad437d31bcb2eed}\label{include_2iterator_8h_afcb08cca6db018442ad437d31bcb2eed}} 
+\index{iterator.h@{iterator.h}!define\_e2v\_slaveFunPtr@{define\_e2v\_slaveFunPtr}}
+\index{define\_e2v\_slaveFunPtr@{define\_e2v\_slaveFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{define\_e2v\_slaveFunPtr}{define\_e2v\_slaveFunPtr}}
+{\footnotesize\ttfamily \#define define\+\_\+e2v\+\_\+slave\+Fun\+Ptr(\begin{DoxyParamCaption}\item[{}]{funname }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} funname (\mbox{\hyperlink{structArrays}{Arrays}}* backEdgeData, \mbox{\hyperlink{structArrays}{Arrays}}* frontEdgeData, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{structArrays}{Arrays}}* selfConnData, \mbox{\hyperlink{structArrays}{Arrays}}* vertexData, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* startVertices, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* endVertices)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a7a53869971a09329f55c307a384fc660}\label{include_2iterator_8h_a7a53869971a09329f55c307a384fc660}} 
+\index{iterator.h@{iterator.h}!define\_v2e\_hostFunPtr@{define\_v2e\_hostFunPtr}}
+\index{define\_v2e\_hostFunPtr@{define\_v2e\_hostFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{define\_v2e\_hostFunPtr}{define\_v2e\_hostFunPtr}}
+{\footnotesize\ttfamily \#define define\+\_\+v2e\+\_\+host\+Fun\+Ptr(\begin{DoxyParamCaption}\item[{}]{funname }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} funname (\mbox{\hyperlink{structArrays}{Arrays}}* neighbourData, \mbox{\hyperlink{structArrays}{Arrays}}* vertexData, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* accuEdgeNumbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* neighbourVetices)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a1cafff3a3d9658885d28d09849ffc745}\label{include_2iterator_8h_a1cafff3a3d9658885d28d09849ffc745}} 
+\index{iterator.h@{iterator.h}!define\_v2e\_slaveFunPtr@{define\_v2e\_slaveFunPtr}}
+\index{define\_v2e\_slaveFunPtr@{define\_v2e\_slaveFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{define\_v2e\_slaveFunPtr}{define\_v2e\_slaveFunPtr}}
+{\footnotesize\ttfamily \#define define\+\_\+v2e\+\_\+slave\+Fun\+Ptr(\begin{DoxyParamCaption}\item[{}]{funname }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} funname (\mbox{\hyperlink{structArrays}{Arrays}}* neighbourData, \mbox{\hyperlink{structArrays}{Arrays}}* vertexData, \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* accuEdgeNumbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{swInt}}* neighbourVetices)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a16c82bbba09ac33c05e83b8daf27aa04}\label{include_2iterator_8h_a16c82bbba09ac33c05e83b8daf27aa04}} 
+\index{iterator.h@{iterator.h}!deleteSingleArray@{deleteSingleArray}}
+\index{deleteSingleArray@{deleteSingleArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{deleteSingleArray}{deleteSingleArray}}
+{\footnotesize\ttfamily \#define delete\+Single\+Array(\begin{DoxyParamCaption}\item[{}]{arrays }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    size\_t i = (array)->fArrayNum;\(\backslash\)}
+\DoxyCodeLine{    while(i--)\{ \mbox{\hyperlink{include_2swMacro_8h_ad0f11ecdfb43e4fe1da50b9a56f60a45}{DELETE}}((array)->floatArrays[i])\}; \(\backslash\)}
+\DoxyCodeLine{    DELETE(floatArrays); \(\backslash\)}
+\DoxyCodeLine{    DELETE(fArrayDims); \(\backslash\)}
+\DoxyCodeLine{    DELETE(fArrayInOut); \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    i = (array)->iArrayNum; \(\backslash\)}
+\DoxyCodeLine{    while(i--)\{ \mbox{\hyperlink{include_2swMacro_8h_ad0f11ecdfb43e4fe1da50b9a56f60a45}{DELETE}}((array)->intArrays[i])\}; \(\backslash\)}
+\DoxyCodeLine{    DELETE(intArrays); \(\backslash\)}
+\DoxyCodeLine{    DELETE(iArrayDims); \(\backslash\)}
+\DoxyCodeLine{    DELETE(iArrayInOut); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_ab90ec061895023a9775206291f829111}\label{include_2iterator_8h_ab90ec061895023a9775206291f829111}} 
+\index{iterator.h@{iterator.h}!destroyArray@{destroyArray}}
+\index{destroyArray@{destroyArray}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{destroyArray}{destroyArray}}
+{\footnotesize\ttfamily \#define destroy\+Array(\begin{DoxyParamCaption}\item[{}]{arrays }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).fArrayInOut ); \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).fArrayDims  ); \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).floatArrays ); \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).iArrayInOut ); \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).iArrayDims  ); \(\backslash\)}
+\DoxyCodeLine{    DELETE( (arrays).intArrays ); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{include_2iterator_8h_a26c6ecebee8a93c649b91bff2336d5f6}\label{include_2iterator_8h_a26c6ecebee8a93c649b91bff2336d5f6}} 
+\index{iterator.h@{iterator.h}!getArrayDims@{getArrayDims}}
+\index{getArrayDims@{getArrayDims}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getArrayDims}{getArrayDims}}
+{\footnotesize\ttfamily \#define get\+Array\+Dims(\begin{DoxyParamCaption}\item[{}]{array,  }\item[{}]{id }\end{DoxyParamCaption})~( (array)-\/$>$f\+Array\+Dims\mbox{[}id\mbox{]} )}
+
+\mbox{\Hypertarget{include_2iterator_8h_add96be7eadefc8f8a7af7483d3323258}\label{include_2iterator_8h_add96be7eadefc8f8a7af7483d3323258}} 
+\index{iterator.h@{iterator.h}!getArrayInOut@{getArrayInOut}}
+\index{getArrayInOut@{getArrayInOut}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getArrayInOut}{getArrayInOut}}
+{\footnotesize\ttfamily \#define get\+Array\+In\+Out(\begin{DoxyParamCaption}\item[{}]{array,  }\item[{}]{id }\end{DoxyParamCaption})~( (array)-\/$>$f\+Array\+In\+Out\mbox{[}id\mbox{]} )}
+
+\mbox{\Hypertarget{include_2iterator_8h_ab071d95098bdeee6c3430dafb666cc99}\label{include_2iterator_8h_ab071d95098bdeee6c3430dafb666cc99}} 
+\index{iterator.h@{iterator.h}!getArrayNumber@{getArrayNumber}}
+\index{getArrayNumber@{getArrayNumber}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getArrayNumber}{getArrayNumber}}
+{\footnotesize\ttfamily \#define get\+Array\+Number(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$f\+Array\+Num )}
+
+\mbox{\Hypertarget{include_2iterator_8h_ae816509117d60811ef6b8d11ea3c012a}\label{include_2iterator_8h_ae816509117d60811ef6b8d11ea3c012a}} 
+\index{iterator.h@{iterator.h}!getArraySize@{getArraySize}}
+\index{getArraySize@{getArraySize}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getArraySize}{getArraySize}}
+{\footnotesize\ttfamily \#define get\+Array\+Size(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$f\+Array\+Sizes )}
+
+\mbox{\Hypertarget{include_2iterator_8h_a792a85d6b00d10eedcd84b1de2c4b0f5}\label{include_2iterator_8h_a792a85d6b00d10eedcd84b1de2c4b0f5}} 
+\index{iterator.h@{iterator.h}!getIArrayDims@{getIArrayDims}}
+\index{getIArrayDims@{getIArrayDims}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getIArrayDims}{getIArrayDims}}
+{\footnotesize\ttfamily \#define get\+I\+Array\+Dims(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$i\+Array\+Dims )}
+
+\mbox{\Hypertarget{include_2iterator_8h_ab767330d10e2321c468ff034eee3e1c8}\label{include_2iterator_8h_ab767330d10e2321c468ff034eee3e1c8}} 
+\index{iterator.h@{iterator.h}!getIArrayInOut@{getIArrayInOut}}
+\index{getIArrayInOut@{getIArrayInOut}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getIArrayInOut}{getIArrayInOut}}
+{\footnotesize\ttfamily \#define get\+I\+Array\+In\+Out(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$i\+Array\+In\+Out )}
+
+\mbox{\Hypertarget{include_2iterator_8h_ab1a9f4b1f5f34a81afc8bdd5922ea5d2}\label{include_2iterator_8h_ab1a9f4b1f5f34a81afc8bdd5922ea5d2}} 
+\index{iterator.h@{iterator.h}!getIArrayNumber@{getIArrayNumber}}
+\index{getIArrayNumber@{getIArrayNumber}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getIArrayNumber}{getIArrayNumber}}
+{\footnotesize\ttfamily \#define get\+I\+Array\+Number(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$i\+Array\+Num )}
+
+\mbox{\Hypertarget{include_2iterator_8h_af235d7155375b482f9f2014ea63d062b}\label{include_2iterator_8h_af235d7155375b482f9f2014ea63d062b}} 
+\index{iterator.h@{iterator.h}!getIArraySize@{getIArraySize}}
+\index{getIArraySize@{getIArraySize}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{getIArraySize}{getIArraySize}}
+{\footnotesize\ttfamily \#define get\+I\+Array\+Size(\begin{DoxyParamCaption}\item[{}]{array }\end{DoxyParamCaption})~( (array)-\/$>$i\+Array\+Sizes )}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{include_2iterator_8h_ae588e578b6781906a44208130df0ab29}\label{include_2iterator_8h_ae588e578b6781906a44208130df0ab29}} 
+\index{iterator.h@{iterator.h}!e2v\_hostFunPtr@{e2v\_hostFunPtr}}
+\index{e2v\_hostFunPtr@{e2v\_hostFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{e2v\_hostFunPtr}{e2v\_hostFunPtr}}
+{\footnotesize\ttfamily typedef void($\ast$  e2v\+\_\+host\+Fun\+Ptr) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)}
+
+\mbox{\Hypertarget{include_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}\label{include_2iterator_8h_a7b58029f74760f3ca5384034c0e89c15}} 
+\index{iterator.h@{iterator.h}!e2v\_slaveFunPtr@{e2v\_slaveFunPtr}}
+\index{e2v\_slaveFunPtr@{e2v\_slaveFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{e2v\_slaveFunPtr}{e2v\_slaveFunPtr}}
+{\footnotesize\ttfamily typedef void($\ast$  e2v\+\_\+slave\+Fun\+Ptr) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$back\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$front\+Edge\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$self\+Conn\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$start\+Vertices, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$end\+Vertices)}
+
+\mbox{\Hypertarget{include_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}\label{include_2iterator_8h_a15a4eedea7b94460153f0a0924c98224}} 
+\index{iterator.h@{iterator.h}!v2e\_hostFunPtr@{v2e\_hostFunPtr}}
+\index{v2e\_hostFunPtr@{v2e\_hostFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{v2e\_hostFunPtr}{v2e\_hostFunPtr}}
+{\footnotesize\ttfamily typedef void($\ast$  v2e\+\_\+host\+Fun\+Ptr) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$neighbour\+Vetices)}
+
+\mbox{\Hypertarget{include_2iterator_8h_acd8809485e3b16adfce1d459f3372671}\label{include_2iterator_8h_acd8809485e3b16adfce1d459f3372671}} 
+\index{iterator.h@{iterator.h}!v2e\_slaveFunPtr@{v2e\_slaveFunPtr}}
+\index{v2e\_slaveFunPtr@{v2e\_slaveFunPtr}!iterator.h@{iterator.h}}
+\subsubsection{\texorpdfstring{v2e\_slaveFunPtr}{v2e\_slaveFunPtr}}
+{\footnotesize\ttfamily typedef void($\ast$  v2e\+\_\+slave\+Fun\+Ptr) (\mbox{\hyperlink{structArrays}{Arrays}} $\ast$neighbour\+Data, \mbox{\hyperlink{structArrays}{Arrays}} $\ast$vertex\+Data, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$accu\+Edge\+Numbers, \mbox{\hyperlink{include_2swMacro_8h_a113cf5f6b5377cdf3fac6aa4e443e9aa}{sw\+Int}} $\ast$neighbour\+Vetices)}
+
