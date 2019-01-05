@@ -1,5 +1,7 @@
 # UNAT
 UNAT是一款运行在神威平台上的非结构网格遍历器框架，用户可直接使用此框架对自有代码进行加速，无需关心申威26010处理器架构及加速特性，只需给定网格拓扑及运算操作即可获得相对于主核4-6倍的加速效果。
+## UNAT代码结构
+本框架代码主要由C++语言编写，从核部分代码由C语言编写，文件结构
 ## 遍历器
 本框架包含多种遍历器，适用于不同应用场景，用户可根据需要及实际加速效果自行选择
 ### 多级网格重排(Multi-level Block Order)
@@ -46,14 +48,24 @@ constructSingleArray(vertexData, dimensions, vertexNum, COPYIN, x);
 addSingleArray(vertexData, dimensions, vertexNum, COPYOUT, b);
 ```
 ## 使用方法
-1. 创建网格拓扑
+### 配置项目
+修改项目Makefile，该文件位于PROJECT根目录下，打开文件修改其中的第4行
+```
+PROJECT=YOUR_DIR/UNAT
+```
+通过make命令编译该框架即可得到libUNAT.a，库文件和头文件位于PROJECT/lib和PROJECT/include文件夹内，用户在自有代码里引用及链接相应文件
+```
+make clean
+make
+```
+### 创建网格拓扑
 本框架中可以通过两种数据结构创建网格拓扑，LDU和CSR，对于LDU形式的数据结构，给定网格面左右两边的网格单元编号及网格面数目，即可创建网格拓扑
 ```
 Topology* topo = Topology::constructFromEdge(startVertices,endVertices,faceNum);
 ```
 * **startVertice和endVertices需严格以LDU方式存储，即startVertices[i]<endVertices[i]**
 * **startVertices和endVertices需要以行优先的方式按顺序存储**
-2. 指定运算操作
+### 指定运算操作
 这里通过宏定义方式指定函数指针，该文件位于PROJECT/wrappedInterface/文件夹下，用户可为每种运算操作创建新的文件夹，这里以稀疏矩阵向量乘(spMV)为例，该文件夹下包含三个文件
 * spMV.h spMV_host.cpp spMV_slave.c </br>
 分别为头文件，主核函数指针文件和从核函数指针文件，其中主核函数指针和从核函数指针文件内容相同，用户目前需要写两份相同的代码，下一版本将对Makefile进行改进。</br>
@@ -98,7 +110,7 @@ define_e2v_hostFunPtr(spMV_slave)
 void slave_spMV_slave(Arrays* backEdgeData, Arrays* frontEdgeData,Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,swInt* endVertices);
 void spMV_host(Arrays* backEdgeData, Arrays* frontEdgeData,Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,swInt* endVertices);
 ```
-3. 调用遍历器
+### 调用遍历器
 本框架包含多种遍历器，用户可自行选择，这里以DirectSegmentIterator为例进行说明
 * 构造遍历器
 构造遍历器需要网格拓扑信息以及网格面和网格单元权重，网格面的权重即为一个网格面上的数据量，网格单元同理。对于spMV操作，每个网格面上包括lower[i]和upper[i]两个数据，每个网格单元上包括x[i]和b[i]两个数据，所有这里cellWeights和edgeWeights均设为2\*dimensions。
@@ -116,3 +128,5 @@ DirectSegmentIterator iterator(*topo, &cellWeights[0], &edgeWeights[0]);
 iterator.edge2VertexIteration( &backEdgeData, &frontEdgeData,&selfConnData, &vertexData, spMV_host, slave_spMV_slave);
 ```
 **注意这里的从核函数指针，spMV_slave.c文件内的名字为spMV_slave，但是由于从核编译特点，函数指针在目标文件中的名字增加了slave_xxx前缀，因此调用时需要进行相应修改**
+### 样例
+以上的使用过程已在PROJECT/test/directSegment/test.cpp文件中实现，用户可对比该文件理解框架的使用过程
