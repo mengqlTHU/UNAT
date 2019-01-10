@@ -135,7 +135,7 @@ DirectSegmentIterator iterator(*topo, &cellWeights[0], &edgeWeights[0]);
 * 调用遍历器
 遍历器包括两种
 ** edge2VertexIteration：按网格面循环的遍历方式
-** vertex2EdgeIteration：按网格单元寻魂的遍历方式
+** vertex2EdgeIteration：按网格单元循环的遍历方式
 这里以edge2VertexIteration为例，给定四种类型的流场数据以及函数指针
 ```
 iterator.edge2VertexIteration( &backEdgeData, &frontEdgeData,&selfConnData, &vertexData, spMV_host, slave_spMV_slave);
