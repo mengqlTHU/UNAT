@@ -14,6 +14,8 @@
                                             :"=r"(__tmp__):"r"(_n_),"r"(_addr_):"memory");        \
 }
 
+//if(myId==0) printf("allocated LDM size: %d at LINE %d\n",(char*)ptr-ldm_space, __LINE__); 
+
 #define INIT_LDM_SPACE(ldm_size_) \
 ; \
 int ldm_size = ldm_size_; \

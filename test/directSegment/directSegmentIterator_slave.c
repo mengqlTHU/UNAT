@@ -48,6 +48,8 @@ inline void outputArray(Arrays *slave, Arrays *host,
 	swInt fArrayNum    = host->fArrayNum; \
 	slave.fArrayNum   = fArrayNum; \
 	slave.fArraySizes = edgeLen+recvEdges; \
+	if(fArrayNum>0) \
+	{ \
 	LDM_NEW(slave.fArrayDims, swInt, fArrayNum); \
 	LDM_NEW(slave.fArrayInOut, swInt, fArrayNum); \
 	DMA_Get(slave.fArrayDims,host->fArrayDims,fArrayNum*sizeof(swInt)); \
@@ -57,34 +59,14 @@ inline void outputArray(Arrays *slave, Arrays *host,
 	{ \
 		LDM_NEW(slave.floatArrays[i], swFloat, \
 					(edgeLen+recvEdges)*slave.fArrayDims[i]); \
-		if(!DMA) break; \
+		if(!DMA) continue; \
 		DMA_Get(&slave.floatArrays[i][recvEdges*slave.fArrayDims[i]], \
 			&host->floatArrays[i][slave.fArrayDims[i]*startIdx], \
 			edgeLen*slave.fArrayDims[i]*sizeof(swFloat)); \
 	} \
+	} \
 }
 
-#define allocRecvArray(recv, send, diagNum, offDiagNum)\
-{ \
-	int i,j; \
-	recv.fArrayNum   = send.fArrayNum; \
-	recv.fArraySizes = diagNum+offDiagNum; \
-	LDM_NEW(recv.fArrayDims,swInt,recv.fArrayNum); \
-	LDM_NEW(recv.fArrayInOut,swInt,recv.fArrayNum);\
-	LDM_NEW(recv.floatArrays,swFloat*,recv.fArrayNum); \
-	for(i=0;i<recv.fArrayNum;i++)\
-	{\
-		recv.fArrayDims[i] = send.fArrayDims[i];\
-		recv.fArrayInOut[i] = send.fArrayInOut[i];\
-		LDM_NEW(recv.floatArrays[i],swFloat,\
-					(diagNum+offDiagNum)*recv.fArrayDims[i]);\
-		for(j=0;j<diagNum*recv.fArrayDims[i];j++)\
-		{\
-			recv.floatArrays[i][j]\
-				= send.floatArrays[i][j];\
-		}\
-	}\
-}
 void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 {
 // **********************************************************************
@@ -157,6 +139,9 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //	recvEdges = accuColNum_slave[myId+2]
 //		+ para->recvStarts[myId+spIndex*BLOCKNUM64K];
 	recvEdges = para_s.recvStarts[myId+spIndex*BLOCKNUM64K];
+
+	int isLowerExisted = 1;
+	if(lower->fArrayNum==0) isLowerExisted = 0;
 //	maxEdges = MAX(recvEdges,edgeLen);
 
 //	if(myId==DEBUGID) printf("edgeLen: %d, maxEdges: %d, recvEdges: %d, recvEdges: %d\n", edgeLen, maxEdges, recvEdges, recvEdges);
@@ -275,12 +260,6 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	LDM_NEW(tmp,swFloat,edgeLen*dims);
 	swFloat *tmpFloat = (swFloat*)tmp;
 	swInt   *tmpInt   = (swInt*)tmp;
-//	LDM_NEW(tmpInt,swInt,edgeLen);i
-//	if(myId==62)
-//	{
-//		for(i=0;i<BLOCKNUM64K+2;i++)
-//		  printf("%d\n",accuColNum_slave[i]);
-//	}
 
 	LDM_NEW(bonus,int,BLOCKNUM64K+1);
 	swInt *faceId;
@@ -292,27 +271,23 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		accuColNum_slave[edgeNeiSeg_slave[i]+1]++;
 	}
 
-//	LDM_NEW(tmpFloat,swFloat,edgeLen*dims);
 	// Reorder Upper
 	for(i=0;i<upper_slave.fArrayNum;i++)
 	{
+//		printf("%d,%f\n",edgeLen,upper_slave.floatArrays[i][0]);
 		dims = upper_slave.fArrayDims[i];
 		DMA_Get(tmpFloat,&upper->floatArrays[i][dims*edgeStarts_slave[myId]],edgeLen*dims*sizeof(swFloat));
-//		dims=1;
-//		idim = 0;
-		// TODO
-		// To be evaluate in multi-dimension case.
 		for(j=0;j<edgeLen;j++)
 		{
 			for(idim=0;idim<dims;idim++)
 			{
+//				if(i==1) printf("%d,%d,%d,%f,%f\n",j,recvEdges,faceId[j],upper_slave.floatArrays[i][(j+recvEdges)*dims+idim],tmpFloat[faceId[j]*dims+idim]);
 				upper_slave.floatArrays[i][(j+recvEdges)*dims+idim]
 					= tmpFloat[faceId[j]*dims+idim];
 			}
 		}
 	}
 
-//if(myId==DEBUGID) printArray("%d",faceId,edgeLen);
 
 	// Reorder neighbor
     DMA_Get(tmpInt,&neighbor[edgeStarts_slave[myId]],
@@ -350,7 +325,6 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //
 ////	for(i=0;i<edgeLen;i++) {assert(recvEdges[i]==sNeighbor_slave[i]);}
 //
-	// Communicate neighbor
     swInt ownNeiSendIdx[BLOCKNUM64K],ownNeiRecvIdx[BLOCKNUM64K];
 	swInt ownNeiRecvList[BLOCKNUM64K];
 	int lastId,startIdx;
@@ -358,100 +332,162 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //	{
 //		neighbor_slave[i] = sNeighbor_slave[i];
 //	}
-	for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
-	for(i=0;i<_total_send_pcg;i++)
-	{
-		if(myId>_sPacks[i].dst_id) continue;
-		startIdx
-			= accuColNum_slave[_sPacks[i].dst_id]
-			+ ownNeiSendIdx[_sPacks[i].dst_id] + recvEdges;
-		for(j=0;j<_sPacks[i].cva;j++)
-		{
-			_sPacks[i].data[j] = neighbor_slave[startIdx+j];
-		}
-		ownNeiSendIdx[_sPacks[i].dst_id]+=_sPacks[i].cva;
-	}
-	transform_data();
-	recvNum=0;
-	lastId=0;
-	k=0;
-	for(i=0;i<BLOCKNUM64K;i++) {ownNeiRecvList[i]=0;}
-	for(i=0;i<_total_send_pcg;i++)
-	{
-		if(_rPacks[i].src_id>myId) continue;
-		for(j=0;j<_rPacks[i].cva;j++)
-		{
-			neighbor_slave[recvNum] = _rPacks[i].data[j];
-			recvNum++;
-		}
-		if(_rPacks[i].src_id!=lastId) {k++;lastId=_rPacks[i].src_id;}
-		// TODO
-		// This will affect communicate X
-		ownNeiRecvList[k+1]=recvNum;
-		ownNeiRecvIdx[_rPacks[i].src_id]=k;
-	}
-//	recvNum-=accuColNum_slave[myId+1];
-//if(myId==21) printArray("%d",neighbor_slave,edgeLen+recvEdges);
-//if(myId==0) printArray("%d",colIdx,edgeLen);
-#ifdef DEBUG
-//	assert(maxEdges>recvNum+colNum[myId]);
-#endif
-
-//	allocRecvArray(rLower_slave, sLower_slave,
-//				accuColNum_slave[myId+1], recvNum);
-//	allocRecvArray(lowVertex_slave, sVertex_slave, cellLen, recvNum);
-//	allocRecvArray(upVertex_slave, sVertex_slave,
-//				cellLen, edgeLen-accuColNum_slave[myId+1]);
-//	// The vertexData was seperated into two parts
-//	for(i=0;i<lowVertex_slave.fArrayNum;i++)
-//	{
-//		dims = lowVertex_slave.fArrayDims[i];
-//		if(lowVertex_slave.fArrayInOut[i]==COPYOUT)
-//		{
-//			for(j=0;j<cellLen*dims;j++)
-//			{
-//				lowVertex_slave.floatArrays[i][j] /= 2; 
-//				upVertex_slave.floatArrays[i][j]  /= 2;
-//			}
-//		}
-//	}
-#ifdef DEBUG
-//if(myId==1) printArray("%f",rLower_slave.floatArrays[0],recvNum+colNum[myId]);
-//	assert(startIdx==recvNum+colNum[myId]);
-#endif
-
 	swInt fArrayNum     = vertex->fArrayNum; 
-	sVertex_slave.fArrayNum   = fArrayNum;
-	sVertex_slave.fArraySizes = cellLen; 
-	LDM_NEW(sVertex_slave.fArrayDims, swInt, fArrayNum); 
-	LDM_NEW(sVertex_slave.fArrayInOut, swInt, fArrayNum); 
-	DMA_Get(sVertex_slave.fArrayDims,vertex->fArrayDims,
-				fArrayNum*sizeof(swInt)); 
-	DMA_Get(sVertex_slave.fArrayInOut,vertex->fArrayInOut,
-				fArrayNum*sizeof(swInt));
-	LDM_NEW(sVertex_slave.floatArrays, swFloat*, fArrayNum);
-
-	int copyInLen = cellLen+edgeLen-accuColNum_slave[myId+1]+recvEdges;
-	for(i=0;i<sVertex_slave.fArrayNum;i++) 
-	{ 
+	if(fArrayNum>0)
+	{
+		sVertex_slave.fArrayNum   = fArrayNum;
+		sVertex_slave.fArraySizes = cellLen; 
+		LDM_NEW(sVertex_slave.fArrayDims, swInt, fArrayNum); 
+		LDM_NEW(sVertex_slave.fArrayInOut, swInt, fArrayNum); 
+		DMA_Get(sVertex_slave.fArrayDims,vertex->fArrayDims,
+					fArrayNum*sizeof(swInt)); 
+		DMA_Get(sVertex_slave.fArrayInOut,vertex->fArrayInOut,
+					fArrayNum*sizeof(swInt));
+		LDM_NEW(sVertex_slave.floatArrays, swFloat*, fArrayNum);
+	
+		int copyInLen = cellLen+edgeLen-accuColNum_slave[myId+1]+recvEdges;
+		for(i=0;i<sVertex_slave.fArrayNum;i++) 
+		{ 
+			dims = sVertex_slave.fArrayDims[i];
+			if(sVertex_slave.fArrayInOut[i]==COPYIN)
+			{
+				LDM_NEW(sVertex_slave.floatArrays[i],swFloat,
+							copyInLen*dims);
+				DMA_Get(&sVertex_slave.floatArrays[i][recvEdges*dims], 
+					&vertex->floatArrays[i][dims*segStarts_slave[myId]], 
+					cellLen*dims*sizeof(swFloat)); 
+			} else
+			{
+				LDM_NEW(sVertex_slave.floatArrays[i],swFloat,cellLen*dims);
+				DMA_Get(sVertex_slave.floatArrays[i],
+					&vertex->floatArrays[i][dims*segStarts_slave[myId]],
+					cellLen*dims*sizeof(swFloat));
+			}
+		}
+	}
+	
+	// Communicate neighbor
+//	if(isLowerExisted)
+//	{
+		for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
+		for(i=0;i<_total_send_pcg;i++)
+		{
+			if(myId>_sPacks[i].dst_id) continue;
+			startIdx
+				= accuColNum_slave[_sPacks[i].dst_id]
+				+ ownNeiSendIdx[_sPacks[i].dst_id] + recvEdges;
+			for(j=0;j<_sPacks[i].cva;j++)
+			{
+				_sPacks[i].data[j] = neighbor_slave[startIdx+j];
+			}
+			ownNeiSendIdx[_sPacks[i].dst_id]+=_sPacks[i].cva;
+		}
+		transform_data();
+		recvNum=0;
+		lastId=0;
+		k=0;
+		for(i=0;i<BLOCKNUM64K;i++) {ownNeiRecvList[i]=0;}
+		for(i=0;i<_total_send_pcg;i++)
+		{
+			if(_rPacks[i].src_id>myId) continue;
+			for(j=0;j<_rPacks[i].cva;j++)
+			{
+				neighbor_slave[recvNum] = _rPacks[i].data[j];
+				recvNum++;
+			}
+			if(_rPacks[i].src_id!=lastId) {k++;lastId=_rPacks[i].src_id;}
+			// TODO
+			// This will affect communicate X
+			ownNeiRecvList[k+1]=recvNum;
+			ownNeiRecvIdx[_rPacks[i].src_id]=k;
+		}
+//	}
+// ***********************************************************************
+// Sparse block computation
+// ***********************************************************************
+	int iDim;
+	upper_slave.fArraySizes
+		= accuColNum_slave[BLOCKNUM64K+1]-accuColNum_slave[BLOCKNUM64K];
+	diag_slave.fArraySizes   = 0;
+	sLower_slave.fArraySizes = 0;
+	swFloat* x_M = accessArray(vertex,0);
+	for(i=0;i<upper_slave.fArrayNum;i++)
+	{
+		dims = upper_slave.fArrayDims[i];
+		upper_slave.floatArrays[i]
+			+= (recvEdges+accuColNum_slave[BLOCKNUM64K])*dims;
+	}
+	Arrays tmpVertex;
+	for(i=0;i<sVertex_slave.fArrayNum;i++)
+	{
 		dims = sVertex_slave.fArrayDims[i];
 		if(sVertex_slave.fArrayInOut[i]==COPYIN)
 		{
-			LDM_NEW(sVertex_slave.floatArrays[i],swFloat,copyInLen*dims);
-			DMA_Get(&sVertex_slave.floatArrays[i][recvEdges*dims], 
-				&vertex->floatArrays[i][dims*segStarts_slave[myId]], 
-				cellLen*dims*sizeof(swFloat)); 
+			for(iDim=0;iDim<dims;iDim++)
+			{
+				tmpVertex.floatArrays[i] = vertex->floatArrays[i];
+			}
 		} else
 		{
-			LDM_NEW(sVertex_slave.floatArrays[i],swFloat,cellLen*dims);
-			DMA_Get(sVertex_slave.floatArrays[i],
-				&vertex->floatArrays[i][dims*segStarts_slave[myId]],
-				cellLen*dims*sizeof(swFloat));
+			tmpVertex.floatArrays[i]
+				= sVertex_slave.floatArrays[i] - segStarts_slave[myId]*dims;
 		}
 	}
 
+//	para->fun_slave(&sLower_slave,&upper_slave,&diag_slave,&tmpVertex,
+//				&owner_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges],
+//				&neighbor_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges]);
+
+	swFloat* upperA	= accessArray(&upper_slave, 0);
+	swFloat* bTmp		= accessArray(&tmpVertex, 1);
+	swInt edgeNumber = getArraySize(&upper_slave);
+ 	for(i=0;i<edgeNumber;i++)
+ 	{
+ 		for(iDim=0;iDim<dims;iDim++)
+ 		{
+//if(owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim==43752) printf("sparUpper: %f,%f,%f\n",bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim],upperA[i*dims+iDim],x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]);
+ 			bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]
+ 				+= upperA[i*dims+iDim]
+				*  x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim];
+ 		}
+ 	}
+//	for(i=0;i<sVertex_slave.fArrayNum;i++)
+//	{
+//		if(sVertex_slave.fArrayInOut[i]==COPYIN) continue;
+//		dims = sVertex_slave.fArrayDims[i];
+//		sVertex_slave.floatArrays[i] += segStarts_slave[myId]*dims;
+//	}
+
+//	swInt accuConnSeg[2],segStarts_spar[2],edgeStarts_spar[2];
+//	accuConnSeg[0] = para_s.accuConnSeg[row];
+//	accuConnSeg[1] = para_s.accuConnSeg[row+1];
+//	swInt segNum_spar = accuConnSeg[1]-accuConnSeg[0];
+//	if(segNum_spar>0)
+//	{
+//		swInt *endSeg;
+//		LDM_NEW(endSeg,swInt,segNum_spar);
+//		DMA_Get(endSeg,&para_s.endSeg[accuConnSeg[0]],
+//				segNum_spar*sizeof(swInt));
+//		for(i=0;i<segNum_spar;i++)
+//		{
+//if(myId==0)			printf("%d,%d\n",i,endSeg[i]);
+////			segStarts_spar[0]  = segStarts[endSeg[i]];
+////			segStarts_spar[1]  = segStarts[endSeg[i]+1];
+////			edgeStarts_spar[0] = edgeStarts[endSeg[i]];
+////			edgeStarts_spar[1] = edgeStarts[endSeg[i]+1];
+////			int dims = vertex->fArrayDims[0];
+////			int len = segStarts_spar[1]-segStarts_spar[0];
+//////			DMA_Get(tmpInt,&vertex->floatArrays[0][segStarts_spar[0]],
+//////						len*dims*sizeof(swInt));
+//////			for(i=edgeStarts_spar[0];i<edgeStarts_spar[1];i++)
+//////			{
+//////				neighbor_slave[i]
+//		}
+//	}
+// ***********************************************************************
+
 	// Communicate X
-	int iArray,iDim;
+	int iArray;
 	swInt idx;
 	swInt ownNeiSendIdxUToL[BLOCKNUM64K],ownNeiSendIdxLToU[BLOCKNUM64K];
     for(iArray=0;iArray<sVertex_slave.fArrayNum;iArray++)
@@ -561,8 +597,8 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //	for(iDim=0;iDim<dims;iDim++)
 //	{
 //		for( ivertex = 0; ivertex < vertexNum; ivertex++)
-////if(ivertex+segStarts_slave[myId]==60) printf("diag:%f,%f,%f\n",b[ivertex],diagA[ivertex],x[ivertex]);
 //		{
+//if((ivertex+segStarts_slave[myId])*dims+iDim==43752) printf("diag:%f,%f,%f\n",b[ivertex*dims+iDim],diagA[ivertex*dims+iDim],x[ivertex*dims+iDim]);
 //			b[ivertex*dims+iDim]
 //				+=diagA[ivertex*dims+iDim]*x[ivertex*dims+iDim];
 //		}
@@ -581,117 +617,46 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	for(i=0;i<upper_slave.fArrayNum;i++)
 	{
 		dims = upper_slave.fArrayDims[i];
-		upper_slave.floatArrays[i] += recvEdges*dims;
+		upper_slave.floatArrays[i] -= accuColNum_slave[BLOCKNUM64K]*dims;
 	}
 	para->fun_slave(&sLower_slave,&upper_slave,&diag_slave,&sVertex_slave,
 				&owner_slave[recvEdges],&neighbor_slave[recvEdges]);
 
-//	swInt edgeNumber = getArraySize(&upper_slave);
+//	edgeNumber = getArraySize(&upper_slave);
+//	upperA	= accessArray(&upper_slave, 0);
+//	b = accessArray(&sVertex_slave, 1);
+//	x = accessArray(&sVertex_slave, 0);
 //	swInt iedge;
 //	dims = upper_slave.fArrayDims[0];
 //	for( iedge = recvEdges; iedge < edgeNumber+recvEdges; iedge++)
 //	{
-////if(owner_slave[iedge+recvEdges]+segStarts_slave[myId]==315) printf("upper:%d,%d,%d,%f,%f,%f\n",iedge,owner_slave[iedge+recvEdges],neighbor_slave[iedge+recvEdges],diagA[owner_slave[iedge+recvEdges]],upperA[iedge],x[neighbor_slave[iedge+recvEdges]+recvEdges]);
 //		for(iDim=0;iDim<dims;iDim++)
 //		{
+//if((owner_slave[iedge]+segStarts_slave[myId])*dims+iDim==43752) printf("upper:%d,%d,%d,%f,%f,%f\n",iedge,owner_slave[iedge],neighbor_slave[iedge],b[owner_slave[iedge]*dims+iDim],upperA[(iedge-recvEdges)*dims+iDim],x[neighbor_slave[iedge]*dims+iDim]);
 //			b[owner_slave[iedge]*dims+iDim]
 //				+= upperA[(iedge-recvEdges)*dims+iDim]
 //				* x[neighbor_slave[iedge]*dims+iDim];
 //		}
 //	}
-	// Sparse block computation
-	upper_slave.fArraySizes
-		= accuColNum_slave[BLOCKNUM64K+1]-accuColNum_slave[BLOCKNUM64K];
-	swFloat* x_M = accessArray(vertex,0);
-	for(i=0;i<upper_slave.fArrayNum;i++)
-	{
-		dims = upper_slave.fArrayDims[i];
-		upper_slave.floatArrays[i] += accuColNum_slave[BLOCKNUM64K]*dims;
-	}
-	Arrays tmpVertex;
-	for(i=0;i<sVertex_slave.fArrayNum;i++)
-	{
-		dims = sVertex_slave.fArrayDims[i];
-		if(sVertex_slave.fArrayInOut[i]==COPYIN)
-		{
-			for(iDim=0;iDim<dims;iDim++)
-			{
-				tmpVertex.floatArrays[i] = vertex->floatArrays[i];
-			}
-		} else
-		{
-			tmpVertex.floatArrays[i]
-				= sVertex_slave.floatArrays[i] - segStarts_slave[myId]*dims;
-		}
-	}
-
-	para->fun_slave(&sLower_slave,&upper_slave,&diag_slave,&tmpVertex,
-				&owner_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges],
-				&neighbor_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges]);
-
-//	swFloat* upperA	= accessArray(&upper_slave, 0);
-//	b		= accessArray(&tmpVertex, 1);
-//	swInt edgeNumber = getArraySize(&upper_slave);
-// 	for(i=0;i<edgeNumber;i++)
-// 	{
-// 		for(iDim=0;iDim<dims;iDim++)
-// 		{
-// 			b[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]
-// 				+= upperA[i*dims+iDim]
-//				*  x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim];
-// 		}
-// 	}
-//	for(i=0;i<sVertex_slave.fArrayNum;i++)
-//	{
-//		if(sVertex_slave.fArrayInOut[i]==COPYIN) continue;
-//		dims = sVertex_slave.fArrayDims[i];
-//		sVertex_slave.floatArrays[i] += segStarts_slave[myId]*dims;
-//	}
-	b		= accessArray(&sVertex_slave, 1);
-
-//	swInt accuConnSeg[2],segStarts_spar[2],edgeStarts_spar[2];
-//	accuConnSeg[0] = para_s.accuConnSeg[row];
-//	accuConnSeg[1] = para_s.accuConnSeg[row+1];
-//	swInt segNum_spar = accuConnSeg[1]-accuConnSeg[0];
-//	if(segNum_spar>0)
-//	{
-//		swInt *endSeg;
-//		LDM_NEW(endSeg,swInt,segNum_spar);
-//		DMA_Get(endSeg,&para_s.endSeg[accuConnSeg[0]],
-//				segNum_spar*sizeof(swInt));
-//		for(i=0;i<segNum_spar;i++)
-//		{
-//			segStarts_spar[0]  = segStarts[endSeg[i]];
-//			segStarts_spar[1]  = segStarts[endSeg[i]+1];
-//			edgeStarts_spar[0] = edgeStarts[endSeg[i]];
-//			edgeStarts_spar[1] = edgeStarts[endSeg[i]+1];
-//			int dims = vertex->fArrayDims[0];
-//			int len = segStarts_spar[1]-segStarts_spar[0];
-////			DMA_Get(tmpInt,&vertex->floatArrays[0][segStarts_spar[0]],
-////						len*dims*sizeof(swInt));
-////			for(i=edgeStarts_spar[0];i<edgeStarts_spar[1];i++)
-////			{
-////				neighbor_slave[i]
-//		}
-//	}
-
 // ************************************************************************
 // Compute the upper triangle
 // ************************************************************************
 
 	// Transform the sorted data to master core
 	// Output upperData
-	if(length>0)
+	for(i=0;i<upper_slave.fArrayNum;i++)
 	{
-		for(i=0;i<upper_slave.fArrayNum;i++)
-		{
-			DMA_Put(&rUpper->floatArrays[i]
-				[wrtStart*upper_slave.fArrayDims[i]],
-				&upper_slave.floatArrays[i]
-				[(accuColNum_slave[BLOCKNUM64K]+recvEdges)
-				*upper_slave.fArrayDims[i]],
-				length*upper_slave.fArrayDims[i]*sizeof(swFloat));
-		}
+		dims = upper_slave.fArrayDims[i];
+		upper_slave.floatArrays[i]
+			-= recvEdges*dims;
+	}
+	for(i=0;i<upper_slave.fArrayNum;i++)
+	{
+		if(upper_slave.fArrayInOut[i]==COPYIN) continue;
+		DMA_Put(upper->floatArrays[i],
+			&upper_slave.floatArrays[i]
+			[recvEdges*upper_slave.fArrayDims[i]],
+			edgeLen*upper_slave.fArrayDims[i]*sizeof(swFloat));
 	}
 
 // ************************************************************************
@@ -699,59 +664,61 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 // ************************************************************************
 //	copyArray(sLower_slave,  lower,
 //				edgeLen, edgeStarts_slave[myId], recvEdges, 0);
-	for(i=0;i<upper_slave.fArrayNum;i++)
-	{
-		dims = upper_slave.fArrayDims[i];
-		upper_slave.floatArrays[i]
-			-= (recvEdges+accuColNum_slave[BLOCKNUM64K])*dims;
-	}
 
 	sLower_slave = upper_slave;
 	// Reorder lower
-	for(i=0;i<sLower_slave.fArrayNum;i++)
+	sLower_slave.fArrayNum = lower->fArrayNum;
+	sLower_slave.fArraySizes = lower->fArraySizes;
+	if(sLower_slave.fArrayNum>0)
 	{
-		dims = sLower_slave.fArrayDims[i];
-		DMA_Get(tmpFloat,&lower->floatArrays[i][dims*edgeStarts_slave[myId]],edgeLen*dims*sizeof(swFloat));
-//		dims=1;
-//		idim=0;
-		for(j=0;j<edgeLen;j++)
+		for(i=0;i<sLower_slave.fArrayNum;i++)
 		{
-			for(idim=0;idim<dims;idim++)
+			dims = sLower_slave.fArrayDims[i];
+			DMA_Get(tmpFloat,&lower->floatArrays[i][dims*edgeStarts_slave[myId]],edgeLen*dims*sizeof(swFloat));
+	//		dims=1;
+	//		idim=0;
+			for(j=0;j<edgeLen;j++)
 			{
-				sLower_slave.floatArrays[i][(j+recvEdges)*dims+idim]
-					= tmpFloat[faceId[j]*dims+idim];
+				for(idim=0;idim<dims;idim++)
+				{
+					sLower_slave.floatArrays[i][(j+recvEdges)*dims+idim]
+						= tmpFloat[faceId[j]*dims+idim];
+				}
 			}
 		}
 	}
 
 	// Communicate Lower
-    for(iArray=0;iArray<sLower_slave.fArrayNum;iArray++)
+	if(isLowerExisted)
 	{
-		dims = sLower_slave.fArrayDims[iArray];
-		for(iDim=0;iDim<dims;iDim++)
+	    for(iArray=0;iArray<sLower_slave.fArrayNum;iArray++)
 		{
-			for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
-			for(i=0;i<_total_send_pcg;i++)
+			dims = sLower_slave.fArrayDims[iArray];
+			for(iDim=0;iDim<dims;iDim++)
 			{
-				if(myId>_sPacks[i].dst_id) continue;
-				startIdx = accuColNum_slave[_sPacks[i].dst_id]
-					+ ownNeiSendIdx[_sPacks[i].dst_id] + recvEdges;
-				for(j=0;j<_sPacks[i].cva;j++)
+				for(i=0;i<BLOCKNUM64K;i++) {ownNeiSendIdx[i]=0;}
+				for(i=0;i<_total_send_pcg;i++)
 				{
-					_sPacks[i].data[j] = sLower_slave.floatArrays[iArray][(startIdx+j)*dims+iDim];
+					if(myId>_sPacks[i].dst_id) continue;
+					startIdx = accuColNum_slave[_sPacks[i].dst_id]
+						+ ownNeiSendIdx[_sPacks[i].dst_id] + recvEdges;
+					for(j=0;j<_sPacks[i].cva;j++)
+					{
+						_sPacks[i].data[j] = sLower_slave.floatArrays[iArray][(startIdx+j)*dims+iDim];
+					}
+					ownNeiSendIdx[_sPacks[i].dst_id]+=_sPacks[i].cva;
 				}
-				ownNeiSendIdx[_sPacks[i].dst_id]+=_sPacks[i].cva;
-			}
-			transform_data();
-			startIdx=0;
-			for(i=0;i<_total_send_pcg;i++)
-			{
-				if(_rPacks[i].src_id>myId) continue;
-				for(j=0;j<_rPacks[i].cva;j++)
+				transform_data();
+				startIdx=0;
+				for(i=0;i<_total_send_pcg;i++)
 				{
-					sLower_slave.floatArrays[iArray][startIdx*dims+iDim]
-						= _rPacks[i].data[j];
-					startIdx++;
+					if(_rPacks[i].src_id>myId) continue;
+					for(j=0;j<_rPacks[i].cva;j++)
+					{
+						sLower_slave.floatArrays[iArray][startIdx*dims+iDim]
+							= _rPacks[i].data[j];
+						startIdx++;
+					}
 				}
 			}
 		}
@@ -786,7 +753,8 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		sVertex_slave.floatArrays[i] -= recvEdges*dims;
 	}
 
-	x		= accessArray(&sVertex_slave, 0);
+//	x		= accessArray(&sVertex_slave, 0);
+//	b		= accessArray(&sVertex_slave, 1);
 	para_s.fun_slave(&sLower_slave,&upper_slave,&diag_slave,
 				&sVertex_slave,owner_slave,neighbor_slave);
 	//backEdge computation
@@ -797,7 +765,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //	{
 //		for( iedge = 0; iedge < edgeNumber; iedge++)
 //		{
-////if((neighbor_slave[iedge]+segStarts_slave[myId])*dims+iDim==26604) printf("lower:%d,%d,%d,%d,%f,%f,%f\n",iedge,iedge*dims+iDim,owner_slave[iedge],neighbor_slave[iedge],b[neighbor_slave[iedge]],lowerA[iedge*dims+iDim],x[owner_slave[iedge]*dims+iDim]);
+//if((neighbor_slave[iedge]+segStarts_slave[myId])*dims+iDim==43752) printf("lower:%d,%d,%d,%d,%f,%f,%f\n",iedge,iedge*dims+iDim,owner_slave[iedge],neighbor_slave[iedge],b[neighbor_slave[iedge]*dims+iDim],lowerA[iedge*dims+iDim],x[owner_slave[iedge]*dims+iDim]);
 //			b[neighbor_slave[iedge]*dims+iDim]
 //				+= lowerA[iedge*dims+iDim]*x[owner_slave[iedge]*dims+iDim];
 //		}

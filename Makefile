@@ -11,7 +11,7 @@ OBJPATH=${PROJECT}/objects
 #############################################################
 CC="sw5cc -host"
 CXX="mpiCC"
-SLAVECC="sw5cc -slave -msimd "
+SLAVECC="sw5cc -slave -msimd"
 AR=swar cru
 RANLIB=swranlib
 LD=${CXX}

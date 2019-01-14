@@ -15,13 +15,13 @@ extern "C"{
 //			Here do the core computing;
 //			Parameters is similiar as edge2VertexIteration.
 //		}
-#define define_e2v_hostFunPtr( funname ) \
+#define define_e2v_FunPtr( funname ) \
 void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
 			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
 			swInt* endVertices)
 
 #define define_e2v_slaveFunPtr( funname ) \
-void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
+void slave_##funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
 			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
 			swInt* endVertices)
 

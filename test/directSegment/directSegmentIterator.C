@@ -255,7 +255,7 @@ printf("vertexNumber is %d\n", vertexNumber);
 	this->accuColNum_ = (swInt*)malloc(this->subSegNum_*this->segNum_*(this->subSegNum_+1)*sizeof(swInt));
 	swInt *colNum = (swInt*)malloc(this->subSegNum_*this->segNum_*this->subSegNum_*sizeof(swInt));
 	int segNum = this->segNum_*this->subSegNum_;
-	printf("segNum: %d\n",segNum);
+//	printf("segNum: %d\n",segNum);
 	for(int iseg=0;iseg<segNum;iseg++)
 	{
 		int blockIdx = iseg/BLOCKNUM64K;
@@ -383,20 +383,22 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	};
 
 
-	double time1,time2;
-	athread_init();
-	printf("start slave function...\n");
 	swFloat* x       = accessArray(vertexData,0);
-	swFloat* b       = accessArray(vertexData,1);
+	swFloat* b       = accessArray(vertexData,0);
 	swFloat* diag    = accessArray(selfConnData,0);
 	swFloat* lower   = accessArray(backEdgeData,0);
 	swFloat* upper   = accessArray(frontEdgeData,0);
 	swInt* owner     = this->getTopology()->getStartVertices();
 	swInt* neighbor  = this->getTopology()->getEndVertices();
 	swInt edgeNumber = getArraySize(frontEdgeData);
+	Arrays tmpBackEdgeData;
+	tmpBackEdgeData.fArraySizes = this->rBackEdgeData_->fArraySizes;
+	tmpBackEdgeData.fArrayNum   = this->rBackEdgeData_->fArrayNum;
+	tmpBackEdgeData.fArrayDims = this->rBackEdgeData_->fArrayDims;
+	tmpBackEdgeData.fArrayInOut = this->rBackEdgeData_->fArrayInOut;
+	tmpBackEdgeData.floatArrays
+		= (swFloat**)malloc(tmpBackEdgeData.fArrayNum*sizeof(swFloat*));
 
-
-	getTime(time1);
 	int minCol;
 	for(int spIndex=this->segNum_-1;spIndex>=0;spIndex--)
 	{
@@ -413,22 +415,24 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 			for(int iArray=0;iArray<this->rBackEdgeData_->fArrayNum;iArray++)
 			{
 				int dims = getArrayDims(this->rBackEdgeData_,iArray);
-				this->rBackEdgeData_->floatArrays[iArray]
-					+= startIdx*dims;
+				tmpBackEdgeData.floatArrays[iArray]
+					= &this->rBackEdgeData_->floatArrays[iArray][0]
+					+ startIdx*dims;
 			}
-			this->rBackEdgeData_->fArraySizes  = endIdx-startIdx;
+
+			tmpBackEdgeData.fArraySizes  = endIdx-startIdx;
 			this->rFrontEdgeData_->fArraySizes = 0;
 			selfConnData->fArraySizes = 0;
 
-			fun_host(this->rBackEdgeData_,this->rFrontEdgeData_,selfConnData,
+			fun_host(&tmpBackEdgeData,this->rFrontEdgeData_,selfConnData,
 						vertexData,&this->rOwner_[startIdx],
 						&this->rNeighbor_[startIdx]);
 
-//			swFloat* rLower = accessArray(this->rBackEdgeData_, 0);
+//			swFloat* rLower = accessArray(&tmpBackEdgeData, 0);
 //			swFloat* rUpper = accessArray(this->rFrontEdgeData_, 0);
 //			int dims = this->rBackEdgeData_->fArrayDims[0];
-//			int startIdx = this->wrtStarts_[(spIndex+1)*BLOCKNUM64K];
-//			int endIdx   = this->wrtStarts_[(spIndex+2)*BLOCKNUM64K];
+////			int startIdx = this->wrtStarts_[(spIndex+1)*BLOCKNUM64K];
+////			int endIdx   = this->wrtStarts_[(spIndex+2)*BLOCKNUM64K];
 //
 ////        	this->rBackEdgeData_->fArraySizes
 ////        		= this->wrtStarts_[(spIndex+1)*BLOCKNUM64K]
@@ -545,9 +549,6 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //		}
 //	}
 
-	getTime(time2);
-	athread_halt();
-	printf("Slave core Time: %f us\n",(time2-time1)*1000000);
 	// C luncher
 	//directSegmentIterator_e2v(para);
 }
@@ -634,7 +635,7 @@ void DirectSegmentIterator::decomposeArray(swInt subSegNum, swInt subSegDataLimi
 			subSegCount += subSegNum;
 			remainSegNum--;
 		}
-printArray("%d", segStartsTmp, segNum_*subSegNum+1);
+//printArray("%d", segStartsTmp, segNum_*subSegNum+1);
 		// check the completeness of the decomposing
 #ifdef DEBUG
 		printf("segNum_ is %d\n", segNum_);

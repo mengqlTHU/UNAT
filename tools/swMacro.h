@@ -5,9 +5,9 @@
 #include "stdlib.h"
 
 #define BLOCKNUM64K 64
-#define SAFELDM 30000
+#define SAFELDM 26000
 #define EPS 1e-6
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #define LOG(format,...) printf("File: "__FILE__",Line: %05d: "format"\n", __LINE__, ##__VA_ARGS__)

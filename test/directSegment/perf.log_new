@@ -1,0 +1,33 @@
+length: 8
+Start test on case 10KV
+19800
+Mesh size: 10KV Dimension: 1 Speed-up: 3.323372
+Mesh size: 10KV Dimension: 3 Speed-up: 6.093766
+Mesh size: 10KV Dimension: 6 Speed-up: 4.694041
+Mesh size: 10KV Dimension: 9 Speed-up: 4.692841
+Start test on case 125000
+367500
+Mesh size: 125000 Dimension: 1 Speed-up: 5.374923
+Mesh size: 125000 Dimension: 3 Speed-up: 4.746255
+Mesh size: 125000 Dimension: 6 Speed-up: 4.343263
+Mesh size: 125000 Dimension: 9 Speed-up: 3.577846
+Start test on case 20KV
+49600
+Mesh size: 20KV Dimension: 1 Speed-up: 6.703895
+Mesh size: 20KV Dimension: 3 Speed-up: 3.684834
+Mesh size: 20KV Dimension: 6 Speed-up: 3.429655
+Mesh size: 20KV Dimension: 9 Speed-up: 3.422896
+Start test on case 216000
+637200
+Mesh size: 216000 Dimension: 1 Speed-up: 6.513067
+Mesh size: 216000 Dimension: 3 Speed-up: 5.084404
+Mesh size: 216000 Dimension: 6 Speed-up: 3.348201
+Mesh size: 216000 Dimension: 9 Speed-up: 3.220077
+Start test on case 250KV
+735000
+Mesh size: 250KV Dimension: 1 Speed-up: 6.253338
+Mesh size: 250KV Dimension: 3 Speed-up: 3.572933
+Mesh size: 250KV Dimension: 6 Speed-up: 3.311374
+Mesh size: 250KV Dimension: 9 Speed-up: 3.041778
+Start test on case 300KV
+884000

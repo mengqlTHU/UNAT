@@ -9,18 +9,20 @@
 #include "iterator.hpp"
 #include "iterator.h"
 #include "directSegmentIterator.hpp"
-#include "spMV.h"
+#include "wrappedInterface.h"
+#include "athread_switch.h"
 
 using namespace UNAT;
 
 #define NONZERONUM 637200
+#define DIMENSION 3
 
 int* readFile(char* name);
 void debug(Topology topo);
 void checkResult(swFloat* array1, swFloat* array2, swInt count);
 void checkDSI(DirectSegmentIterator& iterator);
 
-double time1, time2;
+double time1, time2, time3, time4;
 
 //extern "C"
 //{
@@ -84,12 +86,12 @@ double time1, time2;
 
 int main()
 {
-	char owner[] = "owner_216000";
-	char neighbor[] = "neighbour_216000";
+	char owner[] = "data/owner_216000";
+	char neighbor[] = "data/neighbour_216000";
 	swInt *rowAddr = readFile(owner);
 	swInt *colAddr = readFile(neighbor);
 	Topology* topo = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
-	int dims = 3;
+	int dims = DIMENSION;
 
 	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
 	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
@@ -130,8 +132,8 @@ int main()
 		{
 			diag[i*dims+iDim]  = i;
 			x[i*dims+iDim]     = (double)(i+1)/(i+2);
-			b[i*dims+iDim]     = 0;
-			b_DSI[i*dims+iDim] = 0;
+			b[i*dims+iDim]     = (double)(i+1)/(i+2);
+			b_DSI[i*dims+iDim] = (double)(i+1)/(i+2);
 		}
 	}
 
@@ -145,9 +147,15 @@ int main()
 	// single constructor for arrays
     constructSingleArray(backEdgeData, dims, NONZERONUM, COPYIN, lower);
     constructSingleArray(frontEdgeData, dims, NONZERONUM, COPYIN, upper);
+//	addSingleArray(frontEdgeData, dims, NONZERONUM, COPYIN, lower);
     constructSingleArray(selfConnData, dims, vertexNum, COPYIN, diag);
+//	constructEmptyArray(backEdgeData);
+//	constructEmptyArray(frontEdgeData);
+//	constructEmptyArray(selfConnData);
+//    constructSingleArray(vertexData, dims, vertexNum, COPYOUT, b_DSI);
     constructSingleArray(vertexData, dims, vertexNum, COPYIN, x);
     addSingleArray(vertexData, dims, vertexNum, COPYOUT, b_DSI);
+//    constructSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
     constructSingleArray(refVertexData, dims, vertexNum, COPYIN, x);
     addSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
 
@@ -155,8 +163,8 @@ int main()
 	// Timer
 	getTime(time1);
 
-	spMV_host(&backEdgeData,&frontEdgeData,&selfConnData,&refVertexData,
-				rowAddr,colAddr);
+	spMV(&backEdgeData,&frontEdgeData,&selfConnData,
+				&refVertexData,rowAddr,colAddr);
 //	for(int i=0;i<topo->getVertexNumber();i++)
 //	{
 //		for(int iDim=0;iDim<dims;iDim++)
@@ -183,10 +191,17 @@ int main()
 	printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); 
 
 
+	CG_init();
 	// compute results with iterator
+	getTime(time3);
 	iterator.edge2VertexIteration( &backEdgeData, &frontEdgeData, 
-				&selfConnData, &vertexData, spMV_host, slave_spMV_slave);
+				&selfConnData, &vertexData,
+				spMV, slave_spMV);
+	getTime(time4);
+	printf("Slave Core Time: %f us\n", (time4-time3)*1000000); 
+	printf("Speed-up: %f\n", (time2-time1)/(time4-time3)); 
 
+	CG_halt();
 	checkResult(b, b_DSI, vertexNum*dims);
 
 	free(lower);
@@ -382,6 +397,7 @@ void checkDSI(DirectSegmentIterator& iterator)
 		if(edgeNeiSeg[iedge]>=totalSeg || edgeNeiSeg[iedge] < 0)
 			printf("****Error: wrong edgeNeiSeg at seg %d\n", edgeNeiSeg[iedge]);
 		swInt segRow, segCol;
+		printf("edgeNeiSeg: %d\n",edgeNeiSeg[iedge]);
 		for(swInt iseg = 0; iseg<totalSeg; iseg++)
 		{
 			if(startVertex[iedge] >= segStarts[iseg])
