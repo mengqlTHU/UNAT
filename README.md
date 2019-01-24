@@ -19,6 +19,16 @@ UNAT是一款运行在神威平台上的非结构网格遍历器框架，用户�
 本框架包含多种遍历器，适用于不同应用场景，用户可根据需要及实际加速效果自行选择
 ### 多级网格重排(Multi-level Block Order)
 ### 直接分段(Direct Segment)
+#### 实现方案
+#### 从核加速方案
+* 原始矩阵经过Direct Segment之后被分为两个层级，Segment和Subsegment，总的分段数目为Segnum\*Subsegnum，其中Subsegnum的数目与一个核组上的从核数目相同，固定值为64。对于每个Segment，将其分为三部分：稠密块，稀疏上三角块，稀疏下三角块。由稀疏矩阵的数据特点可知，非零元素集中在稠密块内，此部分需在从核中计算，该块为正方形，维度为64\*64，而稀疏块的形状则为长条形。
+![Direct Segment示意图](https://github.com/lhb8125/UNAT/blob/directSegmentIteration/pic/ds%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+* 从核的计算过程如下图所示，一个核组一次计算一个segment，每个从核负责计算其中的一个subsegment，以稀疏矩阵向量乘操作(spMV)为例，读入主核传入的参数后，为A,x,b开辟内存空间，由于从核LDM空间有限，不能将x完全读入，因此每个从核只读取稠密块对应subsegment的部分x，稠密块其余subsegment的x通过寄存器通信方式获取。使用寄存器通信接口需要矩阵A以block方式存储，由于原有矩阵A的存储方式为LDU方式，需要对其进行重新排序.</br>
+![Direct Segment流程图](https://github.com/lhb8125/UNAT/blob/directSegmentIteration/pic/ds%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg)
+* 由于稀疏上三角块部分的非零元素较少，所需的x通过gload从主存中读取；稀疏下三角块部分在主核中计算，以实现主从核并行。
+#### 性能
+![Direct Segment加速效果](https://github.com/lhb8125/UNAT/blob/directSegmentIteration/pic/spMV%E5%8A%A0%E9%80%9F%E6%95%88%E6%9E%9C.png)
+![Direct Segment遍历器中各部分耗时占比](https://github.com/lhb8125/UNAT/blob/directSegmentIteration/pic/%E8%80%97%E6%97%B6%E5%8D%A0%E6%AF%94.png)
 ### 最小带宽排序(Mini-band Order)
 ## 数据结构
 本框架中流场中的数据存储在Arrays结构体中，其定义可参见下方代码。
