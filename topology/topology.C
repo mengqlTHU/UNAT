@@ -183,6 +183,7 @@ void Topology::EdgeBasedInit()
 	for(int i=0;i<this->_edgeNumber;i++)
 	{
 		this->_vertexNumber=max(this->_vertexNumber,this->_endVertices[i]);
+		this->_vertexNumber=max(this->_vertexNumber,this->_startVertices[i]);
 	}
 	this->_vertexNumber++;
 

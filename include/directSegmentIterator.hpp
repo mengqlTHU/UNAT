@@ -14,6 +14,7 @@ with high cohesion to ensure high efficiency of the Iterator
 #define UNAT_DIRECTSEGMENTITERATOR_HPP
 
 #include "iterator.hpp"
+#include "RlmpiInitializer.hxx"
 
 namespace UNAT
 {
@@ -29,6 +30,7 @@ class DirectSegmentIterator
 	swInt *segStarts_;
 	swInt *edgeStarts_;
 	swInt *accuColNum_;
+	swInt *colSegNum_;
 	swInt *recvStarts_;
 	swInt *wrtStarts_;
 
@@ -46,6 +48,9 @@ class DirectSegmentIterator
 	// edge neighbor segment index
 	swInt* edgeNeiSeg_;
 
+	// Data for storing the topology of slave cores in register comm.
+	RlmpiInfo* schedule_data_;
+
     // send/receive topology during the register communication
 	// dimension(1): segNum*BLOCKNUM64K
 	// dimension(2): BLOCKNUM64K
@@ -59,6 +64,8 @@ class DirectSegmentIterator
 	void decomposeArray(swInt subSegNum, swInt subSegDataLimit,
 				swInt* dataWeights, swInt size);	
 	void initOwnNeiSendList();
+	void initSendList(int *dataSendList, vector<vector<int> > dataList,
+				int mshBlockNum);
 public:
 	// Dummy Constructor
 	//DirectSegmentIterator();

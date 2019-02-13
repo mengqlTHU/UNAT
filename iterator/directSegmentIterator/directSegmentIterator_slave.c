@@ -5,6 +5,7 @@
 #include "slaveUtils.h"
 #include "directSegmentIterator.h"
 #include "iterator.h"
+#include "onChipTrans.h"
 
 #define DEBUGID 0
 //// Topology
@@ -60,11 +61,89 @@ inline void outputArray(Arrays *slave, Arrays *host,
 		LDM_NEW(slave.floatArrays[i], swFloat, \
 					(edgeLen+recvEdges)*slave.fArrayDims[i]); \
 		if(!DMA) continue; \
+		if(edgeLen<=0) continue; \
 		DMA_Get(&slave.floatArrays[i][recvEdges*slave.fArrayDims[i]], \
 			&host->floatArrays[i][slave.fArrayDims[i]*startIdx], \
 			edgeLen*slave.fArrayDims[i]*sizeof(swFloat)); \
 	} \
 	} \
+}
+
+#define initRegisterPacks(rlmpi_info) \
+{  \
+    _table_ldm.nGetcSkew = rlmpi_info->table[_MYID].nGetcSkew;\
+    _table_ldm.nPutrSkew = rlmpi_info->table[_MYID].nPutrSkew;\
+    _table_ldm.nGetrPutcSkew = rlmpi_info->table[_MYID].nGetrPutcSkew;\
+    _nCycleSkew = rlmpi_info->nCycle;\
+    int length = 32 * (sizeof (int8LDM) * _nCycleSkew / 32 + 1);\
+    if (_nCycleSkew > 0) { \
+		_putr_schedules_skew = (int8LDM*) ldm_malloc(length);\
+		_getrputc_schedules_skew = (int8LDM*) ldm_malloc(length);\
+		_getc_schedules_skew = (int8LDM*) ldm_malloc(length);\
+		_get_reply = 0;\
+		athread_get(PE_MODE, rlmpi_info->putr_schedules[_MYID], _putr_schedules_skew, length, &_get_reply, 0, 0, 0);\
+		athread_get(PE_MODE, rlmpi_info->getrputc_schedules[_MYID], _getrputc_schedules_skew, length, &_get_reply, 0, 0, 0);\
+		athread_get(PE_MODE, rlmpi_info->getc_schedules[_MYID], _getc_schedules_skew, length, &_get_reply, 0, 0, 0);\
+		dma_wait(&_get_reply, 3);\
+	} \
+    _nCycleSameRow = rlmpi_info->nCycleSameRow;\
+	_table_ldm.nGetrSameRow = rlmpi_info->table[_MYID].nGetrSameRow;\
+	_table_ldm.nPutrSameRow = rlmpi_info->table[_MYID].nPutrSameRow;\
+	length = 32 * (sizeof (int8LDM) * _nCycleSameRow / 32 + 1);\
+	if (_nCycleSameRow > 0) { \
+		_putr_schedules_same_row = (int8LDM*) ldm_malloc(length);\
+		_getr_schedules_same_row = (int8LDM*) ldm_malloc(length);\
+		_get_reply = 0;\
+		athread_get(PE_MODE, rlmpi_info->putr_schedules_same_row [_MYID], _putr_schedules_same_row, length, &_get_reply, 0, 0, 0); \
+		athread_get(PE_MODE, rlmpi_info->getr_schedules_same_row[_MYID], _getr_schedules_same_row, length, &_get_reply, 0, 0, 0); \
+		dma_wait(&_get_reply, 2);\
+	} \
+    _nCycleSameCol = rlmpi_info->nCycleSameCol;\
+	_table_ldm.nGetcSameCol = rlmpi_info->table[_MYID].nGetcSameCol;\
+	_table_ldm.nPutcSameCol = rlmpi_info->table[_MYID].nPutcSameCol;\
+	length = 32 * (sizeof (int8LDM) * _nCycleSameCol / 32 + 1);\
+	if (_nCycleSameCol > 0) { \
+		_putc_schedules_same_col = (int8LDM*) ldm_malloc(length);\
+		_getc_schedules_same_col = (int8LDM*) ldm_malloc(length);\
+		_get_reply = 0;\
+		athread_get(PE_MODE, rlmpi_info->putc_schedules_same_col[_MYID], _putc_schedules_same_col, length, &_get_reply, 0, 0, 0);\
+		athread_get(PE_MODE, rlmpi_info->getc_schedules_same_col[_MYID], _getc_schedules_same_col, length, &_get_reply, 0, 0, 0);\
+		dma_wait(&_get_reply, 2);\
+	} \
+	load_rlmpi_data2(rlmpi_info);\
+	ALLSYN;\
+}
+
+#define destroyRegisterPacks(rlmpi_info) \
+{ \
+	int length = 32 * (sizeof (int8LDM) * _nCycleSkew / 32 + 1);\
+	if (_nCycleSkew > 0) {\
+		ldm_free(_putr_schedules_skew, length);\
+		ldm_free(_getrputc_schedules_skew, length);\
+		ldm_free(_getc_schedules_skew, length);\
+	}\
+	_putr_schedules_skew = NULL;\
+	_getrputc_schedules_skew = NULL;\
+	_getc_schedules_skew = NULL;\
+	\
+    length = 32 * (sizeof (int8LDM) * _nCycleSameRow / 32 + 1);\
+	\
+	if (length > 0) {\
+		ldm_free(_putr_schedules_same_row, length);\
+		ldm_free(_getr_schedules_same_row, length);\
+	}\
+	length = 32 * (sizeof (int8LDM) * _nCycleSameCol / 32 + 1);\
+	if (length > 0) {\
+		ldm_free(_putc_schedules_same_col, length);\
+		ldm_free(_getc_schedules_same_col, length);\
+	}\
+	if (_total_send_pcg > 0) {\
+		ldm_free(_sPacks, _total_send_pcg * sizeof (Pack));\
+	} \
+	if (_total_recv_pcg > 0) {\
+		ldm_free(_rPacks, _total_recv_pcg * sizeof (Pack));\
+	}\
+	ALLSYN;\
 }
 
 void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
@@ -74,15 +153,23 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 // TODO
 // move to another function\
 // **********************************************************************
+
+	DS_edge2VertexPara para_s;
+	DMA_Get(&para_s,para,sizeof(DS_edge2VertexPara));
+	swInt spIndex,vertexNumber;
+	spIndex = para_s.spIndex;
+	vertexNumber = para_s.vertexNumber;
+
+	RlmpiInfo *rlmpi_info = &para_s.schedule_data[spIndex];
+	initRegisterPacks(rlmpi_info);
+
 	myId = athread_get_id(-1);
 
 	int allocatable_ldm_size = 62000-_total_send_pcg*2*32;
 //	if(myId==DEBUGID) printf("Allocatable LDM size: %d\n",allocatable_ldm_size);
-	INIT_LDM_SPACE(52000);
-	DS_edge2VertexPara para_s;
-	DMA_Get(&para_s,para,sizeof(DS_edge2VertexPara));
+	INIT_LDM_SPACE(44000);
 	swInt *segStarts,*edgeStarts,*owner,*neighbor,*edgeNeiSeg,*accuColNum;
-	swInt *rOwner,*rNeighbor;
+	swInt *rOwner,*rNeighbor,*colSegNum;
 	segStarts  = para_s.segStarts;
 	edgeStarts = para_s.edgeStarts;
 	edgeNeiSeg = para_s.edgeNeiSeg;
@@ -91,6 +178,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	neighbor   = para_s.endVertex;
 	rOwner     = para_s.rOwner;
 	rNeighbor  = para_s.rNeighbor;
+	colSegNum  = para_s.colSegNum;
 
 	Arrays *upper,*lower,*diag,*vertex,*rLower,*rUpper;
 	upper  = para_s.frontEdgeData;
@@ -100,27 +188,28 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	rLower = para_s.rBackEdgeData;
 	rUpper = para_s.rFrontEdgeData;
 
-	swInt spIndex,vertexNumber;
-	spIndex = para_s.spIndex;
-	vertexNumber = para_s.vertexNumber;
 
 	Arrays  sVertex_slave,diag_slave;
 //	Arrays  lowVertex_slave,upVertex_slave;
     swInt   *owner_slave,*neighbor_slave;
     swInt   *segStarts_slave;
-    swInt   *accuColNum_slave,*edgeStarts_slave;
+    swInt   *accuColNum_slave,*edgeStarts_slave,*colSegNum_slave;
     swInt   *edgeNeiSeg_slave;
     Arrays  sLower_slave,upper_slave;
+	LDM_NEW(sLower_slave.floatArrays, swFloat*, lower->fArrayNum);
+	LDM_NEW(diag_slave.floatArrays,   swFloat*, diag->fArrayNum);
 
 	volatile swInt cellLen,edgeLen;
 	int i,j,row;
 	row = spIndex*BLOCKNUM64K+myId;
 	LDM_NEW(segStarts_slave,swInt,BLOCKNUM64K+1);
 	LDM_NEW(edgeStarts_slave,swInt,BLOCKNUM64K+1);
+	LDM_NEW(colSegNum_slave,swInt,BLOCKNUM64K);
 	DMA_Get(&segStarts_slave[0],&segStarts[spIndex*BLOCKNUM64K],
 				(BLOCKNUM64K+1)*sizeof(swInt));
 	DMA_Get(&edgeStarts_slave[0],&edgeStarts[spIndex*BLOCKNUM64K],
 				(BLOCKNUM64K+1)*sizeof(swInt));
+	DMA_Get(colSegNum_slave,&colSegNum[spIndex*BLOCKNUM64K*BLOCKNUM64K+myId*BLOCKNUM64K],BLOCKNUM64K*sizeof(swInt));
 //	LDM_NEW(colNum,swInt,BLOCKNUM64K+1);
 	LDM_NEW(accuColNum_slave,swInt,BLOCKNUM64K+2);
 	cellLen    = segStarts_slave[myId+1]-segStarts_slave[myId];
@@ -144,7 +233,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	if(lower->fArrayNum==0) isLowerExisted = 0;
 //	maxEdges = MAX(recvEdges,edgeLen);
 
-//	if(myId==DEBUGID) printf("edgeLen: %d, maxEdges: %d, recvEdges: %d, recvEdges: %d\n", edgeLen, maxEdges, recvEdges, recvEdges);
+	if(edgeLen==0) printf("ID: %d\n", myId);
 	LDM_NEW(owner_slave,swInt,edgeLen+recvEdges);
 	LDM_NEW(neighbor_slave,swInt,edgeLen+recvEdges);
 //	LDM_NEW(sNeighbor_slave,swInt,edgeLen);
@@ -154,8 +243,11 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 ////if(myId==DEBUGID) printArray("%d",neighbor_slave,edgeLen+recvEdges);
 //    DMA_Get(&owner_slave[recvEdges],&owner[edgeStarts_slave[myId]],
 //				edgeLen*sizeof(swInt));
+
+	if(edgeLen>0) {
     DMA_Get(edgeNeiSeg_slave,&edgeNeiSeg[edgeStarts_slave[myId]],
 				edgeLen*sizeof(swInt));
+	}
 //    DMA_Get(neighbor_slave,&neighbor[edgeStarts_slave[myId]],
 //				edgeLen*sizeof(swInt));
 //if(myId==DEBUGID) printArray("%d",neighbor_slave,edgeLen+recvEdges);
@@ -213,7 +305,6 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	// data stored in slave core
 //	Arrays sVertex_slave,lowVertex_slave,upVertex_slave,upper_slave;
 //	Arrays sLower_slave,rLower_slave,diag_slave;
-//	if(myId==0) printf("vertex-fArrayNum: %d\n",vertex.fArrayNum);
 	copyArray(upper_slave,   para_s.frontEdgeData,
 				edgeLen, edgeStarts_slave[myId], recvEdges, 0);
 	copyArray(diag_slave,    para_s.selfConnData,
@@ -276,10 +367,12 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	{
 //		printf("%d,%f\n",edgeLen,upper_slave.floatArrays[i][0]);
 		dims = upper_slave.fArrayDims[i];
+		if(edgeLen>0) {
 		DMA_Get(tmpFloat,&upper->floatArrays[i][dims*edgeStarts_slave[myId]],edgeLen*dims*sizeof(swFloat));
-		for(j=0;j<edgeLen;j++)
+		}
+		for(idim=0;idim<dims;idim++)
 		{
-			for(idim=0;idim<dims;idim++)
+			for(j=0;j<edgeLen;j++)
 			{
 //				if(i==1) printf("%d,%d,%d,%f,%f\n",j,recvEdges,faceId[j],upper_slave.floatArrays[i][(j+recvEdges)*dims+idim],tmpFloat[faceId[j]*dims+idim]);
 				upper_slave.floatArrays[i][(j+recvEdges)*dims+idim]
@@ -290,16 +383,20 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 
 
 	// Reorder neighbor
+	if(edgeLen>0) {
     DMA_Get(tmpInt,&neighbor[edgeStarts_slave[myId]],
 				edgeLen*sizeof(swInt));
+	}
 	for(i=0;i<edgeLen;i++)
 	{
 		neighbor_slave[i+recvEdges] = tmpInt[faceId[i]];
 	}
 
   // Reorder owner
+	if(edgeLen>0) {
     DMA_Get(tmpInt,&owner[edgeStarts_slave[myId]],
 				edgeLen*sizeof(swInt));
+	}
 	for(i=0;i<edgeLen;i++)
 	{
 		owner_slave[i+recvEdges] = tmpInt[faceId[i]];
@@ -325,8 +422,12 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //
 ////	for(i=0;i<edgeLen;i++) {assert(recvEdges[i]==sNeighbor_slave[i]);}
 //
-    swInt ownNeiSendIdx[BLOCKNUM64K],ownNeiRecvIdx[BLOCKNUM64K];
-	swInt ownNeiRecvList[BLOCKNUM64K];
+//    swInt ownNeiSendIdx[BLOCKNUM64K],ownNeiRecvIdx[BLOCKNUM64K];
+//	swInt ownNeiRecvList[BLOCKNUM64K];
+	swInt *ownNeiSendIdx,*ownNeiRecvIdx,*ownNeiRecvList;
+	LDM_NEW(ownNeiSendIdx,swInt,BLOCKNUM64K);
+	LDM_NEW(ownNeiRecvIdx,swInt,BLOCKNUM64K);
+	LDM_NEW(ownNeiRecvList,swInt,BLOCKNUM64K);
 	int lastId,startIdx;
 //    for(i=0;i<accuColNum_slave[myId+1];i++)
 //	{
@@ -383,6 +484,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 			ownNeiSendIdx[_sPacks[i].dst_id]+=_sPacks[i].cva;
 		}
 		transform_data();
+#if 1
 		recvNum=0;
 		lastId=0;
 		k=0;
@@ -401,6 +503,35 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 			ownNeiRecvList[k+1]=recvNum;
 			ownNeiRecvIdx[_rPacks[i].src_id]=k;
 		}
+//		swInt **sdata,**rdata;
+//		swInt *ssizes,*rsizes;
+//		swInt rnum=0,snum=0;
+//		LDM_NEW(sdata,swInt*,BLOCKNUM64K);
+//		LDM_NEW(rdata,swInt*,BLOCKNUM64K);
+//		LDM_NEW(ssizes,swInt,BLOCKNUM64K);
+//		LDM_NEW(rsizes,swInt,BLOCKNUM64K);
+//		for(i=0;i<myId;i++)
+//		{
+//			sdata[i] = NULL;
+//			rdata[i] = &neighbor_slave[rnum];
+//			ssizes[i] = 0;
+//			rsizes[i] = colSegNum_slave[i];
+//			rnum += rsizes[i];
+//		}
+//		sdata[myId]  = NULL;
+//		rdata[myId]  = NULL;
+//		ssizes[myId] = 0;
+//		rsizes[myId] = 0;
+//		snum = colSegNum_slave[myId];
+//		for(i=myId+1;i<BLOCKNUM64K;i++)
+//		{
+//			sdata[i] = &neighbor_slave[recvEdges+snum];
+//			rdata[i] = NULL;
+//			ssizes[i] = colSegNum_slave[i];
+//			rsizes[i] = 0;
+//			snum += ssizes[i];
+//		}
+//		groupTrans(sdata,ssizes,rdata,rsizes);
 //	}
 // ***********************************************************************
 // Sparse block computation
@@ -418,39 +549,37 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 			+= (recvEdges+accuColNum_slave[BLOCKNUM64K])*dims;
 	}
 	Arrays tmpVertex;
+	LDM_NEW(tmpVertex.floatArrays, swFloat*, sVertex_slave.fArrayNum);
 	for(i=0;i<sVertex_slave.fArrayNum;i++)
 	{
 		dims = sVertex_slave.fArrayDims[i];
 		if(sVertex_slave.fArrayInOut[i]==COPYIN)
 		{
-			for(iDim=0;iDim<dims;iDim++)
-			{
-				tmpVertex.floatArrays[i] = vertex->floatArrays[i];
-			}
+			tmpVertex.floatArrays[i] = vertex->floatArrays[i];
 		} else
 		{
 			tmpVertex.floatArrays[i]
-				= sVertex_slave.floatArrays[i] - segStarts_slave[myId]*dims;
+				= sVertex_slave.floatArrays[i]-segStarts_slave[myId]*dims;
 		}
 	}
 
-//	para->fun_slave(&sLower_slave,&upper_slave,&diag_slave,&tmpVertex,
-//				&owner_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges],
-//				&neighbor_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges]);
+	para->fun_slave(&sLower_slave,&upper_slave,&diag_slave,&tmpVertex,
+				&owner_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges],
+				&neighbor_slave[accuColNum_slave[BLOCKNUM64K]+recvEdges]);
 
-	swFloat* upperA	= accessArray(&upper_slave, 0);
-	swFloat* bTmp		= accessArray(&tmpVertex, 1);
-	swInt edgeNumber = getArraySize(&upper_slave);
- 	for(i=0;i<edgeNumber;i++)
- 	{
- 		for(iDim=0;iDim<dims;iDim++)
- 		{
-//if(owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim==43752) printf("sparUpper: %f,%f,%f\n",bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim],upperA[i*dims+iDim],x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]);
- 			bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]
- 				+= upperA[i*dims+iDim]
-				*  x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim];
- 		}
- 	}
+//	swFloat* upperA	= accessArray(&upper_slave, 0);
+//	swFloat* bTmp		= accessArray(&tmpVertex, 0);
+//	swInt edgeNumber = getArraySize(&upper_slave);
+// 	for(iDim=0;iDim<dims;iDim++)
+// 	{
+//		for(i=0;i<edgeNumber;i++)
+// 		{
+////if(owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim==43752) printf("sparUpper: %f,%f,%f\n",bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim],upperA[i*dims+iDim],x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]);
+// 			bTmp[owner_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim]
+// 				+= upperA[i*dims+iDim];
+////				*  x_M[neighbor_slave[i+accuColNum_slave[BLOCKNUM64K]+recvEdges]*dims+iDim];
+// 		}
+// 	}
 //	for(i=0;i<sVertex_slave.fArrayNum;i++)
 //	{
 //		if(sVertex_slave.fArrayInOut[i]==COPYIN) continue;
@@ -489,7 +618,9 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	// Communicate X
 	int iArray;
 	swInt idx;
-	swInt ownNeiSendIdxUToL[BLOCKNUM64K],ownNeiSendIdxLToU[BLOCKNUM64K];
+	swInt *ownNeiSendIdxUToL,*ownNeiSendIdxLToU;
+	LDM_NEW(ownNeiSendIdxUToL,swInt,BLOCKNUM64K);
+	LDM_NEW(ownNeiSendIdxLToU,swInt,BLOCKNUM64K);
     for(iArray=0;iArray<sVertex_slave.fArrayNum;iArray++)
 	{
 		if(sVertex_slave.fArrayInOut[iArray]==COPYOUT) continue;
@@ -594,11 +725,11 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 //	x = accessArray(&sVertex_slave, 0);
 //	dims = diag_slave.fArrayDims[0];
 //	swInt ivertex;
-//	for(iDim=0;iDim<dims;iDim++)
+//	for( ivertex = 0; ivertex < vertexNum; ivertex++)
 //	{
-//		for( ivertex = 0; ivertex < vertexNum; ivertex++)
+//		for(iDim=0;iDim<dims;iDim++)
 //		{
-//if((ivertex+segStarts_slave[myId])*dims+iDim==43752) printf("diag:%f,%f,%f\n",b[ivertex*dims+iDim],diagA[ivertex*dims+iDim],x[ivertex*dims+iDim]);
+////if((ivertex+segStarts_slave[myId])*dims+iDim==43752) printf("diag:%f,%f,%f\n",b[ivertex*dims+iDim],diagA[ivertex*dims+iDim],x[ivertex*dims+iDim]);
 //			b[ivertex*dims+iDim]
 //				+=diagA[ivertex*dims+iDim]*x[ivertex*dims+iDim];
 //		}
@@ -641,7 +772,6 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 // ************************************************************************
 // Compute the upper triangle
 // ************************************************************************
-
 	// Transform the sorted data to master core
 	// Output upperData
 	for(i=0;i<upper_slave.fArrayNum;i++)
@@ -650,14 +780,34 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		upper_slave.floatArrays[i]
 			-= recvEdges*dims;
 	}
-	for(i=0;i<upper_slave.fArrayNum;i++)
-	{
-		if(upper_slave.fArrayInOut[i]==COPYIN) continue;
-		DMA_Put(upper->floatArrays[i],
-			&upper_slave.floatArrays[i]
-			[recvEdges*upper_slave.fArrayDims[i]],
-			edgeLen*upper_slave.fArrayDims[i]*sizeof(swFloat));
+  	for(i=0;i<upper_slave.fArrayNum;i++)
+    {
+        if(upper_slave.fArrayInOut[i]==COPYIN) continue;
+        dims = upper_slave.fArrayDims[i];
+        for(idim=0;idim<dims;idim++)
+        {
+			for(j=0;j<edgeLen;j++)
+            {
+                tmpFloat[faceId[j]*dims+idim]
+                    = upper_slave.floatArrays[i][(j+recvEdges)*dims+idim];
+            }
+        }
+		if(edgeLen>0) {
+        DMA_Put(&upper->floatArrays[i][dims*edgeStarts_slave[myId]],
+            tmpFloat,edgeLen*dims*sizeof(swFloat));
+		}
+		destroyRegisterPacks(rlmpi_info);
+		return;
 	}
+
+//	for(i=0;i<upper_slave.fArrayNum;i++)
+//	{
+//		if(upper_slave.fArrayInOut[i]==COPYIN) continue;
+//		DMA_Put(upper->floatArrays[i],
+//			&upper_slave.floatArrays[i]
+//			[recvEdges*upper_slave.fArrayDims[i]],
+//			edgeLen*upper_slave.fArrayDims[i]*sizeof(swFloat));
+//	}
 
 // ************************************************************************
 // Lower part
@@ -674,12 +824,14 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		for(i=0;i<sLower_slave.fArrayNum;i++)
 		{
 			dims = sLower_slave.fArrayDims[i];
+			if(edgeLen*dims>0) {
 			DMA_Get(tmpFloat,&lower->floatArrays[i][dims*edgeStarts_slave[myId]],edgeLen*dims*sizeof(swFloat));
+			}
 	//		dims=1;
 	//		idim=0;
-			for(j=0;j<edgeLen;j++)
+			for(idim=0;idim<dims;idim++)
 			{
-				for(idim=0;idim<dims;idim++)
+				for(j=0;j<edgeLen;j++)
 				{
 					sLower_slave.floatArrays[i][(j+recvEdges)*dims+idim]
 						= tmpFloat[faceId[j]*dims+idim];
@@ -814,8 +966,8 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	for(i=0;i<sVertex_slave.fArrayNum;i++)
 	{
 		if(sVertex_slave.fArrayInOut[i]==COPYIN) continue;
-		DMA_Put(&(vertex->floatArrays[i]
-				[segStarts_slave[myId]*sVertex_slave.fArrayDims[i]]),
+		DMA_Put(&vertex->floatArrays[i]
+				[segStarts_slave[myId]*sVertex_slave.fArrayDims[i]],
 				sVertex_slave.floatArrays[i],
 				cellLen*sVertex_slave.fArrayDims[i]*sizeof(swFloat));
 	}
@@ -843,6 +995,8 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 		}
 	}
 
+#endif
+	destroyRegisterPacks(rlmpi_info);
 //	updt_addl(1, &para_s.segEdgeNum[0]);
 //	para_s.segEdgeNum[0]+=1;
 //	AO_SET(&para_s.segEdgeNum[0],1);

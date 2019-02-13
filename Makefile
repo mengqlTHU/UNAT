@@ -1,10 +1,11 @@
 #############################################################
 # path setting
 #############################################################
-PROJECT=/home/export/online1/systest/swrh/lhb/UNAT_Renhu
+PROJECT=${WM_PROJECT_DIR}/src/OSspecific/performance/UNAT
 LIBPATH=${PROJECT}/lib
 INCLUDE=${PROJECT}/include
 OBJPATH=${PROJECT}/objects
+LIBROOT=${WM_PROJECT_DIR}/platforms/linux64swgccDPInt32Opt/lib
 
 #############################################################
 # build tool set setting
@@ -34,6 +35,7 @@ TESTPATH=${PROJECT}/test
 ${LIBPATH}/libUNAT.a: libUNAT.a
 	@cp $< $@
 	@echo -e "\033[32mBuild completed! \033[0m"
+	@cp $< ${LIBROOT}
 
 libUNAT.a: libobjs
 	${AR} $@ ${OBJPATH}/*.o

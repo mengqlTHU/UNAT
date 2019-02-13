@@ -6,6 +6,7 @@
 #ifdef __cplusplus
 extern "C"
 {
+#include "RlmpiInitializer.hxx"
 #endif
 
 typedef struct 
@@ -29,6 +30,12 @@ typedef struct
 
 	// Run-time data
 	swInt spIndex;
+
+	// Topology for register communication
+	swInt *colSegNum;
+
+	// Register communication topology
+	RlmpiInfo *schedule_data;
 
 	// computing data
 	Arrays* backEdgeData;

@@ -1,7 +1,7 @@
 #############################################################
 # path setting
 #############################################################
-PROJECT=/home/export/online1/systest/swrh/lhb/UNAT_Renhu
+PROJECT=${WM_PROJECT_DIR}/src/OSspecific/performance/UNAT
 LIBPATH=${PROJECT}/lib
 INCLUDE=${PROJECT}/include
 OBJPATH=${PROJECT}/objects

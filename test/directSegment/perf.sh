@@ -1,6 +1,6 @@
 #1/bin/bash
 #set -x
-MESH_DIR=/home/export/online1/systest/swrh/lhb/UNAT_Renhu/test/directSegment/data
+MESH_DIR=/home/export/online1/systest/swrh/lhb/UNAT/test/directSegment/data
 TEST_FILE=test.cpp
 
 if [ -d ${MESH_DIR} ]; then
@@ -37,7 +37,8 @@ do
 		`sed -i "s/DIMENSION\ \([0-9]*\)/DIMENSION\ ${DIM_ARR[j]}/g" ${TEST_FILE}`
 		`sh mkrun > log/log_${MESH_SIZE}_${DIM_ARR[j]}`
 		SPEEDUP=`cat log/log_${MESH_SIZE}_${DIM_ARR[j]} | grep Speed-up | sed 's/Speed-up:\ \([0-9]\)/\1/g' `
-		echo "Mesh size: ${MESH_SIZE} Dimension: ${DIM_ARR[j]} Speed-up: ${SPEEDUP}"
+		CORRECT=`cat log/log_${MESH_SIZE}_${DIM_ARR[j]} | grep correct`
+		echo "Mesh size: ${MESH_SIZE} Dimension: ${DIM_ARR[j]} Speed-up: ${SPEEDUP} Result: ${CORRECT}"
 	done
 #	tmp=`cat ${TEST_FILE} | grep "char owner" | sed "s/\".*\"/\"${OWNER_NAME}\"/g" `
 done

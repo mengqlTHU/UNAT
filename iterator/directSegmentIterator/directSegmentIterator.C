@@ -19,7 +19,7 @@ with high cohesion to ensure high efficiency of the Iterator
 #include "iterator.h"
 #include "directSegmentIterator.hpp"
 #include "directSegmentIterator.h"
-#include "register.H"
+//#include "register.H"
 
 extern "C"
 {
@@ -38,12 +38,13 @@ DirectSegmentIterator::DirectSegmentIterator(Topology &topo,
 {
 	// gather statistics data
 	Topology* topo_ = getTopology();
+//printf("topo's vertexNumber: %d\n",topo_->getVertexNumber());
 	swInt vertexNumber = topo_->getVertexNumber();
 	swInt edgeNumber = topo_->getEdgeNumber();
 	swInt* startVertex = topo_->getStartVertices();
 	swInt* endVertex = topo_->getEndVertices();
-printf("edgeNumber is %d\n", edgeNumber);
-printf("vertexNumber is %d\n", vertexNumber);
+//printf("edgeNumber is %d\n", edgeNumber);
+//printf("vertexNumber is %d\n", vertexNumber);
 //printArray("%d", startVertex, edgeNumber);
 //printArray("%d", endVertex, edgeNumber);
 //printArray("%d", vertexWeights, vertexNumber);
@@ -84,8 +85,8 @@ printf("vertexNumber is %d\n", vertexNumber);
 #ifdef DEBUG
 				printf("\n***Warning: edge starts jump over segment starts!\n\n");
 #endif
-				edgeStarts_[istart] = segStarts_[istart-1];
-				break;
+				edgeStarts_[istart] = edgeStarts_[istart-1];
+				continue;
 			}
 
 			biSearch(posi, &startVertex[edgeStarts_[istart-1]], 
@@ -113,6 +114,7 @@ printf("vertexNumber is %d\n", vertexNumber);
 						&& startVertex[posi] == startVertex[posi+1])
 				posi++;
 			edgeStarts_[istart] = posi+1;
+//printf("edgeStarts_[%d] = %d\n",istart,posi+1);
 		}
 		else
 			edgeStarts_[istart] = edgeNumber;
@@ -253,18 +255,21 @@ printf("vertexNumber is %d\n", vertexNumber);
 	this->rNeighbor_ = (swInt*)malloc(sparseEdgeNum*sizeof(swInt));
 
 	this->accuColNum_ = (swInt*)malloc(this->subSegNum_*this->segNum_*(this->subSegNum_+1)*sizeof(swInt));
-	swInt *colNum = (swInt*)malloc(this->subSegNum_*this->segNum_*this->subSegNum_*sizeof(swInt));
+	this->colSegNum_ = (swInt*)malloc(this->subSegNum_*this->segNum_*this->subSegNum_*sizeof(swInt));
 	int segNum = this->segNum_*this->subSegNum_;
 //	printf("segNum: %d\n",segNum);
 	for(int iseg=0;iseg<segNum;iseg++)
 	{
-		int blockIdx = iseg/BLOCKNUM64K;
-		int edgeNum = this->edgeStarts_[iseg+1]-this->edgeStarts_[iseg];
 		for(int icol=0;icol<BLOCKNUM64K;icol++)
 		{
 			int idx = iseg*this->subSegNum_+icol;
-			colNum[idx] = 0;
+			this->colSegNum_[idx] = 0;
 		}
+	}
+	for(int iseg=0;iseg<segNum;iseg++)
+	{
+		int blockIdx = iseg/BLOCKNUM64K;
+		int edgeNum = this->edgeStarts_[iseg+1]-this->edgeStarts_[iseg];
 		for(int icol=this->segConnetion_->getAccuStartVertexNumbers()[iseg];icol<this->segConnetion_->getAccuStartVertexNumbers()[iseg+1];icol++)
 		{
 			int colIdx = this->segConnetion_->getEndVertices()[icol];
@@ -272,21 +277,31 @@ printf("vertexNumber is %d\n", vertexNumber);
 			if(colIdx<(blockIdx+1)*BLOCKNUM64K && colIdx>=blockIdx*BLOCKNUM64K)
 			{
 				int idx = iseg*this->subSegNum_+colIdx-blockIdx*BLOCKNUM64K;
-				colNum[idx] = this->segEdgeNum_[icol];
+				int symmIdx = colIdx*this->subSegNum_
+					+ iseg-blockIdx*BLOCKNUM64K;
+				this->colSegNum_[idx]     = this->segEdgeNum_[icol];
+				this->colSegNum_[symmIdx] = this->segEdgeNum_[icol];
 //if(iseg==64) printf("%d,%d,%d,%d,%d\n",iseg,icol,colIdx,blockIdx,colNum[idx]);
 			}
 		}
 		int idx = iseg*this->subSegNum_+iseg-blockIdx*BLOCKNUM64K;
-		colNum[idx] = edgeNum;
+		this->colSegNum_[idx] = edgeNum;
 	}
 	for(int iseg=0;iseg<this->segNum_*this->subSegNum_;iseg++)
 	{
+		int irow = iseg%BLOCKNUM64K;
 		this->accuColNum_[iseg*(this->subSegNum_+1)]=0;
 		for(int icol=0;icol<this->subSegNum_;icol++)
 		{ 
 			int idx = iseg*(this->subSegNum_+1)+icol;
-			this->accuColNum_[idx+1]
-				= this->accuColNum_[idx]+colNum[idx-iseg];
+			if(icol<irow)
+			{
+				this->accuColNum_[idx+1] = this->accuColNum_[idx];
+			} else
+			{
+				this->accuColNum_[idx+1]
+					= this->accuColNum_[idx]+this->colSegNum_[idx-iseg];
+			}
 //			if(iseg==53) printf("%d,%d,%d,%d\n",iseg,icol,this->accuColNum_[idx+1],colNum[idx]);
 		}
 	}
@@ -295,7 +310,9 @@ printf("vertexNumber is %d\n", vertexNumber);
 	// Init the send/recv topology in register communication
 	initOwnNeiSendList();
 	initSendList(ownNeiSendList, dataList, segNum_);
-//printArray("%d", segEdgeNum_, connectCount);
+//printArray("%d", edgeStarts_, segNum_*subSegNum_+1);
+//printArray("%d", segStarts_, segNum_*subSegNum_+1);
+//printArray("%d", segEdgeNum_, connectCou	nt);
 }
 
 // Copy constructors
@@ -340,7 +357,7 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 				this->maxRowEdges_);
 	constructFromArrays(frontEdgeData, this->rFrontEdgeData_,
 				this->maxRowEdges_);
-	
+
 	// collect data
 	DS_edge2VertexPara para = 
 	{
@@ -364,6 +381,12 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 
 		// Run-time data
 		0,
+
+		// Topology for register communication
+		this->colSegNum_,
+
+		// Register communication topology
+		this->schedule_data_,
 	
 		// computing data
 		backEdgeData,
@@ -391,6 +414,7 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	swInt* owner     = this->getTopology()->getStartVertices();
 	swInt* neighbor  = this->getTopology()->getEndVertices();
 	swInt edgeNumber = getArraySize(frontEdgeData);
+	swInt vertexNumber = getArraySize(vertexData);
 	Arrays tmpBackEdgeData;
 	tmpBackEdgeData.fArraySizes = this->rBackEdgeData_->fArraySizes;
 	tmpBackEdgeData.fArrayNum   = this->rBackEdgeData_->fArrayNum;
@@ -399,11 +423,15 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 	tmpBackEdgeData.floatArrays
 		= (swFloat**)malloc(tmpBackEdgeData.fArrayNum*sizeof(swFloat*));
 
+//printArray("%d",this->edgeStarts_,vertexNumber);
 	int minCol;
 	for(int spIndex=this->segNum_-1;spIndex>=0;spIndex--)
 	{
 //		printf("init: %d\n",spIndex);
-		initTable(spIndex);
+//		initTable(spIndex);
+//		__real_athread_spawn((void*)slave_initRlmpiInfo,
+//					&this->schedule_data_[spIndex]);
+//		athread_join();
 		para.spIndex = spIndex;
 //printf("segEdgeNum[0]: %d\n",this->segEdgeNum_[0]);
 		__real_athread_spawn((void*)slave_directSegmentIterator_e2v_slave, &para);
@@ -486,7 +514,10 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 //			}
 //		}
 		athread_join();
-		destroyTable(spIndex);
+//		__real_athread_spawn((void*)slave_destroyRlmpiInfo,
+//					&this->schedule_data_[spIndex]);
+//		athread_join();
+//		destroyTable(spIndex);
 //		printf("destroy: %d\n",spIndex);
 	}
 //	int index = 0;
@@ -757,5 +788,31 @@ void DirectSegmentIterator::initOwnNeiSendList()
 //	}
 }
 
+void DirectSegmentIterator::initSendList(int *dataSendList,
+			vector<vector<int> > dataList, int mshBlockNum)
+{
+	printf("start Init SendList...\n");
+	this->schedule_data_ = new RlmpiInfo[mshBlockNum];
+	for(int blockIdx=0;blockIdx<mshBlockNum;blockIdx++){
+		RlmpiInitializer reg;
+		vector<vector<int> > sendList(BLOCKNUM64K);
+		vector<vector<int> > nDataList(BLOCKNUM64K);
+		for(int i=0;i<BLOCKNUM64K;i++){
+			int row = blockIdx*BLOCKNUM64K+i;
+			int packIdx = 0;
+			for(int j=0;j<BLOCKNUM64K;j++){
+				int index = row*BLOCKNUM64K+j;
+				for(int k=0;k<dataSendList[index];k++){
+					sendList[i].push_back(j);
+					nDataList[i].push_back(dataList[row][packIdx]);
+					packIdx++;
+				}
+			}
+		}
+		reg.init(sendList, nDataList);
+		reg.copyRlmpiInfo(&this->schedule_data_[blockIdx]);
+	}
+	printf("finish Init SendList...\n");
+}
 } //namespace UNAT
 

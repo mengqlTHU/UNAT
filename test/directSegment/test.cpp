@@ -14,12 +14,12 @@
 
 using namespace UNAT;
 
-#define NONZERONUM 637200
-#define DIMENSION 3
+#define NONZERONUM 616320
+#define DIMENSION 1
 
 int* readFile(char* name);
 void debug(Topology topo);
-void checkResult(swFloat* array1, swFloat* array2, swInt count);
+//void checkResult(swFloat* array1, swFloat* array2, swInt count);
 void checkDSI(DirectSegmentIterator& iterator);
 
 double time1, time2, time3, time4;
@@ -86,19 +86,33 @@ double time1, time2, time3, time4;
 
 int main()
 {
-	char owner[] = "data/owner_216000";
-	char neighbor[] = "data/neighbour_216000";
+	char owner[] = "owner_of";
+	char neighbor[] = "neighbour_of";
 	swInt *rowAddr = readFile(owner);
 	swInt *colAddr = readFile(neighbor);
 	Topology* topo = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
 	int dims = DIMENSION;
 
-	swFloat* lower = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
-	swFloat* upper = (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
-	swFloat* diag  = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
-	swFloat* x     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
-	swFloat* b     = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
-	swFloat* b_DSI = (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* lower
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* lower_DSI
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* upper
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* upper_DSI
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getEdgeNumber()*dims);
+	swFloat* diag
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* diag_DSI
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* x
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* x_DSI
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* b
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
+	swFloat* b_DSI
+		= (swFloat*)malloc(sizeof(swFloat)*topo->getVertexNumber()*dims);
 	//swFloat* data  = (swFloat*)malloc( sizeof(swFloat)
 	//								   *( topo->getEdgeNumber()*2 
 	//									  + topo->getVertexNumber() )
@@ -106,7 +120,7 @@ int main()
 
 	// weights
 	std::vector<swInt> cellWeights(topo->getVertexNumber(), 2*dims);
-	std::vector<swInt> edgeWeights(topo->getEdgeNumber(), 2*dims);
+	std::vector<swInt> edgeWeights(topo->getEdgeNumber(), dims+1);
 
 
 	DirectSegmentIterator iterator(*topo, &cellWeights[0], &edgeWeights[0]);
@@ -122,16 +136,20 @@ int main()
 		{
 			lower[i*dims+iDim]
 				= ((swFloat)rowAddr[i]+1)/((swFloat)colAddr[i]+1);
+			lower_DSI[i*dims+iDim] = lower[i*dims+iDim];
 			upper[i*dims+iDim]
 				= ((swFloat)colAddr[i]+1)/((swFloat)rowAddr[i]+1);
+			upper_DSI[i*dims+iDim] = upper[i*dims+iDim];
 		}
 	}
 	for(int i=0;i<topo->getVertexNumber();i++)
 	{
 		for(int iDim=0;iDim<dims;iDim++)
 		{
-			diag[i*dims+iDim]  = i;
+			diag[i*dims+iDim]      = i;
+			diag_DSI[i*dims+iDim]  = i;
 			x[i*dims+iDim]     = (double)(i+1)/(i+2);
+			x_DSI[i*dims+iDim] = (double)(i+1)/(i+2);
 			b[i*dims+iDim]     = (double)(i+1)/(i+2);
 			b_DSI[i*dims+iDim] = (double)(i+1)/(i+2);
 		}
@@ -141,29 +159,45 @@ int main()
 	printf("Construct array...\n");
 	// calculate with iterator and function pointers
 	Arrays backEdgeData, frontEdgeData, 
-		   selfConnData, vertexData, refVertexData;
+		   selfConnData, vertexData;
+	Arrays refBackEdgeData, refFrontEdgeData, 
+		   refSelfConnData, refVertexData;
 	// get vertex number
 	swInt vertexNum = topo->getVertexNumber();
+	swInt edgeNum   = topo->getEdgeNumber();
+    constructSingleArray(refBackEdgeData, dims, NONZERONUM, COPYIN,
+				lower_DSI);
+//	constructEmptyArray(refBackEdgeData);
+    constructSingleArray(refFrontEdgeData, dims, NONZERONUM, COPYIN,
+				upper_DSI);
+//	addSingleArray(refFrontEdgeData, 1, NONZERONUM, COPYIN, lower_DSI);
+//    constructSingleArray(refSelfConnData, dims, vertexNum, COPYOUT,
+//				diag_DSI);
+	constructEmptyArray(refSelfConnData);
+//	constructEmptyArray(refVertexData);
+    constructSingleArray(refVertexData, dims, vertexNum, COPYOUT, b_DSI);
+//    addSingleArray(refVertexData, dims, vertexNum, COPYOUT, b_DSI);
+
 	// single constructor for arrays
+//	constructEmptyArray(backEdgeData);
     constructSingleArray(backEdgeData, dims, NONZERONUM, COPYIN, lower);
     constructSingleArray(frontEdgeData, dims, NONZERONUM, COPYIN, upper);
-//	addSingleArray(frontEdgeData, dims, NONZERONUM, COPYIN, lower);
-    constructSingleArray(selfConnData, dims, vertexNum, COPYIN, diag);
-//	constructEmptyArray(backEdgeData);
+//	addSingleArray(frontEdgeData, 1, NONZERONUM, COPYIN, lower);
+//    constructSingleArray(selfConnData, dims, vertexNum, COPYOUT, diag);
 //	constructEmptyArray(frontEdgeData);
-//	constructEmptyArray(selfConnData);
-//    constructSingleArray(vertexData, dims, vertexNum, COPYOUT, b_DSI);
-    constructSingleArray(vertexData, dims, vertexNum, COPYIN, x);
-    addSingleArray(vertexData, dims, vertexNum, COPYOUT, b_DSI);
+	constructEmptyArray(selfConnData);
+//	constructEmptyArray(vertexData);
+    constructSingleArray(vertexData, dims, vertexNum, COPYOUT, b);
+//    constructSingleArray(vertexData, dims, vertexNum, COPYIN, x);
+//    addSingleArray(vertexData, dims, vertexNum, COPYOUT, b);
 //    constructSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
-    constructSingleArray(refVertexData, dims, vertexNum, COPYIN, x);
-    addSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
+//    addSingleArray(refVertexData, dims, vertexNum, COPYOUT, b);
 
 	// reference calculation
 	// Timer
 	getTime(time1);
 
-	spMV(&backEdgeData,&frontEdgeData,&selfConnData,
+	swNegSumDiag(&refBackEdgeData,&refFrontEdgeData,&refSelfConnData,
 				&refVertexData,rowAddr,colAddr);
 //	for(int i=0;i<topo->getVertexNumber();i++)
 //	{
@@ -196,13 +230,14 @@ int main()
 	getTime(time3);
 	iterator.edge2VertexIteration( &backEdgeData, &frontEdgeData, 
 				&selfConnData, &vertexData,
-				spMV, slave_spMV);
+				swNegSumDiag, slave_swNegSumDiag);
 	getTime(time4);
 	printf("Slave Core Time: %f us\n", (time4-time3)*1000000); 
 	printf("Speed-up: %f\n", (time2-time1)/(time4-time3)); 
 
 	CG_halt();
-	checkResult(b, b_DSI, vertexNum*dims);
+	checkResult(b_DSI, b, vertexNum*dims);
+//	checkResult(diag_DSI, diag, vertexNum*dims);
 
 	free(lower);
 	free(upper);
@@ -215,23 +250,23 @@ int main()
 	return 0;
 }
 
-void checkResult(swFloat* array1, swFloat* array2, swInt count)
-{
-	cout<<"check result..."<<endl;
-	for(int i=0;i<count;i++)
-	{
-		if(fabs(array1[i]-array2[i])>EPS)
-		{
-			if(fabs(array1[i]-array2[i])/array1[i]>EPS)
-			{
-				cout<<"Error on index["<<i<<"], "
-					<<array1[i]<<", "<<array2[i]<<endl;
-				exit(1);
-			}
-		}
-	}
-	cout<<"The result is correct!"<<endl;
-}
+//void checkResult(swFloat* array1, swFloat* array2, swInt count)
+//{
+//	cout<<"check result..."<<endl;
+//	for(int i=0;i<count;i++)
+//	{
+//		if(fabs(array1[i]-array2[i])>EPS)
+//		{
+//			if(fabs(array1[i]-array2[i])/array1[i]>EPS)
+//			{
+//				cout<<"Error on index["<<i<<"], "
+//					<<array1[i]<<", "<<array2[i]<<endl;
+//				exit(1);
+//			}
+//		}
+//	}
+//	cout<<"The result is correct!"<<endl;
+//}
 
 int* readFile(char* name){
 	FILE *fp = fopen(name,"r");
@@ -397,7 +432,6 @@ void checkDSI(DirectSegmentIterator& iterator)
 		if(edgeNeiSeg[iedge]>=totalSeg || edgeNeiSeg[iedge] < 0)
 			printf("****Error: wrong edgeNeiSeg at seg %d\n", edgeNeiSeg[iedge]);
 		swInt segRow, segCol;
-		printf("edgeNeiSeg: %d\n",edgeNeiSeg[iedge]);
 		for(swInt iseg = 0; iseg<totalSeg; iseg++)
 		{
 			if(startVertex[iedge] >= segStarts[iseg])

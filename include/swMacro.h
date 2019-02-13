@@ -5,7 +5,7 @@
 #include "stdlib.h"
 
 #define BLOCKNUM64K 64
-#define SAFELDM 26000
+#define SAFELDM 24000
 #define EPS 1e-6
 //#define DEBUG
 
@@ -119,4 +119,32 @@ typedef double swFloat64;
 }
 
 #endif
+
+#define checkResult(array1, array2, count) \
+{ \
+	std::cout<<"check result..."<<std::endl; \
+	for(int i=0;i<(count);i++) \
+	{ \
+		if(std::fabs(array1[i]-array2[i])>EPS) \
+		{ \
+			if(array1[i]==0) \
+			{ \
+				if(fabs(array2[i])>EPS) \
+				{ \
+					std::cout<<"Error on index["<<i<<"], " \
+						<<array1[i]<<", "<<array2[i]<<std::endl; \
+					std::exit(-1); \
+				} \
+			} \
+			else if(std::fabs((array1[i]-array2[i])/array1[i])>EPS) \
+			{ \
+				std::cout<<"Error on index["<<i<<"], " \
+					<<array1[i]<<", "<<array2[i]<<std::endl; \
+				std::exit(-1); \
+			} \
+		} \
+	} \
+	std::cout<<"The result is correct!"<<std::endl; \
+}
+
 

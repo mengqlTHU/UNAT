@@ -7,8 +7,10 @@ extern "C"
 #endif
 
 #include "integrate.h"
+#include "interpolation.h"
 #include "spMV.h"
 #include "u_to_akh.h"
+#include "swNegSumDiag.h"
 
 #ifdef __cplusplus
 }

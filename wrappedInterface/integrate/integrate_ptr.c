@@ -18,7 +18,7 @@ define_e2v_FunPtr(integrate)
 		for(iDim=0;iDim<dims;iDim++)
 		{
 			b[startVertices[iedge]*dims+iDim]
-				+= upper[iedge*dims+iDim];
+				-= upper[iedge*dims+iDim];
 		}
 	}
 
@@ -31,7 +31,7 @@ define_e2v_FunPtr(integrate)
 		for(iDim=0;iDim<dims;iDim++)
 		{
 			b[endVertices[iedge]*dims+iDim]
-				+= lower[iedge*dims+iDim];	
+				-= lower[iedge*dims+iDim];	
 		}
 	}
 }
