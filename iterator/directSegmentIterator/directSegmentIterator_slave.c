@@ -196,8 +196,13 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
     swInt   *accuColNum_slave,*edgeStarts_slave,*colSegNum_slave;
     swInt   *edgeNeiSeg_slave;
     Arrays  sLower_slave,upper_slave;
-	LDM_NEW(sLower_slave.floatArrays, swFloat*, lower->fArrayNum);
-	LDM_NEW(diag_slave.floatArrays,   swFloat*, diag->fArrayNum);
+	swInt lowerFArrayNum = lower->fArrayNum;
+	swInt diagFArrayNum  = diag->fArrayNum;
+//if(myId==0) printf("%d,%d",lowerFArrayNum,diagFArrayNum);
+	LDM_NEW(sLower_slave.floatArrays, swFloat*, lowerFArrayNum);
+	LDM_NEW(sLower_slave.fArrayDims,  swFloat,  lowerFArrayNum);
+	LDM_NEW(diag_slave.floatArrays,   swFloat*, diagFArrayNum);
+	LDM_NEW(diag_slave.fArrayDims,    swFloat,  diagFArrayNum);
 
 	volatile swInt cellLen,edgeLen;
 	int i,j,row;
@@ -230,10 +235,9 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	recvEdges = para_s.recvStarts[myId+spIndex*BLOCKNUM64K];
 
 	int isLowerExisted = 1;
-	if(lower->fArrayNum==0) isLowerExisted = 0;
+	if(lowerFArrayNum==0) isLowerExisted = 0;
 //	maxEdges = MAX(recvEdges,edgeLen);
 
-	if(edgeLen==0) printf("ID: %d\n", myId);
 	LDM_NEW(owner_slave,swInt,edgeLen+recvEdges);
 	LDM_NEW(neighbor_slave,swInt,edgeLen+recvEdges);
 //	LDM_NEW(sNeighbor_slave,swInt,edgeLen);
@@ -550,6 +554,7 @@ void directSegmentIterator_e2v_slave(DS_edge2VertexPara *para)
 	}
 	Arrays tmpVertex;
 	LDM_NEW(tmpVertex.floatArrays, swFloat*, sVertex_slave.fArrayNum);
+	LDM_NEW(tmpVertex.fArrayDims,  swFloat,  sVertex_slave.fArrayNum);
 	for(i=0;i<sVertex_slave.fArrayNum;i++)
 	{
 		dims = sVertex_slave.fArrayDims[i];

@@ -1,10 +1,9 @@
 #include "integrate.h"
-#include <stdio.h>
 #include "swMacro.h"
 #include "iterator.h"
 
 //define 2 function pointers
-define_e2v_FunPtr(integrate)
+define_e2v_FunPtr(swSurfaceIntegrate)
 {
 	swInt iDim,dims;
 	swFloat* b = accessArray(vertexData,0);
@@ -18,7 +17,7 @@ define_e2v_FunPtr(integrate)
 		for(iDim=0;iDim<dims;iDim++)
 		{
 			b[startVertices[iedge]*dims+iDim]
-				-= upper[iedge*dims+iDim];
+				+= upper[iedge*dims+iDim];
 		}
 	}
 

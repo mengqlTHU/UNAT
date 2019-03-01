@@ -1,0 +1,17 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+Filename "./test" you specified is not exist or was a dangling symbolic link.

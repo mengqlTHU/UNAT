@@ -1,7 +1,6 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
-#include <stdlib.h>
 #include <iostream>
 #include <map>
 #include "swMacro.h"
@@ -54,7 +53,7 @@ class Iterator
 		}
 
 		// Deconstructors
-		~Iterator()
+		virtual ~Iterator()
 		{
 			if(duplicate_)
 			{
@@ -63,6 +62,7 @@ class Iterator
 				delete _edgeWeights;
 			}
 		}
+		
 
 		void reformInnerTopology()
 		{
@@ -89,7 +89,8 @@ class Iterator
 					swInt edgeNumber, swInt vertexNumber){
 			// To do
 		}
-		virtual void reorderEdgeData(Arrays* edgeData){
+		virtual void reorderEdgeData(Arrays* backEdgeData,
+					Arrays* frontEdgeData){
 			// To do
 		}
 		virtual void reorderNeighborData(Arrays* edgeData){
@@ -106,6 +107,8 @@ class Iterator
 					Arrays* vertexData, v2e_hostFunPtr, v2e_slaveFunPtr) = 0;
 		
 		Topology* getTopology(){return this->_topo;}
+		swInt* getVertexWeights(){return this->_vertexWeights;}
+		swInt* getEdgeWeights(){return this->_edgeWeights;}
 };
 
 } // namespace UNAT

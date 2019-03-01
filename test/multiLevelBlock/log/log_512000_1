@@ -1,0 +1,83 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993793> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1516800
+InternalFaceNum = 1516800
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 1516800
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 4038,maxCells: 6055,maxEdges: 13065
+totalLength: 379448
+The estimated mshBlockNum = 3
+maxXNum: 2743,maxCells: 4171,maxEdges: 8827
+totalLength: 257016
+The estimated mshBlockNum = 4
+maxXNum: 2100,maxCells: 3488,maxEdges: 6894
+totalLength: 200336
+The estimated mshBlockNum = 5
+maxXNum: 1680,maxCells: 2785,maxEdges: 5504
+totalLength: 160256
+The estimated mshBlockNum = 6
+maxXNum: 1400,maxCells: 2318,maxEdges: 4624
+totalLength: 134656
+The estimated mshBlockNum = 7
+maxXNum: 1200,maxCells: 2065,maxEdges: 4019
+totalLength: 116936
+The estimated mshBlockNum = 8
+maxXNum: 1050,maxCells: 1846,maxEdges: 3547
+totalLength: 103208
+The estimated mshBlockNum = 9
+maxXNum: 933,maxCells: 1688,maxEdges: 3164
+totalLength: 92144
+The estimated mshBlockNum = 10
+53761,53762
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 882,maxCells: 1762,maxEdges: 2979
+totalLength: 86888
+The estimated mshBlockNum = 11
+maxXNum: 763,maxCells: 1442,maxEdges: 2610
+totalLength: 76128
+The estimated mshBlockNum = 12
+maxXNum: 700,maxCells: 1342,maxEdges: 2395
+totalLength: 69960
+The estimated mshBlockNum = 13
+maxXNum: 678,maxCells: 1281,maxEdges: 2333
+totalLength: 68120
+The estimated mshBlockNum = 14
+maxXNum: 600,maxCells: 1177,maxEdges: 2080
+totalLength: 60800
+The estimated mshBlockNum = 15
+maxXNum: 560,maxCells: 1101,maxEdges: 1932
+totalLength: 56608
+The estimated mshBlockNum = 16
+maxXNum: 525,maxCells: 1051,maxEdges: 1830
+totalLength: 53600
+The estimated mshBlockNum = 17
+30111,30113
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!***Error: at BlockOrdering/BOrderUtils.c+271:
+	in function "MLB_find": find nothing, some error!!
+[44993793 ## Thu Feb 28 21:13:58 2019] warning: node [475]: user's mpe task: tid= 0, pid= 1980, exit_code= 255
+dispatching ...
+Job 44993793 has been finished. exit_code is 255

@@ -1,0 +1,75 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993404> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 637200
+InternalFaceNum = 637200
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 637200
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 1769,maxCells: 2821,maxEdges: 5701
+totalLength: 1122568
+The estimated mshBlockNum = 3
+maxXNum: 1190,maxCells: 2015,maxEdges: 3945
+totalLength: 772280
+The estimated mshBlockNum = 4
+maxXNum: 898,maxCells: 1544,maxEdges: 2963
+totalLength: 580968
+The estimated mshBlockNum = 5
+maxXNum: 720,maxCells: 1351,maxEdges: 2423
+totalLength: 473256
+The estimated mshBlockNum = 6
+maxXNum: 597,maxCells: 1151,maxEdges: 2052
+totalLength: 399152
+The estimated mshBlockNum = 7
+maxXNum: 514,maxCells: 1010,maxEdges: 1790
+totalLength: 347376
+The estimated mshBlockNum = 8
+maxXNum: 458,maxCells: 895,maxEdges: 1583
+totalLength: 307848
+The estimated mshBlockNum = 9
+maxXNum: 413,maxCells: 816,maxEdges: 1423
+totalLength: 277048
+The estimated mshBlockNum = 10
+maxXNum: 369,maxCells: 783,maxEdges: 1298
+totalLength: 251712
+The estimated mshBlockNum = 11
+maxXNum: 338,maxCells: 693,maxEdges: 1178
+totalLength: 229008
+The estimated mshBlockNum = 12
+maxXNum: 310,maxCells: 690,maxEdges: 1100
+totalLength: 213120
+The estimated mshBlockNum = 13
+maxXNum: 286,maxCells: 632,maxEdges: 1026
+totalLength: 198416
+The estimated mshBlockNum = 14
+maxXNum: 265,maxCells: 606,maxEdges: 963
+totalLength: 185816
+The estimated mshBlockNum = 15
+14826,14828
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!***Error: at BlockOrdering/BOrderUtils.c+271:
+	in function "MLB_find": find nothing, some error!!
+[44993404 ## Thu Feb 28 18:50:27 2019] warning: node [475]: user's mpe task: tid= 0, pid= 1662, exit_code= 255
+dispatching ...
+Job 44993404 has been finished. exit_code is 255

@@ -1,0 +1,202 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993813> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1516800
+InternalFaceNum = 1516800
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 1516800
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 4053,maxCells: 5920,maxEdges: 12976
+totalLength: 922480
+The estimated mshBlockNum = 3
+maxXNum: 2787,maxCells: 4229,maxEdges: 8905
+totalLength: 633736
+The estimated mshBlockNum = 4
+maxXNum: 2126,maxCells: 3327,maxEdges: 6846
+totalLength: 486704
+The estimated mshBlockNum = 5
+maxXNum: 1678,maxCells: 2755,maxEdges: 5475
+totalLength: 388424
+The estimated mshBlockNum = 6
+maxXNum: 1403,maxCells: 2363,maxEdges: 4659
+totalLength: 329528
+The estimated mshBlockNum = 7
+maxXNum: 1230,maxCells: 2074,maxEdges: 4071
+totalLength: 288296
+The estimated mshBlockNum = 8
+63532,63533
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 1066,maxCells: 1848,maxEdges: 3551
+totalLength: 251304
+The estimated mshBlockNum = 9
+maxXNum: 963,maxCells: 1703,maxEdges: 3243
+totalLength: 229112
+The estimated mshBlockNum = 10
+50984,50985
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 874,maxCells: 1577,maxEdges: 2971
+totalLength: 209608
+The estimated mshBlockNum = 11
+maxXNum: 800,maxCells: 1465,maxEdges: 2699
+totalLength: 190824
+The estimated mshBlockNum = 12
+maxXNum: 735,maxCells: 1333,maxEdges: 2504
+totalLength: 176784
+The estimated mshBlockNum = 13
+maxXNum: 678,maxCells: 1239,maxEdges: 2286
+totalLength: 161840
+The estimated mshBlockNum = 14
+maxXNum: 630,maxCells: 1245,maxEdges: 2172
+totalLength: 153152
+The estimated mshBlockNum = 15
+maxXNum: 577,maxCells: 1126,maxEdges: 1988
+totalLength: 140304
+The estimated mshBlockNum = 16
+maxXNum: 545,maxCells: 1061,maxEdges: 1877
+totalLength: 132552
+The estimated mshBlockNum = 17
+maxXNum: 507,maxCells: 999,maxEdges: 1764
+totalLength: 124400
+The estimated mshBlockNum = 18
+28547,28548
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 474,maxCells: 973,maxEdges: 1656
+totalLength: 116768
+The estimated mshBlockNum = 19
+maxXNum: 442,maxCells: 926,maxEdges: 1568
+totalLength: 110304
+The estimated mshBlockNum = 20
+maxXNum: 441,maxCells: 884,maxEdges: 1542
+totalLength: 108800
+The estimated mshBlockNum = 21
+maxXNum: 400,maxCells: 866,maxEdges: 1433
+totalLength: 100728
+The estimated mshBlockNum = 22
+maxXNum: 398,maxCells: 847,maxEdges: 1416
+totalLength: 99680
+The estimated mshBlockNum = 23
+22270,22271
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 365,maxCells: 782,maxEdges: 1293
+totalLength: 91208
+The estimated mshBlockNum = 24
+21308,21309
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 354,maxCells: 851,maxEdges: 1283
+totalLength: 90120
+The estimated mshBlockNum = 25
+maxXNum: 352,maxCells: 754,maxEdges: 1257
+totalLength: 88568
+The estimated mshBlockNum = 26
+maxXNum: 326,maxCells: 713,maxEdges: 1155
+totalLength: 81608
+The estimated mshBlockNum = 27
+maxXNum: 311,maxCells: 711,maxEdges: 1133
+totalLength: 79656
+The estimated mshBlockNum = 28
+maxXNum: 300,maxCells: 673,maxEdges: 1084
+totalLength: 76384
+The estimated mshBlockNum = 29
+maxXNum: 293,maxCells: 688,maxEdges: 1049
+totalLength: 74088
+The estimated mshBlockNum = 30
+maxXNum: 294,maxCells: 677,maxEdges: 1071
+totalLength: 75368
+The estimated mshBlockNum = 31
+maxXNum: 271,maxCells: 615,maxEdges: 985
+totalLength: 69448
+The estimated mshBlockNum = 32
+maxXNum: 262,maxCells: 584,maxEdges: 947
+totalLength: 66888
+The estimated mshBlockNum = 33
+maxXNum: 255,maxCells: 604,maxEdges: 937
+totalLength: 65992
+The estimated mshBlockNum = 34
+maxXNum: 247,maxCells: 590,maxEdges: 910
+totalLength: 64096
+The estimated mshBlockNum = 35
+maxXNum: 240,maxCells: 552,maxEdges: 876
+totalLength: 61856
+The estimated mshBlockNum = 36
+14218,14219
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 233,maxCells: 543,maxEdges: 851
+totalLength: 60120
+The estimated mshBlockNum = 37
+maxXNum: 227,maxCells: 550,maxEdges: 840
+totalLength: 59216
+The estimated mshBlockNum = 38
+13961,13962
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 231,maxCells: 541,maxEdges: 841
+totalLength: 59464
+The estimated mshBlockNum = 39
+maxXNum: 226,maxCells: 514,maxEdges: 820
+totalLength: 58048
+The estimated mshBlockNum = 40
+maxXNum: 210,maxCells: 512,maxEdges: 781
+totalLength: 55096
+The estimated mshBlockNum = 41
+maxXNum: 205,maxCells: 483,maxEdges: 751
+totalLength: 53176
+The estimated mshBlockNum = 42
+maxXNum: 200,maxCells: 487,maxEdges: 741
+totalLength: 52376
+The estimated mshBlockNum = 43
+11913,11914
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 195,maxCells: 530,maxEdges: 730
+totalLength: 51520
+The estimated mshBlockNum = 44
+maxXNum: 191,maxCells: 478,maxEdges: 714
+totalLength: 50432
+The estimated mshBlockNum = 45
+maxXNum: 187,maxCells: 466,maxEdges: 698
+totalLength: 49344
+The estimated mshBlockNum = 46
+maxXNum: 182,maxCells: 450,maxEdges: 677
+totalLength: 47928
+The estimated mshBlockNum = 47
+maxXNum: 178,maxCells: 448,maxEdges: 661
+totalLength: 46840
+The estimated mshBlockNum = 48
+maxXNum: 175,maxCells: 449,maxEdges: 662
+totalLength: 46752
+The estimated mshBlockNum = 49
+10449,10451
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 171,maxCells: 473,maxEdges: 664
+totalLength: 46672
+The estimated mshBlockNum = 50
+maxXNum: 169,maxCells: 418,maxEdges: 626
+totalLength: 44448
+The domain is divided into 50*50 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 218385.934830 us
+Slave Core Time: 22909.164429 us
+check result...
+The result is correct!
+dispatching ...
+Job 44993813 has been finished.

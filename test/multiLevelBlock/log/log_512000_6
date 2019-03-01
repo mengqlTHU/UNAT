@@ -1,0 +1,244 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993903> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1516800
+InternalFaceNum = 1516800
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 1516800
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 4110,maxCells: 5968,maxEdges: 12991
+totalLength: 1746904
+The estimated mshBlockNum = 3
+maxXNum: 2718,maxCells: 4204,maxEdges: 8817
+totalLength: 1179176
+The estimated mshBlockNum = 4
+maxXNum: 2123,maxCells: 3333,maxEdges: 6834
+totalLength: 915824
+The estimated mshBlockNum = 5
+maxXNum: 1691,maxCells: 2811,maxEdges: 5596
+totalLength: 745600
+The estimated mshBlockNum = 6
+maxXNum: 1394,maxCells: 2317,maxEdges: 4596
+totalLength: 613088
+The estimated mshBlockNum = 7
+maxXNum: 1223,maxCells: 2086,maxEdges: 4034
+totalLength: 538224
+The estimated mshBlockNum = 8
+maxXNum: 1062,maxCells: 1858,maxEdges: 3584
+totalLength: 475968
+The estimated mshBlockNum = 9
+maxXNum: 979,maxCells: 1733,maxEdges: 3255
+totalLength: 433784
+The estimated mshBlockNum = 10
+maxXNum: 859,maxCells: 1554,maxEdges: 2907
+totalLength: 386072
+The estimated mshBlockNum = 11
+maxXNum: 799,maxCells: 1478,maxEdges: 2704
+totalLength: 359200
+The estimated mshBlockNum = 12
+maxXNum: 734,maxCells: 1346,maxEdges: 2458
+totalLength: 327376
+The estimated mshBlockNum = 13
+maxXNum: 671,maxCells: 1251,maxEdges: 2281
+totalLength: 302920
+The estimated mshBlockNum = 14
+maxXNum: 630,maxCells: 1280,maxEdges: 2215
+totalLength: 292120
+The estimated mshBlockNum = 15
+maxXNum: 587,maxCells: 1147,maxEdges: 2031
+totalLength: 268856
+The estimated mshBlockNum = 16
+maxXNum: 550,maxCells: 1070,maxEdges: 1901
+totalLength: 251784
+The estimated mshBlockNum = 17
+28778,28779
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 518,maxCells: 1009,maxEdges: 1768
+totalLength: 234880
+The estimated mshBlockNum = 18
+maxXNum: 484,maxCells: 987,maxEdges: 1701
+totalLength: 224648
+The estimated mshBlockNum = 19
+maxXNum: 464,maxCells: 937,maxEdges: 1616
+totalLength: 213888
+The estimated mshBlockNum = 20
+26775,26776
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 439,maxCells: 984,maxEdges: 1553
+totalLength: 204936
+The estimated mshBlockNum = 21
+24460,24461
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!25600,25601
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 420,maxCells: 845,maxEdges: 1470
+totalLength: 194480
+The estimated mshBlockNum = 22
+maxXNum: 399,maxCells: 835,maxEdges: 1408
+totalLength: 186016
+The estimated mshBlockNum = 23
+maxXNum: 373,maxCells: 820,maxEdges: 1340
+totalLength: 176448
+The estimated mshBlockNum = 24
+maxXNum: 364,maxCells: 809,maxEdges: 1312
+totalLength: 172672
+The estimated mshBlockNum = 25
+maxXNum: 352,maxCells: 749,maxEdges: 1250
+totalLength: 165072
+The estimated mshBlockNum = 26
+maxXNum: 339,maxCells: 751,maxEdges: 1204
+totalLength: 159040
+The estimated mshBlockNum = 27
+maxXNum: 326,maxCells: 714,maxEdges: 1162
+totalLength: 153424
+The estimated mshBlockNum = 28
+maxXNum: 315,maxCells: 700,maxEdges: 1135
+totalLength: 149560
+The estimated mshBlockNum = 29
+maxXNum: 304,maxCells: 657,maxEdges: 1085
+totalLength: 143304
+The estimated mshBlockNum = 30
+maxXNum: 286,maxCells: 647,maxEdges: 1029
+totalLength: 135752
+The estimated mshBlockNum = 31
+maxXNum: 284,maxCells: 624,maxEdges: 1021
+totalLength: 134728
+The estimated mshBlockNum = 32
+maxXNum: 272,maxCells: 609,maxEdges: 977
+totalLength: 129000
+The estimated mshBlockNum = 33
+maxXNum: 255,maxCells: 588,maxEdges: 929
+totalLength: 122376
+The estimated mshBlockNum = 34
+15539,15540
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 257,maxCells: 652,maxEdges: 934
+totalLength: 123088
+The estimated mshBlockNum = 35
+maxXNum: 252,maxCells: 563,maxEdges: 909
+totalLength: 120008
+The estimated mshBlockNum = 36
+maxXNum: 235,maxCells: 544,maxEdges: 854
+totalLength: 112656
+The estimated mshBlockNum = 37
+maxXNum: 238,maxCells: 568,maxEdges: 879
+totalLength: 115544
+The estimated mshBlockNum = 38
+maxXNum: 221,maxCells: 541,maxEdges: 813
+totalLength: 107048
+The estimated mshBlockNum = 39
+13126,13127
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 215,maxCells: 519,maxEdges: 797
+totalLength: 104808
+The estimated mshBlockNum = 40
+maxXNum: 220,maxCells: 514,maxEdges: 807
+totalLength: 106328
+The estimated mshBlockNum = 41
+maxXNum: 206,maxCells: 492,maxEdges: 756
+totalLength: 99680
+The estimated mshBlockNum = 42
+maxXNum: 200,maxCells: 488,maxEdges: 737
+totalLength: 97128
+The estimated mshBlockNum = 43
+maxXNum: 195,maxCells: 478,maxEdges: 724
+totalLength: 95296
+The estimated mshBlockNum = 44
+maxXNum: 200,maxCells: 484,maxEdges: 742
+totalLength: 97648
+The estimated mshBlockNum = 45
+maxXNum: 196,maxCells: 456,maxEdges: 718
+totalLength: 94768
+The estimated mshBlockNum = 46
+11136,11137
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!11140,11141
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 182,maxCells: 464,maxEdges: 687
+totalLength: 90200
+The estimated mshBlockNum = 47
+maxXNum: 179,maxCells: 440,maxEdges: 661
+totalLength: 87208
+The estimated mshBlockNum = 48
+maxXNum: 175,maxCells: 437,maxEdges: 656
+totalLength: 86304
+The estimated mshBlockNum = 49
+10544,10545
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 173,maxCells: 433,maxEdges: 642
+totalLength: 84656
+The estimated mshBlockNum = 50
+maxXNum: 175,maxCells: 446,maxEdges: 657
+totalLength: 86408
+The estimated mshBlockNum = 51
+maxXNum: 172,maxCells: 432,maxEdges: 641
+totalLength: 84456
+The estimated mshBlockNum = 52
+maxXNum: 162,maxCells: 409,maxEdges: 607
+totalLength: 79960
+The estimated mshBlockNum = 53
+maxXNum: 158,maxCells: 404,maxEdges: 597
+totalLength: 78536
+The estimated mshBlockNum = 54
+maxXNum: 157,maxCells: 402,maxEdges: 583
+totalLength: 76984
+The estimated mshBlockNum = 55
+maxXNum: 153,maxCells: 394,maxEdges: 577
+totalLength: 75976
+The estimated mshBlockNum = 56
+maxXNum: 150,maxCells: 382,maxEdges: 564
+totalLength: 74336
+The estimated mshBlockNum = 57
+maxXNum: 148,maxCells: 387,maxEdges: 561
+totalLength: 73832
+The estimated mshBlockNum = 58
+maxXNum: 146,maxCells: 373,maxEdges: 549
+totalLength: 72392
+The estimated mshBlockNum = 59
+maxXNum: 148,maxCells: 381,maxEdges: 558
+totalLength: 73520
+The estimated mshBlockNum = 60
+maxXNum: 147,maxCells: 384,maxEdges: 557
+totalLength: 73320
+The estimated mshBlockNum = 61
+maxXNum: 138,maxCells: 365,maxEdges: 525
+totalLength: 69128
+The estimated mshBlockNum = 62
+maxXNum: 135,maxCells: 351,maxEdges: 513
+totalLength: 67592
+The estimated mshBlockNum = 63
+maxXNum: 134,maxCells: 345,maxEdges: 505
+totalLength: 66664
+The estimated mshBlockNum = 64
+8007,8008
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 131,maxCells: 370,maxEdges: 511
+totalLength: 67000
+The estimated mshBlockNum = 65
+maxXNum: 129,maxCells: 345,maxEdges: 495
+totalLength: 65144
+The estimated mshBlockNum = 66
+[44993903 ## Thu Feb 28 22:05:07 2019] warning: node [474]: user's mpe task: tid= 0, pid= 8741, terminated by sig 11
+dispatching ...
+Job 44993903 has been finished. exit_code is 104

@@ -1,0 +1,101 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993387> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 637200
+InternalFaceNum = 637200
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 637200
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 1771,maxCells: 2862,maxEdges: 5720
+totalLength: 406608
+The estimated mshBlockNum = 3
+maxXNum: 1190,maxCells: 2045,maxEdges: 3961
+totalLength: 280216
+The estimated mshBlockNum = 4
+maxXNum: 904,maxCells: 1582,maxEdges: 3026
+totalLength: 214128
+The estimated mshBlockNum = 5
+maxXNum: 708,maxCells: 1326,maxEdges: 2416
+totalLength: 170560
+The estimated mshBlockNum = 6
+maxXNum: 590,maxCells: 1127,maxEdges: 2024
+totalLength: 142944
+The estimated mshBlockNum = 7
+maxXNum: 506,maxCells: 982,maxEdges: 1750
+totalLength: 123568
+The estimated mshBlockNum = 8
+maxXNum: 443,maxCells: 879,maxEdges: 1541
+totalLength: 108840
+The estimated mshBlockNum = 9
+maxXNum: 393,maxCells: 812,maxEdges: 1388
+totalLength: 97872
+The estimated mshBlockNum = 10
+maxXNum: 354,maxCells: 742,maxEdges: 1256
+totalLength: 88608
+The estimated mshBlockNum = 11
+maxXNum: 322,maxCells: 689,maxEdges: 1147
+totalLength: 80968
+The estimated mshBlockNum = 12
+maxXNum: 295,maxCells: 645,maxEdges: 1050
+totalLength: 74240
+The estimated mshBlockNum = 13
+maxXNum: 272,maxCells: 600,maxEdges: 974
+totalLength: 68880
+The estimated mshBlockNum = 14
+maxXNum: 253,maxCells: 565,maxEdges: 913
+totalLength: 64552
+The estimated mshBlockNum = 15
+maxXNum: 236,maxCells: 538,maxEdges: 859
+totalLength: 60712
+The estimated mshBlockNum = 16
+maxXNum: 225,maxCells: 519,maxEdges: 817
+totalLength: 57832
+The estimated mshBlockNum = 17
+12708,12709
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!12700,12701
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 208,maxCells: 512,maxEdges: 776
+totalLength: 54720
+The estimated mshBlockNum = 18
+maxXNum: 197,maxCells: 472,maxEdges: 726
+totalLength: 51392
+The estimated mshBlockNum = 19
+maxXNum: 186,maxCells: 444,maxEdges: 687
+totalLength: 48680
+The estimated mshBlockNum = 20
+maxXNum: 177,maxCells: 438,maxEdges: 654
+totalLength: 46400
+The estimated mshBlockNum = 21
+maxXNum: 169,maxCells: 436,maxEdges: 638
+totalLength: 45120
+The domain is divided into 21*21 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 90857.982635 us
+Slave Core Time: 9238.004684 us
+check result...
+The result is correct!
+dispatching ...
+Job 44993387 has been finished.

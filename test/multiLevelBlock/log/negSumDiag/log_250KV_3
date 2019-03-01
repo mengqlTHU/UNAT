@@ -1,0 +1,73 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44997628> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 735000
+InternalFaceNum = 735000
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 735000
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 2028,maxCells: 3047,maxEdges: 6436
+totalLength: 255904
+The estimated mshBlockNum = 3
+maxXNum: 1367,maxCells: 2209,maxEdges: 4416
+totalLength: 175400
+The estimated mshBlockNum = 4
+maxXNum: 1025,maxCells: 1749,maxEdges: 3399
+totalLength: 134648
+The estimated mshBlockNum = 5
+maxXNum: 820,maxCells: 1424,maxEdges: 2739
+totalLength: 108608
+The estimated mshBlockNum = 6
+maxXNum: 683,maxCells: 1251,maxEdges: 2317
+totalLength: 91816
+The estimated mshBlockNum = 7
+maxXNum: 586,maxCells: 1137,maxEdges: 2006
+totalLength: 79536
+The estimated mshBlockNum = 8
+maxXNum: 512,maxCells: 1002,maxEdges: 1780
+totalLength: 70528
+The estimated mshBlockNum = 9
+maxXNum: 456,maxCells: 912,maxEdges: 1579
+totalLength: 62752
+The estimated mshBlockNum = 10
+maxXNum: 410,maxCells: 844,maxEdges: 1431
+totalLength: 56912
+The estimated mshBlockNum = 11
+maxXNum: 373,maxCells: 795,maxEdges: 1330
+totalLength: 52792
+The estimated mshBlockNum = 12
+maxXNum: 342,maxCells: 717,maxEdges: 1211
+totalLength: 48240
+The estimated mshBlockNum = 13
+maxXNum: 316,maxCells: 675,maxEdges: 1125
+totalLength: 44864
+The domain is divided into 13*13 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 72497.844696 us
+Slave Core Time: 6155.014038 us
+check result...
+The result is correct!
+dispatching ...
+Job 44997628 has been finished.

@@ -14,8 +14,7 @@
                                             :"=r"(__tmp__):"r"(_n_),"r"(_addr_):"memory");        \
 }
 
-//if(myId==0) printf("allocated LDM size: %d at LINE %d\n",(char*)ptr-ldm_space, __LINE__); 
-//if(myId==1) printf("allocated LDM size: %d at LINE %d, allocate size: %d, total size: %d\n",(char*)ptr-ldm_space, __LINE__, sizeof(type)*(length), ldm_size); \
+//if(_MYID==28) printf("allocated LDM size: %d at LINE %d, allocate size: %d, total size: %d\n",(char*)ptr-ldm_space, __LINE__, sizeof(type)*(length), ldm_size); 
 
 #define INIT_LDM_SPACE(ldm_size_) \
 ; \
@@ -29,7 +28,7 @@ char* ldm_space_end = ldm_space;
 	if((char*)ptr - ldm_space \
 				+ sizeof(type)*(length) >= ldm_size) \
 	{ \
-		printf("exceed LDM space! at %d\n",myId); \
+		printf("exceed LDM space at %d!",_MYID); \
 		exit(-1); \
 	} \
 	else \

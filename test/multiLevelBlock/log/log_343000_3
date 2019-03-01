@@ -1,0 +1,141 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993629> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1014300
+InternalFaceNum = 1014300
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 1014300
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 2792,maxCells: 4234,maxEdges: 8837
+totalLength: 630168
+The estimated mshBlockNum = 3
+maxXNum: 1857,maxCells: 3015,maxEdges: 6048
+totalLength: 429104
+The estimated mshBlockNum = 4
+maxXNum: 1412,maxCells: 2331,maxEdges: 4633
+totalLength: 328504
+The estimated mshBlockNum = 5
+maxXNum: 1148,maxCells: 1952,maxEdges: 3827
+totalLength: 270696
+The estimated mshBlockNum = 6
+maxXNum: 960,maxCells: 1694,maxEdges: 3187
+totalLength: 225832
+The estimated mshBlockNum = 7
+maxXNum: 803,maxCells: 1475,maxEdges: 2730
+totalLength: 192704
+The estimated mshBlockNum = 8
+maxXNum: 737,maxCells: 1307,maxEdges: 2479
+totalLength: 175480
+The estimated mshBlockNum = 9
+maxXNum: 656,maxCells: 1233,maxEdges: 2254
+totalLength: 158992
+The estimated mshBlockNum = 10
+maxXNum: 565,maxCells: 1133,maxEdges: 1960
+totalLength: 138160
+The estimated mshBlockNum = 11
+maxXNum: 511,maxCells: 1017,maxEdges: 1786
+totalLength: 125824
+The estimated mshBlockNum = 12
+maxXNum: 469,maxCells: 967,maxEdges: 1648
+totalLength: 116080
+The estimated mshBlockNum = 13
+maxXNum: 433,maxCells: 926,maxEdges: 1543
+totalLength: 108472
+The estimated mshBlockNum = 14
+maxXNum: 402,maxCells: 821,maxEdges: 1413
+totalLength: 99704
+The estimated mshBlockNum = 15
+maxXNum: 393,maxCells: 847,maxEdges: 1406
+totalLength: 98880
+The estimated mshBlockNum = 16
+maxXNum: 352,maxCells: 752,maxEdges: 1249
+totalLength: 88120
+The estimated mshBlockNum = 17
+19458,19460
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 347,maxCells: 746,maxEdges: 1233
+totalLength: 86984
+The estimated mshBlockNum = 18
+maxXNum: 313,maxCells: 690,maxEdges: 1124
+totalLength: 79248
+The estimated mshBlockNum = 19
+maxXNum: 296,maxCells: 666,maxEdges: 1073
+totalLength: 75576
+The estimated mshBlockNum = 20
+16755,16756
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!16714,16715
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 295,maxCells: 656,maxEdges: 1058
+totalLength: 74688
+The estimated mshBlockNum = 21
+maxXNum: 268,maxCells: 613,maxEdges: 973
+totalLength: 68632
+The estimated mshBlockNum = 22
+maxXNum: 256,maxCells: 579,maxEdges: 927
+totalLength: 65480
+The estimated mshBlockNum = 23
+maxXNum: 244,maxCells: 556,maxEdges: 888
+totalLength: 62720
+The estimated mshBlockNum = 24
+maxXNum: 234,maxCells: 549,maxEdges: 854
+totalLength: 60336
+The estimated mshBlockNum = 25
+maxXNum: 225,maxCells: 525,maxEdges: 823
+totalLength: 58168
+The estimated mshBlockNum = 26
+maxXNum: 227,maxCells: 513,maxEdges: 824
+totalLength: 58320
+The estimated mshBlockNum = 27
+12707,12708
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 208,maxCells: 492,maxEdges: 762
+totalLength: 53936
+The estimated mshBlockNum = 28
+maxXNum: 201,maxCells: 499,maxEdges: 738
+totalLength: 52256
+The estimated mshBlockNum = 29
+maxXNum: 194,maxCells: 464,maxEdges: 717
+totalLength: 50744
+The estimated mshBlockNum = 30
+maxXNum: 188,maxCells: 454,maxEdges: 691
+totalLength: 49000
+The estimated mshBlockNum = 31
+maxXNum: 181,maxCells: 449,maxEdges: 672
+totalLength: 47600
+The estimated mshBlockNum = 32
+maxXNum: 176,maxCells: 437,maxEdges: 656
+totalLength: 46464
+The estimated mshBlockNum = 33
+maxXNum: 170,maxCells: 422,maxEdges: 634
+totalLength: 44944
+The domain is divided into 33*33 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 142732.858658 us
+Slave Core Time: 15566.110611 us
+check result...
+The result is correct!
+dispatching ...
+Job 44993629 has been finished.

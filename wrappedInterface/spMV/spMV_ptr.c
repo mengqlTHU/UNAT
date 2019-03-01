@@ -1,5 +1,4 @@
 #include "spMV.h"
-#include <stdio.h>
 #include "swMacro.h"
 #include "iterator.h"
 
@@ -8,8 +7,8 @@ define_e2v_FunPtr(spMV)
 {
 	//selfConn computation
 	swFloat* diag	= accessArray(selfConnData, 0);
-	swFloat* x		= accessArray(vertexData, 0);
-	swFloat* b		= accessArray(vertexData, 1);
+	swFloat* b		= accessArray(vertexData, 0);
+	swFloat* x		= accessArray(vertexData, 1);
 	swInt iDim,dims;
 	
 	swInt vertexNum = getArraySize(selfConnData);
@@ -33,6 +32,7 @@ define_e2v_FunPtr(spMV)
 	{
 		for(iDim=0;iDim<dims;iDim++)
 		{
+//if(startVertices[iedge]==105) printf("owner:%d,%d,%f,%f,%f\n",iedge,endVertices[iedge],b[startVertices[iedge]],upper[iedge],x[endVertices[iedge]]);
 			b[startVertices[iedge]*dims+iDim]
 				+= upper[iedge*dims+iDim]*x[endVertices[iedge]*dims+iDim];
 		}
@@ -46,6 +46,7 @@ define_e2v_FunPtr(spMV)
 	{
 		for(iDim=0;iDim<dims;iDim++)
 		{
+//if(endVertices[iedge]==105) printf("neighbor:%d,%d,%f,%f,%f\n",iedge,startVertices[iedge],b[endVertices[iedge]],lower[iedge],x[startVertices[iedge]]);
 			b[endVertices[iedge]*dims+iDim]
 				+= lower[iedge*dims+iDim]*x[startVertices[iedge]*dims+iDim];	
 		}

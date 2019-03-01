@@ -1,0 +1,16 @@
+length: 8
+Start test on case 10KV
+19800
+Mesh size: 10KV Dimension: 1 Speed-up: 3.184054
+Mesh size: 10KV Dimension: 3 Speed-up: 5.350900
+Mesh size: 10KV Dimension: 6 Speed-up: 4.985442
+Mesh size: 10KV Dimension: 9 Speed-up: 4.692815
+Start test on case 125000
+367500
+Mesh size: 125000 Dimension: 1 Speed-up: 5.247437
+Mesh size: 125000 Dimension: 3 Speed-up: 5.471076
+Mesh size: 125000 Dimension: 6 Speed-up: 4.754522
+Mesh size: 125000 Dimension: 9 Speed-up: 3.481355
+Start test on case 20KV
+49600
+Mesh size: 20KV Dimension: 1 Speed-up: 5.097483

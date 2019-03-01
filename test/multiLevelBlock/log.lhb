@@ -1,0 +1,55 @@
+length: 9
+Start test on case 10KV
+19800
+Mesh size: 10KV Dimension: 1 Slave: 377.893448 us Master: 1068.115234 us Result: The result is correct!
+Mesh size: 10KV Dimension: 3 Slave: 504.016876 us Master: 2829.074860 us Result: The result is correct!
+Mesh size: 10KV Dimension: 6 Slave: 689.983368 us Master: 5589.962006 us Result: The result is correct!
+Mesh size: 10KV Dimension: 9 Slave: 827.789307 us Master: 7639.169693 us Result: The result is correct!
+Start test on case 125000
+367500
+Mesh size: 125000 Dimension: 1 Slave: 2088.069916 us Master: 21340.131760 us Result: The result is correct!
+Mesh size: 125000 Dimension: 3 Slave: 5364.179611 us Master: 49732.923508 us Result: The result is correct!
+Mesh size: 125000 Dimension: 6 Slave: 11611.938477 us Master: 96175.193787 us Result: The result is correct!
+Mesh size: 125000 Dimension: 9 Slave: 17482.995987 us Master: 138215.065002 us Result: The result is correct!
+Start test on case 20KV
+49600
+Mesh size: 20KV Dimension: 1 Slave: 489.950180 us Master: 3522.157669 us Result: The result is correct!
+Mesh size: 20KV Dimension: 3 Slave: 757.932663 us Master: 7259.130478 us Result: The result is correct!
+Mesh size: 20KV Dimension: 6 Slave: 1281.976700 us Master: 13976.097107 us Result: The result is correct!
+Mesh size: 20KV Dimension: 9 Slave: 1986.980438 us Master: 19212.961197 us Result: The result is correct!
+Start test on case 216000
+637200
+Mesh size: 216000 Dimension: 1 Slave: 3401.994705 us Master: 43061.971664 us Result: The result is correct!
+Mesh size: 216000 Dimension: 3 Slave: 9238.004684 us Master: 90857.982635 us Result: The result is correct!
+Mesh size: 216000 Dimension: 6 Slave: 20676.851273 us Master: 176789.999008 us Result: The result is correct!
+Mesh size: 216000 Dimension: 9 Slave:  Master:  Result: 
+Start test on case 250KV
+735000
+Mesh size: 250KV Dimension: 1 Slave: 4014.015198 us Master: 48622.131348 us Result: The result is correct!
+Mesh size: 250KV Dimension: 3 Slave: 10525.941849 us Master: 105159.044266 us Result: The result is correct!
+Mesh size: 250KV Dimension: 6 Slave: 23867.130280 us Master: 202776.908875 us Result: The result is correct!
+Mesh size: 250KV Dimension: 9 Slave:  Master:  Result: 
+Start test on case 300KV
+884000
+Mesh size: 300KV Dimension: 1 Slave: 4902.839661 us Master: 63183.069229 us Result: The result is correct!
+Mesh size: 300KV Dimension: 3 Slave: 13508.796692 us Master: 129315.853119 us Result: The result is correct!
+Mesh size: 300KV Dimension: 6 Slave: 28509.140015 us Master: 244544.982910 us Result: The result is correct!
+Mesh size: 300KV Dimension: 9 Slave:  Master:  Result: 
+Start test on case 343000
+1014300
+Mesh size: 343000 Dimension: 1 Slave: 5436.182022 us Master: 58367.967606 us Result: The result is correct!
+Mesh size: 343000 Dimension: 3 Slave: 15566.110611 us Master: 142732.858658 us Result: The result is correct!
+Mesh size: 343000 Dimension: 6 Slave:  Master:  Result: 
+Mesh size: 343000 Dimension: 9 Slave:  Master:  Result: 
+Start test on case 50KV
+139000
+Mesh size: 50KV Dimension: 1 Slave: 824.928284 us Master: 9229.183197 us Result: The result is correct!
+Mesh size: 50KV Dimension: 3 Slave: 1909.971237 us Master: 19934.892654 us Result: The result is correct!
+Mesh size: 50KV Dimension: 6 Slave: 3636.837006 us Master: 38397.073746 us Result: The result is correct!
+Mesh size: 50KV Dimension: 9 Slave: 5635.023117 us Master: 52577.018738 us Result: The result is correct!
+Start test on case 512000
+1516800
+Mesh size: 512000 Dimension: 1 Slave:  Master:  Result: 
+Mesh size: 512000 Dimension: 3 Slave: 22909.164429 us Master: 218385.934830 us Result: The result is correct!
+Mesh size: 512000 Dimension: 6 Slave:  Master:  Result: 
+Mesh size: 512000 Dimension: 9 Slave:  Master:  Result: 

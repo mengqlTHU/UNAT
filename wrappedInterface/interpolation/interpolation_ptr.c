@@ -1,5 +1,4 @@
 #include "interpolation.h"
-#include <stdio.h>
 #include "swMacro.h"
 #include "iterator.h"
 

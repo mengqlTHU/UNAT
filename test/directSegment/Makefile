@@ -26,10 +26,10 @@ src= test.cpp
 # Targets
 ##################################################################
 test: test.o ${LIBPATH}/libUNAT.a
-	${CXX} -w -L${LIBPATH} -lUNAT  $< -o $@
+	${CXX}  -L${LIBPATH} -lUNAT  $< -o $@
 
 test.o: test.cpp 
-	${CXX} -w -I${INCLUDE} -c $< 
+	${CXX}  -I${INCLUDE} -c $< 
 
 .PHONY:clean
 clean:

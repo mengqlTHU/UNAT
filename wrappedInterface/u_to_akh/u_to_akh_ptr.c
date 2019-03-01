@@ -1,5 +1,4 @@
 #include "u_to_akh.h"
-#include <stdio.h>
 #include <math.h>
 #include "swMacro.h"
 #include "iterator.h"

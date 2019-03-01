@@ -1,6 +1,5 @@
 #ifndef INTERPOLATION_H
 #define INTERPOLATION_H
-#include <stdlib.h>
 #include "swMacro.h"
 #include "iterator.h"
 

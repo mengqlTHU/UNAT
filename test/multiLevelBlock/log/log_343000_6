@@ -1,0 +1,139 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44993658> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1014300
+InternalFaceNum = 1014300
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 1014300
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 2813,maxCells: 4217,maxEdges: 8858
+totalLength: 1192560
+The estimated mshBlockNum = 3
+maxXNum: 1878,maxCells: 2987,maxEdges: 5999
+totalLength: 805464
+The estimated mshBlockNum = 4
+maxXNum: 1421,maxCells: 2325,maxEdges: 4605
+totalLength: 616616
+The estimated mshBlockNum = 5
+maxXNum: 1131,maxCells: 1911,maxEdges: 3708
+totalLength: 495488
+The estimated mshBlockNum = 6
+maxXNum: 946,maxCells: 1632,maxEdges: 3125
+totalLength: 417096
+The estimated mshBlockNum = 7
+maxXNum: 809,maxCells: 1505,maxEdges: 2775
+totalLength: 367544
+The estimated mshBlockNum = 8
+maxXNum: 720,maxCells: 1312,maxEdges: 2415
+totalLength: 321560
+The estimated mshBlockNum = 9
+maxXNum: 643,maxCells: 1225,maxEdges: 2220
+totalLength: 293888
+The estimated mshBlockNum = 10
+maxXNum: 584,maxCells: 1086,maxEdges: 1988
+totalLength: 264096
+The estimated mshBlockNum = 11
+maxXNum: 534,maxCells: 1038,maxEdges: 1854
+totalLength: 245360
+The estimated mshBlockNum = 12
+maxXNum: 481,maxCells: 981,maxEdges: 1693
+totalLength: 223528
+The estimated mshBlockNum = 13
+maxXNum: 446,maxCells: 889,maxEdges: 1552
+totalLength: 205504
+The estimated mshBlockNum = 14
+25550,25551
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 420,maxCells: 953,maxEdges: 1480
+totalLength: 195520
+The estimated mshBlockNum = 15
+maxXNum: 384,maxCells: 790,maxEdges: 1352
+totalLength: 178752
+The estimated mshBlockNum = 16
+maxXNum: 363,maxCells: 764,maxEdges: 1279
+totalLength: 169144
+The estimated mshBlockNum = 17
+19482,19483
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!maxXNum: 344,maxCells: 761,maxEdges: 1238
+totalLength: 163056
+The estimated mshBlockNum = 18
+maxXNum: 328,maxCells: 709,maxEdges: 1169
+totalLength: 154344
+The estimated mshBlockNum = 19
+maxXNum: 299,maxCells: 660,maxEdges: 1077
+totalLength: 141992
+The estimated mshBlockNum = 20
+maxXNum: 283,maxCells: 630,maxEdges: 1020
+totalLength: 134528
+The estimated mshBlockNum = 21
+maxXNum: 268,maxCells: 608,maxEdges: 965
+totalLength: 127368
+The estimated mshBlockNum = 22
+maxXNum: 268,maxCells: 590,maxEdges: 965
+totalLength: 127368
+The estimated mshBlockNum = 23
+maxXNum: 256,maxCells: 612,maxEdges: 927
+totalLength: 122264
+The estimated mshBlockNum = 24
+maxXNum: 234,maxCells: 554,maxEdges: 862
+totalLength: 113392
+The estimated mshBlockNum = 25
+maxXNum: 236,maxCells: 548,maxEdges: 864
+totalLength: 113792
+The estimated mshBlockNum = 26
+maxXNum: 216,maxCells: 516,maxEdges: 797
+totalLength: 104904
+The estimated mshBlockNum = 27
+maxXNum: 218,maxCells: 523,maxEdges: 804
+totalLength: 105824
+The estimated mshBlockNum = 28
+maxXNum: 201,maxCells: 473,maxEdges: 738
+totalLength: 97328
+The estimated mshBlockNum = 29
+maxXNum: 195,maxCells: 471,maxEdges: 720
+totalLength: 94880
+The estimated mshBlockNum = 30
+maxXNum: 196,maxCells: 468,maxEdges: 724
+totalLength: 95392
+The estimated mshBlockNum = 31
+maxXNum: 181,maxCells: 453,maxEdges: 679
+totalLength: 89272
+The estimated mshBlockNum = 32
+maxXNum: 176,maxCells: 435,maxEdges: 655
+totalLength: 86296
+The estimated mshBlockNum = 33
+maxXNum: 176,maxCells: 423,maxEdges: 647
+totalLength: 85464
+The estimated mshBlockNum = 34
+maxXNum: 173,maxCells: 418,maxEdges: 640
+totalLength: 84448
+The estimated mshBlockNum = 35
+9796,9799
+***Error: at BlockOrdering/BOrderUtils.c+161:
+	in function "MLB_generateCellID": wrong cell number!!***Error: at BlockOrdering/BOrderUtils.c+271:
+	in function "MLB_find": find nothing, some error!!
+[44993658 ## Thu Feb 28 20:39:17 2019] warning: node [14338]: user's mpe task: tid= 0, pid= 3035, exit_code= 255
+dispatching ...
+Job 44993658 has been finished. exit_code is 255

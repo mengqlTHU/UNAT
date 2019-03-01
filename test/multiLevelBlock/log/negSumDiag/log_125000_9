@@ -1,0 +1,88 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44997569> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 367500
+InternalFaceNum = 367500
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 367500
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 1031,maxCells: 1742,maxEdges: 3368
+totalLength: 344952
+The estimated mshBlockNum = 3
+maxXNum: 683,maxCells: 1270,maxEdges: 2320
+totalLength: 236056
+The estimated mshBlockNum = 4
+maxXNum: 533,maxCells: 1024,maxEdges: 1824
+totalLength: 185576
+The estimated mshBlockNum = 5
+maxXNum: 423,maxCells: 845,maxEdges: 1478
+totalLength: 149976
+The estimated mshBlockNum = 6
+maxXNum: 358,maxCells: 733,maxEdges: 1253
+totalLength: 127296
+The estimated mshBlockNum = 7
+maxXNum: 293,maxCells: 628,maxEdges: 1046
+totalLength: 106056
+The estimated mshBlockNum = 8
+maxXNum: 264,maxCells: 568,maxEdges: 941
+totalLength: 95568
+The estimated mshBlockNum = 9
+maxXNum: 229,maxCells: 532,maxEdges: 828
+totalLength: 84008
+The estimated mshBlockNum = 10
+maxXNum: 205,maxCells: 487,maxEdges: 746
+totalLength: 75720
+The estimated mshBlockNum = 11
+maxXNum: 195,maxCells: 466,maxEdges: 708
+totalLength: 71960
+The estimated mshBlockNum = 12
+maxXNum: 171,maxCells: 429,maxEdges: 637
+totalLength: 64552
+The estimated mshBlockNum = 13
+maxXNum: 158,maxCells: 381,maxEdges: 581
+totalLength: 59136
+The estimated mshBlockNum = 14
+maxXNum: 153,maxCells: 384,maxEdges: 569
+totalLength: 57816
+The estimated mshBlockNum = 15
+maxXNum: 137,maxCells: 355,maxEdges: 515
+totalLength: 52344
+The estimated mshBlockNum = 16
+maxXNum: 128,maxCells: 328,maxEdges: 483
+totalLength: 49136
+The estimated mshBlockNum = 17
+maxXNum: 121,maxCells: 316,maxEdges: 459
+totalLength: 46712
+The estimated mshBlockNum = 18
+maxXNum: 114,maxCells: 303,maxEdges: 434
+totalLength: 44208
+The domain is divided into 18*18 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 90946.912766 us
+Slave Core Time: 9876.966476 us
+check result...
+The result is correct!
+dispatching ...
+Job 44997569 has been finished.

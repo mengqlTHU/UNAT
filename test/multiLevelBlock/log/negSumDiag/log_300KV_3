@@ -1,0 +1,82 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC   -I/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/include -c test.cpp 
+mpiCC   -L/home/export/online1/systest/swrh/lhb/swOpenFOAM0.1/OpenFOAM-3.0.0/src/OSspecific/performance/UNAT/lib -lUNAT -lmetis  test.o -o test
+Job <44997661> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 884000
+InternalFaceNum = 884000
+default constructor
+Constructor based on LDU
+default constructor
+edgeNum: 884000
+Construct array...
+Iterator constructor
+start MultiLevelBlocking reorder...
+The estimated mshBlockNum = 2
+maxXNum: 2453,maxCells: 3662,maxEdges: 7737
+totalLength: 307736
+The estimated mshBlockNum = 3
+maxXNum: 1640,maxCells: 2553,maxEdges: 5309
+totalLength: 210528
+The estimated mshBlockNum = 4
+maxXNum: 1230,maxCells: 2085,maxEdges: 4085
+totalLength: 161520
+The estimated mshBlockNum = 5
+maxXNum: 996,maxCells: 1695,maxEdges: 3297
+totalLength: 130688
+The estimated mshBlockNum = 6
+maxXNum: 820,maxCells: 1463,maxEdges: 2779
+totalLength: 109888
+The estimated mshBlockNum = 7
+maxXNum: 703,maxCells: 1313,maxEdges: 2406
+totalLength: 95144
+The estimated mshBlockNum = 8
+maxXNum: 616,maxCells: 1156,maxEdges: 2114
+totalLength: 83712
+The estimated mshBlockNum = 9
+maxXNum: 548,maxCells: 1076,maxEdges: 1903
+totalLength: 75328
+The estimated mshBlockNum = 10
+maxXNum: 492,maxCells: 962,maxEdges: 1706
+totalLength: 67680
+The estimated mshBlockNum = 11
+maxXNum: 447,maxCells: 907,maxEdges: 1558
+totalLength: 61864
+The estimated mshBlockNum = 12
+maxXNum: 410,maxCells: 854,maxEdges: 1438
+totalLength: 57136
+The estimated mshBlockNum = 13
+maxXNum: 379,maxCells: 790,maxEdges: 1340
+totalLength: 53256
+The estimated mshBlockNum = 14
+maxXNum: 354,maxCells: 732,maxEdges: 1234
+totalLength: 49264
+The estimated mshBlockNum = 15
+maxXNum: 330,maxCells: 711,maxEdges: 1174
+totalLength: 46768
+The estimated mshBlockNum = 16
+maxXNum: 310,maxCells: 669,maxEdges: 1102
+totalLength: 43984
+The domain is divided into 16*16 blocks.
+start Init sendList...
+finish Init sendList!
+CPU Processor Time: 89881.896973 us
+Slave Core Time: 7197.141647 us
+check result...
+The result is correct!
+dispatching ...
+Job 44997661 has been finished.

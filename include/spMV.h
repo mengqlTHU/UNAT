@@ -1,6 +1,5 @@
 #ifndef SPMV_H
 #define SPMV_H
-#include <stdlib.h>
 #include "swMacro.h"
 #include "iterator.h"
 

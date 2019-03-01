@@ -1,6 +1,5 @@
 #ifndef TOPOLOGY_H
 #define TOPOLOGY_H
-#include <stdlib.h>
 
 using namespace std;
 #include "swMacro.h"

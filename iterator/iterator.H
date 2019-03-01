@@ -108,7 +108,7 @@ typedef void (* v2e_slaveFunPtr) (Arrays* neighbourData, Arrays* vertexData,
 		(dstArrays)->fArrayInOut[i] = (srcArrays)->fArrayInOut[i]; \
 		(dstArrays)->fArrayDims[i]  = (srcArrays)->fArrayDims[i]; \
 		(dstArrays)->floatArrays[i] \
-		= NEW(swFloat,srcArrays->fArraySizes*srcArrays->fArrayDims[i]); \
+		= NEW(swFloat,(dstArrays)->fArraySizes*dstArrays->fArrayDims[i]); \
 	} \
 	\
 	\
@@ -122,8 +122,29 @@ typedef void (* v2e_slaveFunPtr) (Arrays* neighbourData, Arrays* vertexData,
 		(dstArrays)->iArrayInOut[i] = (srcArrays)->iArrayInOut[i]; \
 		(dstArrays)->iArrayDims[i]  = (srcArrays)->iArrayDims[i]; \
 		(dstArrays)->intArrays[i] \
-		= NEW(swInt,srcArrays->iArraySizes*srcArrays->iArrayDims[i]); \
+		= NEW(swInt,(dstArrays)->iArraySizes*dstArrays->iArrayDims[i]); \
 	} \
+}
+
+// release the memory space using delete
+#define deleteArrays(Arrays) \
+{ \
+	int i; \
+	for(i=0;i<(Arrays)->fArrayNum;i++) \
+	{ \
+		delete((Arrays)->floatArrays[i]); \
+	} \
+	delete((Arrays)->fArrayInOut); \
+	delete((Arrays)->fArrayDims); \
+	delete((Arrays)->floatArrays); \
+	\
+	for(i=0;i<(Arrays)->iArrayNum;i++) \
+	{ \
+		delete((Arrays)->intArrays[i]); \
+	} \
+	delete((Arrays)->iArrayInOut); \
+	delete((Arrays)->iArrayDims); \
+	delete((Arrays)->intArrays); \
 }
 
 /****************** Macros handle float arrays ******************/
@@ -148,6 +169,31 @@ typedef void (* v2e_slaveFunPtr) (Arrays* neighbourData, Arrays* vertexData,
 	\
 	(arrays).floatArrays = NEW(swFloat*, 1);\
 	*(arrays).floatArrays = pointer; \
+}
+
+// address copy: arrays to arrays
+#define constructSingleArrays( arrays, srcArrays) \
+{ \
+	(arrays)->iArraySizes = 0; \
+	(arrays)->iArrayNum = 0; \
+	(arrays)->iArrayInOut = NULL; \
+	(arrays)->iArrayDims = NULL; \
+	(arrays)->intArrays = NULL;\
+	\
+	\
+	(arrays)->fArraySizes = (srcArrays)->fArraySizes; \
+	(arrays)->fArrayNum = (srcArrays)->fArrayNum; \
+	\
+	(arrays)->fArrayInOut = (srcArrays)->fArrayInOut; \
+	\
+	(arrays)->fArrayDims = (srcArrays)->fArrayDims; \
+	\
+	(arrays)->floatArrays = NEW(swFloat*, (arrays)->fArrayNum);\
+	int iArray; \
+	for(iArray=0;iArray<(arrays)->fArrayNum;iArray++) \
+	{ \
+		(arrays)->floatArrays[iArray] = (srcArrays)->floatArrays[iArray]; \
+	} \
 }
 
 // address copy

@@ -1,6 +1,5 @@
 #ifndef U_TO_AKH_H
 #define U_TO_AKH_H
-#include <stdlib.h>
 #include "swMacro.h"
 #include "iterator.h"
 

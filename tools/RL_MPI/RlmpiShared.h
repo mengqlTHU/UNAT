@@ -26,9 +26,9 @@ typedef int IndLDM;
 extern "C" {
 #endif
 #include <stdio.h>   
-#define FatalError(s) {                                             \
-  printf("Fatal error '%s' at %s:%d\n",s,__FILE__,__LINE__);        \
-  abort(); }
+//#define FatalError(s) {                                             
+//  printf("Fatal error '%s' at %s:%d\n",s,__FILE__,__LINE__);        
+//  abort(); }
 
     typedef struct {
         int nPutrSkew;

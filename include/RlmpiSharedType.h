@@ -20,9 +20,9 @@ extern "C" {
 #define MaxNElm 35
 typedef int ThreadID;
 #include <stdio.h>   
-#define FatalError(s) {                                             \
-  printf("Fatal error '%s' at %s:%d\n",s,__FILE__,__LINE__);        \
-  abort(); }
+//#define FatalError(s) {                                             \
+//  printf("Fatal error '%s' at %s:%d\n",s,__FILE__,__LINE__);        \
+//  abort(); }
 
 
     typedef unsigned char int8LDM;

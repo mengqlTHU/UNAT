@@ -582,6 +582,10 @@ void DirectSegmentIterator::edge2VertexIteration(Arrays* backEdgeData,
 
 	// C luncher
 	//directSegmentIterator_e2v(para);
+//	deleteArrays(this->rBackEdgeData_);
+//	deleteArrays(this->rFrontEdgeData_);
+//	delete(this->rBackEdgeData_);
+//	delete(this->rFrontEdgeData_);
 }
 
 // Vertex to edge iterator
