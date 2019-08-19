@@ -17,13 +17,23 @@ extern "C"{
 //		}
 #define define_e2v_FunPtr( funname ) \
 void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
-			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
-			swInt* endVertices)
+			Arrays* selfConnData, Arrays* vertexData, Arrays* paraData, \
+			swInt* startVertices, swInt* endVertices, FieldData *data)
 
 #define define_e2v_slaveFunPtr( funname ) \
 void slave_##funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
-			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices, \
-			swInt* endVertices)
+			Arrays* selfConnData, Arrays* vertexData, Arrays *paraData, \
+			swInt* startVertices, swInt* endVertices, FieldData *data)
+
+#define define_array_FunPtr( funname ) \
+void funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
+			Arrays* selfConnData, Arrays* vertexData, Arrays* paraData, \
+			FieldData *data)
+
+#define define_array_slaveFunPtr( funname ) \
+void slave_##funname (Arrays* backEdgeData, Arrays* frontEdgeData, \
+			Arrays* selfConnData, Arrays* vertexData, Arrays *paraData, \
+			FieldData *data)
 
 #define define_v2e_hostFunPtr( funname ) \
 void funname (Arrays* neighbourData, Arrays* vertexData, \
@@ -37,6 +47,7 @@ void funname (Arrays* neighbourData, Arrays* vertexData, \
 #define COPYIN 0 
 #define COPYOUT 1 
 #define COPYINOUT 2
+#define UPDATED 3
 
 
 // parameter struct for interation
@@ -64,17 +75,47 @@ typedef struct
 	swInt    iArraySizes;
 } Arrays;
 
+typedef struct
+{
+	Arrays *backEdgeData;
+	Arrays *frontEdgeData;
+	Arrays *selfConnData;
+	Arrays *vertexData;
+} FieldData;
+
 //function pointer
-typedef void (* e2v_hostFunPtr) (Arrays* backEdgeData, Arrays* frontEdgeData,
-			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,
-			swInt* endVertices);
-typedef void (* e2v_slaveFunPtr) (Arrays* backEdgeData, Arrays* frontEdgeData,
-			Arrays* selfConnData, Arrays* vertexData, swInt* startVertices,
-			swInt* endVertices);
+typedef void (* e2v_hostFunPtr)(Arrays* backEdgeData, Arrays* frontEdgeData,
+			Arrays* selfConnData, Arrays* vertexData, Arrays* paraData, 
+			swInt* startVertices, swInt* endVertices, FieldData *data);
+typedef void (* e2v_slaveFunPtr)(Arrays* backEdgeData,Arrays* frontEdgeData,
+			Arrays* selfConnData, Arrays* vertexData, Arrays* paraData, 
+			swInt* startVertices, swInt* endVertices, FieldData *data);
+typedef void (* array_hostFunPtr)(Arrays* backEdgeData, 
+			Arrays* frontEdgeData, Arrays* selfConnData,Arrays* vertexData,
+		   	Arrays* paraData, FieldData *data);
+typedef void (* array_slaveFunPtr)(Arrays* backEdgeData,
+			Arrays* frontEdgeData, Arrays* selfConnData,Arrays* vertexData,
+		   	Arrays* paraData, FieldData *data);
 typedef void (* v2e_hostFunPtr) (Arrays* neighbourData, Arrays* vertexData,
 			swInt* accuEdgeNumbers, swInt* neighbourVetices);
 typedef void (* v2e_slaveFunPtr) (Arrays* neighbourData, Arrays* vertexData,
 			swInt* accuEdgeNumbers, swInt* neighbourVetices);
+
+// function pointer binded with arrays
+typedef struct
+{
+	e2v_hostFunPtr fun_host;
+	e2v_slaveFunPtr fun_slave;
+	FieldData *data;
+	FieldData *data_p;
+} coupledOperator;
+
+typedef struct
+{
+	array_hostFunPtr fun_host;
+	array_slaveFunPtr fun_slave;
+	FieldData *data;
+} coupledArrayOperator;
 
 
 /*************** Macro to construct empty arrays ***************/

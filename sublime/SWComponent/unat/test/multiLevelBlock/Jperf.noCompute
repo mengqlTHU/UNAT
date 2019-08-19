@@ -1,0 +1,211 @@
+/home/export/online1/systest/swrh/lhb/UNAT_Compass/test/multiLevelBlock
+-----------------------------
+TaskId: 0 
+-----------------------------
+master_core_count_0(0x8 CYCLE):89040481286
+master_core_count_1(0x30 DTB_Single_Miss):47068675
+np_core_count_0[ 0](0x3 INST):35203787468
+np_core_count_0[ 1](0x3 INST):35203839878
+np_core_count_0[ 2](0x3 INST):35203815667
+np_core_count_0[ 3](0x3 INST):35203888114
+np_core_count_0[ 4](0x3 INST):35203821035
+np_core_count_0[ 5](0x3 INST):35203809591
+np_core_count_0[ 6](0x3 INST):35203845522
+np_core_count_0[ 7](0x3 INST):35203817662
+np_core_count_0[ 8](0x3 INST):35203883615
+np_core_count_0[ 9](0x3 INST):35203899781
+np_core_count_0[10](0x3 INST):35203827541
+np_core_count_0[11](0x3 INST):35203865166
+np_core_count_0[12](0x3 INST):35203826785
+np_core_count_0[13](0x3 INST):35203870372
+np_core_count_0[14](0x3 INST):35203882334
+np_core_count_0[15](0x3 INST):35203811264
+np_core_count_0[16](0x3 INST):35203755034
+np_core_count_0[17](0x3 INST):35203782696
+np_core_count_0[18](0x3 INST):35203847241
+np_core_count_0[19](0x3 INST):35203847512
+np_core_count_0[20](0x3 INST):35203899002
+np_core_count_0[21](0x3 INST):35203911506
+np_core_count_0[22](0x3 INST):35203820012
+np_core_count_0[23](0x3 INST):35203848284
+np_core_count_0[24](0x3 INST):35203876941
+np_core_count_0[25](0x3 INST):35203869309
+np_core_count_0[26](0x3 INST):35203869420
+np_core_count_0[27](0x3 INST):35203858762
+np_core_count_0[28](0x3 INST):35203862952
+np_core_count_0[29](0x3 INST):35203887798
+np_core_count_0[30](0x3 INST):35203860020
+np_core_count_0[31](0x3 INST):35203837088
+np_core_count_0[32](0x3 INST):35203833916
+np_core_count_0[33](0x3 INST):35203917320
+np_core_count_0[34](0x3 INST):35203883207
+np_core_count_0[35](0x3 INST):35203884488
+np_core_count_0[36](0x3 INST):35203878910
+np_core_count_0[37](0x3 INST):35203877440
+np_core_count_0[38](0x3 INST):35203909108
+np_core_count_0[39](0x3 INST):35203874942
+np_core_count_0[40](0x3 INST):35203891940
+np_core_count_0[41](0x3 INST):35203893732
+np_core_count_0[42](0x3 INST):35203939497
+np_core_count_0[43](0x3 INST):35203979181
+np_core_count_0[44](0x3 INST):35203892069
+np_core_count_0[45](0x3 INST):35203889764
+np_core_count_0[46](0x3 INST):35203917094
+np_core_count_0[47](0x3 INST):35203866958
+np_core_count_0[48](0x3 INST):35203829603
+np_core_count_0[49](0x3 INST):35203858054
+np_core_count_0[50](0x3 INST):35203847398
+np_core_count_0[51](0x3 INST):35203903965
+np_core_count_0[52](0x3 INST):35203908200
+np_core_count_0[53](0x3 INST):35203928619
+np_core_count_0[54](0x3 INST):35203871167
+np_core_count_0[55](0x3 INST):35203861516
+np_core_count_0[56](0x3 INST):35203926535
+np_core_count_0[57](0x3 INST):35203905794
+np_core_count_0[58](0x3 INST):35203902465
+np_core_count_0[59](0x3 INST):35203887076
+np_core_count_0[60](0x3 INST):35203940856
+np_core_count_0[61](0x3 INST):35203875716
+np_core_count_0[62](0x3 INST):35203897848
+np_core_count_0[63](0x3 INST):35203880190
+np_core_count_1[ 0](0xf L1ICACHE_MISS):1173
+np_core_count_1[ 1](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 2](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 3](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 4](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 5](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 6](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 7](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 8](0xf L1ICACHE_MISS):1174
+np_core_count_1[ 9](0xf L1ICACHE_MISS):1174
+np_core_count_1[10](0xf L1ICACHE_MISS):1174
+np_core_count_1[11](0xf L1ICACHE_MISS):1174
+np_core_count_1[12](0xf L1ICACHE_MISS):1174
+np_core_count_1[13](0xf L1ICACHE_MISS):1174
+np_core_count_1[14](0xf L1ICACHE_MISS):1174
+np_core_count_1[15](0xf L1ICACHE_MISS):1174
+np_core_count_1[16](0xf L1ICACHE_MISS):1174
+np_core_count_1[17](0xf L1ICACHE_MISS):1174
+np_core_count_1[18](0xf L1ICACHE_MISS):1174
+np_core_count_1[19](0xf L1ICACHE_MISS):1174
+np_core_count_1[20](0xf L1ICACHE_MISS):1174
+np_core_count_1[21](0xf L1ICACHE_MISS):1174
+np_core_count_1[22](0xf L1ICACHE_MISS):1174
+np_core_count_1[23](0xf L1ICACHE_MISS):1174
+np_core_count_1[24](0xf L1ICACHE_MISS):1174
+np_core_count_1[25](0xf L1ICACHE_MISS):1174
+np_core_count_1[26](0xf L1ICACHE_MISS):1174
+np_core_count_1[27](0xf L1ICACHE_MISS):1174
+np_core_count_1[28](0xf L1ICACHE_MISS):1174
+np_core_count_1[29](0xf L1ICACHE_MISS):1174
+np_core_count_1[30](0xf L1ICACHE_MISS):1174
+np_core_count_1[31](0xf L1ICACHE_MISS):1174
+np_core_count_1[32](0xf L1ICACHE_MISS):1174
+np_core_count_1[33](0xf L1ICACHE_MISS):1174
+np_core_count_1[34](0xf L1ICACHE_MISS):1174
+np_core_count_1[35](0xf L1ICACHE_MISS):1174
+np_core_count_1[36](0xf L1ICACHE_MISS):1174
+np_core_count_1[37](0xf L1ICACHE_MISS):1174
+np_core_count_1[38](0xf L1ICACHE_MISS):1174
+np_core_count_1[39](0xf L1ICACHE_MISS):1174
+np_core_count_1[40](0xf L1ICACHE_MISS):1174
+np_core_count_1[41](0xf L1ICACHE_MISS):1174
+np_core_count_1[42](0xf L1ICACHE_MISS):1174
+np_core_count_1[43](0xf L1ICACHE_MISS):1174
+np_core_count_1[44](0xf L1ICACHE_MISS):1174
+np_core_count_1[45](0xf L1ICACHE_MISS):1174
+np_core_count_1[46](0xf L1ICACHE_MISS):1174
+np_core_count_1[47](0xf L1ICACHE_MISS):1174
+np_core_count_1[48](0xf L1ICACHE_MISS):1174
+np_core_count_1[49](0xf L1ICACHE_MISS):1174
+np_core_count_1[50](0xf L1ICACHE_MISS):1174
+np_core_count_1[51](0xf L1ICACHE_MISS):1174
+np_core_count_1[52](0xf L1ICACHE_MISS):1174
+np_core_count_1[53](0xf L1ICACHE_MISS):1174
+np_core_count_1[54](0xf L1ICACHE_MISS):1174
+np_core_count_1[55](0xf L1ICACHE_MISS):1174
+np_core_count_1[56](0xf L1ICACHE_MISS):1174
+np_core_count_1[57](0xf L1ICACHE_MISS):1174
+np_core_count_1[58](0xf L1ICACHE_MISS):1174
+np_core_count_1[59](0xf L1ICACHE_MISS):1174
+np_core_count_1[60](0xf L1ICACHE_MISS):1174
+np_core_count_1[61](0xf L1ICACHE_MISS):1174
+np_core_count_1[62](0xf L1ICACHE_MISS):1174
+np_core_count_1[63](0xf L1ICACHE_MISS):1174
+np_core_count_2[ 0](0x1 GLD_REQ):585
+np_core_count_2[ 1](0x1 GLD_REQ):585
+np_core_count_2[ 2](0x1 GLD_REQ):585
+np_core_count_2[ 3](0x1 GLD_REQ):585
+np_core_count_2[ 4](0x1 GLD_REQ):585
+np_core_count_2[ 5](0x1 GLD_REQ):585
+np_core_count_2[ 6](0x1 GLD_REQ):585
+np_core_count_2[ 7](0x1 GLD_REQ):585
+np_core_count_2[ 8](0x1 GLD_REQ):585
+np_core_count_2[ 9](0x1 GLD_REQ):585
+np_core_count_2[10](0x1 GLD_REQ):585
+np_core_count_2[11](0x1 GLD_REQ):585
+np_core_count_2[12](0x1 GLD_REQ):585
+np_core_count_2[13](0x1 GLD_REQ):585
+np_core_count_2[14](0x1 GLD_REQ):585
+np_core_count_2[15](0x1 GLD_REQ):585
+np_core_count_2[16](0x1 GLD_REQ):585
+np_core_count_2[17](0x1 GLD_REQ):585
+np_core_count_2[18](0x1 GLD_REQ):585
+np_core_count_2[19](0x1 GLD_REQ):585
+np_core_count_2[20](0x1 GLD_REQ):585
+np_core_count_2[21](0x1 GLD_REQ):585
+np_core_count_2[22](0x1 GLD_REQ):585
+np_core_count_2[23](0x1 GLD_REQ):585
+np_core_count_2[24](0x1 GLD_REQ):585
+np_core_count_2[25](0x1 GLD_REQ):585
+np_core_count_2[26](0x1 GLD_REQ):585
+np_core_count_2[27](0x1 GLD_REQ):585
+np_core_count_2[28](0x1 GLD_REQ):585
+np_core_count_2[29](0x1 GLD_REQ):585
+np_core_count_2[30](0x1 GLD_REQ):585
+np_core_count_2[31](0x1 GLD_REQ):585
+np_core_count_2[32](0x1 GLD_REQ):585
+np_core_count_2[33](0x1 GLD_REQ):585
+np_core_count_2[34](0x1 GLD_REQ):585
+np_core_count_2[35](0x1 GLD_REQ):585
+np_core_count_2[36](0x1 GLD_REQ):585
+np_core_count_2[37](0x1 GLD_REQ):585
+np_core_count_2[38](0x1 GLD_REQ):585
+np_core_count_2[39](0x1 GLD_REQ):585
+np_core_count_2[40](0x1 GLD_REQ):585
+np_core_count_2[41](0x1 GLD_REQ):585
+np_core_count_2[42](0x1 GLD_REQ):585
+np_core_count_2[43](0x1 GLD_REQ):585
+np_core_count_2[44](0x1 GLD_REQ):585
+np_core_count_2[45](0x1 GLD_REQ):585
+np_core_count_2[46](0x1 GLD_REQ):585
+np_core_count_2[47](0x1 GLD_REQ):585
+np_core_count_2[48](0x1 GLD_REQ):585
+np_core_count_2[49](0x1 GLD_REQ):585
+np_core_count_2[50](0x1 GLD_REQ):585
+np_core_count_2[51](0x1 GLD_REQ):585
+np_core_count_2[52](0x1 GLD_REQ):585
+np_core_count_2[53](0x1 GLD_REQ):585
+np_core_count_2[54](0x1 GLD_REQ):585
+np_core_count_2[55](0x1 GLD_REQ):585
+np_core_count_2[56](0x1 GLD_REQ):585
+np_core_count_2[57](0x1 GLD_REQ):585
+np_core_count_2[58](0x1 GLD_REQ):585
+np_core_count_2[59](0x1 GLD_REQ):585
+np_core_count_2[60](0x1 GLD_REQ):585
+np_core_count_2[61](0x1 GLD_REQ):585
+np_core_count_2[62](0x1 GLD_REQ):585
+np_core_count_2[63](0x1 GLD_REQ):585
+np_gc_count_0(0x1 DMA_GET):90240
+np_gc_count_1(0x2 MEM_ACCESS):38080
+np_l2cache_count_0(0x3 L2ICACHE_ACCESS):65601
+np_l2cache_count_1(0x4 L2ICACHE_MISS):72
+Performance counter stats for job( ./test ):
+	[Host]  average cycles occur per      DTB_Single_Miss : (89040481286 / 47068675) = 1891.71 
+	[Slave] average cycles occur per                 INST : (89040481286 / 35203869999) = 2.53 
+	[Slave] average cycles occur per        L1ICACHE_MISS : (89040481286 / 1173) = 75844690.25 
+	[Slave] average cycles occur per              GLD_REQ : (89040481286 / 37440) = 2378217.98 
+	[CG]    average cycles occur per              DMA_GET : (89040481286 / 90240) = 986707.46 
+	[CG]    average cycles occur per           MEM_ACCESS : (89040481286 / 38080) = 2338247.93 
+	[CG]    average cycles occur per      L2ICACHE_ACCESS : (89040481286 / 65601) = 1357303.72 
+	[CG]    average cycles occur per        L2ICACHE_MISS : (89040481286 / 72) = 1236673351.19 

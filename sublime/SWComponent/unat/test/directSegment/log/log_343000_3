@@ -1,0 +1,41 @@
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT/tools [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT/tools'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT/tools'
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT/topology [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT/topology'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT/topology'
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT/iterator [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT/iterator'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT/iterator'
+[32mEntering path /home/export/online1/systest/swrh/lhb/UNAT/wrappedInterface [0m
+make[1]: Entering directory `/home/export/online1/systest/swrh/lhb/UNAT/wrappedInterface'
+make[1]: Leaving directory `/home/export/online1/systest/swrh/lhb/UNAT/wrappedInterface'
+swar cru libUNAT.a /home/export/online1/systest/swrh/lhb/UNAT/objects/*.o
+swranlib libUNAT.a 
+[32mBuild completed! [0m
+mpiCC  -w -I/home/export/online1/systest/swrh/lhb/UNAT/include -c test.cpp 
+mpiCC  -w -L/home/export/online1/systest/swrh/lhb/UNAT/lib -lUNAT  test.o -o test
+Job <44928793> has been submitted to queue <q_sw_expr>
+waiting for dispatch ...
+InternalFaceNum = 1014300
+InternalFaceNum = 1014300
+default constructor
+Constructor based on LDU
+default constructor
+Iterator constructor
+edgeNumber is 1014300
+vertexNumber is 343000
+default constructor
+Constructor based on LDU
+default constructor
+start Init SendList...
+finish Init SendList...
+edgeNum: 1014300
+Construct array...
+CPU Processor Time: 142693.996429 us
+Slave Core Time: 35113.096237 us
+Speed-up: 4.063840
+check result...
+The result is correct!
+dispatching ...
+Job 44928793 has been finished.

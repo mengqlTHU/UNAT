@@ -1,0 +1,893 @@
+diff --git a/include/rowSubsection.h b/include/rowSubsection.h
+index f5b37af..b8616b2 100644
+--- a/include/rowSubsection.h
++++ b/include/rowSubsection.h
+@@ -36,6 +36,10 @@ struct rowSubsection
+     label faceStart;
+     // The number of data for face field DMA
+     label nFaces;
++	// The lower bound for cell field DMA
++	label cellStart;
++	// The number of data for cell field DMA
++	label nCells;
+     // the round at which to write columes
+     label colRound;
+     // The number of subsections of columns(neighbors)
+diff --git a/include/spMV.h b/include/spMV.h
+index c265ec8..5ec4d10 100644
+--- a/include/spMV.h
++++ b/include/spMV.h
+@@ -15,25 +15,56 @@ define_e2v_slaveFunPtr(swSpMV);
+ #define swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+ 			edgeNum, vertexNum) \
+ { \
+-	int i,j; \
+-	lowerPtr = (swFloat*)malloc(edgeNum*sizeof(swFloat)); \
+-	upperPtr = (swFloat*)malloc(edgeNum*sizeof(swFloat)); \
++	int i,j,idim; \
++	lowerPtr = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
++	upperPtr = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
+ 	for(i=0;i<edgeNum;i++) \
+ 	{ \
+-		lowerPtr[i] = (swFloat)(i+1)/(i+2); \
+-		upperPtr[i] = (swFloat)(i+2)/(i+1); \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			lowerPtr[i*dims+idim] = (swFloat)(i+1)/(i+2); \
++			upperPtr[i*dims+idim] = (swFloat)(i+2)/(i+1); \
++		} \
+ 	} \
+-	xPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
+-	bPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
+-	diagPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
++	xPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	bPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	diagPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
+ 	for(i=0;i<vertexNum;i++) \
+ 	{ \
+-		bPtr[i] = (swFloat)(2*i+1)/(2*i+2); \
+-		xPtr[i] = (swFloat)(2*i+2)/(2*i+3); \
+-		diagPtr[i] = (swFloat)(i+2)/(i+3); \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			bPtr[i*dims+idim] = (swFloat)(2*i+1)/(2*i+2); \
++			xPtr[i*dims+idim] = (swFloat)(2*i+2)/(2*i+3); \
++			diagPtr[i*dims+idim] = (swFloat)(i+2)/(i+3); \
++		} \
+ 	} \
+ }
+ 
++#define swSpMV_v2e_data(edge, bPtr, xPtr, diagPtr, \
++			edgeNum, vertexNum) \
++{ \
++	int i,j,idim; \
++	edge = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
++	for(i=0;i<edgeNum;i++) \
++	{ \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			edge[i*dims+idim] = (swFloat)(i+1)/(i+2); \
++		} \
++	} \
++	xPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	bPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	diagPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	for(i=0;i<vertexNum;i++) \
++	{ \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			bPtr[i*dims+idim] = (swFloat)(2*i+1)/(2*i+2); \
++			xPtr[i*dims+idim] = (swFloat)(2*i+2)/(2*i+3); \
++			diagPtr[i*dims+idim] = (swFloat)(i+2)/(i+3); \
++		} \
++	} \
++}
+ #define swSpMV_master(cOpt, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+ 			edgeNum ,vertexNum) \
+ { \
+@@ -53,40 +84,89 @@ define_e2v_slaveFunPtr(swSpMV);
+ 	cOpt[0].data      = &data; \
+ }
+ 
+-#define swSpMV_test() \
++#define swSpMV_v2e_master(cOpt, edge, bPtr, xPtr, diagPtr, \
++			edgeNum ,vertexNum) \
++{ \
++	Arrays backEdgeData,frontEdgeData,selfConnData,vertexData; \
++	constructEmptyArray(backEdgeData); \
++	constructSingleArray(frontEdgeData, dims, (edgeNum) ,COPYIN, edge); \
++	constructSingleArray(selfConnData, dims, (vertexNum) ,COPYIN, \
++				diagPtr); \
++	constructSingleArray(vertexData, dims, (vertexNum),COPYIN,xPtr); \
++	addSingleArray(vertexData, dims, (vertexNum), COPYOUT, bPtr); \
++	FieldData data \
++		= {&backEdgeData, &frontEdgeData, &selfConnData, &vertexData}; \
++	cOpt[0].fun_slave = slave_swSpMV; \
++	cOpt[0].fun_host  = swSpMV; \
++	cOpt[0].data      = &data; \
++}
++#define swSpMV_test(pattern) \
+ { \
+ 	int optNum =1; \
+ 	coupledOperator *cOpt = (coupledOperator*)malloc(optNum*sizeof(coupledOperator)); \
+ 	coupledOperator *cOpt_m = (coupledOperator*)malloc(optNum*sizeof(coupledOperator)); \
+-	swFloat *lowerPtr, *upperPtr, *xPtr, *bPtr, *diagPtr; \
+-	swFloat *lowerPtr_m, *upperPtr_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
+-	Arrays paraData; \
+-	constructEmptyArray(paraData); \
+-	swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+-				edgeNum, vertexNum); \
+-	swSpMV_data(lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, diagPtr_m, \
+-				edgeNum, vertexNum); \
+-	swSpMV_master(cOpt_m, lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, \
+-				diagPtr_m, edgeNum, vertexNum); \
+-	\
+-	printf("test\n"); \
+-    getTime(time1); \
+-	for(int iOpt=0;iOpt<optNum;iOpt++) \
++	if(pattern==E2V) \
++	{ \
++		swFloat *lowerPtr, *upperPtr, *xPtr, *bPtr, *diagPtr; \
++		swFloat *lowerPtr_m, *upperPtr_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
++		Arrays paraData; \
++		constructEmptyArray(paraData); \
++		swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
++					edgeNum, vertexNum); \
++		swSpMV_data(lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, diagPtr_m, \
++					edgeNum, vertexNum); \
++		swSpMV_master(cOpt_m, lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, \
++					diagPtr_m, edgeNum, vertexNum); \
++		\
++		printf("test\n"); \
++	    getTime(time1); \
++		for(int iOpt=0;iOpt<optNum;iOpt++) \
++		{ \
++			cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
++						startVertices, endVertices, cOpt_m[iOpt].data); \
++		} \
++		getTime(time2); \
++		printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
++		CG_init(); \
++		getTime(time1); \
++		swSpMV_e2v_host(&iter, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
++					dims, edgeNum, vertexNum); \
++		getTime(time2); \
++		printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
++		CG_halt(); \
++		\
++		checkResult(bPtr_m, bPtr, vertexNum*dims); \
++	} else if(pattern==V2E) \
+ 	{ \
+-		cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
+-					startVertices, endVertices, cOpt_m[iOpt].data); \
++		swFloat *edge, *xPtr, *bPtr, *diagPtr; \
++		swFloat *edge_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
++		Arrays paraData; \
++		constructEmptyArray(paraData); \
++		swSpMV_v2e_data(edge, bPtr, xPtr, diagPtr, edgeNum, vertexNum); \
++		swSpMV_v2e_data(edge_m, bPtr_m, xPtr_m, diagPtr_m, edgeNum, \
++					vertexNum); \
++		swSpMV_v2e_master(cOpt_m, edge_m, bPtr_m, xPtr_m, diagPtr_m, \
++					edgeNum, vertexNum); \
++		\
++		printf("test\n"); \
++	    getTime(time1); \
++		for(int iOpt=0;iOpt<optNum;iOpt++) \
++		{ \
++			cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
++						startVertices, endVertices, cOpt_m[iOpt].data); \
++		} \
++		getTime(time2); \
++		printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
++		CG_init(); \
++		getTime(time1); \
++		swSpMV_v2e_host(&iter, edge, bPtr, xPtr, diagPtr, \
++					dims, edgeNum, vertexNum); \
++		getTime(time2); \
++		printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
++		CG_halt(); \
++		\
++		checkResult(bPtr_m, bPtr, vertexNum*dims); \
+ 	} \
+-	getTime(time2); \
+-	printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
+-	CG_init(); \
+-	getTime(time1); \
+-	swSpMV_e2v_host(&iter, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+-				edgeNum, vertexNum); \
+-	getTime(time2); \
+-	printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
+-	CG_halt(); \
+-	\
+-	checkResult(bPtr_m, bPtr, vertexNum*dims); \
+ }
+ 
+ #ifdef __cplusplus
+diff --git a/include/spMV_host.hpp b/include/spMV_host.hpp
+index 7ef450f..75d0228 100644
+--- a/include/spMV_host.hpp
++++ b/include/spMV_host.hpp
+@@ -7,7 +7,10 @@
+ using namespace UNAT;
+ 
+ void swSpMV_v2e_host(Iterator *iter, swFloat *edge, 
+-			swFloat *x, swFloat *b, swFloat *diag, swFloat *diag_2,
++			swFloat *bPtr, swFloat *xPtr, swFloat *diagPtr, 
++			swInt dims, swInt edgeNum, swInt cellNum);
++void swSpMV_e2v_host(Iterator *iter, swFloat *lowerPtr, swFloat *upperPtr, 
++			swFloat *bPtr, swFloat *xPtr, swFloat *diagPtr,
+ 			swInt dims, swInt edgeNum, swInt cellNum);
+ 
+ #endif
+diff --git a/iterator/multiLevelBlock/.multiLevelBlockIterator.cpp.swp b/iterator/multiLevelBlock/.multiLevelBlockIterator.cpp.swp
+deleted file mode 100644
+index 157f0d3..0000000
+Binary files a/iterator/multiLevelBlock/.multiLevelBlockIterator.cpp.swp and /dev/null differ
+diff --git a/iterator/multiLevelBlock/multiLevelBlockIterator.cpp b/iterator/multiLevelBlock/multiLevelBlockIterator.cpp
+index 6addb60..234b3f7 100644
+--- a/iterator/multiLevelBlock/multiLevelBlockIterator.cpp
++++ b/iterator/multiLevelBlock/multiLevelBlockIterator.cpp
+@@ -744,7 +744,7 @@ void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays *paraData,
+ 	}
+ 
+ 	swInt row, col, blockIdx, startIdx, endIdx, i;
+-	for(int spIndex=0;spIndex<this->_mshBlockNum;spIndex++)
++	for(int spIndex=this->_mshBlockNum-1;spIndex>=0;spIndex--)
+ 	{
+ 		para.spIndex = spIndex;
+ 		__real_athread_spawn((void*)slave_multiLevelBlockIterator_v2e_slave, 
+@@ -797,28 +797,29 @@ void MultiLevelBlockIterator::vertex2EdgeIteration(Arrays *paraData,
+ 			}
+ 		} else
+ 		{
+-			for(i=0;i<BLOCKNUM64K;i++)
+-			{
+-				blockIdx = i*cpeBlockNum+BLOCKNUM64K;
+-				startIdx = blockStarts[4*blockIdx+2];
+-				blockIdx = (i+1)*cpeBlockNum-1;
+-				endIdx = blockStarts[4*blockIdx+3];
++		}
++		athread_join();
++	}
++	for(i=0;i<BLOCKNUM64K;i++)
++	{
++		blockIdx = i*cpeBlockNum+BLOCKNUM64K;
++		startIdx = blockStarts[4*blockIdx+2];
++		blockIdx = (i+1)*cpeBlockNum-1;
++		endIdx = blockStarts[4*blockIdx+3];
+ 
+-				for(int iOpt=0;iOpt<optNum;iOpt++)
+-				{
+-					backEdgeData_m[iOpt].fArraySizes = 0;
+-					frontEdgeData_m[iOpt].fArraySizes= endIdx-startIdx;
+-					selfConnData_m[iOpt].fArraySizes = 0;
++		for(int iOpt=0;iOpt<optNum;iOpt++)
++		{
++			backEdgeData_m[iOpt].fArraySizes = 0;
++			frontEdgeData_m[iOpt].fArraySizes= endIdx-startIdx;
++			selfConnData_m[iOpt].fArraySizes = 0;
+ 
+-					moveArrayPtr(frontEdgeData_m, frontEdgeArrays, startIdx);
+-					cOpt[iOpt].fun_host(&backEdgeData_m[iOpt], &frontEdgeData_m[iOpt], &selfConnData_m[iOpt], &vertexData_m[iOpt], paraData,
+-								&firstEdgeVertice[startIdx], &vertexNeighbor[startIdx],
+-								&data[iOpt]);
+-				}
+-			}
++			moveArrayPtr(frontEdgeData_m, frontEdgeArrays, startIdx);
++			cOpt[iOpt].fun_host(&backEdgeData_m[iOpt], &frontEdgeData_m[iOpt], &selfConnData_m[iOpt], &vertexData_m[iOpt], paraData,
++						&firstEdgeVertice[startIdx], &vertexNeighbor[startIdx],
++						&data[iOpt]);
+ 		}
+-		athread_join();
+ 	}
++
+ #undef moveArrayPtr
+ }
+ 
+diff --git a/iterator/multiLevelBlock/multiLevelBlockIterator.o b/iterator/multiLevelBlock/multiLevelBlockIterator.o
+index 1142b42..e2bcf52 100644
+Binary files a/iterator/multiLevelBlock/multiLevelBlockIterator.o and b/iterator/multiLevelBlock/multiLevelBlockIterator.o differ
+diff --git a/iterator/rowSubsection/rowSubsectionIterator.cpp b/iterator/rowSubsection/rowSubsectionIterator.cpp
+index c0678a2..ebd5a7e 100644
+--- a/iterator/rowSubsection/rowSubsectionIterator.cpp
++++ b/iterator/rowSubsection/rowSubsectionIterator.cpp
+@@ -22,8 +22,8 @@ void slave_rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para);
+ }
+ #endif
+ 
+-#define LDM_MIN (64*1024*0.82)
+-#define LDM_MAX (64*1024*0.86)
++#define LDM_MIN (64*1024*0.92)
++#define LDM_MAX (64*1024*0.96)
+ 
+ namespace UNAT
+ {
+@@ -61,6 +61,7 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 
+ 	float coe = 1.0;
+ 	int istep = 0;
++	int totalTotalCols = 0;
+ 	while(true)
+ 	{
+ 		istep++;
+@@ -70,6 +71,7 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 					4, lPtr, uPtr, maxFaces, edgeWeights[0]);
+ 		const rowSubsection** secs = this->secs_->getSubsections();
+ 		swInt secNumInSeg = this->secs_->getSecNumInSeg();
++		totalTotalCols = 0;
+ 		for(int iseg=0;iseg<BLOCKNUM64K;iseg++)
+ 		{
+ 			this->maxFacesInSeg_[iseg] = 0;
+@@ -80,6 +82,8 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 				const rowSubsection subsection  = secs[iseg][isec];
+ 				const swInt faceStart           = subsection.faceStart;
+ 				const swInt nFaces              = subsection.nFaces;
++				const swInt cellStart           = subsection.cellStart;
++				const swInt nCells              = subsection.nCells;
+ 				const swInt nSecs               = subsection.nSecs;
+ 				const swInt *colStartsAndCounts
+ 					= subsection.colStartsAndCounts;
+@@ -93,11 +97,12 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 						maxColNum_ : colStartsAndCounts[2*totalColIdx-1];
+ 					totalColIdx--;
+ 				}
++				totalTotalCols += totalCols;
+ 				maxColsInSeg_[iseg] = maxColsInSeg_[iseg] > totalCols
+ 					? maxColsInSeg_[iseg] : totalCols;
+ 				maxFacesInSeg_[iseg] = maxFacesInSeg_[iseg] > nFaces
+ 					? maxFacesInSeg_[iseg] : nFaces;
+-				swInt nCells = lPtr[faceStart+nFaces-1]-lPtr[faceStart]+1;
++//				swInt nCells = lPtr[faceStart+nFaces-1]-lPtr[faceStart]+1;
+ 				maxCellsInSeg_[iseg] = maxCellsInSeg_[iseg] > nCells
+ 					? maxCellsInSeg_[iseg] : nCells;
+ 			}
+@@ -108,7 +113,7 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 				+ maxFacesInSeg_[iseg]*edgeWeights[0]*sizeof(swFloat)
+ 				// Cells
+ 				+ (maxColsInSeg_[iseg]+maxCellsInSeg_[iseg])
+-				* cellWeights[0]*sizeof(swFloat);
++				* (cellWeights[0]+1)*sizeof(swFloat);
+ 			maxTotalLength = maxTotalLength > totalLength
+ 				? maxTotalLength : totalLength;
+ 		}
+@@ -127,6 +132,7 @@ RowSubsectionIterator::RowSubsectionIterator(Topology &topo,
+ 		delete(this->secs_);
+ 	}
+ 	printf("RowSubsection--secInSeg: %d\n",this->secs_->getSecNumInSeg());
++	printf("nFaces:%d, nCells:%d, totalCols: %d, DMA_size:%f GB\n",fSize, cSize, totalTotalCols,(double)((fSize*edgeWeights[0]+cSize*(cellWeights[0]+1)+totalTotalCols*cellWeights[0]/2)*sizeof(swFloat)+fSize*2*sizeof(swInt))/1024/1024/1024);
+ }
+ 
+ 
+diff --git a/iterator/rowSubsection/rowSubsectionIterator.o b/iterator/rowSubsection/rowSubsectionIterator.o
+index 17c7237..7d5c472 100644
+Binary files a/iterator/rowSubsection/rowSubsectionIterator.o and b/iterator/rowSubsection/rowSubsectionIterator.o differ
+diff --git a/iterator/rowSubsection/rowSubsectionIterator_slave.c b/iterator/rowSubsection/rowSubsectionIterator_slave.c
+index 7d2ba60..766776b 100644
+--- a/iterator/rowSubsection/rowSubsectionIterator_slave.c
++++ b/iterator/rowSubsection/rowSubsectionIterator_slave.c
+@@ -393,6 +393,7 @@ void rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para)
+ 	int eMax=0,vMax=0,sMax=0;
+ 	int maxDims=0;
+ 	swFloat *tmpData;
++//	swInt cellStart, nCells;
+ 	//char *ldm_tag = ldm_space_end;
+ 	//ldm_space_end += 1024;
+ 	for(isec=0;isec<secNumInSeg;isec++)
+@@ -400,6 +401,8 @@ void rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para)
+ 		const struct rowSubsection subsection = secs[_MYID][isec];
+ 		const swInt faceStart          = subsection.faceStart;
+ 		const swInt nFaces             = subsection.nFaces;
++		const swInt cellStart          = subsection.cellStart;
++		const swInt nCells             = subsection.nCells;
+ 		const swInt nSecs              = subsection.nSecs;
+ 		const swInt colRound           = subsection.colRound;
+ 		const swInt colSAndC[nSecs*2];
+@@ -410,8 +413,9 @@ void rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para)
+ 		DMA_IGet(owner,    &lPtr[faceStart], nFaces*sizeof(swInt), &status);
+ 		DMA_IGet(neighbor, &uPtr[faceStart], nFaces*sizeof(swInt), &status);
+ 		DMA_Wait(&status, 3);
+-		const swInt cellStart = owner[0];
+-		const swInt nCells    = owner[nFaces-1] - owner[0] + 1;
++//		if(isec==0) cellStart = owner[0];
++//		else cellStart += nCells;
++//		nCells    = owner[nFaces-1] - cellStart + 1;
+ 
+ 		int iArray;
+ 		for(iOpt=0;iOpt<optNum;iOpt++)
+@@ -643,26 +647,24 @@ void rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para)
+ 
+ 			// Compute
+ 			// Diagonal
+-			frontEdgeData[iOpt].fArraySizes = 0;
++//			frontEdgeData[iOpt].fArraySizes = 0;
+ //			backEdgeData[iOpt].fArraySizes = 0;
+-			selfConnData[iOpt].fArraySizes  = nCells;
+-			fun_slave(NULL,NULL,NULL,NULL,NULL,
+-						owner,neighbor,&data_s[iOpt]);
+-//			swFloat *x = accessArray(&vertexData, 0);
+-//			swFloat *b = accessArray(&vertexData, 1);
+-//			swFloat *edge = accessArray(&frontEdgeData, 0);
+-//			swFloat *diag = accessArray(&selfConnData, 0);
+-//
++//			selfConnData[iOpt].fArraySizes  = nCells;
++//			fun_slave(NULL,NULL,NULL,NULL,NULL,
++//						owner,neighbor,&data_s[iOpt]);
++//			swFloat *x = accessArray(&vertexData[iOpt], 0);
++//			swFloat *b = accessArray(&vertexData[iOpt], 1);
++//			swFloat *diag = accessArray(&selfConnData[iOpt], 0);
+ //				for(icell=0;icell<nCells;icell++)
+ //				{
+-////if(icell+cellStart==30120) printf("%d,%d,%d,%f,%f,%f\n",_MYID,icell,cellStart,b[icell],diag[icell],x[icell]);
+-//					b[icell] += diag[icell]*x[icell];
++////if(icell+cellStart==895) printf("%d,%d,%d,%f,%f,%f\n",_MYID,icell,cellStart,b[icell],diag[icell],x[icell]);
++//					b[icell] = diag[icell]*x[icell];
+ //				}
+ 
+ 			// FrontEdgeData
+ 			frontEdgeData[iOpt].fArraySizes = nFaces;
+-//			backEdgeData[iOpt].fArraySizes = nFaces;
+-			selfConnData[iOpt].fArraySizes  = 0;
++			backEdgeData[iOpt].fArraySizes = nFaces;
++			selfConnData[iOpt].fArraySizes  = nCells;
+ 			fun_slave(NULL,NULL,NULL,NULL,NULL,
+ 						owner,neighbor,&data_s[iOpt]);
+ 
+@@ -729,6 +731,7 @@ void rowSubsectionIterator_e2v_slave(RSS_vertex2EdgePara *para)
+ 										[iArray][colStart*dims],
+ 										y,
+ 										colNum*dims*sizeof(swFloat));
++//if(_MYID==0) printf("%f\n",vertexData_m[0].floatArrays[1][15]);
+ 						}
+ 						tmpStart += colNum;
+ 					}
+diff --git a/iterator/rowSubsection/rowSubsectionIterator_slave.o b/iterator/rowSubsection/rowSubsectionIterator_slave.o
+index 6c4375f..58d2794 100644
+Binary files a/iterator/rowSubsection/rowSubsectionIterator_slave.o and b/iterator/rowSubsection/rowSubsectionIterator_slave.o differ
+diff --git a/lib/libUNAT.a b/lib/libUNAT.a
+index 27f2556..04d87ae 100644
+Binary files a/lib/libUNAT.a and b/lib/libUNAT.a differ
+diff --git a/libUNAT.a b/libUNAT.a
+index 27f2556..04d87ae 100644
+Binary files a/libUNAT.a and b/libUNAT.a differ
+diff --git a/objects/multiLevelBlockIterator.o b/objects/multiLevelBlockIterator.o
+index 1142b42..e2bcf52 100644
+Binary files a/objects/multiLevelBlockIterator.o and b/objects/multiLevelBlockIterator.o differ
+diff --git a/objects/rowSubsectionIterator.o b/objects/rowSubsectionIterator.o
+index 17c7237..7d5c472 100644
+Binary files a/objects/rowSubsectionIterator.o and b/objects/rowSubsectionIterator.o differ
+diff --git a/objects/rowSubsectionIterator_slave.o b/objects/rowSubsectionIterator_slave.o
+index 6c4375f..58d2794 100644
+Binary files a/objects/rowSubsectionIterator_slave.o and b/objects/rowSubsectionIterator_slave.o differ
+diff --git a/objects/rowSubsections.o b/objects/rowSubsections.o
+index dbb2ff5..cfeab6b 100644
+Binary files a/objects/rowSubsections.o and b/objects/rowSubsections.o differ
+diff --git a/objects/spMV_host.o b/objects/spMV_host.o
+index cbdb8a0..4ff6662 100644
+Binary files a/objects/spMV_host.o and b/objects/spMV_host.o differ
+diff --git a/objects/spMV_ptr.o b/objects/spMV_ptr.o
+index 0e289fd..dc43f64 100644
+Binary files a/objects/spMV_ptr.o and b/objects/spMV_ptr.o differ
+diff --git a/objects/spMV_ptr_slave.o b/objects/spMV_ptr_slave.o
+index 4023f7e..53079ad 100644
+Binary files a/objects/spMV_ptr_slave.o and b/objects/spMV_ptr_slave.o differ
+diff --git a/test/multiLevelBlock/test b/test/multiLevelBlock/test
+deleted file mode 100755
+index 1d13395..0000000
+Binary files a/test/multiLevelBlock/test and /dev/null differ
+diff --git a/test/multiLevelBlock/test.cpp b/test/multiLevelBlock/test.cpp
+index 15135e1..fe02f37 100644
+--- a/test/multiLevelBlock/test.cpp
++++ b/test/multiLevelBlock/test.cpp
+@@ -217,8 +217,8 @@ int main()
+ 
+ 	CG_init();
+ 	gettimeofday(&t1,NULL);
+-	swSpMV_v2e_host(&mlbIter, edge_s, x_s, b_s, diag_s, diag_s2, 
+-				dims, edgeNum, vertexNum);
++	swSpMV_v2e_host(&mlbIter, edge_s, x_s, b_s, diag_s, 
++				dims, edgeNum*2, vertexNum);
+ 	gettimeofday(&t2,NULL);
+ 	timeuse = 1000000*(t2.tv_sec-t1.tv_sec)+(t2.tv_usec-t1.tv_usec);
+ 	printf("Slave Core Time: %d us\n",timeuse);
+diff --git a/test/multiLevelBlock/test.o b/test/multiLevelBlock/test.o
+index 7df40e5..0be77c5 100644
+Binary files a/test/multiLevelBlock/test.o and b/test/multiLevelBlock/test.o differ
+diff --git a/test/rowSubsection/perf.sh b/test/rowSubsection/perf.sh
+index 548eeaa..1d103b9 100644
+--- a/test/rowSubsection/perf.sh
++++ b/test/rowSubsection/perf.sh
+@@ -1,7 +1,7 @@
+ #1/bin/bash
+ #set -x
+-DATA=../data/other
+-LOG_NAME=other
++DATA=../data/goodwin
++LOG_NAME=goodwin/BW/LDU
+ ROOT=${PWD}
+ MESH_DIR=${PWD}/${DATA}
+ LOG_DIR=${PWD}/log/${LOG_NAME}
+@@ -43,7 +43,8 @@ do
+ 		SLAVE=`cat ${LOG_DIR}/log_${MESH_SIZE}_${DIM_ARR[j]} | grep Slave | sed 's!Slave Core Time:\ \([0-9]\)!\1!g' `
+ 		MASTER=`cat ${LOG_DIR}/log_${MESH_SIZE}_${DIM_ARR[j]} | grep CPU | sed 's!CPU Processor Time:\ \([0-9]\)!\1!g' `
+ 		CORRECT=`cat ${LOG_DIR}/log_${MESH_SIZE}_${DIM_ARR[j]} | grep correct`
+-		echo "Mesh size: ${MESH_SIZE} Dimension: ${DIM_ARR[j]} Slave: ${SLAVE} Master: ${MASTER} Result: ${CORRECT}"
++		DMA_SIZE=`cat ${LOG_DIR}/log_${MESH_SIZE}_${DIM_ARR[j]} | grep DMA_size`
++		echo "Mesh size: ${MESH_SIZE} Dimension: ${DIM_ARR[j]} Slave: ${SLAVE} Master: ${MASTER} Result: ${CORRECT} DMA_size: ${DMA_SIZE}"
+ 	done
+ #	tmp=`cat ${TEST_FILE} | grep "char owner" | sed "s/\".*\"/\"${OWNER_NAME}\"/g" `
+ done
+diff --git a/test/rowSubsection/test b/test/rowSubsection/test
+old mode 100755
+new mode 100644
+index 831e84f..3d41ae1
+Binary files a/test/rowSubsection/test and b/test/rowSubsection/test differ
+diff --git a/test/rowSubsection/test.cpp b/test/rowSubsection/test.cpp
+index d9e0e08..e26ddf1 100644
+--- a/test/rowSubsection/test.cpp
++++ b/test/rowSubsection/test.cpp
+@@ -16,7 +16,7 @@
+ 
+ using namespace UNAT;
+ 
+-#define NONZERONUM 880265
++#define NONZERONUM 637200
+ #define DIMENSION 1
+ 
+ int* readFile(char* name);
+@@ -87,8 +87,8 @@ double time1, time2, time3, time4;
+ 
+ int main()
+ {
+-	char owner[] = "../data/goodwin/owner_goodwin071";
+-	char neighbor[] = "../data/goodwin/neighbour_goodwin071";
++	char owner[] = "../data/owner_216000";
++	char neighbor[] = "../data/neighbour_216000";
+ 	swInt *rowAddr = readFile(owner);
+ 	swInt *colAddr = readFile(neighbor);
+ 	Topology* topo = Topology::constructFromEdge(rowAddr,colAddr,NONZERONUM);
+@@ -97,8 +97,8 @@ int main()
+ 	swInt vertexNum = topo->getVertexNumber();
+ 	swInt edgeNum   = topo->getEdgeNumber();
+ 
+-	std::vector<swInt> cellWeights(vertexNum, 29*dims);
+-	std::vector<swInt> edgeWeights(edgeNum, 11*dims);
++	std::vector<swInt> cellWeights(vertexNum, 3*dims);
++	std::vector<swInt> edgeWeights(edgeNum, 2*dims);
+ 
+ 	// assign value
+ 	printf("edgeNum: %d\n",topo->getEdgeNumber());
+@@ -107,8 +107,10 @@ int main()
+ 
+ //	MultiLevelBlockIterator mlbIter(*topo, &cellWeights[0], &edgeWeights[0], true);
+ //	RowSubsectionIterator rssIter(*(mlbIter.getTopology()), &cellWeights[0], &edgeWeights[0], 
+-	RowSubsectionIterator iter(*topo, &cellWeights[0], &edgeWeights[0], 
+-				E2V, true);
++//	RowSubsectionIterator iter(*topo, &cellWeights[0], &edgeWeights[0], 
++//				E2V, true);
++	MultiLevelBlockIterator iter(*topo, &cellWeights[0], &edgeWeights[0],
++				true);
+ 
+ //	// MPE
+ //	swFloat *edge = (swFloat*)malloc(edgeNum*2*dims*sizeof(swFloat));
+@@ -218,11 +220,12 @@ int main()
+ //
+ //	checkResult(b,b_s,vertexNum*dims);
+ 
+-	//swInt *startVertices = rssIter.getTopology()->getFirstEdgeVertices();
+-	//swInt *endVertices = rssIter.getTopology()->getVertexNeighbours();
+-	swInt *startVertices = rssIter.getTopology()->getStartVertices();
+-	swInt *endVertices = rssIter.getTopology()->getEndVertices();
+-	umbt_conv_test();
++	//swInt *startVertices = iter.getTopology()->getFirstEdgeVertices();
++	//swInt *endVertices = iter.getTopology()->getVertexNeighbours();
++	swInt *startVertices = iter.getTopology()->getStartVertices();
++	swInt *endVertices = iter.getTopology()->getEndVertices();
++//	umbt_conv_test();
++	swSpMV_test(E2V);
+ //	swMerge5_test();
+ //	swMerge5_lam_test();
+ //	swMerge5_su_test();
+diff --git a/test/rowSubsection/test.o b/test/rowSubsection/test.o
+index 65c7b66..8173f31 100644
+Binary files a/test/rowSubsection/test.o and b/test/rowSubsection/test.o differ
+diff --git a/tools/onChipTrans b/tools/onChipTrans
+--- a/tools/onChipTrans
++++ b/tools/onChipTrans
+@@ -1 +1 @@
+-Subproject commit 816845b5621d05c9db691688cc0ef450d3c61a21
++Subproject commit 816845b5621d05c9db691688cc0ef450d3c61a21-dirty
+diff --git a/tools/rowSubsections b/tools/rowSubsections
+--- a/tools/rowSubsections
++++ b/tools/rowSubsections
+@@ -1 +1 @@
+-Subproject commit 3febc8c61951416d1e246a340cebefe98c35f171
++Subproject commit 3febc8c61951416d1e246a340cebefe98c35f171-dirty
+diff --git a/wrappedInterface/spMV/spMV.h b/wrappedInterface/spMV/spMV.h
+index c265ec8..5ec4d10 100644
+--- a/wrappedInterface/spMV/spMV.h
++++ b/wrappedInterface/spMV/spMV.h
+@@ -15,25 +15,56 @@ define_e2v_slaveFunPtr(swSpMV);
+ #define swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+ 			edgeNum, vertexNum) \
+ { \
+-	int i,j; \
+-	lowerPtr = (swFloat*)malloc(edgeNum*sizeof(swFloat)); \
+-	upperPtr = (swFloat*)malloc(edgeNum*sizeof(swFloat)); \
++	int i,j,idim; \
++	lowerPtr = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
++	upperPtr = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
+ 	for(i=0;i<edgeNum;i++) \
+ 	{ \
+-		lowerPtr[i] = (swFloat)(i+1)/(i+2); \
+-		upperPtr[i] = (swFloat)(i+2)/(i+1); \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			lowerPtr[i*dims+idim] = (swFloat)(i+1)/(i+2); \
++			upperPtr[i*dims+idim] = (swFloat)(i+2)/(i+1); \
++		} \
+ 	} \
+-	xPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
+-	bPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
+-	diagPtr = (swFloat*)malloc(vertexNum*sizeof(swFloat)); \
++	xPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	bPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	diagPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
+ 	for(i=0;i<vertexNum;i++) \
+ 	{ \
+-		bPtr[i] = (swFloat)(2*i+1)/(2*i+2); \
+-		xPtr[i] = (swFloat)(2*i+2)/(2*i+3); \
+-		diagPtr[i] = (swFloat)(i+2)/(i+3); \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			bPtr[i*dims+idim] = (swFloat)(2*i+1)/(2*i+2); \
++			xPtr[i*dims+idim] = (swFloat)(2*i+2)/(2*i+3); \
++			diagPtr[i*dims+idim] = (swFloat)(i+2)/(i+3); \
++		} \
+ 	} \
+ }
+ 
++#define swSpMV_v2e_data(edge, bPtr, xPtr, diagPtr, \
++			edgeNum, vertexNum) \
++{ \
++	int i,j,idim; \
++	edge = (swFloat*)malloc(edgeNum*dims*sizeof(swFloat)); \
++	for(i=0;i<edgeNum;i++) \
++	{ \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			edge[i*dims+idim] = (swFloat)(i+1)/(i+2); \
++		} \
++	} \
++	xPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	bPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	diagPtr = (swFloat*)malloc(vertexNum*dims*sizeof(swFloat)); \
++	for(i=0;i<vertexNum;i++) \
++	{ \
++		for(idim=0;idim<dims;idim++) \
++		{ \
++			bPtr[i*dims+idim] = (swFloat)(2*i+1)/(2*i+2); \
++			xPtr[i*dims+idim] = (swFloat)(2*i+2)/(2*i+3); \
++			diagPtr[i*dims+idim] = (swFloat)(i+2)/(i+3); \
++		} \
++	} \
++}
+ #define swSpMV_master(cOpt, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+ 			edgeNum ,vertexNum) \
+ { \
+@@ -53,40 +84,89 @@ define_e2v_slaveFunPtr(swSpMV);
+ 	cOpt[0].data      = &data; \
+ }
+ 
+-#define swSpMV_test() \
++#define swSpMV_v2e_master(cOpt, edge, bPtr, xPtr, diagPtr, \
++			edgeNum ,vertexNum) \
++{ \
++	Arrays backEdgeData,frontEdgeData,selfConnData,vertexData; \
++	constructEmptyArray(backEdgeData); \
++	constructSingleArray(frontEdgeData, dims, (edgeNum) ,COPYIN, edge); \
++	constructSingleArray(selfConnData, dims, (vertexNum) ,COPYIN, \
++				diagPtr); \
++	constructSingleArray(vertexData, dims, (vertexNum),COPYIN,xPtr); \
++	addSingleArray(vertexData, dims, (vertexNum), COPYOUT, bPtr); \
++	FieldData data \
++		= {&backEdgeData, &frontEdgeData, &selfConnData, &vertexData}; \
++	cOpt[0].fun_slave = slave_swSpMV; \
++	cOpt[0].fun_host  = swSpMV; \
++	cOpt[0].data      = &data; \
++}
++#define swSpMV_test(pattern) \
+ { \
+ 	int optNum =1; \
+ 	coupledOperator *cOpt = (coupledOperator*)malloc(optNum*sizeof(coupledOperator)); \
+ 	coupledOperator *cOpt_m = (coupledOperator*)malloc(optNum*sizeof(coupledOperator)); \
+-	swFloat *lowerPtr, *upperPtr, *xPtr, *bPtr, *diagPtr; \
+-	swFloat *lowerPtr_m, *upperPtr_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
+-	Arrays paraData; \
+-	constructEmptyArray(paraData); \
+-	swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+-				edgeNum, vertexNum); \
+-	swSpMV_data(lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, diagPtr_m, \
+-				edgeNum, vertexNum); \
+-	swSpMV_master(cOpt_m, lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, \
+-				diagPtr_m, edgeNum, vertexNum); \
+-	\
+-	printf("test\n"); \
+-    getTime(time1); \
+-	for(int iOpt=0;iOpt<optNum;iOpt++) \
++	if(pattern==E2V) \
++	{ \
++		swFloat *lowerPtr, *upperPtr, *xPtr, *bPtr, *diagPtr; \
++		swFloat *lowerPtr_m, *upperPtr_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
++		Arrays paraData; \
++		constructEmptyArray(paraData); \
++		swSpMV_data(lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
++					edgeNum, vertexNum); \
++		swSpMV_data(lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, diagPtr_m, \
++					edgeNum, vertexNum); \
++		swSpMV_master(cOpt_m, lowerPtr_m, upperPtr_m, bPtr_m, xPtr_m, \
++					diagPtr_m, edgeNum, vertexNum); \
++		\
++		printf("test\n"); \
++	    getTime(time1); \
++		for(int iOpt=0;iOpt<optNum;iOpt++) \
++		{ \
++			cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
++						startVertices, endVertices, cOpt_m[iOpt].data); \
++		} \
++		getTime(time2); \
++		printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
++		CG_init(); \
++		getTime(time1); \
++		swSpMV_e2v_host(&iter, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
++					dims, edgeNum, vertexNum); \
++		getTime(time2); \
++		printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
++		CG_halt(); \
++		\
++		checkResult(bPtr_m, bPtr, vertexNum*dims); \
++	} else if(pattern==V2E) \
+ 	{ \
+-		cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
+-					startVertices, endVertices, cOpt_m[iOpt].data); \
++		swFloat *edge, *xPtr, *bPtr, *diagPtr; \
++		swFloat *edge_m, *xPtr_m, *bPtr_m, *diagPtr_m; \
++		Arrays paraData; \
++		constructEmptyArray(paraData); \
++		swSpMV_v2e_data(edge, bPtr, xPtr, diagPtr, edgeNum, vertexNum); \
++		swSpMV_v2e_data(edge_m, bPtr_m, xPtr_m, diagPtr_m, edgeNum, \
++					vertexNum); \
++		swSpMV_v2e_master(cOpt_m, edge_m, bPtr_m, xPtr_m, diagPtr_m, \
++					edgeNum, vertexNum); \
++		\
++		printf("test\n"); \
++	    getTime(time1); \
++		for(int iOpt=0;iOpt<optNum;iOpt++) \
++		{ \
++			cOpt_m[iOpt].fun_host(NULL, NULL, NULL, NULL, NULL, \
++						startVertices, endVertices, cOpt_m[iOpt].data); \
++		} \
++		getTime(time2); \
++		printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
++		CG_init(); \
++		getTime(time1); \
++		swSpMV_v2e_host(&iter, edge, bPtr, xPtr, diagPtr, \
++					dims, edgeNum, vertexNum); \
++		getTime(time2); \
++		printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
++		CG_halt(); \
++		\
++		checkResult(bPtr_m, bPtr, vertexNum*dims); \
+ 	} \
+-	getTime(time2); \
+-	printf("CPU Processor Time: %f us\n", (time2-time1)*1000000); \
+-	CG_init(); \
+-	getTime(time1); \
+-	swSpMV_e2v_host(&iter, lowerPtr, upperPtr, bPtr, xPtr, diagPtr, \
+-				edgeNum, vertexNum); \
+-	getTime(time2); \
+-	printf("Slave Core Time: %f us\n", (time2-time1)*1000000); \
+-	CG_halt(); \
+-	\
+-	checkResult(bPtr_m, bPtr, vertexNum*dims); \
+ }
+ 
+ #ifdef __cplusplus
+diff --git a/wrappedInterface/spMV/spMV_host.cpp b/wrappedInterface/spMV/spMV_host.cpp
+index d4812b9..49fd44b 100644
+--- a/wrappedInterface/spMV/spMV_host.cpp
++++ b/wrappedInterface/spMV/spMV_host.cpp
+@@ -2,21 +2,22 @@
+ #include "spMV.h"
+ 
+ void swSpMV_v2e_host(Iterator *iter, swFloat *edge, 
+-			swFloat *x, swFloat *b, swFloat *diag, swFloat *diag_2, 
++			swFloat *bPtr, swFloat *xPtr, swFloat *diagPtr, 
+ 			swInt dims, swInt edgeNum,swInt cellNum)
+ {
+ 	int optNum = 2;
+-	coupledOperator *cOpt=(coupledOperator*)malloc(2*sizeof(coupledOperator));
++	coupledOperator *cOpt
++		= (coupledOperator*)malloc(optNum*sizeof(coupledOperator));
+ 	Arrays paraData;
+ 	constructEmptyArray(paraData);
+ 
+ 	Arrays frontEdgeData[optNum], backEdgeData[optNum];
+ 	Arrays selfConnData[optNum], vertexData[optNum];
+ 	FieldData data[optNum];
+-	constructSingleArray(frontEdgeData[0], dims, edgeNum*2, COPYIN, edge);
+-	constructSingleArray(selfConnData[0], dims, cellNum, COPYIN, diag);
+-	constructSingleArray(vertexData[0], dims, cellNum, COPYIN, x);
+-	addSingleArray(vertexData[0], dims, cellNum, COPYOUT, b);
++	constructSingleArray(frontEdgeData[0], dims, edgeNum, COPYIN, edge);
++	constructSingleArray(selfConnData[0], dims, cellNum, COPYIN, diagPtr);
++	constructSingleArray(vertexData[0], dims, cellNum, COPYIN, xPtr);
++	addSingleArray(vertexData[0], dims, cellNum, COPYOUT, bPtr);
+ 	constructEmptyArray(backEdgeData[0]);
+    	data[0].backEdgeData  = &backEdgeData[0];
+    	data[0].frontEdgeData = &frontEdgeData[0];
+@@ -26,10 +27,10 @@ void swSpMV_v2e_host(Iterator *iter, swFloat *edge,
+ 	cOpt[0].fun_host = swSpMV;
+ 	cOpt[0].fun_slave = slave_swSpMV;
+ 
+-	constructSingleArray(frontEdgeData[1], dims, edgeNum*2, UPDATED, edge);
+-	constructSingleArray(selfConnData[1], dims, cellNum, COPYIN, diag_2);
+-	constructSingleArray(vertexData[1], dims, cellNum, UPDATED, x);
+-	addSingleArray(vertexData[1], dims, cellNum, COPYOUT, b);
++	constructSingleArray(frontEdgeData[1], dims, edgeNum, UPDATED, edge);
++	constructSingleArray(selfConnData[1], dims, cellNum, COPYIN, diagPtr);
++	constructSingleArray(vertexData[1], dims, cellNum, UPDATED, xPtr);
++	addSingleArray(vertexData[1], dims, cellNum, COPYOUT, bPtr);
+ 	constructEmptyArray(backEdgeData[1]);
+    	data[1].backEdgeData  = &backEdgeData[1];
+    	data[1].frontEdgeData = &frontEdgeData[1];
+diff --git a/wrappedInterface/spMV/spMV_host.hpp b/wrappedInterface/spMV/spMV_host.hpp
+index 7ef450f..75d0228 100644
+--- a/wrappedInterface/spMV/spMV_host.hpp
++++ b/wrappedInterface/spMV/spMV_host.hpp
+@@ -7,7 +7,10 @@
+ using namespace UNAT;
+ 
+ void swSpMV_v2e_host(Iterator *iter, swFloat *edge, 
+-			swFloat *x, swFloat *b, swFloat *diag, swFloat *diag_2,
++			swFloat *bPtr, swFloat *xPtr, swFloat *diagPtr, 
++			swInt dims, swInt edgeNum, swInt cellNum);
++void swSpMV_e2v_host(Iterator *iter, swFloat *lowerPtr, swFloat *upperPtr, 
++			swFloat *bPtr, swFloat *xPtr, swFloat *diagPtr,
+ 			swInt dims, swInt edgeNum, swInt cellNum);
+ 
+ #endif
+diff --git a/wrappedInterface/spMV/spMV_host.o b/wrappedInterface/spMV/spMV_host.o
+index cbdb8a0..4ff6662 100644
+Binary files a/wrappedInterface/spMV/spMV_host.o and b/wrappedInterface/spMV/spMV_host.o differ
+diff --git a/wrappedInterface/spMV/spMV_ptr.c b/wrappedInterface/spMV/spMV_ptr.c
+index d0eb7e5..0346612 100644
+--- a/wrappedInterface/spMV/spMV_ptr.c
++++ b/wrappedInterface/spMV/spMV_ptr.c
+@@ -18,7 +18,7 @@ define_e2v_FunPtr(swSpMV)
+ 	{
+ 		for(iDim=0;iDim<dims;iDim++)
+ 		{
+-//if(ivertex==30120) printf("diag: %f,%f,%f\n",b[ivertex],diag[ivertex],x[ivertex]);
++//if(ivertex==895) printf("diag: %f,%f,%f\n",b[ivertex],diag[ivertex],x[ivertex]);
+ 			b[ivertex*dims+iDim]
+ 				+= diag[ivertex*dims+iDim]*x[ivertex*dims+iDim];
+ //			b[ivertex]
+@@ -54,7 +54,7 @@ define_e2v_FunPtr(swSpMV)
+ 	{
+ 		for(iDim=0;iDim<dims;iDim++)
+ 		{
+-//if(endVertices[iedge]==5) printf("neighbor:%d,%d,%f,%f,%f\n",iedge,startVertices[iedge],b[endVertices[iedge]],lower[iedge],x[startVertices[iedge]]);
++//if(endVertices[iedge]==15) printf("neighbor:%d,%d,%f,%f,%f\n",iedge,startVertices[iedge],b[endVertices[iedge]],lower[iedge],x[startVertices[iedge]]);
+ 			b[endVertices[iedge]*dims+iDim]
+ 				+= lower[iedge*dims+iDim]*x[startVertices[iedge]*dims+iDim];	
+ //			b[endVertices[iedge]]
+diff --git a/wrappedInterface/spMV/spMV_ptr.o b/wrappedInterface/spMV/spMV_ptr.o
+index 0e289fd..dc43f64 100644
+Binary files a/wrappedInterface/spMV/spMV_ptr.o and b/wrappedInterface/spMV/spMV_ptr.o differ
+diff --git a/wrappedInterface/spMV/spMV_ptr_slave.o b/wrappedInterface/spMV/spMV_ptr_slave.o
+index 4023f7e..53079ad 100644
+Binary files a/wrappedInterface/spMV/spMV_ptr_slave.o and b/wrappedInterface/spMV/spMV_ptr_slave.o differ
+diff --git a/wrappedInterface/umbt_conv/.umbt_conv_ptr.c.swp b/wrappedInterface/umbt_conv/.umbt_conv_ptr.c.swp
+deleted file mode 100644
+index 439b682..0000000
+Binary files a/wrappedInterface/umbt_conv/.umbt_conv_ptr.c.swp and /dev/null differ

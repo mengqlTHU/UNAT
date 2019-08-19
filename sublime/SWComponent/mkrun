@@ -1,0 +1,4 @@
+(cd tools && make)
+(cd unat && make)
+(cd interface && make)
+(cd .. && sh mkrun)

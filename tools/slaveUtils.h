@@ -14,13 +14,19 @@
                                             :"=r"(__tmp__):"r"(_n_),"r"(_addr_):"memory");        \
 }
 
-//if(_MYID==28) printf("allocated LDM size: %d at LINE %d, allocate size: %d, total size: %d\n",(char*)ptr-ldm_space, __LINE__, sizeof(type)*(length), ldm_size); 
+
+//if(_MYID==0) printf("allocated LDM size: %d at LINE %d, allocate size: %d, total size: %d\n",(char*)ptr-ldm_space, __LINE__, sizeof(type)*(length), ldm_size);  \
 
 #define INIT_LDM_SPACE(ldm_size_) \
 ; \
 int ldm_size = ldm_size_; \
 char ldm_space[ldm_size]; \
 char* ldm_space_end = ldm_space;
+
+#define REINIT_LDM_SPACE() \
+{  \
+	ldm_space_end = ldm_space; \
+}\
 
 #define LDM_NEW( ptr, type, length ) \
 { \

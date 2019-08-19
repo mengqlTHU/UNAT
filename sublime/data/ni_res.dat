@@ -1,0 +1,2 @@
+variables="Iteration","log<sub>10</sub>(residual)","lift","drag","lift_p","lift_v","drag_p","drag_v","mf_inl","mf_out"
+zone T="Navier-Stokes"

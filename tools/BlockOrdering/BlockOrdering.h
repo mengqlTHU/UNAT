@@ -9,6 +9,7 @@
 
 #include "stdio.h"
 #include "metis.h"
+#include "swMacro.h"
 #include "extensibleLabelArray.h"
 #include "timer.h"
 
@@ -69,8 +70,8 @@ extern "C"
 {
 #endif
 
-#define LABEL int
-#define SCALAR double
+#define LABEL swInt
+#define SCALAR swFloat
 
 #define CERR(...) \
 { \

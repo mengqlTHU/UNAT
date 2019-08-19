@@ -1,0 +1,2 @@
+make
+bsub -I -q q_sw_share -n 64  -host_stack 1024 -share_size 7000 ./mbt

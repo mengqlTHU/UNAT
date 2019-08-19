@@ -9,6 +9,10 @@ extern "C"
 void CG_init();
 void CG_halt();
 
+
+void cg_init_();
+void cg_halt_();
+
 #ifdef __cplusplus
 }
 #endif

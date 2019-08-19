@@ -1,0 +1,3 @@
+(cd ../unat && make)
+make clean && make
+(cd ../../ && sh mkrun)

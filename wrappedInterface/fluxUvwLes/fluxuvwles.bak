@@ -1,0 +1,866 @@
+/*========================================================================
+	- Author: Gao Fei
+ 	- Date:   2019-03-03 21:34:57
+	- Last Modified by:   Gao Fei
+	- Last Modified time: 2019-03-11 09:05:20
+	- E-mail: gaofei@mail.nsccwx.cn
+	
+	- File Name: fluxuvwles.cpp
+	- Description:
+	
+========================================================================*/
+
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include "macros.h"
+#include "reorderType.h"
+#include "calcPhiGauss.h"
+#include "fluxuvwles.h"
+#include "MeshInfos.h"
+
+static SWBO::MeshInfos* meshInfo;
+
+void interpolateViscosity(scalar* viseff, scalar* rface);
+void calcLudsFcc(scalar* massflux, scalar* rface);
+void calculateUvwFlux(scalar* massflux,
+	scalar* u,  scalar* v,  scalar* w,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVisSxFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVisSxFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVisSyFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVisSzFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVsPNxFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVsPNyFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateVsPNzFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateFccxFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateFccyFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+void calculateFcczFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw);
+
+
+/* ********************************debug************************************** *
+    scalar *tfuci, *tfuce, *tfudi, *tfude;
+    scalar *tfvci, *tfvce, *tfvdi, *tfvde;
+    scalar *tfwci, *tfwce, *tfwdi, *tfwde;
+/* ********************************end debug********************************** */
+
+
+// called in fluxuvwles
+extern "C" void internalfluxuvwles_(
+	// input
+	scalar* uPtr,//const
+	scalar* vPtr,//const
+	scalar* wPtr,//const
+	scalar* duPtr,//const
+	scalar* dvPtr,//const
+	scalar* dwPtr,//const
+	scalar* visPtr,//const
+	scalar* massfluxPtr,//const
+
+	// output
+	scalar* rfacePtr,
+	scalar* SuPtr,
+	scalar* SvPtr,
+	scalar* SwPtr,
+
+	scalar* pe0Ptr,
+	scalar* pe1Ptr,
+	label* bndrNumPtr,
+	scalar* gamblendPtr
+	)
+{
+	// 1. recalculate mesh information
+	static SWBO::MeshInfos infos(
+		getCellNum(), // already existed in fvBlocks
+		getFaceNum(),
+		*(bndrNumPtr),
+		getOwnPtr(),
+		getNeiPtr(),
+		getWeiPtr(),
+		getCdsFccPtr(),
+		getCellPtr(),
+		getFacePtr(),
+		*gamblendPtr
+		);
+	meshInfo = &infos;
+
+
+
+/* ********************************debug************************************** *
+	label faceNum = getFaceNum();
+    tfuci = new scalar[faceNum];
+    tfuce = new scalar[faceNum];
+    tfudi = new scalar[faceNum];
+    tfude = new scalar[faceNum];
+    tfvci = new scalar[faceNum];
+    tfvce = new scalar[faceNum];
+    tfvdi = new scalar[faceNum];
+    tfvde = new scalar[faceNum];
+    tfwci = new scalar[faceNum];
+    tfwce = new scalar[faceNum];
+    tfwdi = new scalar[faceNum];
+    tfwde = new scalar[faceNum];
+
+    for (label i = 0; i < faceNum; ++i)
+    {
+    	tfuci[i] = 0.0;
+	    tfuce[i] = 0.0;
+	    tfudi[i] = 0.0;
+	    tfude[i] = 0.0;
+	    tfvci[i] = 0.0;
+	    tfvce[i] = 0.0;
+	    tfvdi[i] = 0.0;
+	    tfvde[i] = 0.0;
+	    tfwci[i] = 0.0;
+	    tfwce[i] = 0.0;
+	    tfwdi[i] = 0.0;
+	    tfwde[i] = 0.0;
+    }
+/* ********************************end debug********************************** */
+
+
+	// 2. interpolate viscosity weighted by gamblend, face normal vector, face area, and cell center vector
+	interpolateViscosity(visPtr, rfacePtr);
+
+	// 3. calculate face center correction, for different convection scheme
+		// do once
+	//if (cs==cds) { }
+		// do every time
+	//else if (cs==luds)
+	calcLudsFcc(massfluxPtr, rfacePtr);
+	//else { }
+
+	// 4.calculate flux of u v w
+	calculateUvwFlux(massfluxPtr, uPtr, vPtr, wPtr, SuPtr, SvPtr, SwPtr);
+
+	// calculate flux of grident of u, grouped by the integrate factor
+	calculateVisSxFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	calculateVisSyFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	calculateVisSzFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	calculateVsPNxFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	calculateVsPNyFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	calculateVsPNzFlux(duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	//calculateFccxFlux(massfluxPtr, duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	//calculateFccyFlux(massfluxPtr, duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+	//calculateFcczFlux(massfluxPtr, duPtr, dvPtr, dwPtr, SuPtr, SvPtr, SwPtr);
+
+
+
+/* ********************************debug************************************** *
+	if (meshInfo->getProcId() == 1)
+    {
+		label faceNum = getFaceNum();
+		label cellNum = getCellNum();
+		label bndrNum = meshInfo->getBndrNum();
+	    scalar* rface0 = rfacePtr;
+		scalar* rface1 = rfacePtr + faceNum + bndrNum;
+		scalar* Su = SuPtr;
+		scalar* Sv = SvPtr;
+		scalar* Sw = SwPtr;
+		FILE* fp;
+
+	    char filename[256];
+	    sprintf(filename,"processor%d_Rface_cpp.dat",meshInfo->getProcId());
+	    printf("writing processor%d_Rface.dat\n",meshInfo->getProcId());
+	    fp=fopen(filename,"w");
+	    fprintf(fp, "cellNum=%d, fceNum=%d, bndrNum=%d\n",
+	    	getCellNum(), getFaceNum(), meshInfo->getBndrNum());
+    	for (label i = 0; i < faceNum; ++i)
+		{
+			//if(fabs( fuci-0.0)>EPSILON || fabs(fvci-0.0)>EPSILON || fabs(fwci-0.0)>EPSILON)
+	        //	fprintf(fp,"error:\n");
+			fprintf(fp,"i=%d, Rface:%15.10lf %15.10lf\n", i, rface0[i], rface1[i]);
+		}
+	    fclose(fp);
+
+	    sprintf(filename,"processor%d_SuSvSw_cpp.dat",meshInfo->getProcId());
+	    printf("writing processor%d_SuSvSw.dat\n",meshInfo->getProcId());
+	    fp=fopen(filename,"w");
+	    fprintf(fp, "cellNum=%d, fceNum=%d, bndrNum=%d\n",
+	    	getCellNum(), getFaceNum(), meshInfo->getBndrNum());
+    	for (label i = 0; i < cellNum; ++i)
+		{
+			//if(fabs( fuci-0.0)>EPSILON || fabs(fvci-0.0)>EPSILON || fabs(fwci-0.0)>EPSILON)
+	        //	fprintf(fp,"error:\n");
+			fprintf(fp,"i=%d, S: %15.10lf %15.10lf %15.10lf\n", i, Su[i], Sv[i], Sw[i]);
+		}
+	    fclose(fp);
+
+		char filename[256];
+	    sprintf(filename,"processor%d_fx_cpp.dat",meshInfo->getProcId());
+	    printf("writing processor%d_Rface.dat\n",meshInfo->getProcId());
+	    fp=fopen(filename,"w");
+	    fprintf(fp, "Ncel=%9d, Nfac=%9d, Nbnd=%9d\n",
+	    	getCellNum(), getFaceNum(), meshInfo->getBndrNum());
+    	for (label i = 0; i < faceNum; ++i)
+		{
+	        //write(10,"(1XI8,', fu',4(1XF15.10))")i-1,fuce,fuci,fude,fudi
+			fprintf(fp," %8d, fu %15.10lf %15.10lf %15.10lf %15.10lf\n",i,tfuce[i],tfuci[i],tfude[i],tfudi[i]);
+			fprintf(fp," %8d, fv %15.10lf %15.10lf %15.10lf %15.10lf\n",i,tfvce[i],tfvci[i],tfvde[i],tfvdi[i]);
+			fprintf(fp," %8d, fw %15.10lf %15.10lf %15.10lf %15.10lf\n",i,tfwce[i],tfwci[i],tfwde[i],tfwdi[i]);
+		}
+	    fclose(fp);
+
+	    printf("output complete\n");
+	    std::exit(1);
+    }
+/* ********************************end debug********************************** */
+
+}
+
+void interpolateViscosity(scalar* viseff, scalar* rface)
+{
+	// prepare pointers
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	scalar gamblend = meshInfo->getGamBlend();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	const scalar* face_nx = meshInfo->getFaceNx();
+	const scalar* face_ny = meshInfo->getFaceNy();
+	const scalar* face_nz = meshInfo->getFaceNz();
+	const scalar* face_dx = meshInfo->getFaceDpnx();
+	const scalar* face_dy = meshInfo->getFaceDpny();
+	const scalar* face_dz = meshInfo->getFaceDpnz();
+	const scalar* face_d  = meshInfo->getFaceD();
+/* ********************************debug************************************** *
+	const scalar* xpnx = meshInfo->getXpn();
+	const scalar* xpny = meshInfo->getXpn() + faceNum;
+	const scalar* xpnz = meshInfo->getXpn() + 2*faceNum;
+/* ********************************end debug********************************** */
+	scalar* visSx = meshInfo->accessVisS();
+	scalar* visSy = meshInfo->accessVisS() + faceNum;
+	scalar* visSz = meshInfo->accessVisS() + 2*faceNum;
+	scalar* visPNx = meshInfo->accessVisPN();
+	scalar* visPNy = meshInfo->accessVisPN() + faceNum;
+	scalar* visPNz = meshInfo->accessVisPN() + 2*faceNum;
+
+	// Rface is size of internal+bndr ???????????????????????????????????????????????????????????
+	scalar* rface0 = rface;
+	scalar* rface1 = rface + faceNum + bndrNum;
+
+
+/* ********************************debug************************************** *
+    {
+    	const label* own = gpBlocks->getOwn();
+		const label* nei = gpBlocks->getNei();
+		scalar* cPhi = cellPhiPtr;
+
+	    char filename[256];
+	    sprintf(filename,"processor%d_cellPhi.dat",procId);
+	    printf("writing processor%d_extractownnei.dat,faceNum=%d\n",procId,faceNum);
+	    FILE* fp=fopen(filename,"w");
+	    for (int i = 0; i < faceNum; ++i)
+	    {
+	        if(fabs( cPhi[own[i]]-0.0)>EPSILON ||fabs(cPhi[nei[i]]-0.0)>EPSILON )
+	        	fprintf(fp,"error\n");
+	        fprintf(fp,"i=%d, own=%d, nei=%d, cPhi[own[i]]=%g, cPhi[nei[i]]=%g\n",
+	            i,own[i],nei[i], cPhi[own[i]], cPhi[nei[i]]);
+	    }
+	    fclose(fp);
+    }
+/* ********************************end debug********************************** */
+
+/* ********************************debug************************************** *
+    {
+    	printf("\ngamblend = %g\n", gamblend);
+    	std::exit(0);
+    }
+/* ********************************end debug********************************** */
+
+	// calculate
+	for (label i = 0; i < faceNum; ++i)
+	{
+		//Visac    = VisEff(in) * facn + VisEff(ip) * facp
+		scalar visac = viseff[in[i]] * facn[i] + viseff[ip[i]] * (1.0 - facn[i]) ;
+
+		visSx[i] =  visac * face_nx[i];// * gamblend
+		visSy[i] =  visac * face_ny[i];// * gamblend
+		visSz[i] =  visac * face_nz[i];// * gamblend
+
+		visPNx[i] = visac * face_dx[i];// * gamblend
+		visPNy[i] = visac * face_dy[i];// * gamblend
+		visPNz[i] = visac * face_dz[i];// * gamblend
+
+		rface0[i] -= visac * face_d[i];
+		rface1[i] -= visac * face_d[i];
+
+
+/* ********************************debug************************************** *
+		/*if(i==1387&&meshInfo->getProcId() == 1)
+		{
+			printf("visac=%g, faced=%g\n",visac,face_d[i]);
+			printf("xpnx=%g,xpny=%g,xpnz=%g\n",xpnx[i],xpny[i],xpnz[i]);
+			printf("facedx=%g, facedy=%g, facedz=%g\n",face_dx[i],face_dy[i],face_dz[i]);
+			printf("visPNx=%g,visPNy=%g,visPNz=%g\n",visPNx[i],visPNy[i],visPNz[i]);
+			printf("facenx=%g, faceny=%g, facenz=%g\n",face_nx[i],face_ny[i],face_nz[i]);
+			printf("visSx=%g,visSy=%g,visSz=%g\n",visSx[i],visSy[i],visSz[i]);
+		}*/
+/* ********************************end debug********************************** */
+
+	}
+}
+
+void calcLudsFcc(scalar* massflux, scalar* rface)
+{
+	// prepare pointers
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	scalar gamblend = meshInfo->getGamBlend();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* cellx_x = meshInfo->getCellXx();
+	const scalar* cellx_y = meshInfo->getCellXy();
+	const scalar* cellx_z = meshInfo->getCellXz();
+	const scalar* facex_x = meshInfo->getFaceXx();
+	const scalar* facex_y = meshInfo->getFaceXy();
+	const scalar* facex_z = meshInfo->getFaceXz();
+	scalar* fccx = meshInfo->accessLudsFcc();
+	scalar* fccy = meshInfo->accessLudsFcc() + faceNum;
+	scalar* fccz = meshInfo->accessLudsFcc() + 2*faceNum;
+
+	// Rface is size of internal+bndr ???????????????????????????????????????????????????????????
+	scalar* rface0 = rface;
+	scalar* rface1 = rface + faceNum + bndrNum;
+
+	// calculate
+	for (label i = 0; i < faceNum; ++i)
+	{
+		// while massflux[i] > 0, xacpn=face(i).x - cell(ip).x, and facp = 1, facn = 0
+		// while massflux[i] < 0, xacpn=face(i).x - cell(in).x, and facn = 1, facp = 0
+		// caution caution caution !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		scalar facp = massflux[i]>=0.0 ? massflux[i] : 0.0;
+		scalar facn = massflux[i]< 0.0 ? massflux[i] : 0.0;
+
+		fccx[i] = ( facn*( facex_x[i]-cellx_x[in[i]] )
+		          + facp*( facex_x[i]-cellx_x[ip[i]] ) )*gamblend;
+
+		fccy[i] = ( facn*( facex_y[i]-cellx_y[in[i]] )
+			      + facp*( facex_y[i]-cellx_y[ip[i]] ) )*gamblend;
+
+		fccz[i] = ( facn*( facex_z[i]-cellx_z[in[i]] )
+			      + facp*( facex_z[i]-cellx_z[ip[i]] ) )*gamblend;
+
+		rface0[i] -= facp;
+		rface1[i] += facn;
+	}
+}
+
+void calculateUvwFlux(scalar* massflux,
+	scalar* u,  scalar* v,  scalar* w,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label faceNum = getFaceNum();
+	scalar gamblend = meshInfo->getGamBlend();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+
+
+/* ********************************debug************************************** *
+	if (meshInfo->getProcId() == 1)
+    {
+
+    	printf("c++: Ncel=%d, Nfac=%d, Nbnd=%d\n",
+	    	getCellNum(), getFaceNum(), meshInfo->getBndrNum());
+	    char filename[256];
+	    sprintf(filename,"processor%d_fxdcie.dat",meshInfo->getProcId());
+	    printf("writing processor%d_fxdcie.dat,faceNum=%d\n",meshInfo->getProcId(),faceNum);
+	    FILE* fp=fopen(filename,"w");
+
+	    fprintf(fp, "cellNum=%d, fceNum=%d, bndrNum=%d\n",
+	    	getCellNum(), getFaceNum(), meshInfo->getBndrNum());
+    	for (label i = 0; i < faceNum; ++i)
+		{
+			scalar facp = massflux[i]>=0.0 ? massflux[i] : 0.0;
+			scalar facn = massflux[i]< 0.0 ? massflux[i] : 0.0;
+
+			scalar fuci = facn*u[ in[i] ] + facp*u[ ip[i] ];
+			scalar fvci = facn*v[ in[i] ] + facp*v[ ip[i] ];
+			scalar fwci = facn*w[ in[i] ] + facp*w[ ip[i] ];
+
+			if(fabs( fuci-0.0)>EPSILON || fabs(fvci-0.0)>EPSILON || fabs(fwci-0.0)>EPSILON)
+	        	fprintf(fp,"error:\n");
+			fprintf(fp,"i=%d, fuci:%15.10lf, fvci:%15.10lf, fwci:%15.10lf\n",
+	            i, fuci, fvci, fwci);
+		}
+
+	    /*for (int i = 0; i < faceNum; ++i)
+	    {
+	        if(fabs( cPhi[own[i]]-0.0)>EPSILON ||fabs(cPhi[nei[i]]-0.0)>EPSILON )
+	        	fprintf(fp,"error\n");
+	        fprintf(fp,"i=%d, own=%d, nei=%d, cPhi[own[i]]=%g, cPhi[nei[i]]=%g\n",
+	            i,own[i],nei[i], cPhi[own[i]], cPhi[nei[i]]);
+	    }*/
+	    /*fclose(fp);
+	    printf("output complete\n");
+	    std::exit(1);*/
+    //}
+/* ********************************end debug********************************** */
+
+
+	// calculate
+	for (label i = 0; i < faceNum; ++i)
+	{
+		scalar facp = massflux[i]>=0.0 ? massflux[i] : 0.0;
+		scalar facn = massflux[i]< 0.0 ? massflux[i] : 0.0;
+
+		scalar fuci = facn*u[ in[i] ] + facp*u[ ip[i] ];
+		scalar fuce = facn*u[ in[i] ] + facp*u[ ip[i] ]; // only for LUDS
+		//tfuci[i]+=fuci;
+		//tfuce[i]+=fuce;
+		Su[ ip[i] ] += (fuci - fuce) * gamblend;
+		Su[ in[i] ] -= (fuci - fuce) * gamblend;
+
+		scalar fvci = facn*v[ in[i] ] + facp*v[ ip[i] ];
+		scalar fvce = facn*v[ in[i] ] + facp*v[ ip[i] ]; // only for LUDS
+		//tfvci[i]+=fvci;
+		//tfvce[i]+=fvce;
+		Sv[ ip[i] ] += (fvci - fvce) * gamblend;
+		Sv[ in[i] ] -= (fvci - fvce) * gamblend;
+
+		scalar fwci = facn*w[ in[i] ] + facp*w[ ip[i] ];
+		scalar fwce = facn*w[ in[i] ] + facp*w[ ip[i] ]; // only for LUDS
+		//tfwci[i]+=fwci;
+		//tfwce[i]+=fwce;
+		Sw[ ip[i] ] += (fwci - fwce) * gamblend;
+		Sw[ in[i] ] -= (fwci - fwce) * gamblend;
+
+
+	
+/* ********************************debug************************************** *
+    scalar* tfuci, tfuce, tfudi, tfude;
+    scalar* tfvci, tfvce, tfvdi, tfvde;
+    scalar* tfwci, tfwce, tfwdi, tfwde;
+/* ********************************end debug********************************** */
+	
+	}
+}
+
+void calculateVisSxFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	scalar gamblend = meshInfo->getGamBlend();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudx = du;
+	scalar* dudy = du + (cellNum+bndrNum);
+	scalar* dudz = du + 2*(cellNum+bndrNum);
+	scalar* dvdx = dv;
+	scalar* dwdx = dw;
+	const scalar* visSx = meshInfo->getVisSx();
+
+	// prepare pointer arrays
+	scalar* phi[5] = {dudx, dudy, dudz, dvdx, dwdx};
+	scalar* S[5] = {Su, Sv, Sw, Sv, Sw};
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[5] = {tfude,tfvde,tfwde,tfvde,tfwde};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 5; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fde = ( facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]] ) * visSx[i];
+			// ??????????????????????????????????????????????????????????????????????????????????
+			if(k==0) fde *= 2;
+
+			//tf[k][i]+=fde;
+			S[k][ip[i]] += fde;
+			S[k][in[i]] -= fde;
+		}
+	}
+}
+
+void calculateVisSyFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudy = du + (cellNum+bndrNum);
+	scalar* dvdx = dv;
+	scalar* dvdy = dv + (cellNum+bndrNum);
+	scalar* dvdz = dv + 2*(cellNum+bndrNum);
+	scalar* dwdy = dw + (cellNum+bndrNum);
+	const scalar* visSy = meshInfo->getVisSy();
+
+	// prepare pointer arrays
+	scalar* phi[5] = {dudy, dvdx, dvdy, dvdz, dwdy};
+	scalar* S[5] = {Su, Su, Sv, Sw, Sw};
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[5] = {tfude,tfude,tfvde,tfwde,tfwde};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 5; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fde = (facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]]) * visSy[i];
+			if(k==2) fde *= 2;
+
+			//tf[k][i]+=fde;
+
+			S[k][ip[i]] += fde;
+			S[k][in[i]] -= fde;
+		}
+	}
+}
+
+void calculateVisSzFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudz = du + 2*(cellNum+bndrNum);
+	scalar* dvdz = dv + 2*(cellNum+bndrNum);
+	scalar* dwdx = dw;
+	scalar* dwdy = dw + (cellNum+bndrNum);
+	scalar* dwdz = dw + 2*(cellNum+bndrNum);
+	const scalar* visSz = meshInfo->getVisSz();
+
+	// prepare pointer arrays
+	scalar* phi[5] = {dudz, dvdz, dwdx, dwdy, dwdz};
+	scalar* S[5] = {Su, Sv, Su, Sv, Sw};
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[5] = {tfude,tfvde,tfude,tfvde,tfwde};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 5; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fde = (facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]]) * visSz[i];
+			if(k==4) fde *= 2;
+
+			//tf[k][i]+=fde;
+
+			S[k][ip[i]] += fde;
+			S[k][in[i]] -= fde;
+		}
+	}
+}
+
+void calculateVsPNxFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudx = du;
+	scalar* dvdx = dv;
+	scalar* dwdx = dw;
+	const scalar* visPNx = meshInfo->getVisPNx();
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudx, dvdx, dwdx};
+	scalar* S[3] = {Su, Sv, Sw};
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[3] = {tfudi,tfvdi,tfwdi};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fdi = (facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]]) * visPNx[i];
+
+/*tf[k][i]+=fdi;
+if(k==0 && i==1387&&meshInfo->getProcId() == 1)
+	printf("fdi=%g, duin=%g, facn=%g, duip=%g, facp=%g, vispnx=%g\n",
+	fdi,facn[i],phi[k][ in[i] ],(1.0-facn[i]), phi[k][ ip[i]], visPNx[i]);*/
+
+			S[k][ip[i]] -= fdi;
+			S[k][in[i]] += fdi;
+		}
+	}
+}
+
+void calculateVsPNyFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudy = du + (cellNum+bndrNum);
+	scalar* dvdy = dv + (cellNum+bndrNum);
+	scalar* dwdy = dw + (cellNum+bndrNum);
+	const scalar* visPNy = meshInfo->getVisPNy();
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudy, dvdy, dwdy};
+	scalar* S[3] = {Su, Sv, Sw};
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[3] = {tfudi,tfvdi,tfwdi};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fdi = ( facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]] ) * visPNy[i];
+
+/*tf[k][i]+=fdi;
+if(k==0 && i==1387&&meshInfo->getProcId() == 1)
+	printf("fdi=%g, duin=%g, facn=%g, duip=%g, facp=%g, vispny=%g\n",
+	fdi,facn[i],phi[k][ in[i] ],(1.0-facn[i]), phi[k][ ip[i]], visPNy[i]);*/
+
+			S[k][ip[i]] -= fdi;
+			S[k][in[i]] += fdi;
+		}
+	}
+}
+
+void calculateVsPNzFlux(
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudz = du + 2*(cellNum+bndrNum);
+	scalar* dvdz = dv + 2*(cellNum+bndrNum);
+	scalar* dwdz = dw + 2*(cellNum+bndrNum);
+	const scalar* visPNz = meshInfo->getVisPNz();
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudz, dvdz, dwdz};
+	scalar* S[3] = {Su, Sv, Sw};
+
+
+	
+/* ********************************debug************************************** *
+    scalar* tf[3] = {tfudi,tfvdi,tfwdi};
+/* ********************************end debug********************************** */
+
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar fdi = (facn[i]*phi[k][ in[i] ] + (1.0-facn[i])*phi[k][ ip[i]]) * visPNz[i];
+
+/*tf[k][i]+=fdi;
+if(k==0 && i==1387&&meshInfo->getProcId() == 1)
+	printf("fdi=%g, duin=%g, facn=%g, duip=%g, facp=%g, vispnz=%g\n",
+	fdi,facn[i],phi[k][ in[i] ],(1.0-facn[i]), phi[k][ ip[i]], visPNz[i]);
+*/
+			S[k][ip[i]] -= fdi;
+			S[k][in[i]] += fdi;
+		}
+	}
+}
+
+void calculateFccxFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudx = du;
+	scalar* dvdx = dv;
+	scalar* dwdx = dw;
+	const scalar* fccx = meshInfo->getLudsFccx(); // for LUDS
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudx, dvdx, dwdx};
+	scalar* S[3] = {Su, Sv, Sw};
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar facp = massflux[i]>=0.0 ? 1.0 : 0.0;
+			scalar facn = massflux[i]< 0.0 ? 1.0 : 0.0;
+
+			// gamblend and massflux is multiplied in fcc
+
+			scalar fce = ( facn*phi[k][ in[i] ] + facp*phi[k][ ip[i]] ) * fccx[i];
+			S[k][ip[i]] -= fce;
+			S[k][in[i]] += fce;
+		}
+	}
+}
+
+void calculateFccyFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudy = du + (cellNum+bndrNum);
+	scalar* dvdy = dv + (cellNum+bndrNum);
+	scalar* dwdy = dw + (cellNum+bndrNum);
+	const scalar* fccy = meshInfo->getLudsFccy(); // for LUDS
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudy, dvdy, dwdy};
+	scalar* S[3] = {Su, Sv, Sw};
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar facp = massflux[i]>=0.0 ? 1.0 : 0.0;
+			scalar facn = massflux[i]< 0.0 ? 1.0 : 0.0;
+
+			scalar fce = ( facn*phi[k][ in[i] ] + facp*phi[k][ ip[i]]) * fccy[i];
+			S[k][ip[i]] -= fce;
+			S[k][in[i]] += fce;
+		}
+	}
+}
+
+void calculateFcczFlux(scalar* massflux,
+	scalar* du, scalar* dv, scalar* dw,
+	scalar* Su, scalar* Sv, scalar* Sw)
+{
+	// prepare pointers
+	label cellNum = getCellNum();
+	label faceNum = getFaceNum();
+	label bndrNum = meshInfo->getBndrNum();
+	const label* ip = getOwnPtr();
+	const label* in = getNeiPtr();
+	const scalar* facn = getWeiPtr();
+	scalar* dudz = du + 2* (cellNum+bndrNum);
+	scalar* dvdz = dv + 2* (cellNum+bndrNum);
+	scalar* dwdz = dw + 2* (cellNum+bndrNum);
+	const scalar* fccz = meshInfo->getLudsFccz(); // for LUDS
+
+	// prepare pointer arrays
+	scalar* phi[3] = {dudz, dvdz, dwdz};
+	scalar* S[3] = {Su, Sv, Sw};
+
+	// claculate
+	for (label k = 0; k < 3; ++k)
+	{
+		for (label i = 0; i < faceNum; ++i)
+		{
+			scalar facp = massflux[i]>=0.0 ? 1.0 : 0.0;
+			scalar facn = massflux[i]< 0.0 ? 1.0 : 0.0;
+
+			scalar fce = ( facn*phi[k][ in[i] ] + facp*phi[k][ ip[i]]) * fccz[i];
+			S[k][ip[i]] -= fce;
+			S[k][in[i]] += fce;
+		}
+	}
+}
+
+/*const label* getOwn()
+{
+	return meshInfo->getOwn();
+}
+
+const label* getNei()
+{
+	return meshInfo->getNei();
+}
+
+const scalar* getLambda()
+{
+	return meshInfo->getWei();
+}*/
+
+const scalar* getCellX()
+{
+	return meshInfo->getCellX();
+}
+
+const scalar* getFaceX()
+{
+	return meshInfo->getFaceX();
+}
+
+const scalar* getFaceD()
+{
+	return meshInfo->getFaceD();
+}
+
+const scalar* getFaceN()
+{
+	return meshInfo->getFaceN();
+}

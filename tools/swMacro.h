@@ -6,7 +6,13 @@
 
 #define BLOCKNUM64K 64
 #define SAFELDM 24000
-#define EPS 1e-6
+#define EPS 1e-5
+#define MAXSTEPS 6
+
+// define the pattern of iterator
+#define E2V 0
+#define V2E 1
+#define ARRAY 2
 //#define DEBUG
 
 #ifdef DEBUG
@@ -129,17 +135,17 @@ typedef double swFloat64;
 		{ \
 			if(array1[i]==0) \
 			{ \
-				if(fabs(array2[i])>EPS) \
+				if(std::fabs(array2[i])>EPS) \
 				{ \
-					std::cout<<"Error on index["<<i<<"], " \
-						<<array1[i]<<", "<<array2[i]<<std::endl; \
+					printf("Error on index[%d], %.8f, %.8f\n", \
+								i, array1[i], array2[i]); \
 					std::exit(-1); \
 				} \
 			} \
 			else if(std::fabs((array1[i]-array2[i])/array1[i])>EPS) \
 			{ \
-				std::cout<<"Error on index["<<i<<"], " \
-					<<array1[i]<<", "<<array2[i]<<std::endl; \
+				printf("Error on index[%d], %.8f, %.8f\n", \
+							i, array1[i], array2[i]); \
 				std::exit(-1); \
 			} \
 		} \

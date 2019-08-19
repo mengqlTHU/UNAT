@@ -1,10 +1,11 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
-#include <iostream>
+// #include <iostream>
 #include <map>
+#include <cstring>
 #include "swMacro.h"
-#include "topology.H"
+#include "topology.hpp"
 #include "iterator.h"
 
 // ------------------------------------------------------------------------
@@ -31,7 +32,6 @@ class Iterator
 		Iterator(){}
 		Iterator(Topology &topo, swInt* vertexWeights, swInt* edgeWeights, bool duplicate = false)
 		{
-			cout<<"Iterator constructor"<<endl;
 			if(duplicate)
 			{
 				this->_topo = topo.clone();
@@ -50,6 +50,21 @@ class Iterator
 				_edgeWeights = edgeWeights;
 				duplicate_ = false;
 			}
+		};
+
+		Iterator(Topology &topo, bool duplicate = false)
+		{
+			if(duplicate)
+			{
+				this->_topo = topo.clone();
+				duplicate_ = true;
+			} else 
+			{
+				_topo = &topo;
+				duplicate_ = false;
+			}
+			_vertexWeights = NULL;
+			_edgeWeights = NULL;
 		}
 
 		// Deconstructors
@@ -86,9 +101,7 @@ class Iterator
 		}
 		virtual void reorderNeighbor(swInt* firstEdgeVertices,
 					swInt* vertexNeighbours,
-					swInt edgeNumber, swInt vertexNumber){
-			// To do
-		}
+					swInt edgeNumber, swInt vertexNumber) = 0;
 		virtual void reorderEdgeData(Arrays* backEdgeData,
 					Arrays* frontEdgeData){
 			// To do
@@ -100,11 +113,12 @@ class Iterator
 			// To do
 		}
 
-		virtual void edge2VertexIteration(Arrays* backEdgeData, Arrays* frontEdgeData,
-				   	Arrays* selfConnData, Arrays* vertexData, 
-					e2v_hostFunPtr, e2v_slaveFunPtr) = 0;
-		virtual void vertex2EdgeIteration(Arrays* neighbourData,
-					Arrays* vertexData, v2e_hostFunPtr, v2e_slaveFunPtr) = 0;
+		virtual void edge2VertexIteration(Arrays* paraData,
+					coupledOperator *cOpt, swInt optNum) = 0;
+		virtual void arrayIteration(Arrays* paraData, 
+					coupledOperator* cOpt, int optNum) = 0;
+		virtual void vertex2EdgeIteration(Arrays* paraData, 
+					coupledOperator *cOpt, swInt optNum) = 0;
 		
 		Topology* getTopology(){return this->_topo;}
 		swInt* getVertexWeights(){return this->_vertexWeights;}

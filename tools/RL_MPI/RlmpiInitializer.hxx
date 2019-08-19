@@ -13,7 +13,7 @@
 #include <vector>
 #include <map>
 #include <time.h>
-#include <iostream>
+// #include <iostream>
 #include "RlmpiShared.h"
 #ifdef SUNWAY
 extern "C" {
@@ -22,12 +22,14 @@ extern "C" {
 #endif
 using namespace std;
 #ifndef DISP
-#define DISP(x) std::cout << __FILE__<<" "<<__LINE__<< ",    " << #x ": " << (x) << std::endl
+#define DISP(x)
+//#define DISP(x) std::cout << __FILE__<<" "<<__LINE__<< ",    " << #x ": " << (x) << std::endl
 #endif
 
 
 #ifndef DISP2
-#define DISP2(x,y) std::cout << __FILE__<<" "<<__LINE__<< ",    " << #x ": " << x <<" "<<y<< std::endl
+#define DISP2(x,y)
+//#define DISP2(x,y) std::cout << __FILE__<<" "<<__LINE__<< ",    " << #x ": " << x <<" "<<y<< std::endl
 #endif
 
 static inline double timestamp() {
@@ -36,16 +38,16 @@ static inline double timestamp() {
     return ts.tv_sec + ts.tv_nsec * 1e-9;
 }
 
-template < class T >
-std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
-    //    os << "[";
-    for (typename std::vector<T>::const_iterator it = v.begin(); it != v.end() - 1; ++it) {
-        os << "  " << *it << ", ";
-    }
-    os << *v.rbegin();
-    os << ";";
-    return os;
-}
+// template < class T >
+// std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
+//     //    os << "[";
+//     for (typename std::vector<T>::const_iterator it = v.begin(); it != v.end() - 1; ++it) {
+//         os << "  " << *it << ", ";
+//     }
+//     os << *v.rbegin();
+//     os << ";";
+//     return os;
+// }
 
 class RlmpiInitializer {
 public:

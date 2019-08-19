@@ -1,0 +1,59 @@
+#fc  	=  tau_f90.sh
+fc  	=  mpif90
+exe		=  mbt
+
+#flag	=  -O0 -Wall -Wextra -Wline-truncation -Wcharacter-truncation \
+		   -Wsurprising -Waliasing -Wunused-parameter -Wconversion\
+		   -fwhole-file -fcheck=all -fbacktrace -fPIC -J mod
+#flag	=  -O2 -march=native -fwhole-file -fPIC -J mod
+
+#flag	=  -O0 -module mod -check all -warn all -warn unused -fpe3 -traceback \
+		   -gen-interface -check noarg_temp_created -fpic
+flag	=  -O2 -axSSE4.2 -module mod -fpic
+libdir	=  -L/usr/local/lib/ -lcgns \
+		   -L/usr/local/lib/parmetis-4.0.3/ -lparmetis -lmetis \
+		   -L/home/suxr/Desktop/x/ -luns
+incdir	=  -I/usr/local/include \
+		   -I/home/suxr/Desktop/x/mod
+inc		=  include/var_def.f90
+
+main	=  main.o setup.o parallel.o sfci.o sfcs.o sfcd.o linear_solver.o \
+		   fluid.o
+mesh	=  mesh.o mesh_before_balance.o mesh_after_balance.o mesh_io.o \
+		   mesh_hanging_node.o mesh_structured.o mesh_gmg.o bnd.o mesh_geo.o \
+		   mesh_line.o mesh_wall.o mesh_patch.o mesh_ls.o
+fr		=  fr_line.o fr.o fr_rhs.o fr_rhs_vis.o fr_quad.o fr_hexa.o fr_mortar.o \
+		   fr_bnd.o fr_pmg.o fr_slv_exp.o fr_slv_imp.o fr_io.o fr_uns.o
+fv		=  fv.o fv_bnd.o fv_wall.o fv_io.o fv_rhs.o fv_slv_exp.o fv_slv_imp.o\
+		   fv_test.o fv_gmg.o fv_rhs_upw.o fv_rhs_cen.o\
+		   fv_slv_monitor.o fv_rans.o fv_ddes.o fv_les.o fv_reot.o \
+		   fv_uns.o fv_uns_io.o fv_imex.o
+fv_adj	=  rpm.o fv_adj.o fv_adj_slv.o fv_adj_bnd.o fv_adj_rhs.o fv_adj_rhs_cen.o \
+		   fv_adj_rhs_upw.o fv_adj_rhs_vis.o fv_adj_xyz.o
+heat	=  heat.o heat_rhs.o heat_slv.o heat_unsteady.o
+blas	=  blas.o mc60.o
+prec	=  prec.o
+
+object	=  $(main) $(mesh) $(fv)
+object_2=  $(blas) $(prec)
+
+edit:		dir_mod $(object)
+			$(fc) $(flag) -o $(exe) $(object) $(libdir) $(incdir)
+lib:		dir_mod $(object_2)
+			ar rcs libuns.a $(object_2)
+
+dir_mod:
+			mkdir -p mod
+$(main):	%.o: %.f90
+			$(fc) $(flag) -c $< -o $@ $(libdir) $(incdir)
+$(mesh):	%.o: %.f90
+			$(fc) $(flag) -c $< -o $@ $(libdir) $(incdir)
+$(blas):	%.o: %.f
+			$(fc) $(flag) -c $< -o $@ $(libdir) $(incdir)
+$(fv):		%.o: %.f90
+			$(fc) $(flag) -c $< -o $@ $(libdir) $(incdir)
+$(prec):	%.o: %.f90
+			$(fc) $(flag) -c $< -o $@ $(libdir) $(incdir)
+
+clean:
+			rm -f $(exe) *.o *.so

@@ -9,14 +9,15 @@
 
 #include "stdlib.h"
 #include "string.h"
+#include "swMacro.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define SCALAR double
-#define LABEL int
+#define SCALAR swFloat
+#define LABEL swInt
 
 #define INITSIZE 32
 

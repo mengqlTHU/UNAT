@@ -9,13 +9,14 @@
 
 #include "stdlib.h"
 #include "string.h"
+#include "swMacro.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define LABEL int
+#define LABEL swInt
 
 #define INITSIZE 32
 
